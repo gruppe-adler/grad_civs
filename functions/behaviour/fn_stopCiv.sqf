@@ -70,9 +70,10 @@ if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
             units _grp orderGetIn true;
             INFO_1("%1 ordered to get in", leader _grp);
             (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets get in"];
-            units _grp doFollow leader _grp;
+           units _grp doFollow leader _grp;
 
     } else {
+units _grp doFollow leader _grp;
 
         (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets patrol around"];
         INFO_1("%1 ordered to patrol", leader _grp);
