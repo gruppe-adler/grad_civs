@@ -61,7 +61,8 @@ class CfgGradCivs {
     debugMode = 1;
     exitOn = "";
     onSpawn = "";
-    onHeldUp = "";
+    onHeldUp = "";    
+    backpackProbability = 0.5;
 
     clothes[] = {
         "rds_uniform_Worker1",
@@ -83,6 +84,10 @@ class CfgGradCivs {
         "TRYK_Beard_BK",
        	"TRYK_Beard_BK2",
         "TRYK_Beard_BK3"
+    };
+
+    backpacks[] = {
+        "rhs_sidor"
     };
 };
 ```
