@@ -31,6 +31,7 @@ class GRAD_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\init;
 
         class initModule {preInit = 1;};
+        class setBackpacks {};
         class setClothes {};
         class setFaces {};
         class setGoggles {};

@@ -35,19 +35,21 @@ Add the class `cfgGradCivs` to your `description.ext`. Use the following attribu
 
 ## Attributes
 
-Attribute      | Default Value | Explanation
----------------|---------------|---------------------------------------------------------------------
-autoInit       | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
-maxCivs        | 60            | Maximum number of civs that can exist at any time.
-spawnDistances | [1000,4500]   | Minimum and maximum distance to players that civilians can spawn in.
-debugMode      | 0             | Toggles debug mode (0/1).
-onSpawn        | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian].
-onHeldUp       | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
-exitOn         | ""            | Condition upon which grad-civs loops will stop.
-clothes        | []            | All classnames of clothes that civilians may wear.
-faces          | []            | All classnames of faces that civilians may have.
-goggles        | []            | All classnames of goggles that civilians may wear.
-headgear       | []            | All classnames of headgear that civilians may wear.
+Attribute           | Default Value | Explanation
+--------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
+autoInit            | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
+maxCivs             | 60            | Maximum number of civs that can exist at any time.
+spawnDistances      | [1000,4500]   | Minimum and maximum distance to players that civilians can spawn in.
+debugMode           | 0             | Toggles debug mode (0/1).
+onSpawn             | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian].
+onHeldUp            | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
+exitOn              | ""            | Condition upon which grad-civs loops will stop.
+clothes             | []            | All classnames of clothes that civilians may wear.
+faces               | []            | All classnames of faces that civilians may have.
+goggles             | []            | All classnames of goggles that civilians may wear.
+headgear            | []            | All classnames of headgear that civilians may wear.
+backpacks           | []            | All classnames of backpacks that civilians may wear.
+backpackProbability | 0.5           | Probability that a civilian will wear a backpack.
 
 ## Example
 
@@ -127,6 +129,17 @@ Sets all headgear that civilians may wear. Overwrites `cfgGradCivs` value. Effec
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 headgear  | Array - All classnames of clothes that civilians may wear.
+
+## grad_civs_fnc_Backpacks
+Sets all backpacks that civilians may wear and sets probability. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[backpacks,probability] call grad_civs_fnc_setHeadgear`
+
+Parameter   | Explanation
+------------|-----------------------------------------------------------------------
+backpacks   | Array - All classnames of clothes that civilians may wear.
+probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
 
 ## grad_civs_fnc_initModule
 Used to manually initialize module. Has to be executed on clients and server. Effect is local.

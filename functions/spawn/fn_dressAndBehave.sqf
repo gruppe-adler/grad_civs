@@ -34,7 +34,9 @@ _reclotheHim = {
 
 	_guy setUnitLoadout _loadout;
 
-	[[_guy, selectRandom GRAD_CIVS_FACES], "setCustomFace"] call BIS_fnc_MP;
+	if (count GRAD_CIVS_FACES > 0) then {
+		[[_guy, selectRandom GRAD_CIVS_FACES], "setCustomFace"] call BIS_fnc_MP;
+	};
 	_guy setVariable ["BIS_noCoreConversations", true];
 
 };
@@ -42,19 +44,16 @@ _reclotheHim = {
 _addBeard = {
 	params ["_guy"];
 
-	_firstBeard = GRAD_CIVS_GOGGLES select 0;
-	// INFO_1("_trying to select beard %1", _firstBeard);
-	// add beards if possible
-	if (!(isClass (configfile >> "CfgGlasses" >> "TRYK_Beard"))) exitWith {};
-
-   	_guy addGoggles selectRandom GRAD_CIVS_GOGGLES;
+	if (count GRAD_CIVS_GOGGLES > 0) then {
+		_guy addGoggles selectRandom GRAD_CIVS_GOGGLES;
+	};
 };
 
 _addBackpack = {
 	params ["_unit"];
 
-	if (random 2 > 1) then {
-		_unit addBackpackGlobal "rhs_sidor";
+	if (random 100 <= GRAD_CIVS_BACKPACKPROBABILITY && {count GRAD_CIVS_BACKPACKS > 0}) then {
+		_unit addBackpackGlobal selectRandom GRAD_CIVS_BACKPACKS;
 	};
 };
 

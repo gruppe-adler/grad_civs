@@ -9,6 +9,8 @@ if (isServer) then {
     if (isNil "GRAD_CIVS_HEADGEAR") then {missionNamespace setVariable ["GRAD_CIVS_HEADGEAR",[missionConfigFile >> "cfgGradCivs","headgear",[]] call BIS_fnc_returnConfigEntry,true]};
     if (isNil "GRAD_CIVS_FACES") then {missionNamespace setVariable ["GRAD_CIVS_FACES",[missionConfigFile >> "cfgGradCivs","faces",[]] call BIS_fnc_returnConfigEntry,true]};
     if (isNil "GRAD_CIVS_GOGGLES") then {missionNamespace setVariable ["GRAD_CIVS_GOGGLES",[missionConfigFile >> "cfgGradCivs","goggles",[]] call BIS_fnc_returnConfigEntry,true]};
+    if (isNil "GRAD_CIVS_BACKPACKS") then {missionNamespace setVariable ["GRAD_CIVS_BACKPACKS",[missionConfigFile >> "cfgGradCivs","backpacks",[]] call BIS_fnc_returnConfigEntry,true]};
+    if (isNil "GRAD_CIVS_BACKPACKPROBABILITY") then {missionNamespace setVariable ["GRAD_CIVS_BACKPACKPROBABILITY",[missionConfigFile >> "cfgGradCivs","backpackProbability",0.5] call BIS_fnc_returnConfigEntry,true]};
 
     missionNamespace setVariable ["GRAD_CIVS_EXITON",compile ([missionConfigFile >> "cfgGradCivs","exitOn",""] call BIS_fnc_returnConfigEntry),true];
     missionNamespace setVariable ["GRAD_CIVS_MAXCOUNT",[missionConfigFile >> "cfgGradCivs","maxCivs",""] call BIS_fnc_returnConfigEntry,true];
