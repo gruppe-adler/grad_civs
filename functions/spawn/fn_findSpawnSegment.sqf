@@ -1,6 +1,6 @@
 /* blatantly ripped and modified from engima traffic */
 
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 private ["_refPlayerPos", "_roadSegments", "_roadSegment", "_isOk", "_tries", "_result", "_spawnDistanceDiff", "_refPosX", "_refPosY", "_dir", "_tooFarAwayFromAll", "_tooClose", "_tooCloseToAnotherVehicle"];
 

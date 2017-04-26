@@ -1,4 +1,4 @@
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 ["GRAD_civs_thoughtDebugger", "onEachFrame", {
 	_color = [1,1,1,0.9];

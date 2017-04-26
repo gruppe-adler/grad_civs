@@ -3,7 +3,7 @@
 */
 
 
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 params ["_unit"];
 

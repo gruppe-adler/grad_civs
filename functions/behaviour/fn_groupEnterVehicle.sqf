@@ -1,1 +1,1 @@
-#include "..\component.hpp"
+#include "..\..\component.hpp"

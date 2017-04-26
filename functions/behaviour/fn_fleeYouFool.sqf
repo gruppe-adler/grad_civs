@@ -1,4 +1,4 @@
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 _thisUnit = _this select 0;
 _group = group _thisUnit;

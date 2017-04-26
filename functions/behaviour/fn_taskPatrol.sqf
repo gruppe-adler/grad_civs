@@ -10,7 +10,7 @@
 *   4: timeout      array - waypoint timeout [min, mid, max]
 */
 
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 params ["_group","_centerPosition","_radius","_count",["_timeout",[0,0,0]]];
 private ["_waypoint","_group","_position"];

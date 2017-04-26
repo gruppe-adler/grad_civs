@@ -1,4 +1,4 @@
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 if (!weaponLowered player) then {
 

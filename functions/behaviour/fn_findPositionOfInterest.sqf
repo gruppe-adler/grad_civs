@@ -1,6 +1,6 @@
 /* rip from diod */
 
-#include "..\component.hpp"
+#include "..\..\component.hpp"
 
 params ["_searchPosition"];
 
