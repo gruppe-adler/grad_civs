@@ -11,10 +11,11 @@ if (isServer) then {
     missionNamespace setVariable ["GRAD_CIVS_EXITON",compile ([missionConfigFile >> "cfgGradCivs","exitOn",""] call BIS_fnc_returnConfigEntry),true];
     missionNamespace setVariable ["GRAD_CIVS_MAXCOUNT",[missionConfigFile >> "cfgGradCivs","maxCivs",""] call BIS_fnc_returnConfigEntry,true];
     missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false];
+    missionNamespace setVariable ["GRAD_CIVS_ONSPAWN",compile ([missionConfigFile >> "cfgGradCivs","onSpawn",""] call BIS_fnc_returnConfigEntry),true];
 
     _distances = [missionConfigFile >> "cfgGradCivs","spawnDistances",[1000,4500]] call BIS_fnc_returnConfigEntry;
-    missionNamespace setVariable ["grad_civs_spawnDistanceMin",_distances select 0,true];
-	missionNamespace setVariable ["grad_civs_spawnDistanceMax",_distances select 1,true];
+    missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEMIN",_distances select 0,true];
+	missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEMAX",_distances select 1,true];
 
     GRAD_CIVS_ONFOOTCOUNT = 0;
     GRAD_CIVS_ONFOOTGROUPS = [];

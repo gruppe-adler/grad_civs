@@ -33,17 +33,54 @@ class CfgFunctions {
 # Config
 Add the class `cfgGradCivs` to your `description.ext`. Use the following attributes to configure the module:
 
+## Attributes
+
 Attribute      | Default Value | Explanation
 ---------------|---------------|---------------------------------------------------------------------
 autoInit       | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
 maxCivs        | 60            | Maximum number of civs that can exist at any time.
 spawnDistances | [1000,4500]   | Minimum and maximum distance to players that civilians can spawn in.
 debugMode      | 0             | Toggles debug mode (0/1).
+onSpawn        | ""            | Code to execute on civilian spawn. Passed parameters are: [unit].
 exitOn         | ""            | Condition upon which grad-civs loops will stop.
 clothes        | []            | All classnames of clothes that civilians may wear.
 faces          | []            | All classnames of faces that civilians may have.
 goggles        | []            | All classnames of goggles that civilians may wear.
 headgear       | []            | All classnames of headgear that civilians may wear.
+
+## Example
+
+```sqf
+class CfgGradCivs {
+    autoInit = 0;
+    maxCivs = 60;
+    spawnDistances[] = {1000,4500};
+    debugMode = 1;
+    exitOn = "";
+
+    clothes[] = {
+        "rds_uniform_Worker1",
+    	"rds_uniform_Worker2"
+    };
+
+    headgear[] = {
+        "rds_Villager_cap1",
+    	"rds_Villager_cap2"
+    };
+
+    faces[] = {
+        "PersianHead_A3_01",
+    	"PersianHead_A3_02",
+    	"PersianHead_A3_03"
+    };
+
+    goggles[] = {
+        "TRYK_Beard_BK",
+       	"TRYK_Beard_BK2",
+        "TRYK_Beard_BK3"
+    };
+};
+```
 
 # Functions
 
