@@ -135,7 +135,7 @@ Parameter | Explanation
 ----------|-----------------------------------------------------------
 headgear  | Array - All classnames of clothes that civilians may wear.
 
-## grad_civs_fnc_Backpacks
+## grad_civs_fnc_setBackpacks
 Sets all backpacks that civilians may wear and sets probability. Overwrites `cfgGradCivs` value. Effect is global.
 
 ### Syntax
@@ -145,6 +145,16 @@ Parameter   | Explanation
 ------------|-----------------------------------------------------------------------
 backpacks   | Array - All classnames of clothes that civilians may wear.
 probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
+
+## grad_civs_fnc_setDebugMode
+Sets debug mode. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[debugMode] call grad_civs_fnc_setDebugMode`  
+
+Parameter | Explanation
+----------|--------------------------
+debugMode | Bool - Debug mode on/off.
 
 ## grad_civs_fnc_initModule
 Used to manually initialize module. Has to be executed on clients and server. Effect is local.

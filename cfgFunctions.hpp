@@ -33,6 +33,7 @@ class GRAD_civs {
         class initModule {preInit = 1;};
         class setBackpacks {};
         class setClothes {};
+        class setDebugMode {};
         class setFaces {};
         class setGoggles {};
         class setHeadgear {};
