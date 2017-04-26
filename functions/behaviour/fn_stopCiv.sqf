@@ -11,6 +11,8 @@ if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
 
     _civ setVariable ["GRAD_civs_stopScriptRunning", true];
 
+    [_civ] call GRAD_CIVS_ONHELDUP;
+
     _isInCar = (!(_civ isEqualTo vehicle _civ));
     _veh = vehicle _civ;
     _grp = group _civ;

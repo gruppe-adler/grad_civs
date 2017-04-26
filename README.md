@@ -41,7 +41,8 @@ autoInit       | 1             | Toggles on automatic initialization of module o
 maxCivs        | 60            | Maximum number of civs that can exist at any time.
 spawnDistances | [1000,4500]   | Minimum and maximum distance to players that civilians can spawn in.
 debugMode      | 0             | Toggles debug mode (0/1).
-onSpawn        | ""            | Code to execute on civilian spawn. Passed parameters are: [unit].
+onSpawn        | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian].
+onHeldUp       | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
 exitOn         | ""            | Condition upon which grad-civs loops will stop.
 clothes        | []            | All classnames of clothes that civilians may wear.
 faces          | []            | All classnames of faces that civilians may have.
@@ -57,6 +58,8 @@ class CfgGradCivs {
     spawnDistances[] = {1000,4500};
     debugMode = 1;
     exitOn = "";
+    onSpawn = "";
+    onHeldUp = "";
 
     clothes[] = {
         "rds_uniform_Worker1",
