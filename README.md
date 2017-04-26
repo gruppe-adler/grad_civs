@@ -30,4 +30,71 @@ class CfgFunctions {
 };
 ```
 
-# Pictures
+# Config
+Add the class `cfgGradCivs` to your `description.ext`. Use the following attributes to configure the module:
+
+Attribute      | Default Value | Explanation
+---------------|---------------|---------------------------------------------------------------------
+autoInit       | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
+maxCivs        | 60            | Maximum number of civs that can exist at any time.
+spawnDistances | [1000,4500]   | Minimum and maximum distance to players that civilians can spawn in.
+debugMode      | 0             | Toggles debug mode (0/1).
+exitOn         | ""            | Condition upon which grad-civs loops will stop.
+clothes        | []            | All classnames of clothes that civilians may wear.
+faces          | []            | All classnames of faces that civilians may have.
+goggles        | []            | All classnames of goggles that civilians may wear.
+headgear       | []            | All classnames of headgear that civilians may wear.
+
+# Functions
+
+## grad_civs_fnc_setClothes
+Sets all clothes that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[clothes] call grad_civs_fnc_setClothes`
+
+Parameter | Explanation
+----------|-----------------------------------------------------------
+clothes   | Array - All classnames of clothes that civilians may wear.
+
+## grad_civs_fnc_setFaces
+Sets all faces that civilians may have. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[faces] call grad_civs_fnc_setFaces`
+
+Parameter | Explanation
+----------|---------------------------------------------------------
+faces     | Array - All classnames of faces that civilians may have.
+
+
+## grad_civs_fnc_setGoggles
+Sets all goggles that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[goggles] call grad_civs_fnc_setGoggles`
+
+Parameter | Explanation
+----------|-----------------------------------------------------------
+goggles   | Array - All classnames of goggles that civilians may wear.
+
+## grad_civs_fnc_setHeadgear
+Sets all headgear that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[headgear] call grad_civs_fnc_setHeadgear`
+
+Parameter | Explanation
+----------|-----------------------------------------------------------
+headgear  | Array - All classnames of clothes that civilians may wear.
+
+## grad_civs_fnc_initModule
+Used to manually initialize module. Has to be executed on clients and server. Effect is local.
+
+### Syntax
+`[] call grad_civs_fnc_initModule`  
+`[] remoteExec ["grad_civs_fnc_initModule",0,true]`
+
+Parameter | Explanation
+----------|-----------------------------------------------------------
+headgear  | Array - All classnames of clothes that civilians may wear.

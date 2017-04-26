@@ -14,11 +14,27 @@ class GRAD_civs {
 		class taskPatrol {};
     };
 
+    class common {
+        file = MODULES_DIRECTORY\grad-civs\functions\common;
+
+        class findRandomPos {};
+    };
+
 	class debug {
 		file = MODULES_DIRECTORY\grad-civs\functions\debug;
 
         class createDebugMarker {};
         class showWhatTheyThink {};
+    };
+
+    class init {
+        file = MODULES_DIRECTORY\grad-civs\functions\init;
+
+        class initModule {preInit = 1;};
+        class setClothes {};
+        class setFaces {};
+        class setGoggles {};
+        class setHeadgear {};
     };
 
     class player {
@@ -34,7 +50,6 @@ class GRAD_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\spawn;
 
         class addNewCivilian {};
-        class clothDefinitions {};
 		class dressAndBehave {};
         class findSpawnSegment {};
         class getPlayerPositions {};

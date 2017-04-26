@@ -1,4 +1,4 @@
-GRAD_civ_clothes_MUD = [
+GRAD_CIVS_CLOTHES_MUD = [
 	"LOP_U_AM_Fatigue_01",
     "LOP_U_AM_Fatigue_01_2",
     "LOP_U_AM_Fatigue_01_3",
@@ -25,7 +25,7 @@ GRAD_civ_clothes_MUD = [
     "LOP_U_AM_Fatigue_04_6"
 ];
 
-GRAD_civ_clothes_EUR = [
+GRAD_CIVS_CLOTHES_EUR = [
 	"rds_uniform_Worker1",
 	"rds_uniform_Worker2",
 	"rds_uniform_Worker3",
@@ -48,7 +48,7 @@ GRAD_civ_clothes_EUR = [
 	"rds_uniform_citizen4"
 ];
 
-GRAD_civ_headgear_EUR = [
+GRAD_CIVS_HEADGEAR_EUR = [
 	"rds_Villager_cap1",
 	"rds_Villager_cap2",
 	"rds_Villager_cap3",
@@ -65,7 +65,7 @@ GRAD_civ_headgear_EUR = [
 	"rhs_beanie_green"
 ];
 
-GRAD_civ_headgear_MUD = [
+GRAD_CIVS_HEADGEAR_MUD = [
 	"LOP_H_Turban",
     "LOP_H_Turban",
     "LOP_H_Pakol",
@@ -74,7 +74,7 @@ GRAD_civ_headgear_MUD = [
     "LOP_H_Pakol"
 ];
 
-GRAD_civ_faces = [
+GRAD_CIVS_FACES = [
 	"PersianHead_A3_01",
 	"PersianHead_A3_02",
 	"PersianHead_A3_03",
@@ -92,7 +92,7 @@ GRAD_civ_faces = [
 	"GreekHead_A3_04"
 ];
 
-GRAD_civ_beards = [
+GRAD_CIVS_GOGGLES = [
 	"TRYK_Beard_BK",
    	"TRYK_Beard_BK2",
     "TRYK_Beard_BK3",
@@ -107,9 +107,9 @@ GRAD_civ_beards = [
 _IS_WOODLAND = missionNamespace getVariable ["IS_WOODLAND",true];
 
 if (_IS_WOODLAND) then {
-	GRAD_civ_headgear = GRAD_civ_headgear_EUR;
-	GRAD_civ_clothes = GRAD_civ_clothes_EUR;
+	GRAD_CIVS_HEADGEAR = GRAD_CIVS_HEADGEAR_EUR;
+	GRAD_CIVS_CLOTHES = GRAD_CIVS_CLOTHES_EUR;
 } else {
-	GRAD_civ_headgear = GRAD_civ_headgear_MUD;
-	GRAD_civ_clothes = GRAD_civ_clothes_MUD;
+	GRAD_CIVS_HEADGEAR = GRAD_CIVS_HEADGEAR_MUD;
+	GRAD_CIVS_CLOTHES = GRAD_CIVS_CLOTHES_MUD;
 };

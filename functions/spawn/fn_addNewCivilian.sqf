@@ -5,9 +5,9 @@ params ["_playerPositions"];
 
 	_position = [
 		_playerPositions, 
-		GRAD_CIV_MIN_SPAWN_DISTANCE, 
-		GRAD_CIV_MAX_SPAWN_DISTANCE, 
-		GRAD_CIV_ONFOOT_GROUPS
+		grad_civs_spawnDistanceMin, 
+		grad_civs_spawnDistanceMax, 
+		GRAD_CIVS_ONFOOTGROUPS
 	] call GRAD_civs_fnc_findSpawnSegment;
 
 	if (_position isEqualTo [0,0,0]) exitWith {};
@@ -27,13 +27,13 @@ params ["_playerPositions"];
 
 	[_unit, _position, 400 - (random 300), [3,6], [0,2,10]] call GRAD_civs_fnc_taskPatrol;
 
-	if (GRAD_CIV_DEBUG || (!isNil "DEBUG_MODE" && {DEBUG_MODE})) then {
+	if (GRAD_CIVS_DEBUGMODE || (!isNil "DEBUG_MODE" && {DEBUG_MODE})) then {
 		[_position] call GRAD_civs_fnc_createDebugMarker; 
 	};
 
-	GRAD_CIV_ONFOOT_COUNT = GRAD_CIV_ONFOOT_COUNT + 1;
-	GRAD_CIV_ONFOOT_GROUPS = GRAD_CIV_ONFOOT_GROUPS + [_unit];
+	GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
+	GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS + [_unit];
 
-	diag_log format ["added civilian on foot, now %1", GRAD_CIV_ONFOOT_COUNT];
+	diag_log format ["added civilian on foot, now %1", GRAD_CIVS_ONFOOTCOUNT];
 
 };

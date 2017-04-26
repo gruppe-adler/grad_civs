@@ -24,28 +24,28 @@ _stripHim = {
 
 //_unitLoadout = [[],[],[],[""LOP_U_AM_Fatigue_01"",[]],[],[],""LOP_H_Pakol"","""",[],["""","""","""","""","""",""""]];
 
-_unitLoadout = [[],[],[],[selectRandom GRAD_civ_clothes,[]],[],[],selectRandom GRAD_civ_headgear,"""",[],["""","""","""","""","""",""""]];
+_unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
 
 
 _reclotheHim = {
 	params ["_guy", "_loadout"];
-	
+
 	_guy setUnitLoadout _loadout;
 
-	[[_guy, selectRandom GRAD_civ_faces], "setCustomFace"] call BIS_fnc_MP;
+	[[_guy, selectRandom GRAD_CIVS_FACES], "setCustomFace"] call BIS_fnc_MP;
 	_guy setVariable ["BIS_noCoreConversations", true];
-	
+
 };
 
 _addBeard = {
 	params ["_guy"];
 
-	_firstBeard = GRAD_civ_beards select 0;
+	_firstBeard = GRAD_CIVS_GOGGLES select 0;
 	// diag_log format ["_trying to select beard %1", _firstBeard];
 	// add beards if possible
 	if (!(isClass (configfile >> "CfgGlasses" >> "TRYK_Beard"))) exitWith {};
 
-   	_guy addGoggles selectRandom GRAD_civ_beards;
+   	_guy addGoggles selectRandom GRAD_CIVS_GOGGLES;
 };
 
 _addBackpack = {
@@ -75,8 +75,8 @@ _addKilledNews = {
      (_this select 0) removeAllEventHandlers "Killed";
      (_this select 0) removeAllEventHandlers "FiredNear";
      (_this select 0) switchMove "";
-     GRAD_CIV_ONFOOT_COUNT = GRAD_CIV_ONFOOT_COUNT - 1;
-     GRAD_CIV_ONFOOT_GROUPS = GRAD_CIV_ONFOOT_GROUPS - [(_this select 0)];
+     GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT - 1;
+     GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS - [(_this select 0)];
     }];
 };
 

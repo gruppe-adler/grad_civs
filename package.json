@@ -1,0 +1,17 @@
+{
+    "name": "grad-civs",
+    "description": "ambient civilians",
+    "version": "0.0.1",
+    "contributors": [
+        {
+            "name": "nomisum"
+        },
+        {
+            "name": "McDiod"
+        }
+    ],
+
+    "dependencies": {
+
+    }
+}

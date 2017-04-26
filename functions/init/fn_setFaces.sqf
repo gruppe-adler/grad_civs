@@ -1,0 +1,3 @@
+params [["_value",[]]];
+
+missionNamespace setVariable ["GRAD_CIVS_FACES",_value,true];
