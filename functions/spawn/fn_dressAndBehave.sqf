@@ -3,6 +3,8 @@
 */
 
 
+#include "..\component.hpp"
+
 params ["_unit"];
 
 /*
@@ -41,7 +43,7 @@ _addBeard = {
 	params ["_guy"];
 
 	_firstBeard = GRAD_CIVS_GOGGLES select 0;
-	// diag_log format ["_trying to select beard %1", _firstBeard];
+	// INFO_1("_trying to select beard %1", _firstBeard);
 	// add beards if possible
 	if (!(isClass (configfile >> "CfgGlasses" >> "TRYK_Beard"))) exitWith {};
 
@@ -69,14 +71,14 @@ _addBehaviour = {
 _addKilledNews = {
    (_this select 0) addEventhandler ["Killed",
     {
-     CIV_KILLED = [(position (_this select 0)), (_this select 0) getVariable ["ace_medical_lastDamageSource", objNull]];
-     diag_log format ["civ killed: %1",CIV_KILLED];
-     publicVariableServer "CIV_KILLED";
-     (_this select 0) removeAllEventHandlers "Killed";
-     (_this select 0) removeAllEventHandlers "FiredNear";
-     (_this select 0) switchMove "";
-     GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT - 1;
-     GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS - [(_this select 0)];
+		CIV_KILLED = [(position (_this select 0)), (_this select 0) getVariable ["ace_medical_lastDamageSource", objNull]];
+		INFO_1("civ killed: %1",CIV_KILLED);
+		publicVariableServer "CIV_KILLED";
+		(_this select 0) removeAllEventHandlers "Killed";
+		(_this select 0) removeAllEventHandlers "FiredNear";
+		(_this select 0) switchMove "";
+		GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT - 1;
+		GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS - [(_this select 0)];
     }];
 };
 
@@ -84,7 +86,7 @@ _addGunfightNewsAndFlee = {
    (_this select 0) addEventhandler ["FiredNear",
     {
     	CIV_GUNFIGHT_POS = (position (_this select 0));
-    	diag_log format ["civ gunfight at %1",CIV_GUNFIGHT_POS];
+    	INFO_1("civ gunfight at %1",CIV_GUNFIGHT_POS);
     	publicVariableServer "CIV_GUNFIGHT_POS";
 
     	if ((_this select 0) getVariable ["GRAD_fleeing",false]) exitWith {};
@@ -94,10 +96,10 @@ _addGunfightNewsAndFlee = {
 		_thisUnit enableDynamicSimulation false; // exclude as long as unit is moving
 
 		if (random 2 > 1) then {
-			diag_log format ["%1 prepares to flee", _thisUnit];
+			INFO_1("%1 prepares to flee", _thisUnit);
 			[_thisUnit] spawn GRAD_civs_fnc_fleeYouFool;
 		} else {
-			diag_log format ["%1 prepares to fake", _thisUnit];
+			INFO_1("%1 prepares to fake", _thisUnit);
 			[_thisUnit] spawn GRAD_civs_fnc_fleeAndFake;
 		};
     }];

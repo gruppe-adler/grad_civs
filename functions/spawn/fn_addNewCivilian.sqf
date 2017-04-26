@@ -1,3 +1,5 @@
+#include "..\component.hpp"
+
 params ["_playerPositions"];
 
 [_playerPositions] spawn {
@@ -12,7 +14,7 @@ params ["_playerPositions"];
 
 	if (_position isEqualTo [0,0,0]) exitWith {};
 
-	diag_log format ["%1", _position];
+	INFO_1("Position: %1", _position);
 
 	_group = createGroup [civilian, true]; // todo: adapt to 1.67 [civilian, true]
 	_unit = _group createUnit ["C_man_1", _position, [], 0, "NONE"];
@@ -34,7 +36,7 @@ params ["_playerPositions"];
 	GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
 	GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS + [_unit];
 
-	diag_log format ["added civilian on foot, now %1", GRAD_CIVS_ONFOOTCOUNT];
+	INFO_1("added civilian on foot, now %1", GRAD_CIVS_ONFOOTCOUNT);
 
 	[_unit] call GRAD_CIVS_ONSPAWN;
 };

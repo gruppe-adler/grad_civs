@@ -1,5 +1,7 @@
 /* blatantly ripped from engima traffic */
 
+#include "..\component.hpp"
+
 _allPlayerPositionsTemp = [];
 _allPlayerPositions = [];
 

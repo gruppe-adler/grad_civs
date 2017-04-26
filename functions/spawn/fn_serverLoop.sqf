@@ -1,3 +1,5 @@
+#include "..\component.hpp"
+
 GRAD_civs_mainLoop = [{
     params ["_args", "_handle"];
 

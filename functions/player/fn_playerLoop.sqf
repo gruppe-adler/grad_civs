@@ -1,3 +1,5 @@
+#include "..\component.hpp"
+
 [{
     params ["_args", "_handle"];
 

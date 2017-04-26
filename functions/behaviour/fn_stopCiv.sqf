@@ -1,7 +1,9 @@
+#include "..\component.hpp"
+
 params ["_civ"];
 
 if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
-    diag_log format ["already one instance of stopciv running"];
+    INFO("already one instance of stopciv running");
 };
 
 [_civ] spawn {
@@ -17,9 +19,9 @@ if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
     if (_isInCar) then {
         _civ setVariable ["GRAD_civs_currentlyThinking", "aaaah i need to stop the car"];
         doStop _civ;
-        
+
         waitUntil {speed vehicle _civ < 1};
-        { 
+        {
             {unassignvehicle _veh} forEach units _grp;
 
             doGetOut _x;
@@ -38,7 +40,7 @@ if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
     _civ disableAI "ANIM";
 
 
-    diag_log format ["disabling AI"];
+    INFO("disabling AI");
     _civ setVariable ["GRAD_civs_currentlyThinking", "cant run away or i will be shot"];
 
     waitUntil {sleep 3; count (_civ getVariable ["GRAD_civs_isPointedAtBy",[]]) == 0};
@@ -47,14 +49,14 @@ if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
     _civ enableAI "MOVE";
     _civ enableai "ANIM";
     [_civ, false] call ACE_captives_fnc_setSurrendered;
-   
-    if (_isInCar && {(canMove _veh)}) then {         
 
-            /* 
+    if (_isInCar && {(canMove _veh)}) then {
+
+            /*
             dofollow again to move on to old waypoints from engima
-            leader is safer, as driver could be dead already 
+            leader is safer, as driver could be dead already
             */
-           
+
 
             (leader _grp) assignAsDriver _veh;
             {
@@ -64,14 +66,14 @@ if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
             } forEach units _grp;
 
             units _grp orderGetIn true;
-            diag_log format ["%1 ordered to get in", leader _grp];
+            INFO_1("%1 ordered to get in", leader _grp);
             (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets get in"];
             units _grp doFollow leader _grp;
 
     } else {
 
         (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets patrol around"];
-        diag_log format ["%1 ordered to patrol", leader _grp];
+        INFO_1("%1 ordered to patrol", leader _grp);
         [_grp, position (leader _grp), 400 - (random 300), [3,6], [0,2,10]] call GRAD_civs_fnc_taskPatrol;
 
     };

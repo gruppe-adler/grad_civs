@@ -1,5 +1,7 @@
 /* rip from diod */
 
+#include "..\component.hpp"
+
 params ["_searchPosition"];
 
 _buildings = nearestObjects [_searchPosition, ["House", "Building"], 100];
