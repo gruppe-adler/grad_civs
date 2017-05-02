@@ -1,8 +1,13 @@
 #include "..\..\component.hpp"
 
-["GRAD_civs_thoughtDebugger", "onEachFrame", {
-	_color = [1,1,1,0.9];
+params [["_onOff",GRAD_CIVS_DEBUGMODE]];
 
+GRAD_CIVS_DEBUGMODE = _onOff;
+
+[{
+	if (!GRAD_CIVS_DEBUGMODE) exitWith {[_this select 1] call CBA_fnc_removePerFrameHandler};
+
+	_color = [1,1,1,0.9];
 	{
 
 		_text = _x getVariable ["GRAD_civs_currentlyThinking", "no special purpose"];
@@ -15,6 +20,5 @@
 			1, 1, 0, _text + " | code | " + str _number, 1, 0.02, "EtelkaNarrowMediumPro", "center", true
 		];
 
-	}forEach allUnits - allPlayers;
-
-},[]] call BIS_fnc_addStackedEventHandler;
+	} forEach allUnits - allPlayers;
+} , 0, []] call CBA_fnc_addPerFrameHandler;

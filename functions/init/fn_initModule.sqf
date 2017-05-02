@@ -32,7 +32,7 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
-    missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false];
+    if (isNil "GRAD_CIVS_DEBUGMODE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false]};
 
     [] call GRAD_civs_fnc_playerLoop;
     if (GRAD_CIVS_DEBUGMODE) then {[] call GRAD_civs_fnc_showWhatTheyThink};
