@@ -1,4 +1,4 @@
-# GRAD Civilians (WIP)
+# GRAD Civilians
 This will be able to randomly spawn ambient civilians on the map.
 
 ## Dependencies
