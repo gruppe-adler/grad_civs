@@ -2,22 +2,8 @@
 
 #include "..\..\component.hpp"
 
-_allPlayerPositionsTemp = [];
-_allPlayerPositions = [];
-
 if (isMultiplayer) then {
-	{
-		if (isPlayer _x) then {
-			_allPlayerPositionsTemp = _allPlayerPositionsTemp + [position vehicle _x];
-		};
-	} foreach (playableUnits);
+	(call CBA_fnc_players) apply {getPos _x}
+} else {
+	[getPos player]
 }
-else {
-	_allPlayerPositionsTemp = [position vehicle player];
-};
-
-if (count _allPlayerPositionsTemp > 0) then {
-	_allPlayerPositions = _allPlayerPositionsTemp;
-};
-
-_allPlayerPositions
