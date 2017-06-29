@@ -9,7 +9,7 @@ params ["_playerPositions"];
 		_playerPositions,
 		GRAD_CIVS_SPAWNDISTANCEMIN,
 		GRAD_CIVS_SPAWNDISTANCEMAX,
-		GRAD_CIVS_ONFOOTGROUPS
+		GRAD_CIVS_ONFOOTUNITS
 	] call GRAD_civs_fnc_findSpawnSegment;
 
 	if (_position isEqualTo [0,0,0]) exitWith {};
@@ -34,7 +34,7 @@ params ["_playerPositions"];
 	};
 
 	GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
-	GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS + [_unit];
+	GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS + [_unit];
 
 	INFO_1("added civilian on foot, now %1", GRAD_CIVS_ONFOOTCOUNT);
 

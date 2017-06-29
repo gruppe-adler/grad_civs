@@ -26,7 +26,7 @@ if (isServer) then {
 	missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEMAX",_distances select 1,true];
 
     GRAD_CIVS_ONFOOTCOUNT = 0;
-    GRAD_CIVS_ONFOOTGROUPS = [];
+    GRAD_CIVS_ONFOOTUNITS = [];
 
     [] call GRAD_civs_fnc_serverLoop;
 };

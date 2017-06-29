@@ -77,7 +77,7 @@ _addKilledNews = {
 		(_this select 0) removeAllEventHandlers "FiredNear";
 		(_this select 0) switchMove "";
 		GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT - 1;
-		GRAD_CIVS_ONFOOTGROUPS = GRAD_CIVS_ONFOOTGROUPS - [(_this select 0)];
+		GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS - [(_this select 0)];
     }];
 };
 
