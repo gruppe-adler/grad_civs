@@ -3,7 +3,7 @@
 params ["_unit","_pointer"];
 
 /* raise pointing tickets */
-_otherUnits = _unit getVariable ["GRAD_civs_isPointedAtBy",[]];
+private _otherUnits = _unit getVariable ["GRAD_civs_isPointedAtBy",[]];
 
 if (_pointer in _otherUnits) exitWith {};
 

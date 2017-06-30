@@ -8,7 +8,7 @@
 params ["_unit"];
 
 
-_reclotheHim = {
+private _reclotheHim = {
 	params ["_unit", "_loadout"];
 
 	_unit setUnitLoadout _loadout;
@@ -20,7 +20,7 @@ _reclotheHim = {
 	_unit setVariable ["BIS_noCoreConversations",true];
 };
 
-_addBeard = {
+private _addBeard = {
 	params ["_unit"];
 
 	if (count GRAD_CIVS_GOGGLES > 0) then {
@@ -28,7 +28,7 @@ _addBeard = {
 	};
 };
 
-_addBackpack = {
+private _addBackpack = {
 	params ["_unit"];
 
 	if ((GRAD_CIVS_BACKPACKPROBABILITY > random 100) && {count GRAD_CIVS_BACKPACKS > 0}) then {
@@ -36,7 +36,7 @@ _addBackpack = {
 	};
 };
 
-_addBehaviour = {
+private _addBehaviour = {
 	params ["_unit"];
 
 	group _unit setBehaviour "CARELESS";
@@ -45,7 +45,7 @@ _addBehaviour = {
 	_unit disableAI "FSM";
 };
 
-_addKilledNews = {
+private _addKilledNews = {
    (_this select 0) addEventhandler ["Killed",
     {
 		params ["_unit"];
@@ -62,7 +62,7 @@ _addKilledNews = {
     }];
 };
 
-_addGunfightNewsAndFlee = {
+private _addGunfightNewsAndFlee = {
    (_this select 0) addEventhandler ["FiredNear",
     {
 		params ["_unit"];
@@ -78,7 +78,7 @@ _addGunfightNewsAndFlee = {
 };
 
 
-_unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
+private _unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
 // _stripped = [_unit] call _stripHim;
 [_unit, _unitLoadout] call _reclotheHim;
 

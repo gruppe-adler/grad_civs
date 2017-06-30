@@ -2,6 +2,7 @@
 
 params ["_center", ["_radii", [0,15]], ["_angles", [0,360]], ["_vehicleType", "B_Soldier_F"], ["_findWaterPos",false]];
 private ["_pos"];
+
 _radii params ["_minRad", "_maxRad"];
 _angles params ["_minAngle", "_maxAngle"];
 

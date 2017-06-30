@@ -2,7 +2,7 @@
 
 params ["_unit"];
 
-_grp = group _unit;
+private _grp = group _unit;
 if (_grp getVariable ["GRAD_fleeing",false]) exitWith {};
 _grp setVariable ["GRAD_fleeing", true];
 

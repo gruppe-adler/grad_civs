@@ -39,6 +39,4 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
 };
 
 
-_result = getPos _roadSegment;
-
-_result
+getPos _roadSegment

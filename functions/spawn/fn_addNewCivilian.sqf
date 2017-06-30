@@ -2,7 +2,7 @@
 
 params ["_playerPositions"];
 
-_position = [
+private _position = [
 	_playerPositions,
 	GRAD_CIVS_SPAWNDISTANCEMIN,
 	GRAD_CIVS_SPAWNDISTANCEMAX,
@@ -13,8 +13,8 @@ if (_position isEqualTo [0,0,0]) exitWith {};
 
 INFO_1("Position: %1", _position);
 
-_group = createGroup [civilian, true];
-_unit = _group createUnit ["C_man_1", _position, [], 0, "NONE"];
+private _group = createGroup [civilian, true];
+private _unit = _group createUnit ["C_man_1", _position, [], 0, "NONE"];
 
 _unit disableAI "FSM";
 _unit setBehaviour "CARELESS";

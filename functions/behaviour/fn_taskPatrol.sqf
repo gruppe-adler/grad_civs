@@ -13,12 +13,12 @@
 #include "..\..\component.hpp"
 
 params ["_group","_centerPosition","_radius","_count",["_timeout",[0,0,0]]];
-private ["_waypoint","_group","_position"];
+private ["_waypoint","_position"];
 
-_group = if (typeName _group == "OBJECT") then {group _group} else {_group};
-_centerPosition = if (typeName _centerPosition == "OBJECT") then {getPos _centerPosition} else {_centerPosition};
-_radius = if (typeName _radius == "ARRAY") then {(random ((_radius select 1) - (_radius select 0))) + (_radius select 1)} else {_radius};
-_count = if (typeName _count == "ARRAY") then {(random ((_count select 1) - (_count select 0))) + (_count select 1)} else {_count};
+private _group = if (typeName _group == "OBJECT") then {group _group} else {_group};
+private _centerPosition = if (typeName _centerPosition == "OBJECT") then {getPos _centerPosition} else {_centerPosition};
+private _radius = if (typeName _radius == "ARRAY") then {(random ((_radius select 1) - (_radius select 0))) + (_radius select 1)} else {_radius};
+private _count = if (typeName _count == "ARRAY") then {(random ((_count select 1) - (_count select 0))) + (_count select 1)} else {_count};
 
 if !(local _group) exitWith {};
 [_group] call CBA_fnc_clearWaypoints;
