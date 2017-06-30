@@ -1,12 +1,9 @@
 #include "..\..\component.hpp"
 
-params ["_unit"];
+params ["_unit","_pointer"];
 
 /* remove pointing tickets */
 _otherUnits = _unit getVariable ["GRAD_civs_isPointedAtBy",[]];
 
 /* remove counter globally */
-_unit setVariable ["GRAD_civs_isPointedAtBy", _otherUnits - [player], true];
-
-player setVariable ["GRAD_isPointingAtObj", objNull];
-INFO_1("no point anymore at %1", _unit);
+_unit setVariable ["GRAD_civs_isPointedAtBy", _otherUnits - [_pointer], true];

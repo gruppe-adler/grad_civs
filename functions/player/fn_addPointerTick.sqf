@@ -1,17 +1,11 @@
 #include "..\..\component.hpp"
 
-params ["_unit"];
+params ["_unit","_pointer"];
 
 /* raise pointing tickets */
 _otherUnits = _unit getVariable ["GRAD_civs_isPointedAtBy",[]];
 
-if (player in _otherUnits) exitWith {
-	INFO("player already in other units");
-};
+if (_pointer in _otherUnits) exitWith {};
 
 /* raise pointing counter globally */
-_unit setVariable ["GRAD_civs_isPointedAtBy", _otherUnits + [player], true];
-
-
-player setVariable ["GRAD_isPointingAtObj", _unit];
-INFO_1("pointing at %1", _unit);
+_unit setVariable ["GRAD_civs_isPointedAtBy", _otherUnits + [_pointer], true];
