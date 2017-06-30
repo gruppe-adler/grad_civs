@@ -11,7 +11,7 @@ if (!weaponLowered player) then {
     if !(_currentCiv isEqualTo _possibleCiv) then {
         if (!isNull _currentCiv) then {
             player setVariable ["GRAD_isPointingAtObj", objNull];
-            [_currentCiv,player] remoteExec ["GRAD_civs_fnc_removePointerTick",2,false];
+            [_currentCiv,player] remoteExec ["grad_civs_fnc_removePointerTick",2,false];
         };
     } else {
         breakTo "checkPointer_main";
@@ -25,9 +25,9 @@ if (!weaponLowered player) then {
     /* if civ is civ, alive and closer than 50m, make him target */
     if ((side _possibleCiv) == civilian && {alive _possibleCiv} && {player distance _possibleCiv < 50}) then {
 
-        [_possibleCiv] remoteExec ["GRAD_civs_fnc_stopCiv",0,false];
+        [_possibleCiv] remoteExec ["grad_civs_fnc_stopCiv",0,false];
         player setVariable ["GRAD_isPointingAtObj", _possibleCiv];
-        [_possibleCiv,player] remoteExec ["GRAD_civs_fnc_addPointerTick",2,false];
+        [_possibleCiv,player] remoteExec ["grad_civs_fnc_addPointerTick",2,false];
     };
 
 } else {
@@ -36,6 +36,6 @@ if (!weaponLowered player) then {
 
     if (!isNull _currentCiv) then {
         player setVariable ["GRAD_isPointingAtObj", objNull];
-        [_currentCiv,player] remoteExec ["GRAD_civs_fnc_removePointerTick",2,false];
+        [_currentCiv,player] remoteExec ["grad_civs_fnc_removePointerTick",2,false];
     };
 };

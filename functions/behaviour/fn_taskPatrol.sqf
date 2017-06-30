@@ -1,6 +1,6 @@
 /*  Creates random patrol for group
 *
-*   [group,position,radius,count] call GRAD_civs_taskPatrol;
+*   [group,position,radius,count] call grad_civs_taskPatrol;
 *
 *   Params:
 *   0: group        group or unit
@@ -27,7 +27,7 @@ if !(local _group) exitWith {};
 //create waypoints
 for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
     _searchPosition = [_centerPosition,[0,_radius],[0,360]] call grad_civs_fnc_findRandomPos;
-    _position = if (80 > random 100) then {[_searchPosition] call GRAD_civs_fnc_findPositionOfInterest} else {_searchPosition};
+    _position = if (80 > random 100) then {[_searchPosition] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
     _waypoint = _group addWaypoint [_position, 0];
 
     _waypoint setWaypointType "MOVE";

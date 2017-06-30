@@ -28,7 +28,7 @@ private _onVehicleExit = {
     if (50 > random 100) then {
         _pos = [leader _grp,[150,300],[0,360]] call grad_civs_fnc_findRandomPos;
         {
-            _x setVariable ["GRAD_civs_currentlyThinking", "who the fuck is shooting, have to run far away"];
+            _x setVariable ["grad_civs_currentlyThinking", "who the fuck is shooting, have to run far away"];
             false
         } count units _grp;
 
@@ -36,9 +36,9 @@ private _onVehicleExit = {
 
     //find cover
     } else {
-        _pos = [leader _grp] call GRAD_civs_fnc_findPositionOfInterest;
+        _pos = [leader _grp] call grad_civs_fnc_findPositionOfInterest;
         {
-            _x setVariable ["GRAD_civs_currentlyThinking", "who the fuck is shooting, have to find cover"];
+            _x setVariable ["grad_civs_currentlyThinking", "who the fuck is shooting, have to find cover"];
             false
         } count units _grp;
 
@@ -63,7 +63,7 @@ private _takeCover = {
         _x playMoveNow (selectRandom _animationHiding);
         _x stop true;
         _x enableDynamicSimulation true;
-        _x setVariable ["GRAD_civs_currentlyThinking", "taking cover"];
+        _x setVariable ["grad_civs_currentlyThinking", "taking cover"];
         false
     } count units _grp;
 
@@ -74,14 +74,14 @@ private _resumePatrol = {
     params ["_grp"];
 
     units _grp doFollow leader _grp;
-    [_grp, leader _grp, 400 - (random 300), [3,6], [0,2,10]] call GRAD_civs_fnc_taskPatrol;
+    [_grp, leader _grp, 400 - (random 300), [3,6], [0,2,10]] call grad_civs_fnc_taskPatrol;
 
     {
         _x setSpeedMode "LIMITED";
         _x forceSpeed -1;
         _x stop false;
         _x playMoveNow "AmovPercMstpSnonWnonDnon";
-        _x setVariable ["GRAD_civs_currentlyThinking", "task patrol assigned"];
+        _x setVariable ["grad_civs_currentlyThinking", "task patrol assigned"];
         _x enableDynamicSimulation true;
         false
     } count units _grp;

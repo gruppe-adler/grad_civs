@@ -73,7 +73,7 @@ private _addGunfightNewsAndFlee = {
 
 		(group _unit) setVariable ["grad_civs_lastGunshotHeard",CBA_missionTime];
 
-		[_unit] call GRAD_civs_fnc_flee;
+		[_unit] call grad_civs_fnc_flee;
     }];
 };
 

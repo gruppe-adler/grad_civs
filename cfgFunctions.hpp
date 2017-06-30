@@ -2,7 +2,7 @@
     #define MODULES_DIRECTORY modules
 #endif
 
-class GRAD_civs {
+class grad_civs {
 
 	class behaviour {
         file = MODULES_DIRECTORY\grad-civs\functions\behaviour;

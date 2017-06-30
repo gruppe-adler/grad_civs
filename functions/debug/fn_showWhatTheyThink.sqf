@@ -9,9 +9,9 @@ GRAD_CIVS_DEBUGMODE = _onOff;
 
 	{
 		_color = [1,1,1,if (player distance _x < 200) then {0.9} else {0.5}];
-		_text = _x getVariable ["GRAD_civs_currentlyThinking", "no special purpose"];
+		_text = _x getVariable ["grad_civs_currentlyThinking", "no special purpose"];
 
-		_number = count (_x getVariable ["GRAD_civs_isPointedAtBy",[]]);
+		_number = count (_x getVariable ["grad_civs_isPointedAtBy",[]]);
 
 		drawIcon3D [
 			"#(argb,8,8,3)color(0,0,0,0)",

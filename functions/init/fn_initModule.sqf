@@ -28,12 +28,12 @@ if (isServer) then {
     GRAD_CIVS_ONFOOTCOUNT = 0;
     GRAD_CIVS_ONFOOTUNITS = [];
 
-    [] call GRAD_civs_fnc_serverLoop;
+    [] call grad_civs_fnc_serverLoop;
 };
 
 if (hasInterface) then {
     if (isNil "GRAD_CIVS_DEBUGMODE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false]};
 
-    [] call GRAD_civs_fnc_playerLoop;
-    if (GRAD_CIVS_DEBUGMODE) then {[] call GRAD_civs_fnc_showWhatTheyThink};
+    [] call grad_civs_fnc_playerLoop;
+    if (GRAD_CIVS_DEBUGMODE) then {[] call grad_civs_fnc_showWhatTheyThink};
 };
