@@ -2,84 +2,62 @@
 
 params ["_civ"];
 
-if (_civ getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
+private _grp = group _civ;
+
+if (_grp getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
     INFO("already one instance of stopciv running");
 };
 
-[_civ] spawn {
-    params ["_civ"];
+_grp setVariable ["GRAD_civs_stopScriptRunning", true];
 
-    _civ setVariable ["GRAD_civs_stopScriptRunning", true];
+[_civ] call GRAD_CIVS_ONHELDUP;
 
-    [_civ] call GRAD_CIVS_ONHELDUP;
-
-    _isInCar = (!(_civ isEqualTo vehicle _civ));
-    _veh = vehicle _civ;
-    _grp = group _civ;
+_grp setVariable ["grad_civs_ownedVehicle",if (_civ isEqualTo vehicle _civ) then {objNull} else {vehicle _civ}];
+_grp leaveVehicle vehicle _civ;
+doStop units _grp;
 
 
-    if (_isInCar) then {
-        _civ setVariable ["GRAD_civs_currentlyThinking", "aaaah i need to stop the car"];
-        doStop _civ;
+private _onVehicleExit = {
+    params ["_civ","_grp","_onUntargeted"];
 
-        waitUntil {speed vehicle _civ < 1};
-        {
-            {unassignvehicle _veh} forEach units _grp;
+    {
+        [_x, true] call ACE_captives_fnc_setSurrendered;
+        _x disableAI "MOVE";
+        _x disableAI "ANIM";
+        _x setVariable ["GRAD_civs_currentlyThinking", "cant run away or i will be shot"];
+        false
+    } count units _grp;
 
-            doGetOut _x;
-        } forEach crew _veh;
-        waitUntil {vehicle _civ == _civ};
-        waitUntil {isTouchingGround _civ};
-        sleep 1;
-    } else {
-        doStop _civ;
-    };
-
-    doStop _civ;
-    [_civ, true] call ACE_captives_fnc_setSurrendered;
-    sleep 1;
-    _civ disableAI "MOVE";
-    _civ disableAI "ANIM";
-
-
-    INFO("disabling AI");
-    _civ setVariable ["GRAD_civs_currentlyThinking", "cant run away or i will be shot"];
-
-    waitUntil {sleep 3; count (_civ getVariable ["GRAD_civs_isPointedAtBy",[]]) == 0};
-
-    _civ setVariable ["GRAD_civs_currentlyThinking", "he doesnt target me anymore, i can goooo"];
-    _civ enableAI "MOVE";
-    _civ enableai "ANIM";
-    [_civ, false] call ACE_captives_fnc_setSurrendered;
-
-    if (_isInCar && {(canMove _veh)}) then {
-
-            /*
-            dofollow again to move on to old waypoints from engima
-            leader is safer, as driver could be dead already
-            */
-
-
-            (leader _grp) assignAsDriver _veh;
-            {
-                if (_x != leader _grp) then {
-                    _x assignAsCargo _veh;
-                }
-            } forEach units _grp;
-
-            units _grp orderGetIn true;
-            INFO_1("%1 ordered to get in", leader _grp);
-            (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets get in"];
-           units _grp doFollow leader _grp;
-
-    } else {
-units _grp doFollow leader _grp;
-
-        (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets patrol around"];
-        INFO_1("%1 ordered to patrol", leader _grp);
-        [_grp, position (leader _grp), 400 - (random 300), [3,6], [0,2,10]] call GRAD_civs_fnc_taskPatrol;
-
-    };
-
-    _civ setVariable ["GRAD_civs_stopScriptRunning", false];
+    [{{count (_x getVariable ["GRAD_civs_isPointedAtBy",[]]) > 0} count units (_this select 1) == 0},_onUntargeted,[_civ,_grp]] call CBA_fnc_waitUntilAndExecute;
 };
+
+private _onUntargeted = {
+    params ["_civ","_grp"];
+
+    {
+        _x setVariable ["GRAD_civs_currentlyThinking", "he doesnt target me anymore, i can goooo"];
+        _x enableAI "MOVE";
+        _x enableai "ANIM";
+        [_x, false] call ACE_captives_fnc_setSurrendered;
+        false
+    } count units _grp;
+
+    units _grp doFollow leader _grp;
+
+    //canMove objNull is false, so nullcheck not needed here
+    _veh = _grp getVariable ["grad_civs_ownedVehicle",objNull];
+    if (canMove _veh) then {
+        (leader _grp) assignAsDriver _veh;
+        {
+            if (_x != leader _grp) then {_x assignAsCargo _veh};
+            false
+        } count units _grp;
+        units _grp orderGetIn true;
+    } else {
+        (leader _grp) setVariable ["GRAD_civs_currentlyThinking", "lets patrol around"];
+        [_grp, position (leader _grp), 400 - (random 300), [3,6], [0,2,10]] call GRAD_civs_fnc_taskPatrol;
+        _grp setVariable ["GRAD_civs_stopScriptRunning", false];
+    };
+};
+
+[{{!(_x isEqualTo vehicle _x)} count units (_this select 1) == 0},_onVehicleExit,[_civ,_grp,_onUntargeted],60,{}] call CBA_fnc_waitUntilAndExecute;
