@@ -71,17 +71,9 @@ _addGunfightNewsAndFlee = {
     	INFO_1("civ gunfight at %1",CIV_GUNFIGHT_POS);
     	publicVariableServer "CIV_GUNFIGHT_POS";
 
-    	if (_unit getVariable ["GRAD_fleeing",false]) exitWith {};
+		(group _unit) setVariable ["grad_civs_lastGunshotHeard",CBA_missionTime];
 
-		_unit enableDynamicSimulation false; // exclude as long as unit is moving
-
-		if (50 > random 100) then {
-			INFO_1("%1 prepares to flee", _unit);
-			[_unit] spawn GRAD_civs_fnc_fleeYouFool;
-		} else {
-			INFO_1("%1 prepares to fake", _unit);
-			[_unit] spawn GRAD_civs_fnc_fleeAndFake;
-		};
+		[_unit] call GRAD_civs_fnc_flee;
     }];
 };
 

@@ -1,8 +1,8 @@
 #include "..\..\component.hpp"
 
-params ["_civ"];
+params ["_unit"];
 
-private _grp = group _civ;
+private _grp = group _unit;
 
 if (_grp getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
     INFO("already one instance of stopciv running");
@@ -10,15 +10,15 @@ if (_grp getVariable ["GRAD_civs_stopScriptRunning", false]) exitWith {
 
 _grp setVariable ["GRAD_civs_stopScriptRunning", true];
 
-[_civ] call GRAD_CIVS_ONHELDUP;
+[_unit] call GRAD_CIVS_ONHELDUP;
 
-_grp setVariable ["grad_civs_ownedVehicle",if (_civ isEqualTo vehicle _civ) then {objNull} else {vehicle _civ}];
-_grp leaveVehicle vehicle _civ;
+_grp setVariable ["grad_civs_ownedVehicle",if (_unit isEqualTo vehicle _unit) then {objNull} else {vehicle _unit}];
+_grp leaveVehicle vehicle _unit;
 doStop units _grp;
 
 
 private _onVehicleExit = {
-    params ["_civ","_grp","_onUntargeted"];
+    params ["_grp","_onUntargeted"];
 
     {
         [_x, true] call ACE_captives_fnc_setSurrendered;
@@ -28,11 +28,11 @@ private _onVehicleExit = {
         false
     } count units _grp;
 
-    [{{count (_x getVariable ["GRAD_civs_isPointedAtBy",[]]) > 0} count units (_this select 1) == 0},_onUntargeted,[_civ,_grp]] call CBA_fnc_waitUntilAndExecute;
+    [{{count (_x getVariable ["GRAD_civs_isPointedAtBy",[]]) > 0} count units (_this select 0) == 0},_onUntargeted,[_grp]] call CBA_fnc_waitUntilAndExecute;
 };
 
 private _onUntargeted = {
-    params ["_civ","_grp"];
+    params ["_grp"];
 
     {
         _x setVariable ["GRAD_civs_currentlyThinking", "he doesnt target me anymore, i can goooo"];
@@ -60,4 +60,4 @@ private _onUntargeted = {
     };
 };
 
-[{{!(_x isEqualTo vehicle _x)} count units (_this select 1) == 0},_onVehicleExit,[_civ,_grp,_onUntargeted],60,{}] call CBA_fnc_waitUntilAndExecute;
+[{{!(_x isEqualTo vehicle _x)} count units (_this select 0) == 0},_onVehicleExit,[_grp,_onUntargeted],60,{}] call CBA_fnc_waitUntilAndExecute;

@@ -7,7 +7,7 @@ class GRAD_civs {
 	class behaviour {
         file = MODULES_DIRECTORY\grad-civs\functions\behaviour;
 
-        class findPositionOfInterest {};
+        class flee {};
         class fleeAndFake {};
         class fleeYouFool {};
         class stopCiv {};
@@ -17,6 +17,7 @@ class GRAD_civs {
     class common {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
 
+        class findPositionOfInterest {};
         class findRandomPos {};
         class setBackpacks {};
         class setClothes {};
