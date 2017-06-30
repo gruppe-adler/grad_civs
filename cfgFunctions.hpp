@@ -8,8 +8,6 @@ class GRAD_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\behaviour;
 
         class flee {};
-        class fleeAndFake {};
-        class fleeYouFool {};
         class stopCiv {};
 		class taskPatrol {};
     };
