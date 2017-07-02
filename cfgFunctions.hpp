@@ -52,6 +52,7 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\spawn;
 
         class addNewCivilian {};
+        class cleanup {};
 		class dressAndBehave {};
         class findSpawnSegment {};
         class getPlayerPositions {};

@@ -10,4 +10,6 @@ grad_civs_mainLoop = [{
     if (GRAD_CIVS_ONFOOTCOUNT < GRAD_CIVS_MAXCOUNT) then {
     	[_playerPositions] call grad_civs_fnc_addNewCivilian;
     };
+    [_playerPositions,"onfoot"] call grad_civs_fnc_cleanup;
+
 },10,[]] call CBA_fnc_addPerFrameHandler;

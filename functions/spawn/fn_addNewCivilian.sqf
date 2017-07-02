@@ -26,7 +26,7 @@ _unit enableDynamicSimulation true;
 
 GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
 GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS + [_unit];
-if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"};
+if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"; publicVariable "GRAD_CIVS_ONFOOTCOUNT"};
 
 INFO_1("added civilian on foot, now %1", GRAD_CIVS_ONFOOTCOUNT);
 
