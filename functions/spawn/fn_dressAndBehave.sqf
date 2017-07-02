@@ -59,6 +59,7 @@ private _addKilledNews = {
 
 		GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT - 1;
 		GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS - [(_this select 0)];
+		if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"};
     }];
 };
 

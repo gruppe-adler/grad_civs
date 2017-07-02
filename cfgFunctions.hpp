@@ -28,7 +28,8 @@ class grad_civs {
 	class debug {
 		file = MODULES_DIRECTORY\grad-civs\functions\debug;
 
-        class createDebugMarker {};
+        class drawCivs {};
+        class mapMarkers {};
         class showWhatTheyThink {};
     };
 

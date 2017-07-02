@@ -24,12 +24,9 @@ _unit enableDynamicSimulation true;
 
 [_unit, _position, 400 - (random 300), [3,6], [0,2,10]] call grad_civs_fnc_taskPatrol;
 
-if (GRAD_CIVS_DEBUGMODE || (!isNil "DEBUG_MODE" && {DEBUG_MODE})) then {
-	[_position] call grad_civs_fnc_createDebugMarker;
-};
-
 GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
 GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS + [_unit];
+if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"};
 
 INFO_1("added civilian on foot, now %1", GRAD_CIVS_ONFOOTCOUNT);
 

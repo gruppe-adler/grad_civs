@@ -35,5 +35,8 @@ if (hasInterface) then {
     if (isNil "GRAD_CIVS_DEBUGMODE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false]};
 
     [] call grad_civs_fnc_playerLoop;
-    if (GRAD_CIVS_DEBUGMODE) then {[] call grad_civs_fnc_showWhatTheyThink};
+    if (GRAD_CIVS_DEBUGMODE) then {
+        [] call grad_civs_fnc_showWhatTheyThink;
+        [{!isNull (findDisplay 12)}, {[] call grad_civs_fnc_mapMarkers}, []] call CBA_fnc_waitUntilAndExecute;        
+    };
 };
