@@ -2,6 +2,8 @@
 
 params [["_onOff",GRAD_CIVS_DEBUGMODE]];
 
+if (!hasInterface) exitWith {};
+
 GRAD_CIVS_DEBUGMODE = _onOff;
 
 if (_onOff) then {
