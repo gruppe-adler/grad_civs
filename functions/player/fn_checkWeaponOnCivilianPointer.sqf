@@ -25,7 +25,7 @@ if (!weaponLowered player) then {
     /* if civ is civ, alive and closer than 50m, make him target */
     if ((side _possibleCiv) == civilian && {alive _possibleCiv} && {player distance _possibleCiv < 50} && {!isPlayer _possibleCiv}) then {
 
-        [_possibleCiv] remoteExec ["grad_civs_fnc_stopCiv",0,false];
+        [_possibleCiv] remoteExec ["grad_civs_fnc_stopCiv",_possibleCiv,false];
         player setVariable ["GRAD_isPointingAtObj", _possibleCiv];
         [_possibleCiv,player] remoteExec ["grad_civs_fnc_addPointerTick",2,false];
     };
