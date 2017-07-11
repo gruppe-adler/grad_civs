@@ -23,7 +23,7 @@ if (!weaponLowered player) then {
     if (_possibleCiv getVariable ["GRAD_isFleeing", false]) exitWith {};
 
     /* if civ is civ, alive and closer than 50m, make him target */
-    if ((side _possibleCiv) == civilian && {alive _possibleCiv} && {player distance _possibleCiv < 50}) then {
+    if ((side _possibleCiv) == civilian && {alive _possibleCiv} && {player distance _possibleCiv < 50} && {!isPlayer _possibleCiv}) then {
 
         [_possibleCiv] remoteExec ["grad_civs_fnc_stopCiv",0,false];
         player setVariable ["GRAD_isPointingAtObj", _possibleCiv];
