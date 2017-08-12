@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-params ["_center", ["_radii", [0,15]], ["_angles", [0,360]], ["_vehicleType", "B_Soldier_F"], ["_findWaterPos",false]];
+params ["_center", ["_radii", [0,15]], ["_angles", [0,360]], ["_vehicleType", "B_Soldier_F"], ["_findWaterPos",false], ["_findRoadPos",false]];
 private ["_pos"];
 
 _radii params ["_minRad", "_maxRad"];
@@ -13,8 +13,13 @@ for [{private _i=0}, {_i<50}, {_i=_i+1}] do {
     _searchAngle = (random (_maxAngle - _minAngle)) + _minAngle;
     _searchPos = _center getPos [_searchDist, _searchAngle];
 
-    _pos = if (_vehicleType != "") then {_searchPos findEmptyPosition [0,10,_vehicleType]} else {_searchPos};
-    if (str _pos != "[]" && {(surfaceIsWater _pos) isEqualTo _findWaterPos}) exitWith {};
+    if (_findRoadPos) then {
+        _nearRoads = _searchPos nearRoads 50;
+        _searchPos = if (count _nearRoads > 0) then {getPos (_nearRoads select 0)} else {[]};
+    };
+
+    _pos = if (_vehicleType != "" && {count _searchPos > 0}) then {_searchPos findEmptyPosition [0,10,_vehicleType]} else {_searchPos};
+    if (count _pos > 0 && {(surfaceIsWater _pos) isEqualTo _findWaterPos}) exitWith {};
 };
 
 if (str _pos == "[]") then {

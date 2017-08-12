@@ -21,5 +21,5 @@ GRAD_CIVS_DEBUGMODE = _onOff;
 		];
 	};
 	_draw forEach (missionNamespace getVariable ["GRAD_CIVS_ONFOOTUNITS",[]]);
-	_draw forEach (missionNamespace getVariable ["GRAD_CIVS_INVEHICLEUNITS",[]]);
+	_draw forEach (missionNamespace getVariable ["GRAD_CIVS_INVEHICLESUNITS",[]]);
 } , 0, []] call CBA_fnc_addPerFrameHandler;
