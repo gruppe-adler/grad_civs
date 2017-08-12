@@ -51,11 +51,13 @@ class grad_civs {
     class spawn {
         file = MODULES_DIRECTORY\grad-civs\functions\spawn;
 
-        class addNewCivilian {};
+        class spawnCivilian {};
         class cleanup {};
 		class dressAndBehave {};
-        class findSpawnSegment {};
+        class findSpawnPosition {};
         class getPlayerPositions {};
+        class addToVehicle {};
         class serverLoop {};
+        class spawnVehicle {};
     };
 };
