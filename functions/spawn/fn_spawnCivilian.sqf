@@ -5,6 +5,7 @@ params ["_pos"];
 INFO_1("POS: %1",_pos);
 
 private _group = createGroup [civilian, true];
+_group setVariable ["grad_civs_isGradCiv",true];
 private _unit = _group createUnit ["C_man_1", _pos, [], 0, "NONE"];
 
 _unit disableAI "FSM";

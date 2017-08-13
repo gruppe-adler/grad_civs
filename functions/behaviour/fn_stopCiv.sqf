@@ -4,6 +4,8 @@ params ["_unit"];
 
 private _grp = group _unit;
 
+if !(_grp getVariable ["grad_civs_isGradCiv",false]) exitWith {};
+
 if (_grp getVariable ["grad_civs_stopScriptRunning", false]) exitWith {
     INFO("already one instance of stopciv running");
 };
