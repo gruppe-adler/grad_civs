@@ -149,6 +149,16 @@ Parameter   | Explanation
 backpacks   | Array - All classnames of clothes that civilians may wear.
 probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
 
+## grad_civs_fnc_setVehicles
+Sets all vehicles that civilians may drive. Overwrites `cfgGradCivs` value. Effect is global.
+
+### Syntax
+`[vehicles] call grad_civs_fnc_setVehicles`
+
+Parameter | Explanation
+----------|-------------------------------------------------------------
+vehicles  | Array - All classnames of vehicles that civilians may drive.
+
 ## grad_civs_fnc_setDebugMode
 Sets debug mode. Overwrites `cfgGradCivs` value. Effect is global.
 
