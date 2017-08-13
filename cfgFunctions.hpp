@@ -23,6 +23,7 @@ class grad_civs {
         class setFaces {};
         class setGoggles {};
         class setHeadgear {};
+        class setVehicles {};
     };
 
 	class debug {
