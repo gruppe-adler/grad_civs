@@ -27,15 +27,18 @@ if !(local _group) exitWith {};
 //create waypoints
 for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
     _searchPosition = [_centerPosition,[0,_radius],[0,360],nil,_findWaterPos,_findRoadPos] call grad_civs_fnc_findRandomPos;
-    _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
-    _waypoint = _group addWaypoint [_position, 0];
 
-    _waypoint setWaypointType "MOVE";
-    _waypoint setWaypointBehaviour "SAFE";
-    _waypoint setWaypointSpeed (if (4 > random 100) then {"NORMAL"} else {"LIMITED"});
-    _waypoint setWaypointFormation "STAG COLUMN";
-    _waypoint setWaypointTimeout _timeout;
-    _waypoint setWaypointCompletionRadius 1;
+    if (count _searchPosition > 0) then {
+        _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
+        _waypoint = _group addWaypoint [_position, 0];
+
+        _waypoint setWaypointType "MOVE";
+        _waypoint setWaypointBehaviour "SAFE";
+        _waypoint setWaypointSpeed (if (4 > random 100) then {"NORMAL"} else {"LIMITED"});
+        _waypoint setWaypointFormation "STAG COLUMN";
+        _waypoint setWaypointTimeout _timeout;
+        _waypoint setWaypointCompletionRadius 1;
+    };
 };
 
 

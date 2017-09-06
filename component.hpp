@@ -1,7 +1,7 @@
 #define PREFIX GRAD
 #define COMPONENT civs
 
-#define DEBUG_MODE_FULL
+/*#define DEBUG_MODE_FULL*/
 #include "\x\cba\addons\main\script_macros_mission.hpp"
 
 

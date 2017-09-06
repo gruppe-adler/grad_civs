@@ -27,6 +27,7 @@ private _onVehicleExit = {
     //run away
     if (50 > random 100) then {
         _pos = [leader _grp,[150,300],[0,360]] call grad_civs_fnc_findRandomPos;
+        if (count _pos == 0) exitWith {};
         {
             _x setVariable ["grad_civs_currentlyThinking", "who the fuck is shooting, have to run far away"];
             false
