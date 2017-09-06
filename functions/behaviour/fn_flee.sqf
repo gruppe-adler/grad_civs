@@ -75,7 +75,7 @@ private _resumePatrol = {
     params ["_grp"];
 
     units _grp doFollow leader _grp;
-    [_grp, leader _grp, 400 - (random 300), [3,6], [0,2,10]] call grad_civs_fnc_taskPatrol;
+    [_grp, leader _grp, 400 - (random 300), [3,6], [0,2,10]] spawn grad_civs_fnc_taskPatrol;
 
     {
         _x setSpeedMode "LIMITED";

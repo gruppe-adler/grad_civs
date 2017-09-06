@@ -32,7 +32,7 @@ private _mainLoop = {
             if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"; publicVariable "GRAD_CIVS_ONFOOTCOUNT"};
 
             LOGTIME_START("taskPatrol_onFoot");
-            [_unit,_pos,400 - (random 300),[3,6],[0,2,10],true] call grad_civs_fnc_taskPatrol;
+            [_unit,_pos,400 - (random 300),[3,6],[0,2,10],true] spawn grad_civs_fnc_taskPatrol;
             LOGTIME_END("taskPatrol_onFoot");
         };
 
@@ -64,7 +64,7 @@ private _mainLoop = {
             LOGTIME_END("spawnCiv_vehicle");
 
             LOGTIME_START("taskPatrol_vehicle");
-            [_unit,_pos,2500,3,[0,0,0],false,true] call grad_civs_fnc_taskPatrol;
+            [_unit,_pos,2500,3,[0,0,0],false,true] spawn grad_civs_fnc_taskPatrol;
             LOGTIME_END("taskPatrol_vehicle");
 
             GRAD_CIVS_INVEHICLESCOUNT = GRAD_CIVS_INVEHICLESCOUNT + 1;

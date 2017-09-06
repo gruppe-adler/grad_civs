@@ -57,7 +57,7 @@ private _onUntargeted = {
         units _grp orderGetIn true;
     } else {
         (leader _grp) setVariable ["grad_civs_currentlyThinking", "lets patrol around"];
-        [_grp, position (leader _grp), 400 - (random 300), [3,6], [0,2,10]] call grad_civs_fnc_taskPatrol;
+        [_grp, position (leader _grp), 400 - (random 300), [3,6], [0,2,10]] spawn grad_civs_fnc_taskPatrol;
         _grp setVariable ["grad_civs_stopScriptRunning", false];
     };
 };
