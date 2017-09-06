@@ -1,12 +1,12 @@
 #include "..\..\component.hpp"
 
-params ["_allPlayerPositions", "_minSpawnDistance", "_maxSpawnDistance", "_civilianGroups"];
+params ["_allPlayers", "_minSpawnDistance", "_maxSpawnDistance", "_civilianGroups"];
 
-if (count _allPlayerPositions == 0) exitWith {INFO("_allPlayerPositions is empty"); [0,0,0]};
+if (count _allPlayers == 0) exitWith {INFO("_allPlayers is empty"); [0,0,0]};
 
 private _spawnDistanceDiff = _maxSpawnDistance - _minSpawnDistance;
 private _roadSegment = objNull;
-private _refPlayerPos = selectRandom _allPlayerPositions;
+private _refPlayerPos = getPos (selectRandom _allPlayers);
 
 
 for [{_i=0}, {_i<20}, {_i=_i+1}] do {
@@ -24,7 +24,7 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
             if (_x distance _roadPos < _minSpawnDistance) exitWith {false};
             if (_x distance _roadPos > _maxSpawnDistance) exitWith {false};
             true
-        } forEach _allPlayerPositions;
+        } forEach _allPlayers;
     };
 
     _awayFromOtherCivs = {

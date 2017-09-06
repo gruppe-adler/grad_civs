@@ -56,7 +56,6 @@ class grad_civs {
         class cleanup {};
 		class dressAndBehave {};
         class findSpawnPosition {};
-        class getPlayerPositions {};
         class addToVehicle {};
         class serverLoop {};
         class spawnVehicle {};

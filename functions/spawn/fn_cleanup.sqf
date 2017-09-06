@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-params ["_playerPositions","_mode"];
+params ["_allPlayers","_mode"];
 private ["_cleanupDistance","_civsArray","_civsArrayVar","_counterVar","_idVar"];
 
 switch (_mode) do {
@@ -27,7 +27,7 @@ _id = if (_id >= (count _civsArray)-1) then {0} else {_id+1};
 missionNamespace setVariable [_idVar,_id];
 
 private _civ = _civsArray select _id;
-private _delete = ({_civ distance _x < _cleanupDistance} count _playerPositions) == 0;
+private _delete = ({_civ distance _x < _cleanupDistance} count _allPlayers) == 0;
 
 if (_delete) then {
     _civsArray deleteAt _id;
