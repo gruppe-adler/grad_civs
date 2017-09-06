@@ -6,10 +6,11 @@ if (count _allPlayers == 0) exitWith {INFO("_allPlayers is empty"); [0,0,0]};
 
 private _spawnDistanceDiff = _maxSpawnDistance - _minSpawnDistance;
 private _roadSegment = objNull;
+private _roadPos = [0,0,0];
 private _refPlayerPos = getPos (selectRandom _allPlayers);
 
 
-for [{_i=0}, {_i<20}, {_i=_i+1}] do {
+for [{_i=0}, {_i<10}, {_i=_i+1}] do {
     _dir = random 360;
 
     _refPosX = (_refPlayerPos select 0) + (_minSpawnDistance + _spawnDistanceDiff / 2) * sin _dir;
@@ -17,10 +18,12 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
 
     _roadSegments = [_refPosX, _refPosY] nearRoads (_spawnDistanceDiff / 2);
     _roadSegment = if (count _roadSegments > 0) then {selectRandom _roadSegments} else {objNull};
+    _roadPos = getPos _roadSegment;
+
+    diag_log [_roadSegment,_roadPos];
 
     _inSpawnZone = {
         {
-            _roadPos = getPos _roadSegment;
             if (_x distance _roadPos < _minSpawnDistance) exitWith {false};
             if (_x distance _roadPos > _maxSpawnDistance) exitWith {false};
             true
@@ -30,7 +33,7 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
     _awayFromOtherCivs = {
         {
             _unit = (units _x) param [0,objNull];
-            if ((getPos _roadSegment) distance _unit < 100) exitWith {false};
+            if (_roadPos distance _unit < 100) exitWith {false};
             true
         } forEach _civilianGroups;
     };
@@ -38,5 +41,4 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
     if (!isNull _roadSegment && _inSpawnZone && _awayFromOtherCivs) exitWith {};
 };
 
-
-getPos _roadSegment
+_roadPos
