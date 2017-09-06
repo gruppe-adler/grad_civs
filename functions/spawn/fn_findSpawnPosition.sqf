@@ -9,8 +9,8 @@ private _roadSegment = objNull;
 private _roadPos = [0,0,0];
 private _refPlayerPos = getPos (selectRandom _allPlayers);
 
-
-for [{_i=0}, {_i<10}, {_i=_i+1}] do {
+//only 1 repetition for performance reasons >> kept for loop in case we want to bump it up again
+for [{_i=0}, {_i<1}, {_i=_i+1}] do {
     _dir = random 360;
 
     _refPosX = (_refPlayerPos select 0) + (_minSpawnDistance + _spawnDistanceDiff / 2) * sin _dir;
@@ -19,8 +19,6 @@ for [{_i=0}, {_i<10}, {_i=_i+1}] do {
     _roadSegments = [_refPosX, _refPosY] nearRoads (_spawnDistanceDiff / 2);
     _roadSegment = if (count _roadSegments > 0) then {selectRandom _roadSegments} else {objNull};
     _roadPos = getPos _roadSegment;
-
-    diag_log [_roadSegment,_roadPos];
 
     _inSpawnZone = {
         {
