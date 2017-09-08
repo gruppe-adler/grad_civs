@@ -192,3 +192,5 @@ Parameter | Explanation
 ----------|-------------------------------------------------------------------------------------------------------------------------------------------------
 area      | Array / Object - Area array in format `[a, b, angle, isRectangle]` or array of area arrays or gamelogic synchronzed to one or multiple triggers.
 amount    | Number - Amount of civilians to spawn.
+
+![](http://i.imgur.com/Cimaz4c.jpg)
