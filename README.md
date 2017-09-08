@@ -38,6 +38,8 @@ Add the class `cfgGradCivs` to your `description.ext`. Use the following attribu
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 autoInit                 | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
+enableOnFoot             | 1             | Enable civilians on foot (0/1).
+enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.

@@ -2,6 +2,7 @@
 
 if (!isServer) exitWith {};
 if (!canSuspend) exitWith {_this spawn grad_civs_fnc_populateArea};
+if (isNil "GRAD_CIVS_ONFOOTUNITS") exitWith {ERROR("grad-civs has not been initialized.")};
 
 params ["_area",["_amount",20]];
 

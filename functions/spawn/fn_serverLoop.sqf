@@ -1,6 +1,7 @@
 #include "..\..\component.hpp"
 
-if (!isServer) exitWith {};
+if (!isServer) exitWith {-1};
+if (!GRAD_CIVS_ENABLEDINVEHICLES && !GRAD_CIVS_ENABLEDONFOOT) exitWith {-1};
 
 private _mainLoop = {
     params ["_args", "_handle"];
