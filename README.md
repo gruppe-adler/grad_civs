@@ -184,8 +184,9 @@ headgear  | Array - All classnames of clothes that civilians may wear.
 Manually populates an area with civilians. These civilians count towards the maximum amount, but will get cleaned up when no players are near enough.
 
 ### Syntax
-`[area] call grad_civs_fnc_populateArea`
+`[area,amount] call grad_civs_fnc_populateArea`
 
 Parameter | Explanation
 ----------|-------------------------------------------------------------------------------------------------------------------------------------------------
 area      | Array / Object - Area array in format `[a, b, angle, isRectangle]` or array of area arrays or gamelogic synchronzed to one or multiple triggers.
+amount    | Number - Amount of civilians to spawn.
