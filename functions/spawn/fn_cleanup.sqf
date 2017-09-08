@@ -24,6 +24,10 @@ if (count _civsArray == 0) exitWith {};
 
 private _id = missionNamespace getVariable [_idVar,0];
 _id = if (_id >= (count _civsArray)-1) then {0} else {_id+1};
+for [{_i=0},{_i<count _civsArray},{_i=_i+1}] do {
+    if !((_civsArray select _id) getVariable ["grad_civs_excludeFromCleanup",false]) exitWith {};
+    _id = if (_id >= (count _civsArray)-1) then {0} else {_id+1};
+};
 missionNamespace setVariable [_idVar,_id];
 
 private _civ = _civsArray select _id;

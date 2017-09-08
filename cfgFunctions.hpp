@@ -15,8 +15,11 @@ class grad_civs {
     class common {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
 
+        class findBuildings {};
         class findPositionOfInterest {};
         class findRandomPos {};
+        class findRandomPosArea {};
+        class populateArea {};
         class setBackpacks {};
         class setClothes {};
         class setDebugMode {};
@@ -54,6 +57,8 @@ class grad_civs {
 
         class spawnCivilian {};
         class cleanup {};
+        class createSideRoadVehicles {};
+        class deleteIfDamaged {};
 		class dressAndBehave {};
         class findSpawnPosition {};
         class addToVehicle {};

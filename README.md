@@ -179,3 +179,13 @@ Used to manually initialize module. Has to be executed on clients and server. Ef
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 headgear  | Array - All classnames of clothes that civilians may wear.
+
+## grad_civs_fnc_populateArea
+Manually populates an area with civilians. These civilians count towards the maximum amount, but will get cleaned up when no players are near enough.
+
+### Syntax
+`[area] call grad_civs_fnc_populateArea`
+
+Parameter | Explanation
+----------|-------------------------------------------------------------------------------------------------------------------------------------------------
+area      | Array / Object - Area array in format `[a, b, angle, isRectangle]` or array of area arrays or gamelogic synchronzed to one or multiple triggers.
