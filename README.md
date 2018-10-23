@@ -61,11 +61,13 @@ backpackProbability      | 0.5           | Probability that a civilian will wear
 ```sqf
 class CfgGradCivs {
     autoInit = 0;
-    maxCivs = 60;
-    spawnDistances[] = {1000,4500};
+    maxCivsOnFoot = 60;
+    maxCivsInVehicles = 10;
+    spawnDistancesOnFoot[] = {1000,4500};
+    spawnDistancesInVehicles[] = {1000,4500};
     debugMode = 1;
     exitOn = "";
-    onSpawn = "";
+    onSpawn = "systemChat format ['%1 spawned', typeOf (_this select 0)];";
     onHeldUp = "";    
     backpackProbability = 0.5;
 
