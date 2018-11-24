@@ -56,7 +56,7 @@ private _mainLoop = {
 
             LOGTIME_START("spawnCiv_vehicle");
             _veh = [_pos,selectRandom GRAD_CIVS_VEHICLES] call grad_civs_fnc_spawnVehicle;
-            _unit = [_pos] call grad_civs_fnc_spawnCivilian;
+            _unit = [_pos, _veh] call grad_civs_fnc_spawnCivilian;
             _unit assignAsDriver _veh;
             _unit moveinAny _veh;
             (group _unit) setSpeedMode "NORMAL";
