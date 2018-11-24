@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-params ["_pos", ["_inVehicle", false]];
+params ["_pos", ["_vehicle", objNull]];
 
 private _group = createGroup [civilian, true];
 _group setVariable ["grad_civs_isGradCiv",true];
@@ -12,6 +12,6 @@ _unit setBehaviour "CARELESS";
 [_unit] call grad_civs_fnc_dressAndBehave;
 _unit enableDynamicSimulation true;
 
-[_unit, _inVehicle] call GRAD_CIVS_ONSPAWN;
+[_unit, _vehicle] call GRAD_CIVS_ONSPAWN;
 
 _unit
