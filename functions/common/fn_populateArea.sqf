@@ -4,7 +4,7 @@ if (!isServer) exitWith {};
 if (!canSuspend) exitWith {_this spawn grad_civs_fnc_populateArea};
 if (isNil "GRAD_CIVS_ONFOOTUNITS") exitWith {ERROR("grad-civs has not been initialized.")};
 
-params ["_area",["_amount",20]];
+params ["_area",["_amount",20],["_excludeFromCleanup",true]];
 
 private _areas = if (_area isEqualType objNull) then {synchronizedObjects _area} else {[_area]};
 private _maxLoops = _amount * 5;
@@ -15,7 +15,9 @@ private _maxLoops = _amount * 5;
         _spawnPos = [_x] call grad_civs_fnc_findRandomPosArea;
         if (count _spawnPos > 0) then {
             _civ = [_spawnPos] call grad_civs_fnc_spawnCivilian;
-            _civ setVariable ["grad_civs_excludeFromCleanup",true];
+            if (_excludeFromCleanup) then {
+                _civ setVariable ["grad_civs_excludeFromCleanup",true];                
+            };
             GRAD_CIVS_ONFOOTUNITS pushBack _civ;
             GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
             [_civ,_spawnPos,300 - (random 250),[3,6],[0,2,10],true] spawn grad_civs_fnc_taskPatrol;
