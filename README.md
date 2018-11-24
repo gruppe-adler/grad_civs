@@ -45,7 +45,7 @@ maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
 debugMode                | 0             | Toggles debug mode (0/1).
-onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian].
+onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
 onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
 exitOn                   | ""            | Condition upon which grad-civs loops will stop.
 clothes                  | []            | All classnames of clothes that civilians may wear.
