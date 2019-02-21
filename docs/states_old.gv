@@ -1,0 +1,21 @@
+digraph civs {
+  flight[label="who the fuck is shooting, have to run far away"]
+  hide[label="who the fuck is shooting, have to find cover"]
+  hidden[label="taking cover"]
+  patrol[label="task patrol assigned | lets patrol around"]
+  surrendered[label="cant run away or i will be shot"]
+  freetogo[label="he doesnt target me anymore, i can goooo"]
+  idle[label="no special purpose"]
+
+  freetogo -> patrol
+  flight -> patrol
+  hide -> hidden
+  hidden -> patrol
+  surrendered -> freetogo
+
+  patrol -> surrendered
+  hide -> surrendered
+  hidden -> surrendered
+  freetogo -> surrendered
+  idle -> surrendered
+}

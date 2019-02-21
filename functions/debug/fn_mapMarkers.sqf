@@ -2,7 +2,7 @@
 
 params [["_onOff",GRAD_CIVS_DEBUGMODE]];
 
-if (!hasInterface) exitWith {};
+ASSERT_PLAYER("");
 
 GRAD_CIVS_DEBUGMODE = _onOff;
 

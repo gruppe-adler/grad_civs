@@ -30,10 +30,10 @@ class CfgFunctions {
 };
 ```
 
-# Config
+## Config
 Add the class `cfgGradCivs` to your `description.ext`. Use the following attributes to configure the module:
 
-## Attributes
+### Attributes
 
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,10 +54,11 @@ faces                    | []            | All classnames of faces that civilian
 goggles                  | []            | All classnames of goggles that civilians may wear.
 headgear                 | []            | All classnames of headgear that civilians may wear.
 backpacks                | []            | All classnames of backpacks that civilians may wear.
+panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
 vehicles                 | []            | All classnames of vehicles that civilians may drive.
-backpackProbability      | 0.5           | Probability that a civilian will wear a backpack.
+backpackProbability      | 50           | Probability that a civilian will wear a backpack, in percent
 
-## Example
+### Example
 
 ```sqf
 class CfgGradCivs {
@@ -100,22 +101,22 @@ class CfgGradCivs {
 };
 ```
 
-# Functions
+## Functions
 
-## grad_civs_fnc_setClothes
+### grad_civs_fnc_setClothes
 Sets all clothes that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[clothes] call grad_civs_fnc_setClothes`
 
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 clothes   | Array - All classnames of clothes that civilians may wear.
 
-## grad_civs_fnc_setFaces
+### grad_civs_fnc_setFaces
 Sets all faces that civilians may have. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[faces] call grad_civs_fnc_setFaces`
 
 Parameter | Explanation
@@ -123,30 +124,30 @@ Parameter | Explanation
 faces     | Array - All classnames of faces that civilians may have.
 
 
-## grad_civs_fnc_setGoggles
+### grad_civs_fnc_setGoggles
 Sets all goggles that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[goggles] call grad_civs_fnc_setGoggles`
 
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 goggles   | Array - All classnames of goggles that civilians may wear.
 
-## grad_civs_fnc_setHeadgear
+### grad_civs_fnc_setHeadgear
 Sets all headgear that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[headgear] call grad_civs_fnc_setHeadgear`
 
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 headgear  | Array - All classnames of clothes that civilians may wear.
 
-## grad_civs_fnc_setBackpacks
+### grad_civs_fnc_setBackpacks
 Sets all backpacks that civilians may wear and sets probability. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[backpacks,probability] call grad_civs_fnc_setHeadgear`
 
 Parameter   | Explanation
@@ -154,30 +155,30 @@ Parameter   | Explanation
 backpacks   | Array - All classnames of clothes that civilians may wear.
 probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
 
-## grad_civs_fnc_setVehicles
+### grad_civs_fnc_setVehicles
 Sets all vehicles that civilians may drive. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[vehicles] call grad_civs_fnc_setVehicles`
 
 Parameter | Explanation
 ----------|-------------------------------------------------------------
 vehicles  | Array - All classnames of vehicles that civilians may drive.
 
-## grad_civs_fnc_setDebugMode
+### grad_civs_fnc_setDebugMode
 Sets debug mode. Overwrites `cfgGradCivs` value. Effect is global.
 
-### Syntax
+#### Syntax
 `[debugMode] call grad_civs_fnc_setDebugMode`  
 
 Parameter | Explanation
 ----------|--------------------------
 debugMode | Bool - Debug mode on/off.
 
-## grad_civs_fnc_initModule
+### grad_civs_fnc_initModule
 Used to manually initialize module. Has to be executed on clients and server. Effect is local.
 
-### Syntax
+#### Syntax
 `[] call grad_civs_fnc_initModule`  
 `[] remoteExec ["grad_civs_fnc_initModule",0,true]`
 
@@ -185,10 +186,10 @@ Parameter | Explanation
 ----------|-----------------------------------------------------------
 headgear  | Array - All classnames of clothes that civilians may wear.
 
-## grad_civs_fnc_populateArea
+### grad_civs_fnc_populateArea
 Manually populates an area with civilians. These civilians count towards the maximum amount.
 
-### Syntax
+#### Syntax
 `[area,amount,excludeFromCleanup,staticVehicles,staticVehiclesMax] call grad_civs_fnc_populateArea`
 
 Parameter                     | Explanation
@@ -199,4 +200,12 @@ excludeFromCleanup (optional) | Bool - Sets if these civilians will be excluded 
 staticVehicles (optional)     | Bool - Sets if static vehicles will be created in the area. (default: false)
 staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to create. Actual amount is based on number of roads and houses in area.
 
+
 ![](http://i.imgur.com/Cimaz4c.jpg)
+
+## Development
+
+* we're using the CBA state machine implementation, see `/functions/sm_*/`
+* if you add states or transitions, please update the DOT files in `/docs`
+    * which is where you'll find the compiled SVG files, too.
+    * install [Graphviz](https://graphviz.gitlab.io/) and generate them using `dot -Tsvg states.gv > states.svg` or use an online editor   

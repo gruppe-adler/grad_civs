@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-if (!isServer) exitWith {};
+ASSERT_SERVER("");
 if (!canSuspend) exitWith {_this spawn grad_civs_fnc_populateArea};
 if (isNil "GRAD_CIVS_ONFOOTUNITS") exitWith {ERROR("grad-civs has not been initialized.")};
 
@@ -14,14 +14,14 @@ private _maxLoops = _amount * 5;
 
         _spawnPos = [_x] call grad_civs_fnc_findRandomPosArea;
         if (count _spawnPos > 0) then {
-            _civ = [_spawnPos] call grad_civs_fnc_spawnCivilian;
+            _group = [_spawnPos, GRAD_CIVS_INITIALGROUPSIZE] call grad_civs_fnc_spawnCivilianGroup;
             if (_excludeFromCleanup) then {
-                _civ setVariable ["grad_civs_excludeFromCleanup",true];
+                {
+                     _x setVariable ["grad_civs_excludeFromCleanup",true];
+                 } forEach units _group;
             };
-            GRAD_CIVS_ONFOOTUNITS pushBack _civ;
-            GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
-            [_civ,_spawnPos,300 - (random 250),[3,6],[0,2,10],true] spawn grad_civs_fnc_taskPatrol;
-            _amountSpawned = _amountSpawned + 1;
+            GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS + (units _group);
+            _amountSpawned = _amountSpawned + (count units _group);
         };
 
         if (_amountSpawned >= _amount) exitWith {};

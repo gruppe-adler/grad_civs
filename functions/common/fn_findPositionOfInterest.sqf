@@ -1,11 +1,16 @@
 #include "..\..\component.hpp"
 
-params ["_searchPosition"];
+params ["_searchPosition", ["_isGetNearest", false]];
 
 if (_searchPosition isEqualType objNull) then {_searchPosition = getPos _searchPosition};
 
-private _buildings = _searchPosition nearObjects ["House", 100];
-_buildings append (_searchPosition nearObjects ["Building",100]);
+private _buildings = [];
+if (_isGetNearest) then {
+	_buildings append (nearestObjects [_searchPosition, ["House", "Building"], 100]);
+} else {
+	_buildings append (_searchPosition nearObjects ["House", 100]);
+	_buildings append (_searchPosition nearObjects ["Building",100]);
+};
 
 private _nearestBuilding = if (count _buildings > 0) then {_buildings select 0} else {objNull};
 private _buildingPositions = [_nearestBuilding] call BIS_fnc_buildingPositions;

@@ -6,6 +6,8 @@ if (_mode == "preInit" && {([missionConfigFile >> "cfgGradCivs","autoInit",1] ca
 
 INFO("Module starting...");
 
+assert(isClass (configFile >> "CfgWeapons" >> "ACE_Banana")); // we depend on ACE
+
 if (isServer) then {
     if (isNil "GRAD_CIVS_CLOTHES") then {missionNamespace setVariable ["GRAD_CIVS_CLOTHES",[missionConfigFile >> "cfgGradCivs","clothes",[]] call BIS_fnc_returnConfigEntry,true]};
     if (isNil "GRAD_CIVS_HEADGEAR") then {missionNamespace setVariable ["GRAD_CIVS_HEADGEAR",[missionConfigFile >> "cfgGradCivs","headgear",[]] call BIS_fnc_returnConfigEntry,true]};
@@ -29,6 +31,9 @@ if (isServer) then {
     missionNamespace setVariable ["GRAD_CIVS_ONHELDUP",compile ([missionConfigFile >> "cfgGradCivs","onHeldUp",""] call BIS_fnc_returnConfigEntry),true];
     missionNamespace setVariable ["GRAD_CIVS_ONKILLED",compile ([missionConfigFile >> "cfgGradCivs","onKilled",""] call BIS_fnc_returnConfigEntry),true];
 
+    missionNamespace setVariable ["GRAD_CIVS_INITIALGROUPSIZE", ([missionConfigFile >> "cfgGradCivs","initialGroupSize", [1, 1, 2]] call BIS_fnc_returnConfigEntry), true];
+    missionNamespace setVariable ["GRAD_CIVS_PANICCOOLDOWN", ([missionConfigFile >> "cfgGradCivs", "panicCooldown", [15, 120, 240]] call BIS_fnc_returnConfigEntry), true];
+
     _distances = [missionConfigFile >> "cfgGradCivs","spawnDistancesOnFoot",[1000,4500]] call BIS_fnc_returnConfigEntry;
     missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEONFOOTMIN",_distances select 0,true];
 	missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEONFOOTMAX",_distances select 1,true];
@@ -37,19 +42,20 @@ if (isServer) then {
     missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEINVEHICLESMIN",_distances select 0,true];
 	missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX",_distances select 1,true];
 
-    GRAD_CIVS_ONFOOTCOUNT = 0;
     GRAD_CIVS_ONFOOTUNITS = [];
-
-    GRAD_CIVS_INVEHICLESCOUNT = 0;
     GRAD_CIVS_INVEHICLESUNITS = [];
 
     [] call grad_civs_fnc_serverLoop;
+    [] call grad_civs_fnc_sm_emotions;
+    [] call grad_civs_fnc_sm_activities;
+    [] call grad_civs_fnc_sm_cleanup;
 };
 
 if (hasInterface) then {
     if (isNil "GRAD_CIVS_DEBUGMODE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false]};
 
     [] call grad_civs_fnc_playerLoop;
+    [] call grad_civs_fnc_registerAceInteractionHandler;
     if (GRAD_CIVS_DEBUGMODE) then {
         [] call grad_civs_fnc_showWhatTheyThink;
         [{!isNull (findDisplay 12)}, {[] call grad_civs_fnc_mapMarkers}, []] call CBA_fnc_waitUntilAndExecute;
