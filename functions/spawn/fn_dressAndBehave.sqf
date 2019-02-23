@@ -50,9 +50,17 @@ private _addKilledNews = {
     {
 		params ["_unit"];
 
-		CIV_KILLED = [(position _unit), _unit getVariable ["ace_medical_lastDamageSource", objNull]];
+        private _deathPos = getPos _unit;
+        private _killer = _unit getVariable ["ace_medical_lastDamageSource", objNull];
+
+        // old killed event to be used with publicVariable EH
+		CIV_KILLED = [_deathPos,_killer];
 		INFO_1("civ killed: %1",CIV_KILLED);
 		publicVariableServer "CIV_KILLED";
+
+        // new killed event to be used with config
+        [_unit,_killer] call GRAD_CIVS_ONKILLED;
+
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
 		_unit switchMove "";
