@@ -47,6 +47,7 @@ spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to playe
 debugMode                | 0             | Toggles debug mode (0/1).
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
 onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
+onKilled                 | ""            | Code to execute when civilian is killed. Passed parameters are: [civilian,killer].
 exitOn                   | ""            | Condition upon which grad-civs loops will stop.
 clothes                  | []            | All classnames of clothes that civilians may wear.
 faces                    | []            | All classnames of faces that civilians may have.

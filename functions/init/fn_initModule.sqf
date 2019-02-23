@@ -27,6 +27,7 @@ if (isServer) then {
     missionNamespace setVariable ["GRAD_CIVS_EXITON",compile ([missionConfigFile >> "cfgGradCivs","exitOn",""] call BIS_fnc_returnConfigEntry),true];
     missionNamespace setVariable ["GRAD_CIVS_ONSPAWN",compile ([missionConfigFile >> "cfgGradCivs","onSpawn",""] call BIS_fnc_returnConfigEntry),true];
     missionNamespace setVariable ["GRAD_CIVS_ONHELDUP",compile ([missionConfigFile >> "cfgGradCivs","onHeldUp",""] call BIS_fnc_returnConfigEntry),true];
+    missionNamespace setVariable ["GRAD_CIVS_ONKILLED",compile ([missionConfigFile >> "cfgGradCivs","onKilled",""] call BIS_fnc_returnConfigEntry),true];
 
     _distances = [missionConfigFile >> "cfgGradCivs","spawnDistancesOnFoot",[1000,4500]] call BIS_fnc_returnConfigEntry;
     missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEONFOOTMIN",_distances select 0,true];
