@@ -189,12 +189,14 @@ headgear  | Array - All classnames of clothes that civilians may wear.
 Manually populates an area with civilians. These civilians count towards the maximum amount.
 
 ### Syntax
-`[area,amount,excludeFromCleanup] call grad_civs_fnc_populateArea`
+`[area,amount,excludeFromCleanup,staticVehicles,staticVehiclesMax] call grad_civs_fnc_populateArea`
 
-Parameter | Explanation
-----------|-------------------------------------------------------------------------------------------------------------------------------------------------
-area      | Array / Object - Area array in format `[a, b, angle, isRectangle]` or array of area arrays or gamelogic synchronzed to one or multiple triggers.
-amount    | Number - Amount of civilians to spawn.
-excludeFromCleanup (optional)  |  Bool - Sets if these civilians will be excluded from cleanup when no players are near. (default: true)
+Parameter                     | Explanation
+------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------
+area                          | Array / Object - Area array in format `[a, b, angle, isRectangle]` or array of area arrays or gamelogic synchronzed to one or multiple triggers.
+amount                        | Number - Amount of civilians to spawn.
+excludeFromCleanup (optional) | Bool - Sets if these civilians will be excluded from cleanup when no players are near. (default: true)
+staticVehicles (optional)     | Bool - Sets if static vehicles will be created in the area. (default: false)
+staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to create. Actual amount is based on number of roads and houses in area.
 
 ![](http://i.imgur.com/Cimaz4c.jpg)

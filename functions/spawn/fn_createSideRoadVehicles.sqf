@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-params ["_locationPosition","_locationRadius","_amountFactor","_houseFactor","_minDistance"];
+params ["_locationPosition","_locationRadius","_amountFactor","_houseFactor","_minDistance","_maxAmount"];
 
 if (count GRAD_CIVS_VEHICLES == 0) exitWith {};
 private _vehiclePositions = [];
@@ -24,7 +24,7 @@ private _fnc_isSafe = {
 private _thesePositions = [];
 private _roads = _locationPosition nearRoads _locationRadius;
 private _vehiclesToCreate = (round ((count _roads) * 0.07 * _amountFactor));
-_vehiclesToCreate = round (2 max (_vehiclesToCreate + ((random (_vehiclesToCreate * 0.4)) - _vehiclesToCreate * 0.2)));
+_vehiclesToCreate = round ((2 max (_vehiclesToCreate + ((random (_vehiclesToCreate * 0.4)) - _vehiclesToCreate * 0.2))) min _maxAmount);
 
 while {count _roads > 0 && count _thesePositions < _vehiclesToCreate} do {
     private ["_vehPos","_canCreate","_chosenDirection","_offRoadFound"];
