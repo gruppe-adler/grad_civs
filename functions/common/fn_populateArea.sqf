@@ -4,7 +4,7 @@ if (!isServer) exitWith {};
 if (!canSuspend) exitWith {_this spawn grad_civs_fnc_populateArea};
 if (isNil "GRAD_CIVS_ONFOOTUNITS") exitWith {ERROR("grad-civs has not been initialized.")};
 
-params ["_area",["_amount",20],["_excludeFromCleanup",true]];
+params ["_area",["_amount",20],["_excludeFromCleanup",true],["_staticCars",false],["_staticCarsMax",20]];
 
 private _areas = if (_area isEqualType objNull) then {synchronizedObjects _area} else {[_area]};
 private _maxLoops = _amount * 5;
@@ -16,7 +16,7 @@ private _maxLoops = _amount * 5;
         if (count _spawnPos > 0) then {
             _civ = [_spawnPos] call grad_civs_fnc_spawnCivilian;
             if (_excludeFromCleanup) then {
-                _civ setVariable ["grad_civs_excludeFromCleanup",true];                
+                _civ setVariable ["grad_civs_excludeFromCleanup",true];
             };
             GRAD_CIVS_ONFOOTUNITS pushBack _civ;
             GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT + 1;
@@ -28,13 +28,17 @@ private _maxLoops = _amount * 5;
         if (_i > _maxLoops) exitWith {};
     };
 
-    _vehAmount = if (_x isEqualType objNull) then {
-        (triggerArea _x) params [["_a",0],["_b",0]];
-        [getPos _x,_a max _b,1,30,15] call grad_civs_fnc_createSideRoadVehicles
-    } else {
-        _x params ["_center",["_a",0],["_b",0]];
-        [_center,_a max _b,1,1,15] call grad_civs_fnc_createSideRoadVehicles
+    private _vehAmount = 0;
+    if (_staticCars) then {
+        _vehAmount = if (_x isEqualType objNull) then {
+            (triggerArea _x) params [["_a",0],["_b",0]];
+            [getPos _x,_a max _b,5,5,15,_staticCarsMax] call grad_civs_fnc_createSideRoadVehicles
+        } else {
+            _x params ["_center",["_a",0],["_b",0]];
+            [_center,_a max _b,5,5,15,_staticCarsMax] call grad_civs_fnc_createSideRoadVehicles
+        };
     };
+
 
     INFO_2("Populated area with %1 civilians and %2 static cars.",_amountSpawned,_vehAmount);
 
