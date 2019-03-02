@@ -2,7 +2,7 @@
 
 scopeName "checkPointer_main";
 
-if (!weaponLowered player) then {
+if ((!weaponLowered player) && (vehicle player == player)) then {
 
     _currentCiv = player getVariable ["GRAD_isPointingAtObj", objNull];
     _possibleCiv = driver cursorTarget;
@@ -19,13 +19,8 @@ if (!weaponLowered player) then {
 
     if (!(_possibleCiv isKindOf "Man") && {!(_possibleCiv isKindOf "Car")}) exitWith {};
 
-    /* don't stop civ if fleeing */
-    if (_possibleCiv getVariable ["GRAD_isFleeing", false]) exitWith {};
-
     /* if civ is civ, alive and closer than 50m, make him target */
-    if ((side _possibleCiv) == civilian && {alive _possibleCiv} && {player distance _possibleCiv < 50} && {!isPlayer _possibleCiv}) then {
-
-        [_possibleCiv] remoteExec ["grad_civs_fnc_stopCiv",_possibleCiv,false];
+    if ((side _possibleCiv) == civilian && (alive _possibleCiv) && (player distance _possibleCiv < 50) && (!isPlayer _possibleCiv)) then {
         player setVariable ["GRAD_isPointingAtObj", _possibleCiv];
         [_possibleCiv,player] remoteExec ["grad_civs_fnc_addPointerTick",2,false];
     };

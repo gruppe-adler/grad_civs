@@ -46,7 +46,7 @@ private _addBehaviour = {
 };
 
 private _addKilledNews = {
-   (_this select 0) addEventhandler ["Killed",
+   (_this select 0) addEventHandler ["Killed",
     {
 		params ["_unit"];
 
@@ -54,42 +54,62 @@ private _addKilledNews = {
         private _killer = _unit getVariable ["ace_medical_lastDamageSource", objNull];
 
         // old killed event to be used with publicVariable EH
-		CIV_KILLED = [_deathPos,_killer];
+		CIV_KILLED = [_deathPos, _killer];
 		INFO_1("civ killed: %1",CIV_KILLED);
 		publicVariableServer "CIV_KILLED";
 
         // new killed event to be used with config
-        [_unit,_killer] call GRAD_CIVS_ONKILLED;
+        [_unit, _killer] call GRAD_CIVS_ONKILLED;
+		["killed", [_unit]] call CBA_fnc_targetEvent;
 
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
 		_unit switchMove "";
 
-		GRAD_CIVS_ONFOOTCOUNT = GRAD_CIVS_ONFOOTCOUNT - 1;
-		GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS - [(_this select 0)];
-		if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"};
+		GRAD_CIVS_ONFOOTUNITS deleteAt (GRAD_CIVS_ONFOOTUNITS find _unit);
+		GRAD_CIVS_INVEHICLESUNITS deleteAt (GRAD_CIVS_INVEHICLESUNITS find _unit);
+		if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"; publicVariable "GRAD_CIVS_INVEHICLESUNITS";};
     }];
 };
 
 private _addGunfightNewsAndFlee = {
-   (_this select 0) addEventhandler ["FiredNear",
+   (_this select 0) addEventHandler ["FiredNear",
     {
 		params ["_unit"];
 
     	CIV_GUNFIGHT_POS = getPos _unit;
     	INFO_1("civ gunfight at %1",CIV_GUNFIGHT_POS);
     	publicVariableServer "CIV_GUNFIGHT_POS";
+		["fired_near", [_unit], [_unit]] call CBA_fnc_targetEvent;
 
-		(group _unit) setVariable ["grad_civs_lastGunshotHeard",CBA_missionTime];
 
-		[_unit] call grad_civs_fnc_flee;
+		// TODO this seems to reaaally be a frame eater.
+		/*
+		{
+			_distance = _x distance _unit;
+			if (_distance < 1000 && _distance > 70) then {
+				["fired_far", [_x]] call CBA_fnc_localEvent;
+			};
+		} forEach (GRAD_CIVS_ONFOOTUNITS - [_unit]);
+		*/
     }];
 };
 
+private _addVars = {
+	params [
+		["_civ", objNull]
+	];
+	_civ setVariable["GRAD_CIVS_PANICCOOLDOWN" , random GRAD_CIVS_PANICCOOLDOWN, true];
+	_civ setVariable["grad_civs_runspeed", random [15, 20, 23], true];
+	_civ setVariable["grad_civs_recklessness", random [0, 5, 10], true];
+};
 
-private _unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
-// _stripped = [_unit] call _stripHim;
-[_unit, _unitLoadout] call _reclotheHim;
+
+if ((count GRAD_CIVS_CLOTHES > 0) && (count GRAD_CIVS_HEADGEAR > 0)) then {
+	private _unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
+	// _stripped = [_unit] call _stripHim;
+	[_unit, _unitLoadout] call _reclotheHim;
+};
 
 _unit setVariable ["asr_ai_exclude", true];
 
@@ -98,3 +118,4 @@ _unit setVariable ["asr_ai_exclude", true];
 [_unit] call _addBehaviour;
 [_unit] call _addBeard;
 [_unit] call _addBackpack;
+[_unit] call _addVars;
