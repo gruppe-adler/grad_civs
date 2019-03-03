@@ -1,5 +1,5 @@
 
-private _activities = [{GRAD_CIVS_ONFOOTUNITS + GRAD_CIVS_INVEHICLESUNITS}, true] call CBA_statemachine_fnc_create;
+private _activities = [] call CBA_statemachine_fnc_create;
 
 // STATES
 
@@ -240,3 +240,5 @@ assert ([_activities, _act_surrendered, _act_asOrdered, ["ace_interaction_getDow
 assert ([_activities, _act_asOrdered, _act_rally, { _this call grad_civs_fnc_sm_activities_trans_asOrdered_rally_condition }, {}, _act_asOrdered + _act_rally] call CBA_statemachine_fnc_addTransition);
 
 GRAD_CIVS_STATE_ACTIVITIES = _activities;
+
+_activities

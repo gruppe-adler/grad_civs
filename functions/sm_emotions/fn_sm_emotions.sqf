@@ -1,5 +1,5 @@
 
-private _emotions = [{GRAD_CIVS_ONFOOTUNITS + GRAD_CIVS_INVEHICLESUNITS}, true] call CBA_statemachine_fnc_create;
+private _emotions = [] call CBA_statemachine_fnc_create;
 
         // STATES
 
@@ -101,3 +101,5 @@ assert ([
 ] call CBA_statemachine_fnc_addEventTransition);
 
 GRAD_CIVS_STATE_EMOTIONS = _emotions;
+
+_emotions
