@@ -11,6 +11,10 @@ private _act_init  = [
     "act_init"
 ] call CBA_statemachine_fnc_addState;
 
+/*
+ * this is mindless panic behavior. it transitions into "omg i have to hide" quickly.
+ * 
+**/
 private _act_flight  = [
     _activities,
     { _this call grad_civs_fnc_sm_activities_state_flight_loop },
@@ -27,7 +31,11 @@ private _act_hide  = [
     "act_hide"
 ] call CBA_statemachine_fnc_addState;
 
-
+/*
+ * if you order a unit to go away or get down, I have them enter this state 
+ * with cooldown before they get back to rallying (and continuing whatever they were doing before)
+ * 
+**/
 private _act_asOrdered  = [
     _activities,
     { _this call grad_civs_fnc_sm_activities_state_asOrdered_loop },
@@ -48,6 +56,11 @@ private _act_hidden  = [
     "act_hidden"
 ] call CBA_statemachine_fnc_addState;
 
+/*
+ * entered only by the group leader. the other units stay in "rally"
+ * 
+ * leader picks a bunch of waypoints and walks through them
+**/
 private _act_patrol  = [
     _activities,
     {},
@@ -56,6 +69,10 @@ private _act_patrol  = [
      "act_patrol"
 ] call CBA_statemachine_fnc_addState;
 
+/*
+ * civ group gets together, and the leader decides what to do next (as defined by transitions).
+ * for some activities (like patrol and voyage) civ followers stay in this state
+**/
 private _act_rally  = [
     _activities,
     { _this call grad_civs_fnc_sm_activities_state_rally_loop },
@@ -72,6 +89,9 @@ private _act_surrendered = [
     "act_surrendered"
 ] call CBA_statemachine_fnc_addState;
 
+/*
+ * civ leader waits here for his followers to mount up
+**/
 private _act_mountUp = [
     _activities,
     {},
@@ -80,6 +100,9 @@ private _act_mountUp = [
     "act_mountUp"
 ] call CBA_statemachine_fnc_addState;
 
+/*
+ * civ leader picks a bunch of waypoints to drive to
+**/
 private _act_voyage  = [
     _activities,
     { _this call grad_civs_fnc_sm_activities_state_voyage_loop },
