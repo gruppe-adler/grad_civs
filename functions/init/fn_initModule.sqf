@@ -44,9 +44,11 @@ if (isServer) then {
 
     GRAD_CIVS_ONFOOTUNITS = [];
     GRAD_CIVS_INVEHICLESUNITS = [];
+    GRAD_CIVS_STATEMACHINES = [] call CBA_fnc_createNamespace;
+
+    [_activities, _emotions] call grad_civs_fnc_sm_lifecycle;
 
     [] call grad_civs_fnc_serverLoop;
-    [] call grad_civs_fnc_sm_lifecycle;
 };
 
 if (hasInterface) then {

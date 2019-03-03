@@ -12,41 +12,46 @@ digraph lifecycle {
             bgcolor="lightyellow";
             label="emo";
             emo_relaxed -> emo_wary;
-            {emo_wary, emo_relaxed} -> emo_panic;
+            {emo_wary, emo_relaxed} -> emo_panic [color="red"];
             emo_panic -> emo_wary -> emo_relaxed;
         }
 
         subgraph cluster_activities {
             bgcolor="lightblue";
             label="act";
-            act_rally -> act_patrol;
-            act_rally -> act_mountUp;
-            act_mountUp -> act_voyage;
-            act_mountUp -> act_dismount;
 
-            act_flight -> act_hide;
-            act_hide -> act_hidden;
+            subgraph cluster_business {
+                label="bus";
+                cluster_business_node [shape=point style=invis];
+                bus_rally -> bus_patrol;
+                bus_rally -> bus_mountUp;
+                bus_mountUp -> bus_voyage;
+                bus_mountUp -> bus_dismount;
+                bus_voyage -> bus_dismount [color=red]; # panic event
+                bus_dismount -> bus_rally;
+            }
 
-            {act_hidden, act_rally, act_patrol, act_dismount} -> act_surrendered;
-            {act_rally, act_patrol, act_asOrdered} -> act_flight [color=red];
+            subgraph cluster_panic {
+                bgcolor="pink";
+                label="panic";
+                cluster_panic_node [shape=point style=invis];
+                pan_flight -> pan_hide -> pan_hidden;
+            }
 
-            act_voyage -> act_dismount [color=red]; # panic event
-            act_voyage -> act_dismount;
+            act_asOrdered [shape=rectangle];
+            act_surrendered [shape=rectangle];
 
-            act_dismount -> act_flight;
-            act_mountUp -> act_flight;
+            act_surrendered -> cluster_panic_node [lhead=cluster_panic];
 
-            {act_flight, act_hide, act_hidden} -> act_rally [color=blue] #de-panic event
+            act_surrendered -> cluster_business_node [lhead=cluster_business];
+            cluster_business_node -> act_surrendered [ltail=cluster_business];
+            act_asOrdered -> cluster_business_node [lhead=cluster_business];
+            cluster_business_node -> act_asOrdered [ltail=cluster_business color=red];
 
-            {act_init, act_dismount, act_surrendered} -> act_rally;
+            cluster_panic_node -> cluster_business_node [color=blue lhead=cluster_business ltail=cluster_panic]
+            cluster_business_node -> cluster_panic_node [ltail=cluster_business lhead=cluster_panic color=red]
 
-            act_surrendered -> act_hide;
-
-            {act_rally, act_patrol, act_surrendered} -> act_asOrdered [color=red];
-
-            act_asOrdered -> act_rally;
         }
-
     }
 
     cyc_spawn [shape=Msquare];

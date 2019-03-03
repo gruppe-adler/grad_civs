@@ -8,7 +8,7 @@ if (_this getVariable ["grad_civs_excludeFromCleanup",false]) exitWith {false};
 
 
 private _cleanupDistance = GRAD_CIVS_SPAWNDISTANCEONFOOTMAX * 1.5;
-if ((GRAD_CIVS_ONFOOTUNITS find _this) != -1) then {
+if ((GRAD_CIVS_ONFOOTUNITS find _this) == -1) then {
     _cleanupDistance = GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX * 1.2;
 };
 

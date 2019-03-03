@@ -26,11 +26,14 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
 
         class addCompoundState {};
+        class addToStateMachine {};
         class findBuildings {};
         class findPositionOfInterest {};
         class findRandomPos {};
         class findRandomPosArea {};
+        class getCurrentState {};
         class populateArea {};
+        class removeFromStateMachine {};
         class setBackpacks {};
         class setClothes {};
         class setDebugMode {};
@@ -57,12 +60,11 @@ class grad_civs {
 
     class player {
         file = MODULES_DIRECTORY\grad-civs\functions\player;
-
-        class addPointerTick {};
+        class checkWeaponOnCivilianPerception {};
         class checkWeaponOnCivilianPointer {};
         class playerLoop {};
         class registerAceInteractionHandler {};
-        class removePointerTick {};
+        class showCivHint {};
     };
 
     class spawn {
@@ -89,37 +91,38 @@ class grad_civs {
         class sm_activities_state_asOrdered_enter {};
         class sm_activities_state_asOrdered_exit {};
         class sm_activities_state_asOrdered_loop {};
-        class sm_activities_state_dismount_enter {};
-        class sm_activities_state_flight_enter {};
-        class sm_activities_state_flight_exit {};
-        class sm_activities_state_flight_loop {};
-        class sm_activities_state_hidden_enter {};
-        class sm_activities_state_hide_enter {};
-        class sm_activities_state_hide_exit {};
-        class sm_activities_state_mountUp_enter {};
-        class sm_activities_state_mountUp_exit {};
-        class sm_activities_state_patrol_enter {};
-        class sm_activities_state_patrol_exit {};
-        class sm_activities_state_rally_enter {};
-        class sm_activities_state_rally_loop {};
+        class sm_activities_state_panic_enter {};
+        class sm_activities_state_panic_exit {};
         class sm_activities_state_surrendered_enter {};
         class sm_activities_state_surrendered_exit {};
-        class sm_activities_state_voyage_enter {};
-        class sm_activities_state_voyage_exit {};
-        class sm_activities_state_voyage_loop {};
-        class sm_activities_trans_asOrdered_rally_condition {};
-        class sm_activities_trans_dismount_flight_condition {};
-        class sm_activities_trans_dismount_rally_condition {};
-        class sm_activities_trans_dismount_surrendered_condition {};
-        class sm_activities_trans_hidden_rally_handler {};
-        class sm_activities_trans_hide_hidden_condition {};
-        class sm_activities_trans_hide_hidden_handler {};
-        class sm_activities_trans_mountUp_flight_condition {};
-        class sm_activities_trans_mountUp_voyage_condition {};
-        class sm_activities_trans_rally_mountUp_condition {};
-        class sm_activities_trans_rally_patrol_condition {};
-        class sm_activities_trans_surrendered_hide_condition {};
-        class sm_activities_trans_surrendered_rally_condition {};
+        class sm_activities_trans_asOrdered_business_condition {};
+        class sm_activities_trans_business_panic_condition {};
+        class sm_activities_trans_business_surrendered_condition {};
+        // class sm_activities_trans_panic_business_condition {}; // event transition
+        class sm_activities_trans_surrendered_business_condition {};
+        class sm_activities_trans_surrendered_panic_condition {};
+    };
+
+    class sm_business {
+        file = MODULES_DIRECTORY\grad-civs\functions\sm_business;
+
+        class sm_business {};
+        class sm_business_state_dismount_enter {};
+        class sm_business_state_mountUp_enter {};
+        class sm_business_state_mountUp_exit {};
+        class sm_business_state_patrol_enter {};
+        class sm_business_state_patrol_exit {};
+        class sm_business_state_rally_enter {};
+        class sm_business_state_rally_loop {};
+        class sm_business_state_voyage_enter {};
+        class sm_business_state_voyage_exit {};
+        class sm_business_state_voyage_loop {};
+        class sm_business_trans_dismount_rally_condition {};
+        class sm_business_trans_mountUp_voyage_condition {};
+        class sm_business_trans_mountUp_dismount_condition {};
+        class sm_business_trans_rally_mountUp_condition {};
+        class sm_business_trans_rally_patrol_condition {};
+        class sm_business_trans_voyage_dismount_condition {};
     };
 
     class sm_lifecycle {
@@ -128,7 +131,7 @@ class grad_civs {
         class sm_lifecycle {};
         class sm_lifecycle_state_death_enter {};
         class sm_lifecycle_state_despawn_enter {};
-        class sm_lifecycle_trans_init_despawn_condition {};
+        class sm_lifecycle_trans_life_despawn_condition {};
         class sm_lifecycle_state_spawn_enter {};
     };
 
@@ -136,5 +139,18 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\sm_emotions;
 
         class sm_emotions {};
+    };
+
+    class sm_panic {
+        file = MODULES_DIRECTORY\grad-civs\functions\sm_panic;
+
+        class sm_panic {};
+        class sm_panic_state_flight_loop {};
+        class sm_panic_state_flight_enter {};
+        class sm_panic_state_hidden_enter {};
+        class sm_panic_state_hide_enter {};
+        class sm_panic_state_hide_exit {};
+        class sm_panic_trans_hide_hidden_condition {};
+        class sm_panic_trans_hide_hidden_handler {};
     };
 };
