@@ -1,42 +1,59 @@
-digraph civs {
+digraph lifecycle {
+    bgcolor="gray";
     compound=true;
 
-    subgraph cluster_emotions {
-        clusterrank="local";
-        bgcolor="yellow";
-        emo_relaxed -> emo_wary;
-        {emo_wary, emo_relaxed} -> emo_panic;
-        emo_panic -> emo_wary -> emo_relaxed;
+    subgraph cluster_life {
+        bgcolor="white";
+        shape="Msquare";
+        label="cyc_life";
+        cluster_life_node [shape=point style=invis];
+
+        subgraph cluster_emotions {
+            bgcolor="lightyellow";
+            label="emo";
+            emo_relaxed -> emo_wary;
+            {emo_wary, emo_relaxed} -> emo_panic;
+            emo_panic -> emo_wary -> emo_relaxed;
+        }
+
+        subgraph cluster_activities {
+            bgcolor="lightblue";
+            label="act";
+            act_rally -> act_patrol;
+            act_rally -> act_mountUp;
+            act_mountUp -> act_voyage;
+            act_mountUp -> act_dismount;
+
+            act_flight -> act_hide;
+            act_hide -> act_hidden;
+
+            {act_hidden, act_rally, act_patrol, act_dismount} -> act_surrendered;
+            {act_rally, act_patrol, act_asOrdered} -> act_flight [color=red];
+
+            act_voyage -> act_dismount [color=red]; # panic event
+            act_voyage -> act_dismount;
+
+            act_dismount -> act_flight;
+            act_mountUp -> act_flight;
+
+            {act_flight, act_hide, act_hidden} -> act_rally [color=blue] #de-panic event
+
+            {act_init, act_dismount, act_surrendered} -> act_rally;
+
+            act_surrendered -> act_hide;
+
+            {act_rally, act_patrol, act_surrendered} -> act_asOrdered [color=red];
+
+            act_asOrdered -> act_rally;
+        }
+
     }
 
-    subgraph cluster_activities {
-        bgcolor="green";
-        act_rally -> act_patrol;
-        act_rally -> act_mountUp;
-        act_mountUp -> act_voyage;
-        act_mountUp -> act_dismount;
+    cyc_spawn [shape=Msquare];
+    cyc_despawn [shape=Msquare];
+    cyc_death [shape=Msquare];
 
-        act_flight -> act_hide;
-        act_hide -> act_hidden;
-
-        {act_hidden, act_rally, act_patrol, act_dismount} -> act_surrendered;
-        {act_rally, act_patrol, act_asOrdered} -> act_flight [color=red];
-
-        act_voyage -> act_dismount [color=red]; # panic event
-        act_voyage -> act_dismount;
-
-        act_dismount -> act_flight;
-        act_mountUp -> act_flight;
-
-        {act_flight, act_hide, act_hidden} -> act_rally [color=blue] #de-panic event
-
-        {act_init, act_dismount, act_surrendered} -> act_rally;
-
-        act_surrendered -> act_hide;
-
-        {act_rally, act_patrol, act_surrendered} -> act_asOrdered [color=red];
-
-        act_asOrdered -> act_rally
-    }
+    cyc_spawn -> cluster_life_node [lhead=cluster_life];
+    cluster_life_node -> cyc_despawn [ltail=cluster_life];
+    cluster_life_node -> cyc_death [ltail=cluster_life color=red];
 }
-<

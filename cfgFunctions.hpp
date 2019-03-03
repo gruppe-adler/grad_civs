@@ -25,6 +25,7 @@ class grad_civs {
     class common {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
 
+        class addCompoundState {};
         class findBuildings {};
         class findPositionOfInterest {};
         class findRandomPos {};
@@ -67,7 +68,6 @@ class grad_civs {
     class spawn {
         file = MODULES_DIRECTORY\grad-civs\functions\spawn;
 
-		class dressAndBehave {};
         class addCarCrew {};
         class addFootsy {};
         class createSideRoadVehicles {};
@@ -122,12 +122,14 @@ class grad_civs {
         class sm_activities_trans_surrendered_rally_condition {};
     };
 
-    class sm_cleanup {
-        file = MODULES_DIRECTORY\grad-civs\functions\sm_cleanup;
+    class sm_lifecycle {
+        file = MODULES_DIRECTORY\grad-civs\functions\sm_lifecycle;
 
-        class sm_cleanup {};
-        class sm_cleanup_state_despawn_enter {};
-        class sm_cleanup_trans_init_despawn_condition {};
+        class sm_lifecycle {};
+        class sm_lifecycle_state_death_enter {};
+        class sm_lifecycle_state_despawn_enter {};
+        class sm_lifecycle_trans_init_despawn_condition {};
+        class sm_lifecycle_state_spawn_enter {};
     };
 
     class sm_emotions {

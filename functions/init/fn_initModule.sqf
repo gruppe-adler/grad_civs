@@ -46,9 +46,7 @@ if (isServer) then {
     GRAD_CIVS_INVEHICLESUNITS = [];
 
     [] call grad_civs_fnc_serverLoop;
-    [] call grad_civs_fnc_sm_emotions;
-    [] call grad_civs_fnc_sm_activities;
-    [] call grad_civs_fnc_sm_cleanup;
+    [] call grad_civs_fnc_sm_lifecycle;
 };
 
 if (hasInterface) then {

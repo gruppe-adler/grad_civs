@@ -1,4 +1,7 @@
 private _idx =  (GRAD_CIVS_ONFOOTUNITS + GRAD_CIVS_INVEHICLESUNITS) find _this;
+
+if (_idx == -1) exitWith {false}; // should not happen, really
+
 if (((floor CBA_missionTime) mod 10) != (_idx mod 10)) exitWith {false}; // only every 10th tick
 
 if (_this getVariable ["grad_civs_excludeFromCleanup",false]) exitWith {false};
