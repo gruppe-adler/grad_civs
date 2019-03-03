@@ -268,3 +268,9 @@ In our case, and with CBA state machines, that means:
         * transitions in `fn_sm_activities_trans_<state1>_<state2>_(condition|handler).sqf`
     * this makes for easier Profiling using the [Arma Script Profiler](https://github.com/dedmen/ArmaScriptProfiler)
     * and reduces file size for `fn_sm_activities.sqf`
+
+#### what it looks like
+
+This is the current structure (plz update when you change anything!):
+
+![activities state machine](docs/states.png)
