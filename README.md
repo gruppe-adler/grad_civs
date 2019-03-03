@@ -209,3 +209,62 @@ staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to cr
 * if you add states or transitions, please update the DOT files in `/docs`
     * which is where you'll find the compiled SVG files, too.
     * install [Graphviz](https://graphviz.gitlab.io/) and generate them using `dot -Tsvg states.gv > states.svg` or use an online editor   
+
+### state stot wot?
+
+worry not, here comes a friendly introduction:
+
+**CBA state machine for dummies**
+
+#### what are state machines
+
+A state machine is a construct made of states and transitions between states. It can be visualized very easily as a directed graph with nodes (states) and edges (transitions). The state machine gets fed with a bunch of entities that inhabit the states. It periodically checks the states and moves the entities along the transitions from one state to the next.
+
+#### how do they look like with CBA
+
+Let's have a very simple example:
+
+```sqf
+MY_CIV_LIST = ["C_Offroad_01_F" createVehicle position player];
+_machine = [{MY_CIV_LIST}] call CBA_statemachine_fnc_create;
+_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call CBA_statemachine_fnc_addState;
+_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call CBA_statemachine_fnc_addState;
+_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call CBA_statemachine_fnc_addTransition;
+```
+
+this will print something like this to RPT:
+
+```
+onEnter_init
+init
+# … (until CBA_missionTime > 30)
+init
+onExit_init
+changing state
+onEnter_wörk
+wörk
+wörk
+# … 
+```
+
+#### how do we use them
+
+In our case, and with CBA state machines, that means:
+
+* we have a bunch of state machines, chief of which is the *activities* state machine. It is implemented in `/functions/sm_activities/fn_activities.sqf`
+* states are added to it using [CBA_statemachine_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
+    * every state has a bunch of callbacks that are called with a civilian as parameter
+        * one is called periodically as long as the civ is in the state
+        * one is called when the civ enters the state
+        * one is called when the civ leaves the state
+* transitions are being added by using [CBA_statemachine_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
+    * every transition is defined as a one-way connection between two states
+    * every transition gets two callbacks
+        * one is called periodically to check whether a civ can move along the transition
+        * the second is called once when the civ actually makes the transition
+* The state machine can get big quickly. 
+    * The callbacks should not execute code directly, but execute in separate functions:
+        * states in `fn_sm_activities_state_<name>_(loop|enter|exit).sqf`
+        * transitions in `fn_sm_activities_trans_<state1>_<state2>_(condition|handler).sqf`
+    * this makes for easier Profiling using the [Arma Script Profiler](https://github.com/dedmen/ArmaScriptProfiler)
+    * and reduces file size for `fn_sm_activities.sqf`
