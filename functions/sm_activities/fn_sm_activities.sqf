@@ -7,12 +7,14 @@ private _panic = [] call grad_civs_fnc_sm_panic;
 
 _id1 = ["pointed_at_inc", {
     params ["_civ"];
+    if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
     _civ setVariable ["grad_civs_isPointedAtCount", _currentCount + 1];
 }] call CBA_fnc_addEventHandler;
 
 _id2 = ["pointed_at_dec", {
     params ["_civ"];
+    if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
     assert(_currentCount > 0);
     if (_currentCount < 1) then {_currentCount = 1;};
