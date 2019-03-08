@@ -1,4 +1,4 @@
-private _pointingCount = count (_this getVariable ["grad_civs_isPointedAtBy", []]);
+private _pointingCount = _this getVariable ["grad_civs_isPointedAtCount", 0];
 private _recklessness = _this getVariable ["grad_civs_recklessness", 5]; // goes from 0…10 as gaussian distribution
 
 // recklessness gets reduced somewhat by the number of people pointing their weapons

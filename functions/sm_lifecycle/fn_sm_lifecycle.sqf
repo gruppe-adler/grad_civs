@@ -47,7 +47,7 @@ assert ([
 assert ([
     _lifecycle,
     _lifecycle_life, _lifecycle_despawn,
-    { _this call grad_civs_fnc_sm_lifecycle_trans_init_despawn_condition },
+    { _this call grad_civs_fnc_sm_lifecycle_trans_life_despawn_condition },
     {},
     _lifecycle_life + _lifecycle_despawn
 ] call CBA_statemachine_fnc_addTransition);
@@ -60,3 +60,8 @@ assert ([
     {},
     _lifecycle_life + _lifecycle_death
 ] call CBA_statemachine_fnc_addEventTransition);
+
+GRAD_CIVS_STATE_LIFECYCLE = _lifecycle;
+GRAD_CIVS_STATEMACHINES setVariable ["lifecycle", _lifecycle];
+
+_lifecycle
