@@ -62,6 +62,8 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\player;
         class checkWeaponOnCivilianPerception {};
         class checkWeaponOnCivilianPointer {};
+        class checkHonkingOnCivilian {};
+        class isPlayerHonking {};
         class playerLoop {};
         class registerAceInteractionHandler {};
         class showCivHint {};

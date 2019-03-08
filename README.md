@@ -1,8 +1,19 @@
 # GRAD Civilians
-This will be able to randomly spawn ambient civilians on the map.
+
+Spawn ambient civilians on the map.
+
+## Features
+
+* civilians patrol and drive around the country, alone and in small groups
+* stop and raise their hands when threatened with weapons
+* will panic and flee in firefights
+* will move out of player's way when getting honked at
+* civilians players will get hints as to what a "grad-civ" civilian would notice (like, being pointed at with a gun, told to away by ACE interact, ...)
 
 ## Dependencies
+
 * [CBA_A3](https://github.com/CBATeam/CBA_A3)
+* [ACE3](https://github.com/acemod/ACE3)
 
 ## Installation
 ### Manually
@@ -244,7 +255,7 @@ changing state
 onEnter_wörk
 wörk
 wörk
-# … 
+# …
 ```
 
 #### how do we use them
@@ -262,7 +273,7 @@ In our case, and with CBA state machines, that means:
     * every transition gets two callbacks
         * one is called periodically to check whether a civ can move along the transition
         * the second is called once when the civ actually makes the transition
-* The state machine can get big quickly. 
+* The state machine can get big quickly.
     * The callbacks should not execute code directly, but execute in separate functions:
         * states in `fn_sm_activities_state_<name>_(loop|enter|exit).sqf`
         * transitions in `fn_sm_activities_trans_<state1>_<state2>_(condition|handler).sqf`
