@@ -34,7 +34,6 @@ private _act_business = [
 ] call grad_civs_fnc_addCompoundState;
 assert(_act_business != "");
 
-
 private _act_asOrdered = [
     _activities,
     { _this call grad_civs_fnc_sm_activities_state_asOrdered_loop },
@@ -43,7 +42,6 @@ private _act_asOrdered = [
     "act_asOrdered"
 ] call CBA_statemachine_fnc_addState;
 assert(_act_asOrdered != "");
-
 
 private _act_surrendered = [
     _activities,
