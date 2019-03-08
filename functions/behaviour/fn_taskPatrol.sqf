@@ -27,7 +27,7 @@ if !(local _group) exitWith {};
 
 //create waypoints
 for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
-    private _searchPosition = [_centerPosition,[0,_radius],[0,360],nil,_findWaterPos,_findRoadPos] call grad_civs_fnc_findRandomPos;
+    private _searchPosition = [_centerPosition,[_radius / 2 ,_radius],[0,360],nil,_findWaterPos,_findRoadPos] call grad_civs_fnc_findRandomPos;
 
     if (count _searchPosition > 0) then {
         _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition, false] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};

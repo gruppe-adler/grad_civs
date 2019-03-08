@@ -1,11 +1,7 @@
-/*
- civ unit redressing
-*/
-
-
 #include "..\..\component.hpp"
 
-params ["_unit"];
+
+private _unit = _this;
 
 
 private _reclotheHim = {
@@ -50,25 +46,11 @@ private _addKilledNews = {
     {
 		params ["_unit"];
 
-        private _deathPos = getPos _unit;
-        private _killer = _unit getVariable ["ace_medical_lastDamageSource", objNull];
-
-        // old killed event to be used with publicVariable EH
-		CIV_KILLED = [_deathPos, _killer];
-		INFO_1("civ killed: %1",CIV_KILLED);
-		publicVariableServer "CIV_KILLED";
-
-        // new killed event to be used with config
-        [_unit, _killer] call GRAD_CIVS_ONKILLED;
-		["killed", [_unit]] call CBA_fnc_targetEvent;
+		["killed", [_unit], [_unit]] call CBA_fnc_targetEvent;
 
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
 		_unit switchMove "";
-
-		GRAD_CIVS_ONFOOTUNITS deleteAt (GRAD_CIVS_ONFOOTUNITS find _unit);
-		GRAD_CIVS_INVEHICLESUNITS deleteAt (GRAD_CIVS_INVEHICLESUNITS find _unit);
-		if (GRAD_CIVS_DEBUGMODE) then {publicVariable "GRAD_CIVS_ONFOOTUNITS"; publicVariable "GRAD_CIVS_INVEHICLESUNITS";};
     }];
 };
 
@@ -103,6 +85,14 @@ private _addVars = {
 	_civ setVariable["grad_civs_runspeed", random [15, 20, 23], true];
 	_civ setVariable["grad_civs_recklessness", random [0, 5, 10], true];
 };
+
+
+_unit disableAI "FSM";
+_unit setBehaviour "CARELESS";
+_unit enableDynamicSimulation true;
+
+[_unit, _vehicle] call GRAD_CIVS_ONSPAWN;
+
 
 
 if ((count GRAD_CIVS_CLOTHES > 0) && (count GRAD_CIVS_HEADGEAR > 0)) then {

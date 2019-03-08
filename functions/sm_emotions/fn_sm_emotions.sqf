@@ -1,5 +1,5 @@
 
-private _emotions = [{GRAD_CIVS_ONFOOTUNITS + GRAD_CIVS_INVEHICLESUNITS}, true] call CBA_statemachine_fnc_create;
+private _emotions = [] call CBA_statemachine_fnc_create;
 
         // STATES
 
@@ -32,10 +32,10 @@ private _emo_panic = [
     {},
     {
         _this setVariable ["grad_civs_emo_state_time", CBA_missionTime];
-        ["grad_civ_panicking", [_this]] call CBA_fnc_localEvent;
+        ["grad_civs_panicking", [_this]] call CBA_fnc_localEvent;
     },
     {
-        ["grad_civ_panicking_end", [_this]] call CBA_fnc_localEvent;
+        ["grad_civs_panicking_end", [_this]] call CBA_fnc_localEvent;
     },
     "emo_panic"
 ] call CBA_statemachine_fnc_addState;
@@ -101,3 +101,6 @@ assert ([
 ] call CBA_statemachine_fnc_addEventTransition);
 
 GRAD_CIVS_STATE_EMOTIONS = _emotions;
+GRAD_CIVS_STATEMACHINES setVariable ["emotions", _emotions];
+
+_emotions
