@@ -8,6 +8,8 @@ if (_structured == "") then {
 };
 
 [_structured] call ace_common_fnc_displayTextStructured;
-systemChat _plain; // TODO create a separate channel for grad-civs
-
-
+if (GRAD_CIVS_INFOCHANNEL == 0) then {
+    systemChat _plain;
+} else {
+    player customChat [GRAD_CIVS_INFOCHANNEL, _plain] ;
+};

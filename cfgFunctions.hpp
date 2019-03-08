@@ -72,6 +72,7 @@ class grad_civs {
 
         class addCarCrew {};
         class addFootsy {};
+        class createInfoChannel {};
         class createSideRoadVehicles {};
         class deleteIfDamaged {};
         class findSpawnPosition {};

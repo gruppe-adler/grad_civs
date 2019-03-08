@@ -46,6 +46,7 @@ if (isServer) then {
     GRAD_CIVS_INVEHICLESUNITS = [];
     GRAD_CIVS_STATEMACHINES = [] call CBA_fnc_createNamespace;
 
+    GRAD_CIVS_INFOCHANNEL = [] call grad_civs_fnc_createInfoChannel; publicVariable "GRAD_CIVS_INFOCHANNEL";
     [_activities, _emotions] call grad_civs_fnc_sm_lifecycle;
 
     [] call grad_civs_fnc_serverLoop;
@@ -53,6 +54,7 @@ if (isServer) then {
 
 if (hasInterface) then {
     if (isNil "GRAD_CIVS_DEBUGMODE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUGMODE",([missionConfigFile >> "cfgGradCivs","debugMode",0] call BIS_fnc_returnConfigEntry) == 1,false]};
+    if (isNil "GRAD_CIVS_INFOCHANNEL") then {GRAD_CIVS_INFOCHANNEL = 0;};
 
     [] call grad_civs_fnc_playerLoop;
     [] call grad_civs_fnc_registerAceInteractionHandler;
