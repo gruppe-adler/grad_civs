@@ -32,10 +32,10 @@ private _emo_panic = [
     {},
     {
         _this setVariable ["grad_civs_emo_state_time", CBA_missionTime];
-        ["grad_civs_panicking", [_this]] call CBA_fnc_localEvent;
+        ["grad_civs_panicking", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     {
-        ["grad_civs_panicking_end", [_this]] call CBA_fnc_localEvent;
+        ["grad_civs_panicking_end", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     "emo_panic"
 ] call CBA_statemachine_fnc_addState;

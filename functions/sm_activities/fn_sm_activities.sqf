@@ -18,7 +18,7 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
     assert(_currentCount > 0);
     if (_currentCount < 1) then {_currentCount = 1;};
-    _civ setVariable ["grad_civs_isPointedAtCount", _currentCount - 1];
+    _civ setVariable ["grad_civs_isPointedAtCount", _currentCount - 1, true];
 }] call CBA_fnc_addEventHandler;
 
 ["honked_at", {
@@ -34,8 +34,8 @@ private _panic = [] call grad_civs_fnc_sm_panic;
         _moveVector = _moveVectors select 1;
     };
     _civ setVariable ["grad_civs_act_leave_state_time", CBA_missionTime + 4];
-    _civ doMove ((position _civ) vectorAdd _moveVector);
     _civ setSpeedMode "FULL";
+    _civ doMove ((position _civ) vectorAdd _moveVector);    
 }] call CBA_fnc_addEventHandler;
 
 // STATES
