@@ -24,4 +24,12 @@ publicVariable "GRAD_CIVS_DEBUGMODE";
 	};
 	_draw forEach (missionNamespace getVariable ["GRAD_CIVS_ONFOOTUNITS",[]]);
 	_draw forEach (missionNamespace getVariable ["GRAD_CIVS_INVEHICLESUNITS",[]]);
+
+	private _poly = player getVariable ["grad_civs_dangerPolyInPlayerHeight", []];
+	{
+	    private _from = _poly select _forEachIndex;
+		private _to = _poly select ((_forEachIndex + 1) mod (count _poly));
+		drawLine3D [_from, _to, [1, 0.3, 0.5, 1]];
+	} forEach _poly;
+
 } , 0, []] call CBA_fnc_addPerFrameHandler;

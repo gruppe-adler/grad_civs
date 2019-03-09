@@ -45,3 +45,12 @@
     };
     [_message] call grad_civs_fnc_showCivHint;
 }] call CBA_fnc_addEventHandler;
+
+
+["honked_at", {
+    params ["_civ"];
+    if (_civ != ACE_player) exitWith {};
+
+    private _message = "a car honks at you";
+    [_message] call grad_civs_fnc_showCivHint;
+}] call CBA_fnc_addEventHandler;

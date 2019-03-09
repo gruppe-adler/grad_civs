@@ -5,20 +5,37 @@ private _panic = [] call grad_civs_fnc_sm_panic;
 
 // CBA EVENTS
 
-_id1 = ["pointed_at_inc", {
+["pointed_at_inc", {
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
     _civ setVariable ["grad_civs_isPointedAtCount", _currentCount + 1];
 }] call CBA_fnc_addEventHandler;
 
-_id2 = ["pointed_at_dec", {
+["pointed_at_dec", {
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
     assert(_currentCount > 0);
     if (_currentCount < 1) then {_currentCount = 1;};
     _civ setVariable ["grad_civs_isPointedAtCount", _currentCount - 1];
+}] call CBA_fnc_addEventHandler;
+
+["honked_at", {
+    params ["_civ", "_carPos", "_carVelocity"];
+    if (_civ == ACE_player) exitWith {};
+    private _moveVectors = [
+        [-(_carVelocity select 1), _carVelocity select 0, _carPos select 2],
+        [_carVelocity select 1, -(_carVelocity select 0),  _carPos select 2]
+    ];
+    // go left or right, depending on where to get further from the vehicle
+    private _moveVector = _moveVectors select 0;
+    if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
+        _moveVector = _moveVectors select 1;
+    };
+    _civ setVariable ["grad_civs_act_leave_state_time", CBA_missionTime + 4];
+    _civ doMove ((position _civ) vectorAdd _moveVector);
+    _civ setSpeedMode "FULL";
 }] call CBA_fnc_addEventHandler;
 
 // STATES
@@ -103,14 +120,14 @@ assert ([
     _act_panic, _act_business,
     ["grad_civs_panicking_end"],
     {true},
-    {_this switchmove ""},
+    {_this switchMove ""},
     _act_panic + _act_business
 ] call CBA_statemachine_fnc_addEventTransition);
 
 assert ([
     _activities,
     _act_business, _act_asOrdered,
-    ["ace_interaction_getDown", "ace_interaction_sendAway"],
+    ["ace_interaction_getDown", "ace_interaction_sendAway", "honked_at"],
     {true},
     {},
     _act_business + _act_asOrdered

@@ -4,8 +4,13 @@
     [] call grad_civs_fnc_checkWeaponOnCivilianPointer;
 }, 0.5, []] call CBA_fnc_addPerFrameHandler;
 
-GRAD_CIVS_PLAYERSIDE = sideUnknown;
+[{
+    if ([] call grad_civs_fnc_isPlayerHonking) then {
+        [] call grad_civs_fnc_checkHonkingOnCivilian;
+    };
+}, 0.1, []] call CBA_fnc_addPerFrameHandler;
 
+GRAD_CIVS_PLAYERSIDE = sideUnknown;
 [{
     if !(alive player) exitWith {};
     if (GRAD_CIVS_PLAYERSIDE == side player) exitWith {};

@@ -8,7 +8,7 @@ if ((alive player) && (!weaponLowered player) && (vehicle player == player)) the
     _possibleCiv = driver cursorTarget;
 
     /* remove my marker on civ, if i dont target him anymore */
-    if !(_currentCiv isEqualTo _possibleCiv || cursorTarget isEqualTo (_currentCiv call grad_civs_fnc_getGroupVehicle)) then {
+    if !((_currentCiv isEqualTo _possibleCiv) || (cursorTarget isEqualTo (_currentCiv call grad_civs_fnc_getGroupVehicle))) then {
         if (!isNull _currentCiv) then {
             player setVariable ["GRAD_isPointingAtObj", objNull];
             if (GRAD_CIVS_DEBUGMODE) then { hint format ["depointing %1", _currentCiv]; };
