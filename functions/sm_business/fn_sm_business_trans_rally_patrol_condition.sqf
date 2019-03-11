@@ -8,4 +8,4 @@ private _nonRallyCount = {
 } count _grpUnits;
 private _allRallying = _nonRallyCount == 0;
 
-_allRallying && _haveNoVehicle
+_allRallying && _haveNoVehicle && ((_this getVariable ["grad_civs_primaryTask", ""]) in ["voyage", "patrol"])

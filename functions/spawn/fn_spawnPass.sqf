@@ -15,3 +15,7 @@ if (GRAD_CIVS_ENABLEDINVEHICLES) then {
         [_allPlayers] call grad_civs_fnc_addCarCrew;
     };
 };
+
+if ((count (["reside"] call grad_civs_fnc_getGlobalCivs)) < GRAD_CIVS_MAXCIVSRESIDENTS) then {
+    [_allPlayers] call grad_civs_fnc_addResident;
+};

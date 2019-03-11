@@ -8,37 +8,34 @@ private _emo_relaxed = [
     {
     },
     {
-        _this setVariable ["grad_civs_emo_state_time", CBA_missionTime];
     },
     {
     },
     "emo_relaxed"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 
 private _emo_wary = [
     _emotions,
     {
     },
     {
-        _this setVariable ["grad_civs_emo_state_time", CBA_missionTime];
     },
     {
     },
     "emo_wary"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 
 private _emo_panic = [
     _emotions,
     {},
     {
-        _this setVariable ["grad_civs_emo_state_time", CBA_missionTime];
         ["grad_civs_panicking", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     {
         ["grad_civs_panicking_end", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     "emo_panic"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 
 
     // TRANSITIONS
@@ -49,14 +46,14 @@ assert ([
     _emo_panic, _emo_wary,
     {
         private _cooldown = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60];
-        private _timeUntilCooldown = (_this getVariable ["grad_civs_emo_state_time", 0]) + _cooldown - CBA_missionTime;
+        private _timeUntilCooldown = _thisStateTime + _cooldown - CBA_missionTime;
 
         [_this, format["%1 seconds until cooldown", round _timeUntilCooldown]] call grad_civs_fnc_setCurrentlyThinking;
         _timeUntilCooldown <= 0
     },
     {},
     _emo_panic + _emo_wary
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 
 assert ([
@@ -64,14 +61,14 @@ assert ([
     _emo_wary, _emo_relaxed,
     {
         private _cooldown = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60];
-        private _timeUntilCooldown = (_this getVariable ["grad_civs_emo_state_time", 0]) + _cooldown - CBA_missionTime;
+        private _timeUntilCooldown = _thisStateTime + _cooldown - CBA_missionTime;
 
         [_this, format["%1 seconds until cooldown", round _timeUntilCooldown]] call grad_civs_fnc_setCurrentlyThinking;
         _timeUntilCooldown <= 0
     },
     {},
     _emo_wary + _emo_relaxed
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _emotions,

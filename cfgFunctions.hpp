@@ -12,6 +12,8 @@ class grad_civs {
         class getGroupVehicle {};
         class setCurrentlyThinking {};
         class setGroupVehicle {};
+        class forceBusinessSpeed {};
+        class forcePanicSpeed {};
     };
 
     class api {
@@ -38,14 +40,14 @@ class grad_civs {
     class common {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
 
-        class addCompoundState {};
-        class addToStateMachine {};
+        class compare {};
         class findBuildings {};
         class findPositionOfInterest {};
         class findRandomPos {};
         class findRandomPosArea {};
         class getCurrentState {};
         class getGlobalCivs {};
+        class isInHouse {};
         class removeFromStateMachine {};
     };
 
@@ -84,9 +86,13 @@ class grad_civs {
 
         class addCarCrew {};
         class addFootsy {};
+        class addResident {};
         class createInfoChannel {};
         class createSideRoadVehicles {};
         class deleteIfDamaged {};
+        class getRandomSpawnReferencePoint {};
+        class isAllowedSpawnPoint {};
+        class findResidentSpawnHouse {};
         class findSpawnPosition {};
         class serverLoop {};
         class spawnCivilian {};
@@ -122,6 +128,15 @@ class grad_civs {
         class sm_business {};
         class sm_business_state_dismount_enter {};
         class sm_business_state_mountUp_enter {};
+
+        class sm_business_state_chat_enter {};
+        class sm_business_state_chat_exit {};
+        class sm_business_state_chat_loop {};
+        class sm_business_state_housework_enter {};
+        class sm_business_state_meetNeighbor_enter {};
+        class sm_business_state_meetNeighbor_exit {};
+        class sm_business_state_meetNeighbor_loop {};
+
         class sm_business_state_mountUp_exit {};
         class sm_business_state_patrol_enter {};
         class sm_business_state_patrol_exit {};
@@ -130,9 +145,14 @@ class grad_civs {
         class sm_business_state_voyage_enter {};
         class sm_business_state_voyage_exit {};
         class sm_business_state_voyage_loop {};
+        class sm_business_trans_chat_housework_condition {};
         class sm_business_trans_dismount_rally_condition {};
+        class sm_business_trans_housework_housework_condition {};
+        class sm_business_trans_housework_meetNeighbor_condition {};
+        class sm_business_trans_meetNeighbor_chat_condition {};
         class sm_business_trans_mountUp_voyage_condition {};
         class sm_business_trans_mountUp_dismount_condition {};
+        class sm_business_trans_rally_housework_condition {};
         class sm_business_trans_rally_mountUp_condition {};
         class sm_business_trans_rally_patrol_condition {};
         class sm_business_trans_voyage_dismount_condition {};
@@ -167,5 +187,14 @@ class grad_civs {
         class sm_panic_state_hide_exit {};
         class sm_panic_trans_hide_hidden_condition {};
         class sm_panic_trans_hide_hidden_handler {};
+    };
+
+    class statemachine {
+        file = MODULES_DIRECTORY\grad-civs\functions\statemachine;
+
+        class addCompoundState {};
+        class addState {};
+        class addToStateMachine {};
+        class addTransition {};
     };
 };

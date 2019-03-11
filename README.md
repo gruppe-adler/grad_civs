@@ -53,6 +53,7 @@ enableOnFoot             | 1             | Enable civilians on foot (0/1).
 enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
+maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
@@ -74,8 +75,9 @@ backpackProbability      | 50           | Probability that a civilian will wear 
 
 ```sqf
 class CfgGradCivs {
-    autoInit = 0;
-    maxCivsOnFoot = 60;
+    autoInit = 1;
+    maxCivsOnFoot = 20;
+    maxCivsResidents = 30;
     maxCivsInVehicles = 10;
     spawnDistancesOnFoot[] = {1000,4500};
     spawnDistancesInVehicles[] = {1000,4500};
@@ -242,9 +244,9 @@ Let's have a very simple example:
 ```sqf
 MY_CIV_LIST = ["C_Offroad_01_F" createVehicle position player];
 _machine = [{MY_CIV_LIST}] call CBA_statemachine_fnc_create;
-_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call CBA_statemachine_fnc_addState;
-_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call CBA_statemachine_fnc_addState;
-_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call CBA_statemachine_fnc_addTransition;
+_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_fnc_addState;
+_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_fnc_addState;
+_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_fnc_addTransition;
 ```
 
 this will print something like this to RPT:
@@ -267,12 +269,12 @@ wörk
 In our case, and with CBA state machines, that means:
 
 * we have a bunch of state machines, chief of which is the *activities* state machine. It is implemented in `/functions/sm_activities/fn_activities.sqf`
-* states are added to it using [CBA_statemachine_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
+* states are added to it using [grad_civs_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
     * every state has a bunch of callbacks that are called with a civilian as parameter
         * one is called periodically as long as the civ is in the state
         * one is called when the civ enters the state
         * one is called when the civ leaves the state
-* transitions are being added by using [CBA_statemachine_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
+* transitions are being added by using [grad_civs_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
     * every transition is defined as a one-way connection between two states
     * every transition gets two callbacks
         * one is called periodically to check whether a civ can move along the transition

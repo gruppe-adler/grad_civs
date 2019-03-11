@@ -12,16 +12,26 @@ GRAD_CIVS_CIVSTATE_FORMAT = 0;
 [{
 	if (!GRAD_CIVS_DEBUG_CIVSTATE) exitWith {[_this select 1] call CBA_fnc_removePerFrameHandler};
 
+	_filterTimeVars = {
+		(allVariables _this) select {
+			(_x find "grad_civs_state_time_") > -1
+		} apply {
+			[_x, floor CBA_missionTime - (_this getVariable _x)] joinString ": "
+		} joinString ", ";
+	};
+
 	{
 	    private _opacity = linearConversion [500, 50, player distance _x, 0.5, 1, true];
 	    private _color = [1, 1, 1, _opacity];
-		//private _text = _x getVariable ["grad_civs_infoLine","<no info found. is debug mode enabled where the civs are local?>"];
 		private _text = "<empty>";
 		switch (GRAD_CIVS_CIVSTATE_FORMAT) do {
 		    case 0:  { _text =_x getVariable ["grad_civs_infoLine","<no info found. is debug mode enabled where the civs are local?>"]; };
-			case 1: { _text = format["%1 | speedmode: %1 %2", _x, speedMode _x, if (leader _x == _x) then {"(is leader)"} else {""}]; };
+			case 1: { _text = format["%1 | speedmode: %2 %3", _x, speedMode _x, if (leader _x == _x) then {"(is leader)"} else {""}]; };
 			case 2: { _text = format["%1 | %2 guns point at him", _x, _x getVariable ["grad_civs_isPointedAtCount", 0]]};
 			case 3: { _text = format["%1 | is local at %2", _x, _x getVariable ["grad_civs_owner", 0]]};
+			case 4: { _text = format["%1 | %2 %3 %4 | stopped: %5, unitReady: %6", _x, behaviour _x, combatMode _x, speedMode _x, stopped _x, unitReady _x]};
+			case 5: { _text = format["%1 | state times: %2", _x, _x call _filterTimeVars]};
+			case 6: { _text = ""};
 		};
 
 		drawIcon3D [
@@ -29,7 +39,7 @@ GRAD_CIVS_CIVSTATE_FORMAT = 0;
 			_color,
 			[(getPos _x select 0), (getPos _x select 1), (getPos _x select 2) + 2],
 			1, 1, 0,
-			_text, 2, 0.04, "EtelkaNarrowMediumPro", "center", true
+			_text, 2, 0.03, "EtelkaNarrowMediumPro", "center", true
 		];
 	} forEach ([] call GRAD_CIVS_fnc_getGlobalCivs);
 
@@ -44,7 +54,7 @@ GRAD_CIVS_CIVSTATE_FORMAT = 0;
 
  player addAction [
  	"<t color='#3333FF'>switch civstate format</t>",
-	{ GRAD_CIVS_CIVSTATE_FORMAT = (GRAD_CIVS_CIVSTATE_FORMAT + 1) % 4; },
+	{ GRAD_CIVS_CIVSTATE_FORMAT = (GRAD_CIVS_CIVSTATE_FORMAT + 1) % 7; /*see switch (GRAD_CIVS_CIVSTATE_FORMAT) expression above*/},
 	[],
 	10,
 	false,

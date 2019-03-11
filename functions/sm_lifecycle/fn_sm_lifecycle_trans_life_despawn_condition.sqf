@@ -10,6 +10,9 @@ private _cleanupDistance = GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX * 1.2;
 if (isNull (_this call grad_civs_fnc_getGroupVehicle)) then {
     _cleanupDistance = GRAD_CIVS_SPAWNDISTANCEONFOOTMAX * 1.5;
 };
+if (_this distance nearestBuilding _this < 3) then {
+    _cleanupDistance = GRAD_CIVS_SPAWNDISTANCERESIDENTMAX * 1.2;
+};
 
 private _playersAreClose = true isEqualTo ({
     if (_this distance _x < _cleanupDistance) exitWith { true };

@@ -19,5 +19,5 @@ private _groupSize = random GRAD_CIVS_INITIALGROUPSIZE;
 
 LOGTIME_START("spawnCiv_vehicle");
 _veh = [_pos, (selectRandom GRAD_CIVS_VEHICLES)] call grad_civs_fnc_spawnVehicle;
-_group = [_pos, _groupSize, _veh] call grad_civs_fnc_spawnCivilianGroup;
+_group = [_pos, _groupSize, _veh, "voyage"] call grad_civs_fnc_spawnCivilianGroup;
 LOGTIME_END("spawnCiv_vehicle");

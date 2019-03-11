@@ -3,6 +3,7 @@
 private _unit = _this;
 
 
+
 private _reclotheHim = {
 	params ["_unit", "_loadout"];
 
@@ -34,10 +35,18 @@ private _addBackpack = {
 private _addBehaviour = {
 	params ["_unit"];
 
-	group _unit setBehaviour "CARELESS";
+	_unit setBehaviour "CARELESS";
+
 	_unit disableAI "TARGET";
 	_unit disableAI "AUTOTARGET";
 	_unit disableAI "FSM";
+	_unit disableAI "WEAPONAIM";
+	_unit disableAI "AIMINGERROR";
+	_unit disableAI "SUPPRESSION";
+	_unit disableAI "CHECKVISIBLE";
+	_unit disableAI "COVER";
+	_unit disableAI "AUTOCOMBAT";
+	//_unit disableAI "NVG"; // NVG does not exist in ENUM; says Arma
 };
 
 private _addKilledNews = {
@@ -69,13 +78,12 @@ private _addVars = {
 	params [
 		["_civ", objNull]
 	];
+	private _fastSpeed = _civ getSpeed "FAST";
 	_civ setVariable["GRAD_CIVS_PANICCOOLDOWN" , random GRAD_CIVS_PANICCOOLDOWN, true];
-	_civ setVariable["grad_civs_runspeed", random [15, 20, 23], true];
+	_civ setVariable["grad_civs_runspeed", random [_fastSpeed * 0.5, _fastSpeed, _fastSpeed * 1.3], true];
 	_civ setVariable["grad_civs_recklessness", random [0, 5, 10], true];
 };
 
-_unit disableAI "FSM";
-_unit setBehaviour "CARELESS";
 _unit enableDynamicSimulation true;
 
 [_unit, _vehicle] call GRAD_CIVS_ONSPAWN;
@@ -84,6 +92,8 @@ if ((count GRAD_CIVS_CLOTHES > 0) && (count GRAD_CIVS_HEADGEAR > 0)) then {
 	private _unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
 	[_unit, _unitLoadout] call _reclotheHim;
 };
+
+
 
 _unit setVariable ["asr_ai_exclude", true];
 

@@ -13,7 +13,7 @@ private _maxLoops = _amount * 5;
 
         _spawnPos = [_x] call grad_civs_fnc_findRandomPosArea;
         if (count _spawnPos > 0) then {
-            _group = [_spawnPos, GRAD_CIVS_INITIALGROUPSIZE] call grad_civs_fnc_spawnCivilianGroup;
+            _group = [_spawnPos, GRAD_CIVS_INITIALGROUPSIZE, objNull, "reside"] call grad_civs_fnc_spawnCivilianGroup;
             if (_excludeFromCleanup) then {
                 {
                      _x setVariable ["grad_civs_excludeFromCleanup",true];
