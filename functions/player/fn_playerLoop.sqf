@@ -24,3 +24,12 @@ GRAD_CIVS_PLAYERSIDE = sideUnknown;
     }};
     GRAD_CIVS_PLAYERSIDE = side player;
 }, 5, []] call CBA_fnc_addPerFrameHandler;
+
+[
+    "server_fps",
+    {
+        if (GRAD_CIVS_DEBUG_FPS) then {
+            systemChat format ["%1 fps on %2", _this select 1, _this select 0];
+        };
+    }
+] call CBA_fnc_addEventHandler;

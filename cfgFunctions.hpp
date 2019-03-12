@@ -14,6 +14,19 @@ class grad_civs {
         class setGroupVehicle {};
     };
 
+    class api {
+        file = MODULES_DIRECTORY\grad-civs\functions\api;
+
+        class populateArea {};
+        class setBackpacks {};
+        class setClothes {};
+        class setDebugMode {};
+        class setFaces {};
+        class setGoggles {};
+        class setHeadgear {};
+        class setVehicles {};
+    };
+
 	class behaviour {
         file = MODULES_DIRECTORY\grad-civs\functions\behaviour;
 
@@ -32,15 +45,8 @@ class grad_civs {
         class findRandomPos {};
         class findRandomPosArea {};
         class getCurrentState {};
-        class populateArea {};
+        class getGlobalCivs {};
         class removeFromStateMachine {};
-        class setBackpacks {};
-        class setClothes {};
-        class setDebugMode {};
-        class setFaces {};
-        class setGoggles {};
-        class setHeadgear {};
-        class setVehicles {};
     };
 
 	class debug {
@@ -55,7 +61,11 @@ class grad_civs {
     class init {
         file = MODULES_DIRECTORY\grad-civs\functions\init;
 
-        class initModule {preInit = 1;};
+        class initConfig {preInit = 1;};
+        class initModule {};
+        class initServer {postInit = 1;};
+        class initHCs {postInit = 1;};
+        class initPlayer {postInit = 1;};
     };
 
     class player {
@@ -134,6 +144,8 @@ class grad_civs {
         class sm_lifecycle {};
         class sm_lifecycle_state_death_enter {};
         class sm_lifecycle_state_despawn_enter {};
+        class sm_lifecycle_state_life_enter {};
+        class sm_lifecycle_state_life_exit {};
         class sm_lifecycle_trans_life_despawn_condition {};
         class sm_lifecycle_state_spawn_enter {};
     };

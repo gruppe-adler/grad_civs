@@ -12,6 +12,6 @@ _waypoint setWaypointType "MOVE";
 _waypoint setWaypointSpeed _speed;
 _waypoint setWaypointFormation "STAG COLUMN";
 _waypoint setWaypointTimeout _timeout;
-_waypoint setWaypointCompletionRadius 1;
+_waypoint setWaypointCompletionRadius 5;
 
 _waypoint

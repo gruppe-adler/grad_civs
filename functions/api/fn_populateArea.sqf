@@ -1,8 +1,7 @@
 #include "..\..\component.hpp"
 
-ASSERT_SERVER("");
+ASSERT_SERVER("populate area must be run on server or hc");
 if (!canSuspend) exitWith {_this spawn grad_civs_fnc_populateArea};
-if (isNil "GRAD_CIVS_ONFOOTUNITS") exitWith {ERROR("grad-civs has not been initialized.")};
 
 params ["_area",["_amount",20],["_excludeFromCleanup",true],["_staticCars",false],["_staticCarsMax",20]];
 
@@ -20,7 +19,6 @@ private _maxLoops = _amount * 5;
                      _x setVariable ["grad_civs_excludeFromCleanup",true];
                  } forEach units _group;
             };
-            GRAD_CIVS_ONFOOTUNITS = GRAD_CIVS_ONFOOTUNITS + (units _group);
             _amountSpawned = _amountSpawned + (count units _group);
         };
 

@@ -1,11 +1,9 @@
 #include "..\..\component.hpp"
 
-
-
 private _playerPos = getPosATL player;
-private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect (GRAD_CIVS_ONFOOTUNITS + GRAD_CIVS_INVEHICLESUNITS);
+private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call GRAD_CIVS_fnc_getGlobalCivs);
 
-if (!GRAD_CIVS_DEBUGMODE && (count _nearCivs) == 0) exitWith {};
+if (!GRAD_CIVS_DEBUG_CIVSTATE && (count _nearCivs) == 0) exitWith {};
 
 private _playerVelocity = velocity player;
 private _speed = vectorMagnitude _playerVelocity;
@@ -44,7 +42,7 @@ private _dangerPolyInPlayerHeight = _dangerPoly apply {
     [_x select 0, _x select 1, _playerPos select 2]
 };
 
-if (GRAD_CIVS_DEBUGMODE) then {
+if (GRAD_CIVS_DEBUG_CIVSTATE) then {
     player setVariable ["grad_civs_dangerPolyInPlayerHeight", _dangerPolyInPlayerHeight];
 };
 

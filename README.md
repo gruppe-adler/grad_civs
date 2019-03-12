@@ -8,7 +8,7 @@ Spawn ambient civilians on the map.
 * stop and raise their hands when threatened with weapons
 * will panic and flee in firefights
 * will move out of player's way when getting honked at
-* civilians players will get hints as to what a "grad-civ" civilian would notice (like, being pointed at with a gun, told to away by ACE interact, ...)
+* civilian players will get hints as to what a "grad-civ" civilian would notice (like, being pointed at with a gun, told to go away by ACE interact, ...)
 
 ## Dependencies
 
@@ -55,7 +55,8 @@ maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
-debugMode                | 0             | Toggles debug mode (0/1).
+debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
+debugFps                 | 0             | Toggles fps monitoring mode (0/1).
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
 onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
 onKilled                 | ""            | Code to execute when civilian is killed. Passed parameters are: [civilian,killer].
@@ -78,7 +79,8 @@ class CfgGradCivs {
     maxCivsInVehicles = 10;
     spawnDistancesOnFoot[] = {1000,4500};
     spawnDistancesInVehicles[] = {1000,4500};
-    debugMode = 1;
+    debugCivState = 0;
+    debugFps = 0;
     exitOn = "";
     onSpawn = "systemChat format ['%1 spawned', typeOf (_this select 0)];";
     onHeldUp = "";    
@@ -113,6 +115,8 @@ class CfgGradCivs {
 ```
 
 ## Functions
+
+All functions meant for use from outside sit in the `/functions/api` directory.
 
 ### grad_civs_fnc_setClothes
 Sets all clothes that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
@@ -180,14 +184,14 @@ vehicles  | Array - All classnames of vehicles that civilians may drive.
 Sets debug mode. Overwrites `cfgGradCivs` value. Effect is global.
 
 #### Syntax
-`[debugMode] call grad_civs_fnc_setDebugMode`  
+`[debugCivState] call grad_civs_fnc_setDebugMode`  
 
-Parameter | Explanation
-----------|--------------------------
-debugMode | Bool - Debug mode on/off.
+Parameter     | Explanation
+--------------|--------------------------
+debugCivState | Bool - Debug mode on/off.
 
 ### grad_civs_fnc_initModule
-Used to manually initialize module. Has to be executed on clients and server. Effect is local.
+Used to manually initialize module. Has to be executed on all machines. Effect is local.
 
 #### Syntax
 `[] call grad_civs_fnc_initModule`  

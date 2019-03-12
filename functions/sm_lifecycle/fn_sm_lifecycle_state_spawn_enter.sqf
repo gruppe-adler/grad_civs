@@ -1,6 +1,5 @@
 #include "..\..\component.hpp"
 
-
 private _unit = _this;
 
 
@@ -63,17 +62,6 @@ private _addGunfightNewsAndFlee = {
     	INFO_1("civ gunfight at %1",CIV_GUNFIGHT_POS);
     	publicVariableServer "CIV_GUNFIGHT_POS";
 		["fired_near", [_unit], [_unit]] call CBA_fnc_targetEvent;
-
-
-		// TODO this seems to reaaally be a frame eater.
-		/*
-		{
-			_distance = _x distance _unit;
-			if (_distance < 1000 && _distance > 70) then {
-				["fired_far", [_x]] call CBA_fnc_localEvent;
-			};
-		} forEach (GRAD_CIVS_ONFOOTUNITS - [_unit]);
-		*/
     }];
 };
 
@@ -86,18 +74,14 @@ private _addVars = {
 	_civ setVariable["grad_civs_recklessness", random [0, 5, 10], true];
 };
 
-
 _unit disableAI "FSM";
 _unit setBehaviour "CARELESS";
 _unit enableDynamicSimulation true;
 
 [_unit, _vehicle] call GRAD_CIVS_ONSPAWN;
 
-
-
 if ((count GRAD_CIVS_CLOTHES > 0) && (count GRAD_CIVS_HEADGEAR > 0)) then {
 	private _unitLoadout = [[],[],[],[selectRandom GRAD_CIVS_CLOTHES,[]],[],[],selectRandom GRAD_CIVS_HEADGEAR,"""",[],["""","""","""","""","""",""""]];
-	// _stripped = [_unit] call _stripHim;
 	[_unit, _unitLoadout] call _reclotheHim;
 };
 

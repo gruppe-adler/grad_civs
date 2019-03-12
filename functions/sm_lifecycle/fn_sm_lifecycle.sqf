@@ -1,4 +1,4 @@
-private _lifecycle = [{GRAD_CIVS_ONFOOTUNITS + GRAD_CIVS_INVEHICLESUNITS}, true] call CBA_statemachine_fnc_create;
+private _lifecycle = [{GRAD_CIVS_LOCAL_CIVS}, true] call CBA_statemachine_fnc_create;
 
 private _activities = [] call grad_civs_fnc_sm_activities;
 private _emotions = [] call grad_civs_fnc_sm_emotions;
@@ -15,8 +15,8 @@ private _lifecycle_life  = [
     _lifecycle,
     [_activities, _emotions],
     {},
-    {},
-    {},
+    { _this call grad_civs_fnc_sm_lifecycle_state_life_enter },
+    { _this call grad_civs_fnc_sm_lifecycle_state_life_exit },
     "life"
 ] call grad_civs_fnc_addCompoundState;
 

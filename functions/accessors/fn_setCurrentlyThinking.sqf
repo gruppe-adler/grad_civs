@@ -3,6 +3,6 @@ params [
     ["_thoughts", ""]
 ];
 
-if (GRAD_CIVS_DEBUGMODE) then {
+if (GRAD_CIVS_DEBUG_CIVSTATE) then {
     _unit setVariable ["grad_civs_currentlyThinking", _thoughts];
 };

@@ -1,5 +1,3 @@
-assert(leader _this == _this);
-
 private _grp = group _this;
 
 [_grp] call CBA_fnc_clearWaypoints;
