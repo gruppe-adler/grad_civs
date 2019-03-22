@@ -55,7 +55,8 @@ maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
-spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
+spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
+spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
@@ -69,7 +70,7 @@ headgear                 | []            | All classnames of headgear that civil
 backpacks                | []            | All classnames of backpacks that civilians may wear.
 panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
 vehicles                 | []            | All classnames of vehicles that civilians may drive.
-backpackProbability      | 50           | Probability that a civilian will wear a backpack, in percent
+backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
 
 ### Example
 
