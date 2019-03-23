@@ -59,6 +59,8 @@ spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to playe
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
+minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
+minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
 onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
 onKilled                 | ""            | Code to execute when civilian is killed. Passed parameters are: [civilian,killer].
@@ -84,6 +86,8 @@ class CfgGradCivs {
     spawnDistancesInVehicles[] = {1000,4500};
     debugCivState = 0;
     debugFps = 0;
+    minCivUpdateTime = 3;
+	minFps = 35;
     exitOn = "";
     onSpawn = "systemChat format ['%1 spawned', typeOf (_this select 0)];";
     onHeldUp = "";    

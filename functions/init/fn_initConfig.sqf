@@ -18,6 +18,9 @@ if (isNil "GRAD_CIVS_BACKPACKPROBABILITY") then {missionNamespace setVariable ["
 if (isNil "GRAD_CIVS_DEBUG_CIVSTATE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUG_CIVSTATE",([missionConfigFile >> "cfgGradCivs","debugCivState",0] call BIS_fnc_returnConfigEntry) == 1]};
 if (isNil "GRAD_CIVS_DEBUG_FPS") then {missionNamespace setVariable ["GRAD_CIVS_DEBUG_FPS",([missionConfigFile >> "cfgGradCivs","debugFps",0] call BIS_fnc_returnConfigEntry) == 1]};
 
+if (isNil "GRAD_CIVS_MINFPS") then {missionNamespace setVariable ["GRAD_CIVS_MINFPS", [missionConfigFile >> "cfgGradCivs","minFps", 35] call BIS_fnc_returnConfigEntry]};
+if (isNil "GRAD_CIVS_MINCIVUPDATETIME") then {missionNamespace setVariable ["GRAD_CIVS_MINCIVUPDATETIME", [missionConfigFile >> "cfgGradCivs","minCivUpdateTime", 3] call BIS_fnc_returnConfigEntry]};
+
 missionNamespace setVariable ["GRAD_CIVS_ENABLEDONFOOT",([missionConfigFile >> "cfgGradCivs","enableOnFoot",1] call BIS_fnc_returnConfigEntry) == 1];
 missionNamespace setVariable ["GRAD_CIVS_ENABLEDINVEHICLES",([missionConfigFile >> "cfgGradCivs","enableInVehicles",1] call BIS_fnc_returnConfigEntry) == 1];
 
