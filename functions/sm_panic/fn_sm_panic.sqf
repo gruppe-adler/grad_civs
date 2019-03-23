@@ -12,7 +12,7 @@ private _pan_flight = [
     { _this call grad_civs_fnc_sm_panic_state_flight_enter },
     { _this call grad_civs_fnc_sm_panic_state_flight_exit },
     "pan_flight"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 
 private _pan_hide = [
     _panic,
@@ -20,7 +20,7 @@ private _pan_hide = [
     { _this call grad_civs_fnc_sm_panic_state_hide_enter },
     { _this call grad_civs_fnc_sm_panic_state_hide_exit },
     "pan_hide"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 
 
 // NOTE concerning act_hidden and act_surrendered
@@ -32,7 +32,7 @@ private _pan_hidden = [
     { _this call grad_civs_fnc_sm_panic_state_hidden_enter },
     {},
     "pan_hidden"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 
 
     // TRANSITIONS
@@ -45,7 +45,7 @@ assert ([
     },
     {},
     _pan_flight + _pan_hide
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 
 assert ([
@@ -54,7 +54,7 @@ assert ([
     { _this call grad_civs_fnc_sm_panic_trans_hide_hidden_condition },
     { _this call grad_civs_fnc_sm_panic_trans_hide_hidden_handler },
     _pan_hide + _pan_hidden
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 GRAD_CIVS_STATE_PANIC = _panic;
 GRAD_CIVS_STATEMACHINES setVariable ["panic", _panic];

@@ -49,14 +49,20 @@ Add the class `cfgGradCivs` to your `description.ext`. Use the following attribu
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 autoInit                 | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
+automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
 enableOnFoot             | 1             | Enable civilians on foot (0/1).
 enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
+maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
-spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
+spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
+spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
+initialGroupSize         | [1, 2, 3]     | Initial group size for civilians.
+minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
+minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
 onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
 onKilled                 | ""            | Code to execute when civilian is killed. Passed parameters are: [civilian,killer].
@@ -68,19 +74,23 @@ headgear                 | []            | All classnames of headgear that civil
 backpacks                | []            | All classnames of backpacks that civilians may wear.
 panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
 vehicles                 | []            | All classnames of vehicles that civilians may drive.
-backpackProbability      | 50           | Probability that a civilian will wear a backpack, in percent
+backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
 
 ### Example
 
 ```sqf
 class CfgGradCivs {
-    autoInit = 0;
-    maxCivsOnFoot = 60;
+    autoInit = 1;
+    maxCivsOnFoot = 20;
+    maxCivsResidents = 30;
     maxCivsInVehicles = 10;
     spawnDistancesOnFoot[] = {1000,4500};
     spawnDistancesInVehicles[] = {1000,4500};
     debugCivState = 0;
     debugFps = 0;
+    minCivUpdateTime = 3;
+	minFps = 35;
+    automaticVehicleGroupSize = 1;
     exitOn = "";
     onSpawn = "systemChat format ['%1 spawned', typeOf (_this select 0)];";
     onHeldUp = "";    
@@ -242,9 +252,9 @@ Let's have a very simple example:
 ```sqf
 MY_CIV_LIST = ["C_Offroad_01_F" createVehicle position player];
 _machine = [{MY_CIV_LIST}] call CBA_statemachine_fnc_create;
-_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call CBA_statemachine_fnc_addState;
-_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call CBA_statemachine_fnc_addState;
-_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call CBA_statemachine_fnc_addTransition;
+_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_fnc_addState;
+_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_fnc_addState;
+_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_fnc_addTransition;
 ```
 
 this will print something like this to RPT:
@@ -267,12 +277,12 @@ wörk
 In our case, and with CBA state machines, that means:
 
 * we have a bunch of state machines, chief of which is the *activities* state machine. It is implemented in `/functions/sm_activities/fn_activities.sqf`
-* states are added to it using [CBA_statemachine_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
+* states are added to it using [grad_civs_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
     * every state has a bunch of callbacks that are called with a civilian as parameter
         * one is called periodically as long as the civ is in the state
         * one is called when the civ enters the state
         * one is called when the civ leaves the state
-* transitions are being added by using [CBA_statemachine_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
+* transitions are being added by using [grad_civs_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
     * every transition is defined as a one-way connection between two states
     * every transition gets two callbacks
         * one is called periodically to check whether a civ can move along the transition

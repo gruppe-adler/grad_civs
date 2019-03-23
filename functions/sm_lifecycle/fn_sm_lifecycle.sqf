@@ -8,16 +8,16 @@ private _lifecycle_spawn  = [
     {},
     { _this call grad_civs_fnc_sm_lifecycle_state_spawn_enter },
     {},
-    "spawn"
-] call CBA_statemachine_fnc_addState;
+    "lfc_spawn"
+] call grad_civs_fnc_addState;
 
 private _lifecycle_life  = [
     _lifecycle,
     [_activities, _emotions],
     {},
-    { _this call grad_civs_fnc_sm_lifecycle_state_life_enter },
+    {  _this call grad_civs_fnc_sm_lifecycle_state_life_enter },
     { _this call grad_civs_fnc_sm_lifecycle_state_life_exit },
-    "life"
+    "lfc_life"
 ] call grad_civs_fnc_addCompoundState;
 
 private _lifecycle_death  = [
@@ -25,24 +25,24 @@ private _lifecycle_death  = [
     {},
     { _this call grad_civs_fnc_sm_lifecycle_state_death_enter },
     {},
-    "death"
-] call CBA_statemachine_fnc_addState;
+    "lfc_death"
+] call grad_civs_fnc_addState;
 
 private _lifecycle_despawn  = [
     _lifecycle,
     {},
     { _this call grad_civs_fnc_sm_lifecycle_state_despawn_enter },
     {},
-    "despawn"
-] call CBA_statemachine_fnc_addState;
+    "lfc_despawn"
+] call grad_civs_fnc_addState;
 
 assert ([
     _lifecycle,
     _lifecycle_spawn, _lifecycle_life,
-    { true },
-    {},
+    {  true },
+    { },
     _lifecycle_spawn + _lifecycle_life
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _lifecycle,
@@ -50,7 +50,7 @@ assert ([
     { _this call grad_civs_fnc_sm_lifecycle_trans_life_despawn_condition },
     {},
     _lifecycle_life + _lifecycle_despawn
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _lifecycle,

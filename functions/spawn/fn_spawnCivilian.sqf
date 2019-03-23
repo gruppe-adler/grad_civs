@@ -3,7 +3,7 @@
 params [
     ["_pos", [0, 0, 0]],
     ["_group", grpNull],
-    ["_vehicle", objNull]
+    ["_primaryTask", ""]
 ];
 
 private _civ = _group createUnit [GRAD_CIVS_CIVCLASS, _pos, [], 0, "NONE"];
@@ -12,6 +12,6 @@ GRAD_CIVS_LOCAL_CIVS = GRAD_CIVS_LOCAL_CIVS + [_civ];
 ["grad_civs_civ_added", [_civ]] call CBA_fnc_globalEvent;
 
 
-_civ setVariable ["grad_civs_primaryTask", if (isNull _vehicle) then { "patrol" } else { "voyage" }, true];
+_civ setVariable ["grad_civs_primaryTask", _primaryTask, true];
 
 _civ

@@ -3,4 +3,4 @@ private _pos = [_this, true] call grad_civs_fnc_findPositionOfInterest;
 _this setVariable ["grad_civs_hidepoint", _pos];
 _this doMove _pos;
 _this setSpeedMode "FULL";
-_this forceSpeed 20;
+_this forceSpeed (_this getVariable ["grad_civs_runspeed", 20]);

@@ -18,11 +18,15 @@ if (isNil "GRAD_CIVS_BACKPACKPROBABILITY") then {missionNamespace setVariable ["
 if (isNil "GRAD_CIVS_DEBUG_CIVSTATE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUG_CIVSTATE",([missionConfigFile >> "cfgGradCivs","debugCivState",0] call BIS_fnc_returnConfigEntry) == 1]};
 if (isNil "GRAD_CIVS_DEBUG_FPS") then {missionNamespace setVariable ["GRAD_CIVS_DEBUG_FPS",([missionConfigFile >> "cfgGradCivs","debugFps",0] call BIS_fnc_returnConfigEntry) == 1]};
 
+if (isNil "GRAD_CIVS_MINFPS") then {missionNamespace setVariable ["GRAD_CIVS_MINFPS", [missionConfigFile >> "cfgGradCivs","minFps", 35] call BIS_fnc_returnConfigEntry]};
+if (isNil "GRAD_CIVS_MINCIVUPDATETIME") then {missionNamespace setVariable ["GRAD_CIVS_MINCIVUPDATETIME", [missionConfigFile >> "cfgGradCivs","minCivUpdateTime", 3] call BIS_fnc_returnConfigEntry]};
+
 missionNamespace setVariable ["GRAD_CIVS_ENABLEDONFOOT",([missionConfigFile >> "cfgGradCivs","enableOnFoot",1] call BIS_fnc_returnConfigEntry) == 1];
 missionNamespace setVariable ["GRAD_CIVS_ENABLEDINVEHICLES",([missionConfigFile >> "cfgGradCivs","enableInVehicles",1] call BIS_fnc_returnConfigEntry) == 1];
 
 missionNamespace setVariable ["GRAD_CIVS_MAXCIVSONFOOT",[missionConfigFile >> "cfgGradCivs","maxCivsOnFoot",30] call BIS_fnc_returnConfigEntry];
 missionNamespace setVariable ["GRAD_CIVS_MAXCIVSINVEHICLES",[missionConfigFile >> "cfgGradCivs","maxCivsInVehicles",10] call BIS_fnc_returnConfigEntry];
+missionNamespace setVariable ["GRAD_CIVS_MAXCIVSRESIDENTS", [missionConfigFile >> "cfgGradCivs","maxCivsResidents", 20] call BIS_fnc_returnConfigEntry];
 
 missionNamespace setVariable ["GRAD_CIVS_EXITON",compile ([missionConfigFile >> "cfgGradCivs","exitOn",""] call BIS_fnc_returnConfigEntry)];
 missionNamespace setVariable ["GRAD_CIVS_ONSPAWN",compile ([missionConfigFile >> "cfgGradCivs","onSpawn",""] call BIS_fnc_returnConfigEntry)];
@@ -30,7 +34,12 @@ missionNamespace setVariable ["GRAD_CIVS_ONHELDUP",compile ([missionConfigFile >
 missionNamespace setVariable ["GRAD_CIVS_ONKILLED",compile ([missionConfigFile >> "cfgGradCivs","onKilled",""] call BIS_fnc_returnConfigEntry)];
 
 missionNamespace setVariable ["GRAD_CIVS_INITIALGROUPSIZE", ([missionConfigFile >> "cfgGradCivs","initialGroupSize", [1, 1, 2]] call BIS_fnc_returnConfigEntry)];
+missionNamespace setVariable ["GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE", ([missionConfigFile >> "cfgGradCivs","automaticVehicleGroupSize", 1] call BIS_fnc_returnConfigEntry) == 1];
 missionNamespace setVariable ["GRAD_CIVS_PANICCOOLDOWN", ([missionConfigFile >> "cfgGradCivs", "panicCooldown", [15, 120, 240]] call BIS_fnc_returnConfigEntry)];
+
+_distances = [missionConfigFile >> "cfgGradCivs","spawnDistancesResidents",[50, 750]] call BIS_fnc_returnConfigEntry;
+missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCERESIDENTMIN",_distances select 0];
+missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCERESIDENTMAX",_distances select 1];
 
 _distances = [missionConfigFile >> "cfgGradCivs","spawnDistancesOnFoot",[1000,4500]] call BIS_fnc_returnConfigEntry;
 missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEONFOOTMIN",_distances select 0];
@@ -39,3 +48,6 @@ missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEONFOOTMAX",_distances sele
 _distances = [missionConfigFile >> "cfgGradCivs","spawnDistancesInVehicles",[1500,6000]] call BIS_fnc_returnConfigEntry;
 missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEINVEHICLESMIN",_distances select 0];
 missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX",_distances select 1];
+
+GRAD_CIVS_BUS_MEETNEIGHBOR_COOLDOWN = 150;
+GRAD_CIVS_CHAT_TIME = 20;

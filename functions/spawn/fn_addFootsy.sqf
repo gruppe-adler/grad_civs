@@ -18,5 +18,5 @@ if (_pos isEqualTo [0,0,0]) exitWith {};
 private _groupSize = random GRAD_CIVS_INITIALGROUPSIZE;
 
 LOGTIME_START("spawnCiv_onFoot");
-_group = [_pos, _groupSize, objNull] call grad_civs_fnc_spawnCivilianGroup;
+_group = [_pos, _groupSize, objNull, "patrol"] call grad_civs_fnc_spawnCivilianGroup;
 LOGTIME_END("spawnCiv_onFoot");

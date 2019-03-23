@@ -34,8 +34,8 @@ private _panic = [] call grad_civs_fnc_sm_panic;
         _moveVector = _moveVectors select 1;
     };
     _civ setVariable ["grad_civs_act_leave_state_time", CBA_missionTime + 4];
-    _civ setSpeedMode "FULL";
-    _civ doMove ((position _civ) vectorAdd _moveVector);    
+    _civ call grad_civs_fnc_forcePanicSpeed;
+    _civ doMove ((position _civ) vectorAdd _moveVector);
 }] call CBA_fnc_addEventHandler;
 
 // STATES
@@ -59,7 +59,7 @@ private _act_asOrdered = [
     { _this call grad_civs_fnc_sm_activities_state_asOrdered_enter },
     { _this call grad_civs_fnc_sm_activities_state_asOrdered_exit },
     "act_asOrdered"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 assert(_act_asOrdered != "");
 
 private _act_surrendered = [
@@ -68,7 +68,7 @@ private _act_surrendered = [
     { _this call grad_civs_fnc_sm_activities_state_surrendered_enter },
     { _this call grad_civs_fnc_sm_activities_state_surrendered_exit },
     "act_surrendered"
-] call CBA_statemachine_fnc_addState;
+] call grad_civs_fnc_addState;
 assert(_act_surrendered != "");
 
 private _act_panic = [
@@ -89,7 +89,7 @@ assert ([
     { _this call grad_civs_fnc_sm_activities_trans_business_surrendered_condition },
     {},
     _act_business + _act_surrendered
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _activities,
@@ -97,7 +97,7 @@ assert ([
     { _this call grad_civs_fnc_sm_activities_trans_business_panic_condition },
     {},
     _act_business + _act_panic
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _activities,
@@ -105,7 +105,7 @@ assert ([
     { _this call grad_civs_fnc_sm_activities_trans_surrendered_business_condition },
     {},
     _act_surrendered + _act_business
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _activities,
@@ -113,7 +113,7 @@ assert ([
     { _this call grad_civs_fnc_sm_activities_trans_surrendered_panic_condition },
     {},
     _act_surrendered + _act_panic
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 assert ([
     _activities,
@@ -139,7 +139,7 @@ assert ([
     { _this call grad_civs_fnc_sm_activities_trans_asOrdered_business_condition },
     {},
     _act_asOrdered + _act_business
-] call CBA_statemachine_fnc_addTransition);
+] call grad_civs_fnc_addTransition);
 
 GRAD_CIVS_STATE_ACTIVITIES = _activities;
 GRAD_CIVS_STATEMACHINES setVariable ["activities", _activities];

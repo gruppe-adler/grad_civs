@@ -29,6 +29,11 @@ digraph lifecycle {
                 bus_mountUp -> bus_dismount;
                 bus_voyage -> bus_dismount [color=red]; # panic event
                 bus_dismount -> bus_rally;
+                bus_rally -> bus_housework;
+                bus_housework -> bus_meetNeighbor;
+                bus_meetNeighbor -> bus_chat;
+                bus_chat -> bus_housework;
+                // bus_housework -> bus_gawk;
             }
 
             subgraph cluster_panic {
