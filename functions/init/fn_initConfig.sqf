@@ -1,10 +1,17 @@
 #include "..\..\component.hpp"
 
+params [
+    ["_mode", "runtime"]
+];
+if (_mode == "preInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 1] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoinit disabled, not running initConfig right now...")};
+
 assert(isClass (configFile >> "CfgWeapons" >> "ACE_Banana")); // we depend on ACE
 
 if !(([missionConfigFile, "corpseManagerMode", -1] call BIS_fnc_returnConfigEntry) in [1, 3]) then {
     INFO("'corpseManagerMode' is switched off for all units, but grad-civs will add its corpses anyway");
 };
+
+INFO("Civs initConfig running...");
 
 if (isNil "GRAD_CIVS_CLOTHES") then {missionNamespace setVariable ["GRAD_CIVS_CLOTHES",[missionConfigFile >> "cfgGradCivs","clothes",[]] call BIS_fnc_returnConfigEntry]};
 if (isNil "GRAD_CIVS_HEADGEAR") then {missionNamespace setVariable ["GRAD_CIVS_HEADGEAR",[missionConfigFile >> "cfgGradCivs","headgear",[]] call BIS_fnc_returnConfigEntry]};
