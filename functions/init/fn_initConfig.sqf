@@ -34,6 +34,7 @@ missionNamespace setVariable ["GRAD_CIVS_ONHELDUP",compile ([missionConfigFile >
 missionNamespace setVariable ["GRAD_CIVS_ONKILLED",compile ([missionConfigFile >> "cfgGradCivs","onKilled",""] call BIS_fnc_returnConfigEntry)];
 
 missionNamespace setVariable ["GRAD_CIVS_INITIALGROUPSIZE", ([missionConfigFile >> "cfgGradCivs","initialGroupSize", [1, 1, 2]] call BIS_fnc_returnConfigEntry)];
+missionNamespace setVariable ["GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE", ([missionConfigFile >> "cfgGradCivs","automaticVehicleGroupSize", 1] call BIS_fnc_returnConfigEntry) == 1];
 missionNamespace setVariable ["GRAD_CIVS_PANICCOOLDOWN", ([missionConfigFile >> "cfgGradCivs", "panicCooldown", [15, 120, 240]] call BIS_fnc_returnConfigEntry)];
 
 _distances = [missionConfigFile >> "cfgGradCivs","spawnDistancesResidents",[50, 750]] call BIS_fnc_returnConfigEntry;

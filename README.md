@@ -49,6 +49,7 @@ Add the class `cfgGradCivs` to your `description.ext`. Use the following attribu
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 autoInit                 | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
+automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
 enableOnFoot             | 1             | Enable civilians on foot (0/1).
 enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
@@ -59,6 +60,7 @@ spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to playe
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
+initialGroupSize         | [1, 2, 3]     | Initial group size for civilians.
 minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
 minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
@@ -88,6 +90,7 @@ class CfgGradCivs {
     debugFps = 0;
     minCivUpdateTime = 3;
 	minFps = 35;
+    automaticVehicleGroupSize = 1;
     exitOn = "";
     onSpawn = "systemChat format ['%1 spawned', typeOf (_this select 0)];";
     onHeldUp = "";    
