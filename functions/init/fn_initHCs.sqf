@@ -1,7 +1,7 @@
 #include "..\..\component.hpp"
 
 params [
-    ["_mode","runtime"]
+    ["_mode", "runtime"]
 ];
 if (_mode == "postInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 1] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoinit disabled, not running initHCs right now...")};
 
