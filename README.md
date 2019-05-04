@@ -60,7 +60,7 @@ spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to playe
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
-initialGroupSize         | [1, 2, 3]     | Initial group size for civilians.
+initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
 minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
 minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
 onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].

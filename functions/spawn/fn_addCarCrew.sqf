@@ -15,12 +15,13 @@ LOGTIME_END("findSpawnPos_vehicle");
 
 if (_pos isEqualTo [0,0,0]) exitWith {};
 
-private _vehicleClass = selectRandom GRAD_CIVS_VEHICLES;
-private _groupSize = random GRAD_CIVS_INITIALGROUPSIZE;
-if (GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE) then {
-    _maxCount = [_vehicleClass, true] call BIS_fnc_crewCount;
-    _groupSize = (floor random _maxCount) + 1;
-};
+    private _vehicleClass = selectRandom GRAD_CIVS_VEHICLES;
+    private _randomArg = GRAD_CIVS_INITIALGROUPSIZE;
+    if (GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE) then {
+        _maxCount = [_vehicleClass, true] call BIS_fnc_crewCount;
+        _randomArg = _maxCount + 1;
+    };
+    private _groupSize = floor random _randomArg;
 
 LOGTIME_START("spawnCiv_vehicle");
 _veh = [_pos, _vehicleClass] call grad_civs_fnc_spawnVehicle;
