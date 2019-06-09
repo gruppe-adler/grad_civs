@@ -18,7 +18,14 @@ if (isNil "GRAD_CIVS_HEADGEAR") then {missionNamespace setVariable ["GRAD_CIVS_H
 if (isNil "GRAD_CIVS_FACES") then {missionNamespace setVariable ["GRAD_CIVS_FACES",[missionConfigFile >> "cfgGradCivs","faces",[]] call BIS_fnc_returnConfigEntry]};
 if (isNil "GRAD_CIVS_GOGGLES") then {missionNamespace setVariable ["GRAD_CIVS_GOGGLES",[missionConfigFile >> "cfgGradCivs","goggles",[]] call BIS_fnc_returnConfigEntry]};
 if (isNil "GRAD_CIVS_BACKPACKS") then {missionNamespace setVariable ["GRAD_CIVS_BACKPACKS",[missionConfigFile >> "cfgGradCivs","backpacks",[]] call BIS_fnc_returnConfigEntry]};
-if (isNil "GRAD_CIVS_VEHICLES") then {missionNamespace setVariable ["GRAD_CIVS_VEHICLES",[missionConfigFile >> "cfgGradCivs","vehicles",[]] call BIS_fnc_returnConfigEntry]};
+if (isNil "GRAD_CIVS_VEHICLES") then {missionNamespace setVariable [
+    "GRAD_CIVS_VEHICLES",
+    [
+        missionConfigFile >> "cfgGradCivs",
+        "vehicles",
+        ["C_Van_01_fuel_F", " C_Hatchback_01_F, C_Offroad_02_unarmed_F, C_Truck_02_fuel_F, C_Truck_02_covered_F, C_Offroad_01_F, C_SUV_01_F, C_Van_01_transport_F, C_Van_01_box_F"]
+    ] call BIS_fnc_returnConfigEntry
+]};
 
 if (isNil "GRAD_CIVS_BACKPACKPROBABILITY") then {missionNamespace setVariable ["GRAD_CIVS_BACKPACKPROBABILITY",[missionConfigFile >> "cfgGradCivs","backpackProbability",0.5] call BIS_fnc_returnConfigEntry]};
 

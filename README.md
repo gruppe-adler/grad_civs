@@ -73,7 +73,7 @@ goggles                  | []            | All classnames of goggles that civili
 headgear                 | []            | All classnames of headgear that civilians may wear.
 backpacks                | []            | All classnames of backpacks that civilians may wear.
 panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
-vehicles                 | []            | All classnames of vehicles that civilians may drive.
+vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]            | All classnames of vehicles that civilians may drive.
 backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
 
 ### Example

@@ -6,6 +6,9 @@ params [
 if (_mode == "postInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 1] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoinit disabled, not running initHCs right now...")};
 
 if (isServer || !hasInterface) then {
+    if (!assert(isNil "GRAD_CIVS_STATEMACHINES")) exitWith {
+        ERROR("Already initialized, not doing it a second time!");
+    };
     INFO("Civs init running...");
 
     GRAD_CIVS_LOCAL_CIVS = [];
