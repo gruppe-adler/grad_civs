@@ -23,7 +23,7 @@ if (isNil "GRAD_CIVS_VEHICLES") then {missionNamespace setVariable [
     [
         missionConfigFile >> "cfgGradCivs",
         "vehicles",
-        ["C_Van_01_fuel_F", " C_Hatchback_01_F, C_Offroad_02_unarmed_F, C_Truck_02_fuel_F, C_Truck_02_covered_F, C_Offroad_01_F, C_SUV_01_F, C_Van_01_transport_F, C_Van_01_box_F"]
+        ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]
     ] call BIS_fnc_returnConfigEntry
 ]};
 
