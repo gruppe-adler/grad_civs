@@ -4,7 +4,9 @@
 //#define DEBUG_MODE_FULL
 #include "\x\cba\addons\main\script_macros_mission.hpp"
 
+#ifndef GRAD_CIVS_CIVCLASS
 #define GRAD_CIVS_CIVCLASS "C_man_1"
+#endif
 
 #ifdef DEBUG_MODE_FULL
 
