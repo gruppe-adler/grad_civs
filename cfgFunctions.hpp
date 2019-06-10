@@ -20,6 +20,7 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\api;
 
         class populateArea {};
+        class restrictArea {};
         class setBackpacks {};
         class setClothes {};
         class setDebugMode {};
