@@ -34,8 +34,10 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\behaviour;
 
         class addCycleWaypoint {};
+        class isInRestrictedArea;
 		class taskPatrol {};
         class taskPatrolAddWaypoint {};
+        class taskVoyage;
     };
 
     class common {

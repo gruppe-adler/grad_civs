@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-ASSERT_SERVER("populate area must be run on server or hc");
+ASSERT_SERVER("restrict area must be run on server or hc");
 if (!canSuspend) exitWith {_this spawn grad_civs_fnc_populateArea};
 
 params ["_area"];
@@ -12,3 +12,5 @@ private _existingAreas = missionNamespace getVariable ["GRAD_CIVS_RESTRICTED_ARE
 {
     _existingAreas pushbackUnique _areas;
 } forEach _areas;
+
+missionNamespace getVariable ["GRAD_CIVS_RESTRICTED_AREAS", _existingAreas, true];
