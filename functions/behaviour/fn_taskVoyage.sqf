@@ -32,22 +32,41 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
 };
 
 {
+
     // exit last loop as path is already drawn to it
     if (_forEachIndex == count _edgePoints) exitWith {};
 
-        private _startPoint = _edgePoints select _x;
-        private _nextPoint = _edgePoints select (_forEachIndex + 1);
+    private _startPoint = _edgePoints select _x;
+    private _nextPoint = _edgePoints select (_forEachIndex + 1);
 
-        (calculatePath ["man","safe",_startPoint,_nextPoint]) addEventHandler ["PathCalculated",{
 
-            private _path = _this;
+    private _agent = (calculatePath ["man","safe",_startPoint,_nextPoint]);
+    _agent addEventHandler ["PathCalculated",{
+        params ["_agent", "_path"];
 
-            { 
-                private _mrk = createMarker ["bmarker_" + str _forEachIndex, _x]; 
-                _mrk setMarkerType "mil_dot"; 
-                _mrk setMarkerText str _forEachIndex; 
-            } forEach (_this#1); 
-        }];
+        { 
+            private _mrk = createMarker ["bmarker_" + str _forEachIndex, _x]; 
+            _mrk setMarkerType "mil_dot"; 
+            _mrk setMarkerText str _forEachIndex; 
+        } forEach _path;
 
+        missionNamespace setVariable ["GRAD_CIVS_CALCPATH_CACHE", _path select 1];
+    }];
+
+
+    waitUntil {
+      count (missionNamespace getVariable ["GRAD_CIVS_CALCPATH_CACHE", []]) > 0
+    };
+
+    // retrieve and clear cache
+    private _currentPath = missionNamespace getVariable ["GRAD_CIVS_CALCPATH_CACHE", []];
+    missionNamespace setVariable ["GRAD_CIVS_CALCPATH_CACHE", []];
+
+    if ([_currentPath] call GRAD_civs_fnc_isInRestrictedArea) exitWith {
+        [_groupOrUnit,_centerPositionOrObject,_radius,_count] spawn grad_civs_taskVoyage;
+        diag_log format ["GRAD-civs: starting new try to find path at loop %1", _forEachIndex];
+    };
+
+    
   
 } forEach _edgePoints;
