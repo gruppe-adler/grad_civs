@@ -13,4 +13,6 @@ private _isInArea = false;
     } forEach _restrictedAreas;
 } forEach _path;
 
+diag_log format ["GRAD_civs: isInArea is %1", _isInArea];
+
 _isInArea

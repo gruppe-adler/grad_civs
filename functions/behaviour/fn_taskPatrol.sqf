@@ -33,9 +33,10 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
 
         _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition, false] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
 
-        if ([_position] call GRAD_civs_fnc_isInRestrictedArea) exitWith {
+        if ([[_position]] call GRAD_civs_fnc_isInRestrictedArea && !([[_centerPosition]] call GRAD_civs_fnc_isInRestrictedArea)) exitWith {
             [_groupOrUnit,_centerPosition,_radius,_count] call grad_civs_taskPatrol;
-            diag_log format ["GRAD_civs: Retrying taskPatrol at %1", _centerPositionOrObject];
+            diag_log format ["GRAD_civs: Retrying taskPatrol at %1", _centerPosition];
+            [[_position], "colorYellow"] call grad_civs_fnc_renderPath;
         };
 
         [_group, _position, _timeout] call grad_civs_fnc_taskPatrolAddWaypoint;
