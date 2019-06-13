@@ -59,6 +59,7 @@ class grad_civs {
 
         class drawCivs {};
         class mapMarkers {};
+        class renderPath;
         class showWhatTheyThink {};
         class updateInfoLine {};
     };

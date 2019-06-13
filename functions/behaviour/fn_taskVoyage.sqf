@@ -31,10 +31,13 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
     };
 };
 
-{
 
+
+{
     // exit last loop as path is already drawn to it
-    if (_forEachIndex == count _edgePoints) exitWith {};
+    if (_forEachIndex == count _edgePoints) exitWith {
+         [missionNamespace getVariable ["GRAD_CIVS_CALCPATH_RESULT", []], "colorGreen"] call grad_civs_fnc_renderPath;
+    };
 
     private _startPoint = _edgePoints select _x;
     private _nextPoint = _edgePoints select (_forEachIndex + 1);
@@ -44,18 +47,15 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
     _agent addEventHandler ["PathCalculated",{
         params ["_agent", "_path"];
 
-        { 
-            private _mrk = createMarker ["bmarker_" + str _forEachIndex, _x]; 
-            _mrk setMarkerType "mil_dot"; 
-            _mrk setMarkerText str _forEachIndex; 
-        } forEach _path;
+        [_path, "colorRed"] call grad_civs_fnc_renderPath;
 
         missionNamespace setVariable ["GRAD_CIVS_CALCPATH_CACHE", _path select 1];
     }];
 
 
     waitUntil {
-      count (missionNamespace getVariable ["GRAD_CIVS_CALCPATH_CACHE", []]) > 0
+        sleep 2;
+        count (missionNamespace getVariable ["GRAD_CIVS_CALCPATH_CACHE", []]) > 0
     };
 
     // retrieve and clear cache
@@ -67,6 +67,10 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
         diag_log format ["GRAD-civs: starting new try to find path at loop %1", _forEachIndex];
     };
 
-    
-  
+    [_currentPath, "colorBlack"] call grad_civs_fnc_renderPath;
+
+    private _result = missionNamespace getVariable ["GRAD_CIVS_CALCPATH_RESULT", []];
+    _result pushBack _currentPath;
+    missionNamespace setVariable ["GRAD_CIVS_CALCPATH_RESULT", _result];
+
 } forEach _edgePoints;
