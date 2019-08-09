@@ -18,3 +18,10 @@ if (random 4 > 1) then { // in 2 of 3 cases , do change position
 } else {
     _this switchMove selectRandom ["Acts_B_M05_briefing", "Acts_JetsOfficerSpilling", "acts_miller_knockout", "InBaseMoves_HandsBehindBack1"];
 };
+
+/*
+Acts_B_M05_briefing > 27s
+Acts_JetsOfficerSpilling = 11s , braucht eigentlich Anschluanim
+acts_miller_knockout = 5.5s
+InBaseMoves_HandsBehindBack1 = 3.5
+*/
