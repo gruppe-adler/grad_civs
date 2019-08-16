@@ -8,17 +8,18 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\accessors;
 
         class clearCurrentlyThinking {};
+        class forceBusinessSpeed {};
+        class forcePanicSpeed {};
         class getCurrentlyThinking {};
         class getGroupVehicle {};
         class setCurrentlyThinking {};
         class setGroupVehicle {};
-        class forceBusinessSpeed {};
-        class forcePanicSpeed {};
     };
 
     class api {
         file = MODULES_DIRECTORY\grad-civs\functions\api;
 
+        class addExclusionZone {};
         class populateArea {};
         class setBackpacks {};
         class setClothes {};
@@ -64,41 +65,22 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\init;
 
         class initConfig {preInit = 1;};
-        class initModule {};
-        class initServer {postInit = 1;};
         class initHCs {postInit = 1;};
+        class initModule {};
         class initPlayer {postInit = 1;};
+        class initServer {postInit = 1;};
     };
 
     class player {
         file = MODULES_DIRECTORY\grad-civs\functions\player;
+
+        class checkHonkingOnCivilian {};
         class checkWeaponOnCivilianPerception {};
         class checkWeaponOnCivilianPointer {};
-        class checkHonkingOnCivilian {};
         class isPlayerHonking {};
         class playerLoop {};
         class registerAceInteractionHandler {};
         class showCivHint {};
-    };
-
-    class spawn {
-        file = MODULES_DIRECTORY\grad-civs\functions\spawn;
-
-        class addCarCrew {};
-        class addFootsy {};
-        class addResident {};
-        class createInfoChannel {};
-        class createSideRoadVehicles {};
-        class deleteIfDamaged {};
-        class getRandomSpawnReferencePoint {};
-        class isAllowedSpawnPoint {};
-        class findResidentSpawnHouse {};
-        class findSpawnPosition {};
-        class serverLoop {};
-        class spawnCivilian {};
-        class spawnCivilianGroup {};
-        class spawnPass {};
-        class spawnVehicle {};
     };
 
     class sm_activities {
@@ -187,6 +169,26 @@ class grad_civs {
         class sm_panic_state_hide_exit {};
         class sm_panic_trans_hide_hidden_condition {};
         class sm_panic_trans_hide_hidden_handler {};
+    };
+
+    class spawn {
+        file = MODULES_DIRECTORY\grad-civs\functions\spawn;
+
+        class addCarCrew {};
+        class addFootsy {};
+        class addResident {};
+        class createInfoChannel {};
+        class createSideRoadVehicles {};
+        class deleteIfDamaged {};
+        class findResidentSpawnHouse {};
+        class findSpawnPositionCandidates {};
+        class findSpawnRoadSegment {};
+        class isInDistanceFromOtherPlayers {};
+        class serverLoop {};
+        class spawnCivilian {};
+        class spawnCivilianGroup {};
+        class spawnPass {};
+        class spawnVehicle {};
     };
 
     class statemachine {

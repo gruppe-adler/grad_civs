@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-_allPlayers = (call CBA_fnc_players);
+_allPlayers = allPlayers - (entities "HeadlessClient_F");
 if (count _allPlayers == 0) exitWith {};
 
 private _fps = diag_fps;

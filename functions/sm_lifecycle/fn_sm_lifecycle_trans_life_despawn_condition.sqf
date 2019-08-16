@@ -17,6 +17,7 @@ if (_this distance nearestBuilding _this < 3) then {
 private _playersAreClose = true isEqualTo ({
     if (_this distance _x < _cleanupDistance) exitWith { true };
     false
-} count ([] call CBA_fnc_players));
+} count (allPlayers - (entities "HeadlessClient_F")));
+// CBA_fnc_players would work, if you dont mind things despawning close to zeus
 
 !_playersAreClose

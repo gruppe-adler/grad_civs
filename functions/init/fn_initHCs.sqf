@@ -3,7 +3,7 @@
 params [
     ["_mode", "runtime"]
 ];
-if (_mode == "postInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 1] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoinit disabled, not running initHCs right now...")};
+if (_mode == "postInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 0] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoInit disabled, not running initHCs right now...")};
 
 if (isServer || !hasInterface) then {
     if (!assert(isNil "GRAD_CIVS_STATEMACHINES")) exitWith {

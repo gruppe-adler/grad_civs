@@ -1,7 +1,8 @@
 params [
     ["_group", grpNull],
     ["_position", [0, 0, 0]],
-    ["_timeout", [0, 0, 0]]
+    ["_timeout", [0, 0, 0]],
+    ["_radius", 5]
 ];
 
 private _waypoint = _group addWaypoint [_position, 0];
@@ -12,6 +13,6 @@ _waypoint setWaypointType "MOVE";
 _waypoint setWaypointSpeed _speed;
 _waypoint setWaypointFormation "STAG COLUMN";
 _waypoint setWaypointTimeout _timeout;
-_waypoint setWaypointCompletionRadius 5;
+_waypoint setWaypointCompletionRadius _radius;
 
 _waypoint

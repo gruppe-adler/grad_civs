@@ -11,7 +11,7 @@ private _mainLoop = {
         INFO("exiting because GRAD_CIVS_EXITON returned true");
         [_handle] call CBA_fnc_removePerFrameHandler
     };
-    if (isDedicated && count ((entities "HeadlessClient_F") arrayIntersect allPlayers) > 0) exitWith {
+    if (isDedicated && (count ((entities "HeadlessClient_F") arrayIntersect allPlayers) > 0)) exitWith {
         INFO("HCs are taking over, will not spawn any more civs");
         [_handle] call CBA_fnc_removePerFrameHandler
     };
@@ -36,6 +36,17 @@ grad_civs_debugLoop = [{
         };
     },
     2,
+    []
+] call CBA_fnc_addPerFrameHandler;
+
+// clean up objNull references in civs array - that happens for example when a zeus person deletes them
+[
+    {
+        GRAD_CIVS_LOCAL_CIVS = GRAD_CIVS_LOCAL_CIVS select {
+            !(isNull _x)
+        }
+    },
+    5,
     []
 ] call CBA_fnc_addPerFrameHandler;
 
