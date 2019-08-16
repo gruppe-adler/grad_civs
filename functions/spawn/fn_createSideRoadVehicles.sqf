@@ -48,7 +48,9 @@ while {count _roads > 0 && count _thesePositions < _vehiclesToCreate} do {
                 if (!isOnRoad _testPos) exitWith {_offRoadFound = true};
             };
 
-            _enoughHouses = if (_houseFactor < 0) then {true} else {(count ([_vehPos,20] call grad_civs_fnc_findBuildings)) * _houseFactor > random 100};
+            _enoughHouses = if (_houseFactor < 0) then {true} else {
+                (count ([_vehPos, 20] call grad_civs_fnc_findBuildings)) * _houseFactor > random 100
+            };
 
             _canCreate = switch (true) do {
                 case (!_offRoadFound): {"ONROAD"};

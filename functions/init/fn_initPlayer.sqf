@@ -3,7 +3,7 @@
 params [
     ["_mode", "runtime"]
 ];
-if (_mode == "postInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 1] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoInit disabled, not running initPlayer right now...")};
+if (_mode == "postInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 0] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoInit disabled, not running initPlayer right now...")};
 
 if (hasInterface) then {
     if (isNil "GRAD_CIVS_DEBUG_CIVSTATE") then {missionNamespace setVariable ["GRAD_CIVS_DEBUG_CIVSTATE",([missionConfigFile >> "cfgGradCivs","debugCivState",0] call BIS_fnc_returnConfigEntry) == 1]};

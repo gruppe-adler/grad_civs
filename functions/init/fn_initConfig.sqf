@@ -3,7 +3,7 @@
 params [
     ["_mode", "runtime"]
 ];
-if (_mode == "preInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 1] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoinit disabled, not running initConfig right now...")};
+if (_mode == "preInit" && {([missionConfigFile >> "cfgGradCivs", "autoInit", 0] call BIS_fnc_returnConfigEntry) != 1}) exitWith {INFO("autoInit disabled, not running initConfig right now...")};
 
 assert(isClass (configFile >> "CfgWeapons" >> "ACE_Banana")); // we depend on ACE
 
@@ -67,3 +67,4 @@ missionNamespace setVariable ["GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX",_distances 
 
 GRAD_CIVS_BUS_MEETNEIGHBOR_COOLDOWN = 150;
 GRAD_CIVS_CHAT_TIME = 20;
+GRAD_CIVS_EXCLUSION_ZONES = [];

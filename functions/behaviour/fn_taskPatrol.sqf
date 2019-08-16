@@ -12,7 +12,16 @@
 
 #include "..\..\component.hpp"
 
-params ["_groupOrUnit","_centerPositionOrObject","_radius","_count",["_timeout",[0,0,0]],["_findPosOfInterest",false],["_findRoadPos",false],["_findWaterPos",false]];
+params [
+    "_groupOrUnit",
+    "_centerPositionOrObject",
+    "_radius",
+    "_count",
+    ["_timeout",[0,0,0]],
+    ["_findPosOfInterest",false],
+    ["_findRoadPos",false],
+    ["_findWaterPos",false]
+];
 
 private _group = if (typeName _groupOrUnit == "OBJECT") then {group _groupOrUnit} else {_groupOrUnit};
 private _centerPosition = if (typeName _centerPositionOrObject == "OBJECT") then {getPos _centerPositionOrObject} else {_centerPositionOrObject};
@@ -29,10 +38,22 @@ if !(local _group) exitWith {};
 for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
     private _searchPosition = [_centerPosition,[_radius / 2 ,_radius],[0,360],nil,_findWaterPos,_findRoadPos] call grad_civs_fnc_findRandomPos;
 
-    if (count _searchPosition > 0) then {
-        _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition, false] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
-        [_group, _position, _timeout] call grad_civs_fnc_taskPatrolAddWaypoint;
+    private _inExclusionZone = {
+        if (_searchPosition inArea _x) exitWith {true};
+        false
+    } forEach GRAD_CIVS_EXCLUSION_ZONES;
+    if (!_inExclusionZone) then {
+        if (count _searchPosition > 0) then {
+            _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition, false] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
+            [_group, _position, _timeout] call grad_civs_fnc_taskPatrolAddWaypoint;
+        };
     };
+};
+
+// add home waypoint!
+private _home = _group getVariable ["grad_civs_home", objNull];
+if (!isNull _home) then {
+    [_group, getPos _home, [0, 15, 30], 20] call grad_civs_fnc_taskPatrolAddWaypoint;
 };
 
 [_group, _position vectorAdd [10, 0, 0]] call grad_civs_fnc_addCycleWaypoint;

@@ -48,7 +48,7 @@ Add the class `cfgGradCivs` to your `description.ext`. Use the following attribu
 
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
-autoInit                 | 1             | Toggles on automatic initialization of module on missions start (0/1). Turn this off if you want to use functions to set civs properties first.
+autoInit                 | 0             | Toggles on automatic initialization of module on missions start (0/1). Keep this off if you want to use functions to set civs properties first.
 automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
 enableOnFoot             | 1             | Enable civilians on foot (0/1).
 enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
@@ -227,6 +227,16 @@ staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to cr
 
 
 ![](http://i.imgur.com/Cimaz4c.jpg)
+
+### grad_civs_fnc_addExclusionZone
+
+Prevent civilians from entering an area.
+
+*known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
+
+#### Syntax
+
+`[_trigger] call grad_civs_fnc_addExclusionZone;`  
 
 ## Development
 
