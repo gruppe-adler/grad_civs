@@ -8,8 +8,9 @@ LOGTIME_START("findSpawnPos_onFoot");
 private _house = [
     _allPlayers,
     GRAD_CIVS_SPAWNDISTANCEONFOOTMIN,
-    GRAD_CIVS_SPAWNDISTANCEONFOOTMAX
-] call grad_civs_fnc_findResidentSpawnHouse;
+    GRAD_CIVS_SPAWNDISTANCEONFOOTMAX,
+    "house"
+] call grad_civs_fnc_findSpawnPosition;
 LOGTIME_END("findSpawnPos_onFoot");
 
 if (isNull _house) exitWith {

@@ -20,8 +20,9 @@ if (isNull _segment) exitWith {
 private _house = [
     _allPlayers,
     0,
-    GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX * 1.5
-] call grad_civs_fnc_findResidentSpawnHouse;
+    GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX * 1.5,
+    "house"
+] call grad_civs_fnc_findSpawnPosition;
 
 private _pos = getPos _segment;
 private _vehicleClass = selectRandom GRAD_CIVS_VEHICLES;

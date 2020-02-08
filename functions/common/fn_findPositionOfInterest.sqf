@@ -1,6 +1,9 @@
 #include "..\..\component.hpp"
 
-params ["_searchPosition", ["_isGetNearest", false]];
+params [
+    ["_searchPosition", [0, 0, 0]],
+    ["_isGetNearest", false]
+];
 
 if (_searchPosition isEqualType objNull) then {_searchPosition = getPos _searchPosition};
 
@@ -15,7 +18,7 @@ if (_isGetNearest) then {
 private _nearestBuilding = if (count _buildings > 0) then {_buildings select 0} else {objNull};
 private _buildingPositions = [_nearestBuilding] call BIS_fnc_buildingPositions;
 private _position = if (count _buildingPositions > 0) then {selectRandom _buildingPositions} else {
-	[_searchPosition,[50,100],[0,360]] call grad_civs_fnc_findRandomPos;
+	[_searchPosition,[50,100],[0,360]] call FUNC(findRandomPos);
 };
 
 if (count _position == 0) then {

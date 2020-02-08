@@ -31,7 +31,7 @@ GRAD_CIVS_CIVSTATE_FORMAT = 0;
 			case 3: { _text = format["%1 | is local at %2", _x, _x getVariable ["grad_civs_owner", 0]]};
 			case 4: { _text = format["%1 | %2 %3 %4 | stopped: %5, unitReady: %6", _x, behaviour _x, combatMode _x, speedMode _x, stopped _x, unitReady _x]};
 			case 5: { _text = format["%1 | state times: %2", _x, _x call _filterTimeVars]};
-			case 6: { _text = ""};
+			default { _text = ""};
 		};
 
 		drawIcon3D [
@@ -52,13 +52,60 @@ GRAD_CIVS_CIVSTATE_FORMAT = 0;
 
 } , 0, []] call CBA_fnc_addPerFrameHandler;
 
- player addAction [
- 	"<t color='#3333FF'>switch civstate format</t>",
-	{ GRAD_CIVS_CIVSTATE_FORMAT = (GRAD_CIVS_CIVSTATE_FORMAT + 1) % 7; /*see switch (GRAD_CIVS_CIVSTATE_FORMAT) expression above*/},
-	[],
-	10,
-	false,
-	false,
-	"",
-	"GRAD_CIVS_DEBUG_CIVSTATE"
-];
+private _addCivAction = {
+	params [
+		["_title", ""],
+		["_id", 0]
+	];
+
+	player addAction [
+	 	_title,
+		{ GVAR(CIVSTATE_FORMAT) = _this#3; },
+		_id,
+		10,
+		false,
+		false,
+		"",
+		"GRAD_CIVS_DEBUG_CIVSTATE"
+	];
+};
+
+["<t color='#3333FF'>civstate format: infoLine</t>", 0] call _addCivAction;
+["<t color='#3333FF'>civstate format: speedmode</t>", 1] call _addCivAction;
+["<t color='#3333FF'>civstate format: guns</t>", 2] call _addCivAction;
+["<t color='#3333FF'>civstate format: locality</t>", 3] call _addCivAction;
+["<t color='#3333FF'>civstate format: behaviour</t>", 4] call _addCivAction;
+["<t color='#3333FF'>civstate format: state times</t>", 5] call _addCivAction;
+["<t color='#3333FF'>civstate format: waypoints</t>", 6] call _addCivAction;
+["<t color='#3333FF'>civstate format: empty</t>", 7] call _addCivAction;
+
+
+ISNILS(GVAR(showWhatTheyThink_civ_added), 0);
+ISNILS(GVAR(showWhatTheyThinkciv_removed), 0);
+if (GRAD_CIVS_DEBUG_CIVSTATE) then {
+	GVAR(showWhatTheyThink_civ_added) = [
+		QGVAR(civ_added),
+		{
+			SCRIPT("showWhatTheyThink_civ_added");
+			{
+				private _arrow = createSimpleObject ["Sign_Arrow_Large_Pink_F", [0, 0, 0]];
+				_arrow attachTo [_x, [0, 0, 5]];
+			} forEach _this;
+		}
+	] call CBA_fnc_addEventHandler;
+	GVAR(showWhatTheyThinkciv_removed) = [
+		QGVAR(civ_removed),
+		{
+			SCRIPT("showWhatTheyThink_civ_removed");
+			{
+				private _civ = _x;
+				{
+					deleteVehicle _x;
+				} forEach (attachedObjects _civ);
+			} forEach _this;
+		}
+	] call CBA_fnc_addEventHandler;
+} else {
+	[QGVAR(civ_added), GVAR(showWhatTheyThink_civ_added)] call CBA_fnc_removeEventHandler;
+	[QGVAR(civ_removed), GVAR(showWhatTheyThinkciv_removed)] call CBA_fnc_removeEventHandler;
+};
