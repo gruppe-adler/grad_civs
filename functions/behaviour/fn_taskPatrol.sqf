@@ -41,7 +41,7 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
     private _inExclusionZone = {
         if (_searchPosition inArea _x) exitWith {true};
         false
-    } forEach GRAD_CIVS_EXCLUSION_ZONES;
+    } forEach (GRAD_CIVS_EXCLUSION_ZONES + [[[0, 0, 0], 1, 1, 0, true]]);
     if (!_inExclusionZone) then {
         if (count _searchPosition > 0) then {
             _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition, false] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
