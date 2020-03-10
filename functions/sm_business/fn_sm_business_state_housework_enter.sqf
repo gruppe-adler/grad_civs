@@ -1,3 +1,5 @@
+#include "..\..\component.hpp"
+
 private _house = _this getVariable ["grad_civs_home", objNull];
 _this setVariable ["grad_civs_housework_time", random [5, 15, 120]];
 _this call grad_civs_fnc_forceBusinessSpeed;
@@ -5,7 +7,7 @@ _this call grad_civs_fnc_forceBusinessSpeed;
 if (isNull _house) exitWith {};
 
 if (random 4 > 1) then { // in 2 of 3 cases , do change position
-    _this switchMove "";
+    [QGVAR(switchMove), [_this, ""]] call CBA_fnc_globalEvent;
     doStop _this;
 
     // add one random really close position to house positions
@@ -16,7 +18,8 @@ if (random 4 > 1) then { // in 2 of 3 cases , do change position
 
     _this moveTo _pos;
 } else {
-    _this switchMove selectRandom ["Acts_B_M05_briefing", "Acts_JetsOfficerSpilling", "acts_miller_knockout", "InBaseMoves_HandsBehindBack1"];
+    private _anim = selectRandom ["Acts_B_M05_briefing", "Acts_JetsOfficerSpilling", "acts_miller_knockout", "InBaseMoves_HandsBehindBack1"];
+    [QGVAR(switchMove), [_this, _anim]] call CBA_fnc_globalEvent;
 };
 
 /*
