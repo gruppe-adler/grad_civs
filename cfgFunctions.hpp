@@ -115,6 +115,7 @@ class grad_civs {
         class sm_business_state_chat_exit {};
         class sm_business_state_chat_loop {};
         class sm_business_state_housework_enter {};
+        class sm_business_state_housework_exit {};
         class sm_business_state_meetNeighbor_enter {};
         class sm_business_state_meetNeighbor_exit {};
         class sm_business_state_meetNeighbor_loop {};
