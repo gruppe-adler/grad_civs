@@ -14,7 +14,8 @@ GRAD_CIVS_PLAYERSIDE = sideUnknown;
 [{
     if !(alive player) exitWith {};
     if (GRAD_CIVS_PLAYERSIDE == side player) exitWith {};
-
+    if ((["HEALTHY", "INJURED"] find (lifeState player)) == -1) exitWith {};
+    
     if (side player == civilian) then {
         GRAD_CIVS_INFOCHANNEL radioChannelAdd [player];
         ["you are CIVILIAN now"] call grad_civs_fnc_showCivHint;
