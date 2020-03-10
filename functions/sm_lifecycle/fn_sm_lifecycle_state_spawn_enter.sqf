@@ -58,7 +58,7 @@ private _addKilledNews = {
 
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
-		_unit switchMove "";
+		[QGVAR(switchMove), [_unit, ""]] call CBA_fnc_globalEvent;
     }];
 };
 

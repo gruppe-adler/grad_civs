@@ -61,7 +61,7 @@ private _bus_housework = [
     _business,
     {},
     { _this call grad_civs_fnc_sm_business_state_housework_enter },
-    {},
+    { _this call grad_civs_fnc_sm_business_state_housework_exit },
     "bus_housework"
 ] call grad_civs_fnc_addState;
 

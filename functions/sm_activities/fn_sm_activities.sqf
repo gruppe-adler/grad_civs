@@ -1,3 +1,4 @@
+#include "..\..\component.hpp"
 
 private _activities = [[], true] call CBA_statemachine_fnc_create;
 private _business = [] call grad_civs_fnc_sm_business;
@@ -120,7 +121,7 @@ assert ([
     _act_panic, _act_business,
     ["grad_civs_panicking_end"],
     {true},
-    {_this switchMove ""},
+    {[QGVAR(switchMove), [_this, ""]] call CBA_fnc_globalEvent;},
     _act_panic + _act_business
 ] call CBA_statemachine_fnc_addEventTransition);
 

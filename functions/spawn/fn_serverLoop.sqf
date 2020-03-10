@@ -43,8 +43,18 @@ grad_civs_debugLoop = [{
 [
     {
         GRAD_CIVS_LOCAL_CIVS = GRAD_CIVS_LOCAL_CIVS select {
-            !(isNull _x)
-        }
+            if (isNull _x) then {
+                INFO_1("abandoning civilian they have become NULL (deleted?)", _x);
+                false
+            } else {
+                if (local _x) then {
+                    true
+                } else {
+                    WARNING_1("abandoning civilian %1 as they are not local any more", _x);
+                    false
+                };
+            };
+        };
     },
     5,
     []
