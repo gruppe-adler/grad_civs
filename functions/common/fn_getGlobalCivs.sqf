@@ -7,7 +7,7 @@ params [
 
 if (isNil "GRAD_CIVS_fnc_getGlobalCivs_arr") then {
     // on first run, init array with existing civs
-    private _potentialCivs = entities [[GRAD_CIVS_CIVCLASS], [], true, true];
+    private _potentialCivs = entities [[GVAR(CIVCLASS)], [], true, true];
     GRAD_CIVS_fnc_getGlobalCivs_arr = _potentialCivs select { (_x getVariable ["grad_civs_primaryTask", ""]) != ""};
 
     // then, register event handler to update the array appropriately to always include all living civs

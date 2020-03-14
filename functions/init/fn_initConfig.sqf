@@ -13,6 +13,7 @@ if !(([missionConfigFile, "corpseManagerMode", -1] call BIS_fnc_returnConfigEntr
 
 INFO("Civs initConfig running...");
 
+if (isNil QGVAR(CIVCLASS)) then {missionNamespace setVariable [QGVAR(CIVCLASS),[missionConfigFile >> "cfgGradCivs","civClass","C_man_1"] call BIS_fnc_returnConfigEntry]};
 if (isNil "GRAD_CIVS_CLOTHES") then {missionNamespace setVariable ["GRAD_CIVS_CLOTHES",[missionConfigFile >> "cfgGradCivs","clothes",[]] call BIS_fnc_returnConfigEntry]};
 if (isNil "GRAD_CIVS_HEADGEAR") then {missionNamespace setVariable ["GRAD_CIVS_HEADGEAR",[missionConfigFile >> "cfgGradCivs","headgear",[]] call BIS_fnc_returnConfigEntry]};
 if (isNil "GRAD_CIVS_FACES") then {missionNamespace setVariable ["GRAD_CIVS_FACES",[missionConfigFile >> "cfgGradCivs","faces",[]] call BIS_fnc_returnConfigEntry]};

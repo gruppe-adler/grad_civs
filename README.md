@@ -59,31 +59,32 @@ Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 autoInit                 | 0             | Toggles on automatic initialization of module on missions start (0/1). Keep this off if you want to use functions to set civs properties first.
 automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
-enableOnFoot             | 1             | Enable civilians on foot (0/1).
-enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
-maxCivsOnFoot            | 30            | Maximum number of civs on foot.
-maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
-maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
-spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
-spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
-spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
+backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
+backpacks                | []            | All classnames of backpacks that civilians may wear.
+civClass                 | "C_Man_1"     | Unit class to use for spawning civilians
+clothes                  | []            | All classnames of clothes that civilians may wear.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
-initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
-minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
-minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
-onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
-onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
-onKilled                 | ""            | Code to execute when civilian is killed. Passed parameters are: [civilian,killer].
+enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
+enableOnFoot             | 1             | Enable civilians on foot (0/1).
 exitOn                   | ""            | Condition upon which grad-civs loops will stop.
-clothes                  | []            | All classnames of clothes that civilians may wear.
 faces                    | []            | All classnames of faces that civilians may have.
 goggles                  | []            | All classnames of goggles that civilians may wear.
 headgear                 | []            | All classnames of headgear that civilians may wear.
-backpacks                | []            | All classnames of backpacks that civilians may wear.
+initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
+maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
+maxCivsOnFoot            | 30            | Maximum number of civs on foot.
+maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
+minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
+minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
+onHeldUp                 | ""            | Code to execute when civilian stops because a weapon is pointed at him. Passed parameters are: [civilian].
+onKilled                 | ""            | Code to execute when civilian is killed. Passed parameters are: [civilian,killer].
+onSpawn                  | ""            | Code to execute on civilian spawn. Passed parameters are: [civilian,vehicle (objNull if on foot)].
 panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
+spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
+spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
+spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
 vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]            | All classnames of vehicles that civilians may drive.
-backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
 
 ### Example
 
