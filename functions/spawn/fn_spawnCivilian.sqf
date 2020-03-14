@@ -6,7 +6,7 @@ params [
     ["_primaryTask", ""]
 ];
 
-private _civ = _group createUnit [GRAD_CIVS_CIVCLASS, _pos, [], 0, "NONE"];
+private _civ = _group createUnit [GVAR(CIVCLASS), _pos, [], 0, "NONE"];
 
 GRAD_CIVS_LOCAL_CIVS = GRAD_CIVS_LOCAL_CIVS + [_civ];
 [QGVAR(civ_added), [_civ]] call CBA_fnc_globalEvent;

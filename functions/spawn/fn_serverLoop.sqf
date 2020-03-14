@@ -66,7 +66,7 @@ grad_civs_debugLoop = [{
 if (!hasInterface && !isDedicated) then {
     [
         {
-            private _allCivs = entities GRAD_CIVS_CIVCLASS;
+            private _allCivs = entities GVAR(CIVCLASS);
             private _myCivs = _allCivs select { local _x && (_x getVariable ["grad_civs_primaryTask", ""] != "")};
             private _orphanedCivs = _myCivs - GRAD_CIVS_LOCAL_CIVS;
             INFO_1("%1 orphaned civs - putting them into my own array", count _orphanedCivs);

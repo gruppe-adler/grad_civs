@@ -13,7 +13,7 @@ if (random 10 < 9) exitWith {false};
 
 private _neighborToMeet = {
     private _maxDist = _x;
-    private _nearCivs = (_this nearEntities [[GRAD_CIVS_CIVCLASS], _maxDist]);
+    private _nearCivs = (_this nearEntities [[GVAR(CIVCLASS)], _maxDist]);
     private _socialNeighbors = _nearCivs select {
         (_x != _this) &&
         (_x getVariable ["grad_civs_primaryTask", ""] == "reside") &&
