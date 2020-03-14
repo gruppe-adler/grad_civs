@@ -59,6 +59,7 @@ Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 autoInit                 | 0             | Toggles on automatic initialization of module on missions start (0/1). Keep this off if you want to use functions to set civs properties first.
 automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
+civClass                 | "C_Man_1"     | Unit class to use for spawning civilians
 enableOnFoot             | 1             | Enable civilians on foot (0/1).
 enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
