@@ -13,15 +13,24 @@
 #include "..\..\component.hpp"
 
 params [
-    "_groupOrUnit",
-    "_centerPositionOrObject",
-    "_radius",
-    "_count",
+    ["_groupOrUnit", grpNull],
+    ["_centerPositionOrObject", [0, 0, 0]],
+    ["_radius", 0],
+    ["_count", 3],
     ["_timeout",[0,0,0]],
     ["_findPosOfInterest",false],
     ["_findRoadPos",false],
     ["_findWaterPos",false]
 ];
+
+private _clearWaypoints =  {
+    private _group = _this#0;
+    private _waypoints = waypoints _group;
+    {
+        // Waypoint index changes with each deletion, so don't delete _x
+        deleteWaypoint [_group, 0];
+    } forEach _waypoints;
+};
 
 private _group = if (typeName _groupOrUnit == "OBJECT") then {group _groupOrUnit} else {_groupOrUnit};
 private _centerPosition = if (typeName _centerPositionOrObject == "OBJECT") then {getPos _centerPositionOrObject} else {_centerPositionOrObject};
@@ -29,31 +38,28 @@ _radius = if (typeName _radius == "ARRAY") then {(random ((_radius select 1) - (
 _count = if (typeName _count == "ARRAY") then {(random ((_count select 1) - (_count select 0))) + (_count select 1)} else {_count};
 private _position = _centerPosition;
 
-assert(_count > 1);
+assert(_count > 0);
+
+LOG_3("taskPatrol start. waypoints to be added: %1, group: %2. previous waypoints: %3", _count, _group, count waypoints _group);
 
 if !(local _group) exitWith {};
-[_group] call CBA_fnc_clearWaypoints;
+[_group] call _clearWaypoints;
 
-//create waypoints
-for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
-    private _searchPosition = [_centerPosition,[_radius / 2 ,_radius],[0,360],nil,_findWaterPos,_findRoadPos] call grad_civs_fnc_findRandomPos;
+private _moveWps = [_position, _radius, _count, _findPosOfInterest, _findRoadPos, _findWaterPos] call FUNC(taskPatrolFindWaypoints);
+{
+    LOG_1("adding wp at %1", _x);
+     [_group, _x, _timeout] call FUNC(taskPatrolAddWaypoint);
+} forEach _moveWps;
 
-    private _inExclusionZone = {
-        if (_searchPosition inArea _x) exitWith {true};
-        false
-    } forEach (GRAD_CIVS_EXCLUSION_ZONES + [[[0, 0, 0], 1, 1, 0, true]]);
-    if (!_inExclusionZone) then {
-        if (count _searchPosition > 0) then {
-            _position = if (_findPosOfInterest && {80 > random 100}) then {[_searchPosition, false] call grad_civs_fnc_findPositionOfInterest} else {_searchPosition};
-            [_group, _position, _timeout] call grad_civs_fnc_taskPatrolAddWaypoint;
-        };
-    };
-};
 
 // add home waypoint!
 private _home = _group getVariable ["grad_civs_home", objNull];
 if (!isNull _home) then {
-    [_group, getPos _home, [0, 15, 30], 20] call grad_civs_fnc_taskPatrolAddWaypoint;
+    LOG_1("adding home wp at %1", getPos _home);
+    [_group, getPos _home, [0, 15, 30], 20] call FUNC(taskPatrolAddWaypoint);
 };
-
+LOG("adding cycle wp close by group position");
+// NOTE : a cycle waypoint points to the *closest waypoint other than the previous one*! which means in our case: close to the initial waypoint
 [_group, _position vectorAdd [10, 0, 0]] call grad_civs_fnc_addCycleWaypoint;
+
+LOG_2("taskPatrol end. waypoints for group %1 : %2", _group, count waypoints _group);

@@ -20,6 +20,8 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\api;
 
         class addExclusionZone {};
+        class clearExclusionZones {};
+        class getExclusionZones {};
         class populateArea {};
         class setBackpacks {};
         class setClothes {};
@@ -36,11 +38,14 @@ class grad_civs {
         class addCycleWaypoint {};
 		class taskPatrol {};
         class taskPatrolAddWaypoint {};
+        class taskPatrolFindWaypoints {};
+        class taskPatrolFindWaypoint {};
     };
 
     class common {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
 
+        class arrayContains {};
         class compare {};
         class findBuildings {};
         class findPositionOfInterest {};
@@ -181,8 +186,8 @@ class grad_civs {
         class createInfoChannel {};
         class createSideRoadVehicles {};
         class deleteIfDamaged {};
-        class findResidentSpawnHouse {};
-        class findSpawnPositionCandidates {};
+        class findUnclaimedHouse {};
+        class findSpawnPosition {};
         class findSpawnRoadSegment {};
         class isInDistanceFromOtherPlayers {};
         class serverLoop {};

@@ -1,6 +1,13 @@
 #include "..\..\component.hpp"
 
-params ["_center", ["_radii", [0,15]], ["_angles", [0,360]], ["_vehicleType", "B_Soldier_F"], ["_findWaterPos",false], ["_findRoadPos",false]];
+params [
+    ["_center", [0, 0, 0]],
+    ["_radii", [0,15]],
+    ["_angles", [0,360]],
+    ["_vehicleType", "B_Soldier_F"],
+    ["_findWaterPos",false],
+    ["_findRoadPos",false]
+];
 private ["_pos"];
 
 _radii params ["_minRad", "_maxRad"];
@@ -22,4 +29,4 @@ for [{private _i=0}, {_i<25}, {_i=_i+1}] do {
     if (count _pos > 0 && {(surfaceIsWater _pos) isEqualTo _findWaterPos}) exitWith {};
 };
 
-_pos
+_pos // return position or empty array

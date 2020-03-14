@@ -19,15 +19,15 @@ private _exclusionList = [
 ];
 
 //HOUSE LIST ===================================================================
-_houseList = nearestObjects [_searchPos, ["House"], _radius];
-
+_houseList = _searchPos nearObjects ["House", _radius];
+LOG_3("%1 houses within %2m of %3, will whittle down by positions and excluded types", count _houseList, _radius, _searchPos);
 //Clean up house list (remove buildings that have no positions)
 _cleanUpCounter = 0;
 {
-
+	SCRIPT("findBuildings_filter");
 	//_buildingPos = _x buildingPos 0;
 	//if ((str _buildingPos) == "[0,0,0]") then {
-	if (count ([_x] call BIS_fnc_buildingPositions) < _minPosCount) then {
+	if (count (_x buildingPos -1) < _minPosCount) then {
 			_houseList = _houseList - [_x];
 			_cleanUpCounter = _cleanUpCounter + 1;
 	} else {

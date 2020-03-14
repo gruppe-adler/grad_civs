@@ -10,4 +10,4 @@ if (isNull _trigger) exitWith {
 
 GRAD_CIVS_EXCLUSION_ZONES pushBack _trigger;
 
-INFO_1("added exclusion zone %1", triggerArea _trigger);
+INFO_2("added exclusion zone %1 at %2", triggerArea _trigger, getPos _trigger);

@@ -11,14 +11,20 @@ if (isNil "GRAD_CIVS_fnc_getGlobalCivs_arr") then {
     GRAD_CIVS_fnc_getGlobalCivs_arr = _potentialCivs select { (_x getVariable ["grad_civs_primaryTask", ""]) != ""};
 
     // then, register event handler to update the array appropriately to always include all living civs
-    ["grad_civs_civ_added", {
-        scriptName "getGlobalCivs__grad_civs_civ_added";
-        GRAD_CIVS_fnc_getGlobalCivs_arr = GRAD_CIVS_fnc_getGlobalCivs_arr + _this;
-    }] call CBA_fnc_addEventHandler;
-    ["grad_civs_civ_removed", {
-        scriptName "getGlobalCivs__grad_civs_civ_removed";
-        GRAD_CIVS_fnc_getGlobalCivs_arr = GRAD_CIVS_fnc_getGlobalCivs_arr - _this;
-    }] call CBA_fnc_addEventHandler;
+    [
+        QGVAR(civ_added),
+        {
+            SCRIPT("getGlobalCivs_civ_added");
+            GRAD_CIVS_fnc_getGlobalCivs_arr = GRAD_CIVS_fnc_getGlobalCivs_arr + _this;
+        }
+    ] call CBA_fnc_addEventHandler;
+    [
+        QGVAR(civ_removed),
+        {
+            SCRIPT("getGlobalCivs_civ_removed");
+            GRAD_CIVS_fnc_getGlobalCivs_arr = GRAD_CIVS_fnc_getGlobalCivs_arr - _this;
+        }
+    ] call CBA_fnc_addEventHandler;
 };
 
 if (_primaryTask == "") then {

@@ -41,6 +41,15 @@ class CfgFunctions {
 };
 ```
 
+## Usage Notes
+
+To avoid micro lags / fps dips on the server, it is recommended to add a headless client (no configuration needed for that).
+
+If that is not possible, civilian group size (looking at you, [Ikraus 260](https://de.wikipedia.org/wiki/Ikarus_260)!) as well as total population count should be kept small.
+
+Civilians on separate islands can run into pathing problems. Avoid by creating exclusion zones.
+
+
 ## Config
 Add the class `cfgGradCivs` to your `description.ext`. Use the following attributes to configure the module:
 
@@ -57,7 +66,7 @@ maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
-spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
+spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
 initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
