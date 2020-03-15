@@ -12,7 +12,7 @@ GRAD_CIVS_CIVSTATE_FORMAT = 0;
 [{
 	if (!GRAD_CIVS_DEBUG_CIVSTATE) exitWith {[_this select 1] call CBA_fnc_removePerFrameHandler};
 
-	if (!isGameFocused || isGamePaused || isGamePaused) exitWith {};
+	if (!isGameFocused || isGamePaused) exitWith {};
 
 	_filterTimeVars = {
 		(allVariables _this) select {
