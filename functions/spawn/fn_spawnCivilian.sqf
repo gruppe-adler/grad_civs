@@ -13,5 +13,6 @@ GRAD_CIVS_LOCAL_CIVS = GRAD_CIVS_LOCAL_CIVS + [_civ];
 
 
 _civ setVariable ["grad_civs_primaryTask", _primaryTask, true];
+_civ setVariable ["acex_headless_blacklist", true, true];
 
 _civ
