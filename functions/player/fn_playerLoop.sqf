@@ -1,10 +1,12 @@
 #include "..\..\component.hpp"
 
 [{
+    if (!isGameFocused) exitWith {};
     [] call grad_civs_fnc_checkWeaponOnCivilianPointer;
 }, 0.5, []] call CBA_fnc_addPerFrameHandler;
 
 [{
+    if (!isGameFocused) exitWith {};
     if ([] call grad_civs_fnc_isPlayerHonking) then {
         [] call grad_civs_fnc_checkHonkingOnCivilian;
     };
@@ -12,10 +14,11 @@
 
 GRAD_CIVS_PLAYERSIDE = sideUnknown;
 [{
+    if (!isGameFocused) exitWith {};
     if !(alive player) exitWith {};
     if (GRAD_CIVS_PLAYERSIDE == side player) exitWith {};
     if ((["HEALTHY", "INJURED"] find (lifeState player)) == -1) exitWith {};
-    
+
     if (side player == civilian) then {
         GRAD_CIVS_INFOCHANNEL radioChannelAdd [player];
         ["you are CIVILIAN now"] call grad_civs_fnc_showCivHint;
