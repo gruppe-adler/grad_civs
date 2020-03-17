@@ -1,1 +1,1 @@
-_this getVariable ["grad_civs_primaryTask", ""] == "reside"
+(_this getVariable ["grad_civs_primaryTask", ""]) == "reside"

@@ -22,8 +22,83 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     _civ setVariable ["grad_civs_isPointedAtCount", _currentCount - 1, true];
 }] call CBA_fnc_addEventHandler;
 
+
+[
+    "ace_interaction_getDown",
+    {
+        params [
+            ["_target", objNull]
+        ];
+        LOG_1("civ %1 is being sent down", _target);
+        [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+        private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
+        private _waitTime = linearConversion [0, 10, _recklessness, 3600, 180, false];
+        [_target, format["am told to get down, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
+        [
+            {
+                private _target = _this;
+                [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
+                [_target, ""] call FUNC(setCurrentlyThinking);
+            },
+            _target,
+            _waitTime
+        ] call CBA_fnc_waitAndExecute;
+    }
+] call CBA_fnc_addEventHandler;
+
+[
+    "ace_interaction_sendAway",
+    {
+        params [
+            ["_target", objNull]
+        ];
+        LOG_1("civ %1 is being sent away", _target);
+        [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+        private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
+        private _waitTime = linearConversion [0, 10, _recklessness, 60, 5, false];
+        [_target, format["am being sent away, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
+        [
+            {
+                private _target = _this;
+                [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
+                [_target, ""] call FUNC(setCurrentlyThinking);
+            },
+            _target,
+            _waitTime
+        ] call CBA_fnc_waitAndExecute;
+    }
+] call CBA_fnc_addEventHandler;
+
+[
+    "honked_at",
+    {
+        params [
+            ["_target", objNull]
+        ];
+        LOG_1("civ %1 is being honked at", _target);
+        [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+        private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
+        private _waitTime = linearConversion [0, 10, _recklessness, 15, 1, false];
+        [_target, format["am avoiding honking car, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
+        [
+            {
+                private _target = _this;
+                [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
+                [_target, ""] call FUNC(setCurrentlyThinking);
+            },
+            _target,
+            _waitTime
+        ] call CBA_fnc_waitAndExecute;
+    }
+] call CBA_fnc_addEventHandler;
+
+
 ["honked_at", {
-    params ["_civ", "_carPos", "_carVelocity"];
+    params [
+        ["_civ", objNull],
+        ["_carPos", [0, 0, 0]],
+        ["_carVelocity", [0, 0, 0]]
+    ];
     if (_civ == ACE_player) exitWith {};
     private _moveVectors = [
         [-(_carVelocity select 1), _carVelocity select 0, _carPos select 2],
@@ -34,7 +109,6 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
         _moveVector = _moveVectors select 1;
     };
-    _civ setVariable ["grad_civs_act_leave_state_time", CBA_missionTime + 4];
     _civ call grad_civs_fnc_forcePanicSpeed;
     _civ doMove ((position _civ) vectorAdd _moveVector);
 }] call CBA_fnc_addEventHandler;
@@ -56,7 +130,7 @@ assert(_act_business != "");
 
 private _act_asOrdered = [
     _activities,
-    { _this call grad_civs_fnc_sm_activities_state_asOrdered_loop },
+    {},
     { _this call grad_civs_fnc_sm_activities_state_asOrdered_enter },
     { _this call grad_civs_fnc_sm_activities_state_asOrdered_exit },
     "act_asOrdered"
@@ -128,7 +202,7 @@ assert ([
 assert ([
     _activities,
     _act_business, _act_asOrdered,
-    ["ace_interaction_getDown", "ace_interaction_sendAway", "honked_at"],
+    [QGVAR(customActivity_start)],
     {true},
     {},
     _act_business + _act_asOrdered
@@ -137,10 +211,11 @@ assert ([
 assert ([
     _activities,
     _act_asOrdered, _act_business,
-    { _this call grad_civs_fnc_sm_activities_trans_asOrdered_business_condition },
+    [QGVAR(customActivity_end)],
+    {true},
     {},
-    _act_asOrdered + _act_business
-] call grad_civs_fnc_addTransition);
+    _act_asOrdered + _act_business + "_event"
+] call CBA_statemachine_fnc_addEventTransition);
 
 GRAD_CIVS_STATE_ACTIVITIES = _activities;
 GRAD_CIVS_STATEMACHINES setVariable ["activities", _activities];

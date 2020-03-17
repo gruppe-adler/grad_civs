@@ -51,9 +51,11 @@ class grad_civs {
         class findPositionOfInterest {};
         class findRandomPos {};
         class findRandomPosArea {};
+        class formatNowPlusSeconds {};
         class getCurrentState {};
         class getGlobalCivs {};
         class isInHouse {};
+        class nowPlusSeconds {};
         class removeFromStateMachine {};
     };
 
@@ -96,12 +98,10 @@ class grad_civs {
         class sm_activities_helper_surrenderCondition {};
         class sm_activities_state_asOrdered_enter {};
         class sm_activities_state_asOrdered_exit {};
-        class sm_activities_state_asOrdered_loop {};
         class sm_activities_state_panic_enter {};
         class sm_activities_state_panic_exit {};
         class sm_activities_state_surrendered_enter {};
         class sm_activities_state_surrendered_exit {};
-        class sm_activities_trans_asOrdered_business_condition {};
         class sm_activities_trans_business_panic_condition {};
         class sm_activities_trans_business_surrendered_condition {};
         // class sm_activities_trans_panic_business_condition {}; // event transition
