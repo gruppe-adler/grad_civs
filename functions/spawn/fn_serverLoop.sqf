@@ -61,7 +61,7 @@ grad_civs_debugLoop = [{
 ] call CBA_fnc_addPerFrameHandler;
 
 /*
- * in case acex rebalancing moves civs to a headless client, take care to grab them
+ * if a civ gets moved to the HC for some reason (for example by  acex_headless) take care to grab them
  */
 if (!hasInterface && !isDedicated) then {
     [
