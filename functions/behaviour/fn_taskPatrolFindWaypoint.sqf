@@ -28,6 +28,9 @@ for "_i" from 1 to _maxTries do {
         _findWaterPos,
         _findRoadPos
     ] call FUNC(findRandomPos);
+    if (_searchPosition isEqualTo []) then {
+        _searchPosition = _position;
+    };
 
     _searchPosition = if (_findPosOfInterest && {80 > random 100}) then {
         [_searchPosition, false] call FUNC(findPositionOfInterest);
@@ -35,7 +38,7 @@ for "_i" from 1 to _maxTries do {
         _searchPosition
     };
 
-    private _inAnyExclusionZone = [GRAD_CIVS_EXCLUSION_ZONES, {_searchPosition inArea (_this#0)}] call FUNC(arrayContains);
+    private _inAnyExclusionZone = [_searchPosition] call FUNC(isInPopulatedZone);
     if (!_inAnyExclusionZone) exitWith {
         LOG_1("position %1 is not in exclusionzone, return it", _searchPosition);
         _waypointPosition = _searchPosition;

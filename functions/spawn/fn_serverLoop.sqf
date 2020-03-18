@@ -18,7 +18,17 @@ private _mainLoop = {
 
     [] call grad_civs_fnc_spawnPass;
 };
-grad_civs_mainLoop = [_mainLoop, 2, []] call CBA_fnc_addPerFrameHandler;
+
+// wait a bit until the main loop starts. that way, exclusion zone trigger inits have a chance to run
+[
+    {
+        private _mainLoop = _this#0;
+        grad_civs_mainLoop = [_mainLoop, 2, []] call CBA_fnc_addPerFrameHandler;
+    },
+    [_mainLoop],
+    10
+] call CBA_fnc_waitAndExecute;
+
 
 grad_civs_debugLoop = [{
     params ["_args", "_handle"];

@@ -22,6 +22,9 @@ class grad_civs {
         class addExclusionZone {};
         class clearExclusionZones {};
         class getExclusionZones {};
+        class addPopulationZone {};
+        class clearPopulationZones {};
+        class getPopulationZones {};
         class populateArea {};
         class setBackpacks {};
         class setClothes {};
@@ -56,6 +59,7 @@ class grad_civs {
         class getGlobalCivs {};
         class isInHouse {};
         class nowPlusSeconds {};
+        class isInPopulatedZone {};
         class removeFromStateMachine {};
     };
 

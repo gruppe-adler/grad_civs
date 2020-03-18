@@ -3,7 +3,7 @@
 
 params ["_allPlayers", "_minSpawnDistance", "_maxSpawnDistance", "_civilians"];
 
-if (count _allPlayers == 0) exitWith {LOG("_allPlayers is empty"); objNull};
+if (_allPlayers isEqualTo []) exitWith {LOG("_allPlayers is empty"); objNull};
 
 private _refPlayerPos = getPos (selectRandom _allPlayers);
 

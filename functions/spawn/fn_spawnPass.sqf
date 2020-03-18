@@ -1,7 +1,7 @@
 #include "..\..\component.hpp"
 
 _allPlayers = allPlayers - (entities "HeadlessClient_F");
-if (count _allPlayers == 0) exitWith {};
+if (_allPlayers isEqualTo []) exitWith {};
 
 private _fps = diag_fps;
 if (_fps < GRAD_CIVS_MINFPS) exitWith {INFO_2("not spawning additional civs: less FPS than required (%1/%2)", _fps, GRAD_CIVS_MINFPS)};
