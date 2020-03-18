@@ -134,6 +134,22 @@ class CfgGradCivs {
 };
 ```
 
+## Events
+
+### custom activity
+
+To let civilians break from their usual activity and do something else, you can use events:
+
+This will make the civilian available to be given custom commands without interference from grad-civs:
+
+`["GRAD_civs_customActivity_start", [_civ], _civ] call CBA_fnc_targetEvent;`
+
+To end the custom activity and make the civ resume their normal stuff, fire another event:
+
+`["GRAD_civs_customActivity_end", [_civ], _civ] call CBA_fnc_targetEvent;`
+
+**NOTE**: this whole thing will *NOT* work while they are panicking.
+
 ## Functions
 
 All functions meant for use from outside sit in the `/functions/api` directory.

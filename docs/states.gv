@@ -50,7 +50,7 @@ digraph lifecycle {
 
             act_surrendered -> cluster_business_node [lhead=cluster_business];
             cluster_business_node -> act_surrendered [ltail=cluster_business];
-            act_asOrdered -> cluster_business_node [lhead=cluster_business];
+            act_asOrdered -> cluster_business_node [lhead=cluster_business color=red];
             cluster_business_node -> act_asOrdered [ltail=cluster_business color=red];
 
             cluster_panic_node -> cluster_business_node [color=blue lhead=cluster_business ltail=cluster_panic]
