@@ -26,7 +26,7 @@ for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
         _findWaterPos
     ] call FUNC(taskPatrolFindWaypoint);
 
-    if (count _nextWaypoint == 0) exitWith {
+    if (_nextWaypoint isEqualTo []) exitWith {
         WARNING_3("could not find more than %1 waypoints within %2m around %3", _i, _radius, _position)
     };
     LOG_1("waypoint #%1 found", _i);

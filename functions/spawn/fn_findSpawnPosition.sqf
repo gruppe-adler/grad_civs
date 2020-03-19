@@ -57,7 +57,7 @@ private _result = {
                 [_allPlayers, _candidate, _minDistance] call grad_civs_fnc_isInDistanceFromOtherPlayers
             }
             && {
-                ({ _candidate inArea _x; } count GRAD_CIVS_EXCLUSION_ZONES) == 0
+                [_candidate] call FUNC(isInPopulatedZone)
             }
         ) exitWith {
             LOG_1("found spawn position %1", _candidate);

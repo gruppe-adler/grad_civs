@@ -2,7 +2,7 @@
 
 params ["_locationPosition","_locationRadius","_amountFactor","_houseFactor","_minDistance","_maxAmount"];
 
-if (count GRAD_CIVS_VEHICLES == 0) exitWith {};
+if (GRAD_CIVS_VEHICLES isEqualTo []) exitWith {};
 private _vehiclePositions = [];
 
 //LOCAL FUNCTIONS ==============================================================

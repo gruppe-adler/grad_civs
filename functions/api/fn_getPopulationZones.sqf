@@ -1,3 +1,3 @@
 #include "..\..\component.hpp"
 
-GVAR(EXCLUSION_ZONES)
+GVAR(POPULATION_ZONES)

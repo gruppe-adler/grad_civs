@@ -21,7 +21,7 @@ private _position = if (count _buildingPositions > 0) then {selectRandom _buildi
 	[_searchPosition,[50,100],[0,360]] call FUNC(findRandomPos);
 };
 
-if (count _position == 0) then {
+if (_position isEqualTo []) then {
 	_position = _searchPosition;
 };
 
