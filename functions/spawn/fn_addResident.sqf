@@ -16,7 +16,7 @@ if (isNull _house) exitWith {LOG("could not find spawn position for resident thi
 
 private _groupSize = floor random GRAD_CIVS_INITIALGROUPSIZE;
 
-private _group = [getPos _house, _groupSize, objNull, _house, "reside"] call grad_civs_fnc_spawnCivilianGroup;
+private _group = [getPos _house, _groupSize, objNull, _house, "reside"] call FUNC(spawnCivilianGroup);
 if (isNull _group) exitWith {};
 
 _group
