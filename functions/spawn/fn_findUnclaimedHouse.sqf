@@ -20,7 +20,8 @@ private _exclusionList = [
 	"Land_Pier_small_F",
 	"Land_NavigLight",
 	"Land_LampHarbour_F",
-	"Land_runway_edgelight"
+	"Land_runway_edgelight",
+    "gm_structure_euro_80_wall_base"
 ];
 
 private _minPosCount = 2;
