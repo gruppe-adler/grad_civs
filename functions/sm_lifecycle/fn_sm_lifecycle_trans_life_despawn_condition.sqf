@@ -1,4 +1,6 @@
-private _idx =  GRAD_CIVS_LOCAL_CIVS find _this;
+#include "..\..\component.hpp"
+
+private _idx =  GVAR(LOCAL_CIVS) find _this;
 
 if (_idx == -1) exitWith {false}; // should not happen, really
 
@@ -6,12 +8,12 @@ if (((floor CBA_missionTime) mod 10) != (_idx mod 10)) exitWith {false}; // chec
 
 if (_this getVariable ["grad_civs_excludeFromCleanup",false]) exitWith {false};
 
-private _cleanupDistance = GRAD_CIVS_SPAWNDISTANCEINVEHICLESMAX * 1.2;
-if (isNull (_this call grad_civs_fnc_getGroupVehicle)) then {
-    _cleanupDistance = GRAD_CIVS_SPAWNDISTANCEONFOOTMAX * 1.5;
+private _cleanupDistance = GVAR(SPAWNDISTANCEINVEHICLESMAX) * 1.2;
+if (isNull (_this call FUNC(getGroupVehicle))) then {
+    _cleanupDistance = GVAR(SPAWNDISTANCEONFOOTMAX) * 1.5;
 };
-if (_this distance nearestBuilding _this < 3) then {
-    _cleanupDistance = GRAD_CIVS_SPAWNDISTANCERESIDENTMAX * 1.2;
+if (_this call FUNC(isInHouse)) then {
+    _cleanupDistance = GVAR(SPAWNDISTANCERESIDENTMAX) * 1.2;
 };
 
 private _playersAreClose = true isEqualTo ({

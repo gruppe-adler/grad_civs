@@ -1,8 +1,14 @@
 // originall written by KK
 
+
+private _pos = _this;
+if (_this isEqualType objNull) then {
+    _pos = getPosASL _this;
+};
+
 lineIntersectsSurfaces [
-    _this,
-	_this vectorAdd [0, 0, 50],
+    _pos,
+	_pos vectorAdd [0, 0, 50],
 	objNull,
     objNull,
     true,

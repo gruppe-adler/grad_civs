@@ -54,10 +54,10 @@ private _result = {
         if ((!(isNull _candidate))
             && {
                 LOG_3("_allPlayers: %1, _candidate %2, _minDistance %3", _allPlayers, getPos _candidate, _minDistance);
-                [_allPlayers, _candidate, _minDistance] call grad_civs_fnc_isInDistanceFromOtherPlayers
+                [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers)
             }
             && {
-                [_candidate] call FUNC(isInPopulatedZone)
+                [getPos _candidate] call FUNC(isInPopulatedZone)
             }
         ) exitWith {
             LOG_1("found spawn position %1", _candidate);
