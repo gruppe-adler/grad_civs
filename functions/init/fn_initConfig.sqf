@@ -49,7 +49,7 @@ missionNamespace setVariable ["GRAD_CIVS_ONHELDUP",compile ([missionConfigFile >
 missionNamespace setVariable ["GRAD_CIVS_ONKILLED",compile ([missionConfigFile >> "cfgGradCivs","onKilled",""] call BIS_fnc_returnConfigEntry)];
 
 _initialGroupSize = [missionConfigFile >> "cfgGradCivs","initialGroupSize", 3] call BIS_fnc_returnConfigEntry;
-if (typeName _initialGroupSize == "NUMBER") then { _initialGroupSize = _initialGroupSize + 1 };
+if (typeName _initialGroupSize == "SCALAR") then { _initialGroupSize = _initialGroupSize + 1 };
 missionNamespace setVariable ["GRAD_CIVS_INITIALGROUPSIZE", _initialGroupSize];
 missionNamespace setVariable ["GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE", ([missionConfigFile >> "cfgGradCivs","automaticVehicleGroupSize", 1] call BIS_fnc_returnConfigEntry) == 1];
 missionNamespace setVariable ["GRAD_CIVS_PANICCOOLDOWN", ([missionConfigFile >> "cfgGradCivs", "panicCooldown", [15, 120, 240]] call BIS_fnc_returnConfigEntry)];
