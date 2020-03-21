@@ -1,13 +1,7 @@
 #include "..\..\component.hpp"
 
-_this params [
-    ["_trigger", objNull]
-];
+params ["_area"];
 
-if (isNull _trigger) exitWith {
-    ERROR("got NULL instead of a trigger as parameter");
-};
+GVAR(POPULATION_ZONES) pushBack _area;
 
-GVAR(POPULATION_ZONES) pushBack _trigger;
-
-INFO_2("added population zone %1 at %2", triggerArea _trigger, getPos _trigger);
+INFO_1("added population zone %1", _area);

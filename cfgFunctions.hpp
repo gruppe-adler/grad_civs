@@ -91,6 +91,7 @@ class grad_civs {
         class isPlayerHonking {};
         class playerLoop {};
         class registerAceInteractionHandler {};
+        class setupZeusModules {};
         class showCivHint {};
     };
 
