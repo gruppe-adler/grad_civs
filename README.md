@@ -2,6 +2,8 @@
 
 Spawn ambient civilians on the map.
 
+[![Issues](https://img.shields.io/github/issues/gruppe-adler/grad-civs.svg)](https://github.com/gruppe-adler/grad-civs/issues)
+
 ## Features
 
 * civilians patrol and drive around the country, alone and in small groups
