@@ -11,5 +11,5 @@ if (_structured == "") then {
 if (GRAD_CIVS_INFOCHANNEL == 0) then {
     systemChat _plain;
 } else {
-    player customChat [GRAD_CIVS_INFOCHANNEL, _plain] ;
+    player customChat [GRAD_CIVS_INFOCHANNEL, _plain];
 };
