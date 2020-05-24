@@ -2,7 +2,14 @@
 
 scopeName "checkPointer_main";
 
-if ((alive player) && (!weaponLowered player) && (vehicle player == player)) then {
+
+// NOTE: we need to use animationState, as !weaponLowered does *not* mean "weaponRaised"
+if (
+    (alive player) &&
+    {!weaponLowered player} &&
+    {vehicle player == player} &&
+    {"sras" in (animationState player)}
+) then {
 
     _currentCiv = player getVariable ["GRAD_isPointingAtObj", objNull];
     _possibleCiv = driver cursorTarget;
