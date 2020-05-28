@@ -1,7 +1,9 @@
-private _lifecycle = [{GRAD_CIVS_LOCAL_CIVS}, true] call CBA_statemachine_fnc_create;
+#include "..\..\component.hpp"
 
-private _activities = [] call grad_civs_fnc_sm_activities;
-private _emotions = [] call grad_civs_fnc_sm_emotions;
+private _lifecycle = [{GVAR(LOCAL_CIVS)}, true] call CBA_statemachine_fnc_create;
+
+private _activities = [] call FUNC(sm_activities);
+private _emotions = [] call FUNC(sm_emotions);
 
 private _lifecycle_spawn  = [
     _lifecycle,

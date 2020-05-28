@@ -1,6 +1,6 @@
 #include "..\..\component.hpp"
 
-_allPlayers = allPlayers - (entities "HeadlessClient_F");
+private _allPlayers = ALL_HUMAN_PLAYERS;
 if (_allPlayers isEqualTo []) exitWith {};
 
 private _fps = diag_fps;

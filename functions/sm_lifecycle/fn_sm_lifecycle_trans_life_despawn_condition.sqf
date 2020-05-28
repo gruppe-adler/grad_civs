@@ -16,10 +16,4 @@ if (_this call FUNC(isInHouse)) then {
     _cleanupDistance = GVAR(SPAWNDISTANCERESIDENTMAX) * 1.2;
 };
 
-private _playersAreClose = true isEqualTo ({
-    if (_this distance _x < _cleanupDistance) exitWith { true };
-    false
-} count (allPlayers - (entities "HeadlessClient_F")));
-// CBA_fnc_players would work, if you dont mind things despawning close to zeus
-
-!_playersAreClose
+[ALL_HUMAN_PLAYERS, getPos _this, _cleanupDistance] call FUNC(isInDistanceFromOtherPlayers);

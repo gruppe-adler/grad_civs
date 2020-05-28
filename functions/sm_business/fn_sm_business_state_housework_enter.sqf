@@ -2,7 +2,7 @@
 
 private _house = _this getVariable ["grad_civs_home", objNull];
 _this setVariable ["grad_civs_housework_time", random [5, 15, 120]];
-_this call grad_civs_fnc_forceBusinessSpeed;
+_this call grad_civs_fnc_forceEmotionSpeed;
 
 if (isNull _house) exitWith {};
 

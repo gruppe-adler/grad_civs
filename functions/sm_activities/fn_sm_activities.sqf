@@ -29,20 +29,22 @@ private _panic = [] call grad_civs_fnc_sm_panic;
         params [
             ["_target", objNull]
         ];
-        LOG_1("civ %1 is being sent down", _target);
-        [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+        INFO_1("civ %1 is being sent down", _target);
+
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 3600, 180, false];
-        [_target, format["am told to get down, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
         [
+            _target,
+            {},
             {
-                private _target = _this;
-                [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
+                params ["_target"];
                 [_target, ""] call FUNC(setCurrentlyThinking);
             },
-            _target,
-            _waitTime
-        ] call CBA_fnc_waitAndExecute;
+            _waitTime,
+            [],
+            "ace_interaction_getDown",
+            format["am told to get down, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]
+        ] call FUNC(doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;
 
@@ -50,22 +52,22 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     "ace_interaction_sendAway",
     {
         params [
-            ["_target", objNull]
+            ["_target", objNull],
+            ["_pos", [0, 0, 0]]
         ];
-        LOG_1("civ %1 is being sent away", _target);
-        [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+        INFO_2("civ %1 is being sent away to %2", _target, _pos);
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 60, 5, false];
-        [_target, format["am being sent away, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
         [
-            {
-                private _target = _this;
-                [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
-                [_target, ""] call FUNC(setCurrentlyThinking);
-            },
             _target,
-            _waitTime
-        ] call CBA_fnc_waitAndExecute;
+            {
+            },
+            {},
+            _waitTime,
+            [],
+            "ace_interaction_sendAway",
+            format["am being sent away to %1, will resume activity at %2", _pos, _waitTime call FUNC(formatNowPlusSeconds)]
+        ] call FUNC(doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;
 
@@ -73,45 +75,86 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     "honked_at",
     {
         params [
-            ["_target", objNull]
+            ["_target", objNull],
+            ["_carPos", [0, 0, 0]],
+            ["_carVelocity", [0, 0, 0]]
         ];
-        LOG_1("civ %1 is being honked at", _target);
-        [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+        if (_target == ACE_player) exitWith {};
+        INFO_1("civ %1 is being honked at", _target);
+
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 15, 1, false];
-        [_target, format["am avoiding honking car, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
+
         [
-            {
-                private _target = _this;
-                [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
-                [_target, ""] call FUNC(setCurrentlyThinking);
-            },
             _target,
-            _waitTime
-        ] call CBA_fnc_waitAndExecute;
+            {
+                params ["_target", "_carPos", "_carVelocity"];
+
+                private _moveVectors = [
+                    [-(_carVelocity select 1), _carVelocity select 0, _carPos select 2],
+                    [_carVelocity select 1, -(_carVelocity select 0),  _carPos select 2]
+                ];
+                // go left or right, depending on where to get further from the vehicle
+                private _moveVector = _moveVectors select 0;
+                if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
+                    _moveVector = _moveVectors select 1;
+                };
+                _civ call FUNC(forcePanicSpeed);
+                _civ doMove ((position _civ) vectorAdd _moveVector);
+            },
+            {},
+            _waitTime,
+            [_carPos, _carVelocity],
+            "honked_at",
+            format["am avoiding honking car, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]
+        ] call FUNC(doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;
 
 
-["honked_at", {
+[QGVAR(gestured_at_stop), {
     params [
-        ["_civ", objNull],
-        ["_carPos", [0, 0, 0]],
-        ["_carVelocity", [0, 0, 0]]
+        ["_target", objNull]
     ];
-    if (_civ == ACE_player) exitWith {};
-    private _moveVectors = [
-        [-(_carVelocity select 1), _carVelocity select 0, _carPos select 2],
-        [_carVelocity select 1, -(_carVelocity select 0),  _carPos select 2]
-    ];
-    // go left or right, depending on where to get further from the vehicle
-    private _moveVector = _moveVectors select 0;
-    if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
-        _moveVector = _moveVectors select 1;
-    };
-    _civ call grad_civs_fnc_forcePanicSpeed;
-    _civ doMove ((position _civ) vectorAdd _moveVector);
+    if (_target == ACE_player) exitWith {};
+
+    private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
+    private _waitTime = linearConversion [0, 10, _recklessness, 60*15, 15, false];
+
+    [
+        _target,
+        {
+            params ["_target"];
+            doStop _target;
+            _target disableAI "MOVE";
+        },
+        {
+            params ["_target"];
+            _target enableAI "MOVE";
+        },
+        _waitTime,
+        [],
+        "gestured_at_stop",
+        format["am halting, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]
+    ] call FUNC(doCustomActivity);
+
 }] call CBA_fnc_addEventHandler;
+
+[QGVAR(gestured_at_vehicle_go), {
+    params [
+        ["_target", objNull],
+        ["_vectorDir", [0, 0, 0]]
+    ];
+    if (_target == ACE_player) exitWith {};
+    if (_vectorDir isEqualTo [0, 0, 0]) exitWith {
+        WARNING_1("inconclusive 'go' gesture, %1 will do nothing", _target);
+    };
+
+    private _reverseTargetPos = (getPos _target) vectorAdd (_vectorDir vectorMultiply 50);
+
+    [_target, _reverseTargetPos] call FUNC(customActivity_reverse);
+}] call CBA_fnc_addEventHandler;
+
 
 // STATES
 assert(_activities isEqualType locationNull);

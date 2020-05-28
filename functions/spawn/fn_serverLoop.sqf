@@ -7,7 +7,7 @@ if (!GRAD_CIVS_ENABLEDINVEHICLES && !GRAD_CIVS_ENABLEDONFOOT) exitWith {-1};
 private _mainLoop = {
     params ["_args", "_handle"];
 
-    if (call GRAD_CIVS_EXITON) exitWith {
+    if (call GVAR(EXITON)) exitWith {
         INFO("exiting because GRAD_CIVS_EXITON returned true");
         [_handle] call CBA_fnc_removePerFrameHandler
     };
@@ -16,7 +16,7 @@ private _mainLoop = {
         [_handle] call CBA_fnc_removePerFrameHandler
     };
 
-    [] call grad_civs_fnc_spawnPass;
+    [] call FUNC(spawnPass);
 };
 
 // wait a bit until the main loop starts. that way, exclusion zone trigger inits have a chance to run
@@ -33,8 +33,8 @@ private _mainLoop = {
 grad_civs_debugLoop = [{
     params ["_args", "_handle"];
     if (call GRAD_CIVS_EXITON) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
-    if (GRAD_CIVS_DEBUG_CIVSTATE) then {
-        { _x call grad_civs_fnc_updateInfoLine; } forEach GRAD_CIVS_LOCAL_CIVS;
+    if (GVAR(DEBUG_CIVSTATE)) then {
+        { _x call FUNC(updateInfoLine); } forEach GVAR(LOCAL_CIVS);
     };
 }, 0.1, []] call CBA_fnc_addPerFrameHandler;
 

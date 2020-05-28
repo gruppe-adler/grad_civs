@@ -1,7 +1,7 @@
 #define PREFIX GRAD
 #define COMPONENT civs
 
-//#define DEBUG_MODE_FULL
+// #define DEBUG_MODE_FULL
 #include "\x\cba\addons\main\script_macros_mission.hpp"
 
 #ifdef DEBUG_MODE_FULL
@@ -20,3 +20,6 @@
 #define ASSERT_PLAYER(var1)   if (!hasInterface) exitWith { diag_log(var1); }
 
 #endif
+
+#define ALL_HUMAN_PLAYERS (allPlayers - (entities "HeadlessClient_F"))
+// alternatively, does exclude zeus iirc: #define ALL_HUMAN_PLAYERS ([] call CBA_fnc_players)

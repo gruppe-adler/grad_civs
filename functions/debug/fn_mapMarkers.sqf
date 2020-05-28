@@ -1,13 +1,13 @@
 #include "..\..\component.hpp"
 
-params [["_onOff",GRAD_CIVS_DEBUG_CIVSTATE]];
+params [["_onOff",GVAR(DEBUG_CIVSTATE)]];
 
 ASSERT_PLAYER("");
 
-GRAD_CIVS_DEBUG_CIVSTATE = _onOff;
+GVAR(DEBUG_CIVSTATE) = _onOff;
 
 if (_onOff) then {
-    GRAD_CIVS_DRAWUNITSEH = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {
+    GVAR(DRAWUNITSEH) = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {
 
         private _civs = [] call grad_civs_fnc_getGlobalCivs;
         private _civsInCarDrivers = _civs select {
@@ -23,5 +23,6 @@ if (_onOff) then {
         //one day: iconHelicopter
     }];
 } else {
-    ((findDisplay 12) displayCtrl 51) ctrlRemoveEventHandler ["Draw",missionNamespace getVariable ["GRAD_CIVS_DRAWUNITSEH",-1]];
+    ISNILS(GVAR(DRAWUNITSEH), -1);
+    ((findDisplay 12) displayCtrl 51) ctrlRemoveEventHandler ["Draw", GVAR(DRAWUNITSEH)];
 };

@@ -11,8 +11,9 @@ if (hasInterface) then {
 
     [] call FUNC(playerLoop);
     [] call FUNC(registerAceInteractionHandler);
+    [] call FUNC(addCivInteractions);
     [] call FUNC(setupZeusModules);
-    if (GRAD_CIVS_DEBUG_CIVSTATE) then {
+    if (GVAR(DEBUG_CIVSTATE)) then {
         [] call FUNC(showWhatTheyThink);
 
         [{!isNull (findDisplay 12)}, {[] call FUNC(mapMarkers)}, []] call CBA_fnc_waitUntilAndExecute;

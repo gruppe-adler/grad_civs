@@ -46,7 +46,6 @@ private _addBehaviour = {
 	_unit disableAI "CHECKVISIBLE";
 	_unit disableAI "COVER";
 	_unit disableAI "AUTOCOMBAT";
-	//_unit disableAI "NVG"; // NVG does not exist in ENUM; says Arma
 };
 
 private _addKilledNews = {

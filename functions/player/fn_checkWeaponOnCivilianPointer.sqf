@@ -18,7 +18,7 @@ if (
     if !((_currentCiv isEqualTo _possibleCiv) || (cursorTarget isEqualTo (_currentCiv call grad_civs_fnc_getGroupVehicle))) then {
         if (!isNull _currentCiv) then {
             player setVariable ["GRAD_isPointingAtObj", objNull];
-            if (GRAD_CIVS_DEBUG_CIVSTATE) then { hint format ["depointing %1", _currentCiv]; };
+            if (GVAR(DEBUG_CIVSTATE)) then { hint format ["depointing %1", _currentCiv]; };
             ["pointed_at_dec", [_currentCiv], [_currentCiv]] call CBA_fnc_targetEvent;
         };
     } else {
@@ -31,7 +31,7 @@ if (
     if ((side _possibleCiv) == civilian && (alive _possibleCiv)) then {
         if ([player, _possibleCiv] call grad_civs_fnc_checkWeaponOnCivilianPerception) then {
             player setVariable ["GRAD_isPointingAtObj", _possibleCiv];
-            if (GRAD_CIVS_DEBUG_CIVSTATE) then { hint format ["pointing at %1", _possibleCiv]; };
+            if (GVAR(DEBUG_CIVSTATE)) then { hint format ["pointing at %1", _possibleCiv]; };
             ["pointed_at_inc", [_possibleCiv], [_possibleCiv]] call CBA_fnc_targetEvent;
         };
     };
@@ -42,7 +42,7 @@ if (
 
     if (!isNull _currentCiv) then {
         player setVariable ["GRAD_isPointingAtObj", objNull];
-        if (GRAD_CIVS_DEBUG_CIVSTATE) then { hint format ["depointing %1", _currentCiv]; };
+        if (GVAR(DEBUG_CIVSTATE)) then { hint format ["depointing %1", _currentCiv]; };
         ["pointed_at_dec", [_currentCiv], [_currentCiv]] call CBA_fnc_targetEvent;
     };
 };

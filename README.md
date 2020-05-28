@@ -137,25 +137,42 @@ class CfgGradCivs {
 };
 ```
 
-## Events
-
-### custom activity
-
-To let civilians break from their usual activity and do something else, you can use events:
-
-This will make the civilian available to be given custom commands without interference from grad-civs:
-
-`["GRAD_civs_customActivity_start", [_civ], _civ] call CBA_fnc_targetEvent;`
-
-To end the custom activity and make the civ resume their normal stuff, fire another event:
-
-`["GRAD_civs_customActivity_end", [_civ], _civ] call CBA_fnc_targetEvent;`
-
-**NOTE**: this whole thing will *NOT* work while they are panicking.
-
 ## Functions
 
 All functions meant for use from outside sit in the `/functions/api` directory.
+
+### grad_civs_fnc_doCustomActivity
+
+To let civilians break from their usual activity and do something else:
+
+```
+[
+    _civ,
+    { _this#0 setBehaviour "STEALTH" },
+    { _this#0 setBehaviour "CARELESS" },
+    600,
+    [],
+    "hiding",
+    "pooped my pants, hiding for ten minutes"
+] call grad_civs_fnc_doCustomActivity;
+```
+
+**NOTE**: this whole thing will *NOT* work while they are panicking.
+
+**NOTE**: do clean up after yourself in the `_doEnd` parameter. reset disableAI stuff etc!
+
+#### Syntax
+`[civ, doStart, doEnd, timeoutOrCondition, moreParameters, name, description] call grad_civs_fnc_setFaces`
+
+Parameter           | Explanation
+--------------------|-----------------------------------------------------------
+civ                 | unit - civilian to apply to
+doStart             | code - execute desired behavior. gets `civ` as first parameter, and the elements of `moreParameters`
+doEnd               | code - end desired behavior. gets `civ` as first parameter, and the elements of `moreParameters`.
+timeoutOrCondition  | number or code - behavior length in seconds, or condition to end behavior
+moreParameters      | array (optional) - more parameters to be passed to doStart and doEnd
+name                | string (optional) - behavior name
+description         | string (optional) - behavior description
 
 ### grad_civs_fnc_setClothes
 Sets all clothes that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
