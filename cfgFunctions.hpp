@@ -50,6 +50,7 @@ class grad_civs {
 
         class arrayContains {};
         class compare {};
+        class feelsAddressedByGesture {};
         class findBuildings {};
         class findPositionOfInterest {};
         class findRandomPos {};
