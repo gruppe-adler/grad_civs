@@ -19,8 +19,6 @@ private _unitEyesVector = eyeDirection _unit;
 
 private _gesturerAngleFromUnit = acos (_unitEyesVector vectorCos (_distanceVector2D vectorMultiply -1));
 
-diag_log format ["unit eyes: %1, distance %2, angle %3, gesturing vector %4 ", _unitEyesVector, _distanceVector2D, _gesturerAngleFromUnit, _gesturingVector];
-
 if (_gesturerAngleFromUnit > 70) exitWith {false};
 
 ([objNull, "VIEW"] checkVisibility [eyePos _gesturer, eyePos _unit]) > 0.5
