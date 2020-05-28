@@ -75,6 +75,7 @@ private _panic = [] call grad_civs_fnc_sm_panic;
         params [
             ["_target", objNull]
         ];
+        if (_target == ACE_player) exitWith {};
         LOG_1("civ %1 is being honked at", _target);
         [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
@@ -111,6 +112,35 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     };
     _civ call grad_civs_fnc_forcePanicSpeed;
     _civ doMove ((position _civ) vectorAdd _moveVector);
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(gestured_at_stop), {
+    params [
+        ["_target", objNull]
+    ];
+    if (_target == ACE_player) exitWith {};
+
+    [QGVAR(customActivity_start), [_target], _target] call CBA_fnc_targetEvent;
+    private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
+    private _waitTime = linearConversion [0, 10, _recklessness, 60*15, 15, false];
+    [_target, format["am halting, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]] call grad_civs_fnc_setCurrentlyThinking;
+    [
+        {
+            private _target = _this;
+            _this enableAI "MOVE";
+            _this enableAI "ANIM";
+
+            [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
+            [_target, ""] call FUNC(setCurrentlyThinking);
+        },
+        _target,
+        _waitTime
+    ] call CBA_fnc_waitAndExecute;
+
+    _this disableAI "MOVE";
+    _this disableAI "ANIM";
+
+
 }] call CBA_fnc_addEventHandler;
 
 // STATES

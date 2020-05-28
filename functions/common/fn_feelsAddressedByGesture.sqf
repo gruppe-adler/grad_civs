@@ -21,7 +21,7 @@ private _gesturerAngleFromUnit = acos (_unitEyesVector vectorCos (_distanceVecto
 
 if (_gesturerAngleFromUnit > 70) exitWith {false};
 
-([objNull, "VIEW"] checkVisibility [eyePos _gesturer, eyePos _unit]) > 0.5
+(([objNull, "VIEW"] checkVisibility [eyePos _gesturer, eyePos _unit]) > 0.5)
 
 // ENHANCEMENT NOTE also, this could be dependent on distance.
 // I'm standing next to you, you will see me gesturing at you even if you're turned 90deg on me.

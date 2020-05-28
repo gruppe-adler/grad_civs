@@ -58,6 +58,8 @@ class grad_civs {
         class formatNowPlusSeconds {};
         class getCurrentState {};
         class getGlobalCivs {};
+        class handleAnimation {};
+        class handleStopGesture {};
         class isInHouse {};
         class nowPlusSeconds {};
         class isInPopulatedZone {};
@@ -76,6 +78,7 @@ class grad_civs {
     class init {
         file = MODULES_DIRECTORY\grad-civs\functions\init;
 
+        class initCommonEventhandlers {postInit = 1;};
         class initConfig {preInit = 1;};
         class initHCs {postInit = 1;};
         class initModule {};
