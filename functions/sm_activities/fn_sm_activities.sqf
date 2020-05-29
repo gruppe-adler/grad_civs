@@ -127,8 +127,8 @@ private _panic = [] call grad_civs_fnc_sm_panic;
     [
         {
             private _target = _this;
-            _this enableAI "MOVE";
-            _this enableAI "ANIM";
+            _target enableAI "MOVE";
+            _target enableAI "ANIM";
 
             [QGVAR(customActivity_end), [_target], _target] call CBA_fnc_targetEvent;
             [_target, ""] call FUNC(setCurrentlyThinking);
@@ -137,8 +137,8 @@ private _panic = [] call grad_civs_fnc_sm_panic;
         _waitTime
     ] call CBA_fnc_waitAndExecute;
 
-    _this disableAI "MOVE";
-    _this disableAI "ANIM";
+    _target disableAI "MOVE";
+    _target disableAI "ANIM";
 
 
 }] call CBA_fnc_addEventHandler;
