@@ -50,3 +50,17 @@
     ],
     grad_civs_fnc_clearExclusionZones
 ] call grad_testing_fnc_executeTest;
+
+["GIVEN a point and no exclusion zones WHEN a patrol path is created",
+    {
+        [([[0, 0, 0], 250, 3] call grad_civs_fnc_taskPatrolFindWaypoints)]
+    },
+    [
+        ["three positions are returned as requested",
+            {
+                params [["_positions", []]];
+                [3, count _positions] call grad_testing_fnc_assertEquals;
+            }
+        ]
+    ]
+] call grad_testing_fnc_executeTest;
