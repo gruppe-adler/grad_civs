@@ -26,13 +26,15 @@ private _house = [
 
 private _pos = getPos _segment;
 private _vehicleClass = selectRandom GRAD_CIVS_VEHICLES;
+
+_veh = [_pos, _vehicleClass] call grad_civs_fnc_spawnVehicle;
+
 private _groupSize = floor random GRAD_CIVS_INITIALGROUPSIZE;
 if (GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE) then {
-    private _maxCount = [_vehicleClass, true] call BIS_fnc_crewCount;
+    private _maxCount = count ((fullCrew [_veh, "", true]) select {
+        !(_veh lockedCargo _x#2);
+    });
     _groupSize = (floor random _maxCount) + 1
 };
 
-LOGTIME_START("spawnCiv_vehicle");
-_veh = [_pos, _vehicleClass] call grad_civs_fnc_spawnVehicle;
 _group = [_pos, _groupSize, _veh, _house, "voyage"] call grad_civs_fnc_spawnCivilianGroup;
-LOGTIME_END("spawnCiv_vehicle");

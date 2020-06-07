@@ -195,6 +195,7 @@ class grad_civs {
         class findSpawnPosition {};
         class findSpawnRoadSegment {};
         class isInDistanceFromOtherPlayers {};
+        class loadAnimals {};
         class serverLoop {};
         class spawnCivilian {};
         class spawnCivilianGroup {};
