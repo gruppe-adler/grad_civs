@@ -26,12 +26,11 @@ private _house = [
 
 private _pos = getPos _segment;
 private _vehicleClass = selectRandom GRAD_CIVS_VEHICLES;
-private _randomArg = GRAD_CIVS_INITIALGROUPSIZE;
+private _groupSize = floor random GRAD_CIVS_INITIALGROUPSIZE;
 if (GRAD_CIVS_AUTOMATICVEHICLEGROUPSIZE) then {
-    _maxCount = [_vehicleClass, true] call BIS_fnc_crewCount;
-    _randomArg = _maxCount + 1;
+    private _maxCount = [_vehicleClass, true] call BIS_fnc_crewCount;
+    _groupSize = (floor random _maxCount) + 1
 };
-private _groupSize = floor random _randomArg;
 
 LOGTIME_START("spawnCiv_vehicle");
 _veh = [_pos, _vehicleClass] call grad_civs_fnc_spawnVehicle;
