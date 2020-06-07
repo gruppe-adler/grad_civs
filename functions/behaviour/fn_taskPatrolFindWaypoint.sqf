@@ -38,8 +38,8 @@ for "_i" from 1 to _maxTries do {
         _searchPosition
     };
 
-    private _inAnyExclusionZone = [_searchPosition] call FUNC(isInPopulatedZone);
-    if (!_inAnyExclusionZone) exitWith {
+    private _inPopulatedZone = [_searchPosition] call FUNC(isInPopulatedZone);
+    if (_inPopulatedZone) exitWith {
         LOG_1("position %1 is not in exclusionzone, return it", _searchPosition);
         _waypointPosition = _searchPosition;
     };
