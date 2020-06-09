@@ -59,6 +59,7 @@ Add the class `cfgGradCivs` to your `description.ext`. Use the following attribu
 
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
+animalTransportChance    | 0.4           | Probability that a suitable vehicle will carry some animals as cargo.
 autoInit                 | 0             | Toggles on automatic initialization of module on missions start (0/1). Keep this off if you want to use functions to set civs properties first.
 automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
 backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
