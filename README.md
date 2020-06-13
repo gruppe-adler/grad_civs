@@ -8,9 +8,12 @@ Spawn ambient civilians on the map.
 
 * civilians patrol and drive around the country, alone and in small groups
 * stop and raise their hands when threatened with weapons
+* vehicles will stop when you gesture at them (ACE 'hold' gesture)
+* ACE interactions: "back up vehicle", "carry on"
 * will panic and flee in firefights
 * will move out of player's way when getting honked at
 * civilian players will get hints as to what a "grad-civ" civilian would notice (like, being pointed at with a gun, told to go away by ACE interact, ...)
+* civilians get assigned homes
 
 ## Dependencies
 
@@ -147,13 +150,13 @@ To let civilians break from their usual activity and do something else:
 
 ```
 [
-    _civ,
-    { _this#0 setBehaviour "STEALTH" },
-    { _this#0 setBehaviour "CARELESS" },
-    600,
-    [],
-    "hiding",
-    "pooped my pants, hiding for ten minutes"
+    _civ,                               // _civilian
+    { _this#0 setBehaviour "STEALTH" }, // _doStart
+    { _this#0 setBehaviour "CARELESS" },// _doEnd
+    600,                                // _timeout or _endCondition
+    [],                                 // _moreParameters
+    "hiding",                           // _id
+    "pooped my pants, hiding for ten minutes" // self-description
 ] call grad_civs_fnc_doCustomActivity;
 ```
 
@@ -260,6 +263,8 @@ headgear  | Array - All classnames of clothes that civilians may wear.
 ### grad_civs_fnc_populateArea
 Manually populates an area with civilians. These civilians count towards the maximum amount.
 
+*probably horribly broken right now, dont rely on*
+
 #### Syntax
 `[area,amount,excludeFromCleanup,staticVehicles,staticVehiclesMax] call grad_civs_fnc_populateArea`
 
@@ -274,9 +279,11 @@ staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to cr
 
 ![](http://i.imgur.com/Cimaz4c.jpg)
 
-### grad_civs_fnc_addExclusionZone
+### grad_civs_fnc_addExclusionZone and grad_civs_fnc_addPopulationZone
 
-Prevent civilians from entering an area.
+Prevent civilians from entering areas.
+
+Optionally whitelist areas using `[_area] call grad_civs_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_fnc_addExclusionZone` .
 
 *known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
 
