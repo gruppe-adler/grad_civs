@@ -1,0 +1,7 @@
+name = "grad_civs"
+prefix = "grad_civs"
+author = "Fusselwurm"
+template = "cba"
+mainprefix = "z"
+folder_optionals = true
+sig_version = 3

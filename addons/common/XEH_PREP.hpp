@@ -1,0 +1,2 @@
+PREP(registerCivTaskType);
+PREP(civGetState);

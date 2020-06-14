@@ -6,14 +6,20 @@ Spawn ambient civilians on the map.
 
 ## Features
 
-* civilians patrol and drive around the country, alone and in small groups
-* stop and raise their hands when threatened with weapons
-* vehicles will stop when you gesture at them (ACE 'hold' gesture)
-* ACE interactions: "back up vehicle", "carry on"
+* automatically populate the map with civilians
+* dedicated to
+    * doing foot patrols
+    * driving around the country
+    * living in houses (that they leave only to visit their neighbors)
+* everything is automatically offloaded to Headless Clients (if available)
+* interactions with players:
+    * stop and raise their hands when threatened with weapons
+    * vehicles will stop when you gesture at them (ACE 'hold' gesture)
+    * ACE interactions: "back up vehicle", "carry on"
+    * will move out of player's way when getting honked at
 * will panic and flee in firefights
-* will move out of player's way when getting honked at
-* civilian players will get hints as to what a "grad-civ" civilian would notice (like, being pointed at with a gun, told to go away by ACE interact, ...)
-* civilians get assigned homes
+* civilian *players* get visual aids when trying to pose as AI civilians (like, if they're being pointed at with a gun, told to go away by ACE interact, ...)
+
 
 ## Dependencies
 
@@ -21,42 +27,24 @@ Spawn ambient civilians on the map.
 * [ACE3](https://github.com/acemod/ACE3)
 
 ## Installation
-### Manually
-1. Create a folder in your mission root folder and name it `modules`. Then create one inside there and call it `grad-civs`.
-2. Download the contents of this repository ( there's a download link at the side ) and put it into the directory you just created.
-3. Append the following lines of code to the `description.ext`:
 
-```sqf
-class CfgFunctions {
-    #include "modules\grad-civs\cfgFunctions.hpp"
-};
-```
+*It's a mod now, baby!*
 
-
-### Via `npm`
-_for details about what npm is and how to use it, look it up on [npmjs.com](https://www.npmjs.com/)_
-
-1. Install package `grad-civs` : `npm install --save grad-civs`
-2. Prepend your mission's `description.ext` with `#define MODULES_DIRECTORY node_modules`
-3. Append the following lines of code to the `description.ext`:
-
-```sqf
-class CfgFunctions {
-    #include "node_modules\grad-civs\cfgFunctions.hpp"
-};
-```
+Do grab a zip file from the releases page, or look it up on the Steam Workshop where it may or may not appear sometime.
 
 ## Usage Notes
 
-To avoid micro lags / fps dips on the server, it is recommended to add a headless client (no configuration needed for that).
+To avoid micro lags / fps dips on the server, it is recommended to add a headless client to your scenarios.
 
-If that is not possible, civilian group size (looking at you, [Ikraus 260](https://de.wikipedia.org/wiki/Ikarus_260)!) as well as total population count should be kept small.
+If that is not possible, civilian group size (looking at you, [Ikarus 260](https://de.wikipedia.org/wiki/Ikarus_260)!) as well as total population count should be kept small.
 
 Civilians on separate islands can run into pathing problems. Avoid by creating exclusion zones.
 
-
 ## Config
-Add the class `cfgGradCivs` to your `description.ext`. Use the following attributes to configure the module:
+
+Settings can be found as CBA Addon settings.
+
+![settings](docs/grad_civs-cba_settings.png)
 
 ### Attributes
 
@@ -92,80 +80,31 @@ spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to playe
 spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
 vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]            | All classnames of vehicles that civilians may drive.
 
-### Example
+## API
 
-```sqf
-class CfgGradCivs {
-    autoInit = 1;
-    maxCivsOnFoot = 20;
-    maxCivsResidents = 30;
-    maxCivsInVehicles = 10;
-    spawnDistancesOnFoot[] = {1000,4500};
-    spawnDistancesInVehicles[] = {1000,4500};
-    debugCivState = 0;
-    debugFps = 0;
-    minCivUpdateTime = 3;
-	minFps = 35;
-    automaticVehicleGroupSize = 1;
-    exitOn = "";
-    onSpawn = "systemChat format ['%1 spawned', typeOf (_this select 0)];";
-    onHeldUp = "";    
-    backpackProbability = 0.5;
+### grad_civs_legacy_fnc_doCustomActivity
 
-    clothes[] = {
-        "rds_uniform_Worker1",
-    	"rds_uniform_Worker2"
-    };
+To let civilians break from their usual activity and do something else for a limited time.
 
-    headgear[] = {
-        "rds_Villager_cap1",
-    	"rds_Villager_cap2"
-    };
-
-    faces[] = {
-        "PersianHead_A3_01",
-    	"PersianHead_A3_02",
-    	"PersianHead_A3_03"
-    };
-
-    goggles[] = {
-        "TRYK_Beard_BK",
-       	"TRYK_Beard_BK2",
-        "TRYK_Beard_BK3"
-    };
-
-    backpacks[] = {
-        "rhs_sidor"
-    };
-};
-```
-
-## Functions
-
-All functions meant for use from outside sit in the `/functions/api` directory.
-
-### grad_civs_fnc_doCustomActivity
-
-To let civilians break from their usual activity and do something else:
+Example:
 
 ```
 [
-    _civ,                               // _civilian
-    { _this#0 setBehaviour "STEALTH" }, // _doStart
-    { _this#0 setBehaviour "CARELESS" },// _doEnd
-    600,                                // _timeout or _endCondition
-    [],                                 // _moreParameters
-    "hiding",                           // _id
-    "pooped my pants, hiding for ten minutes" // self-description
-] call grad_civs_fnc_doCustomActivity;
+    _civ,                               
+    { _this#0 setBehaviour "STEALTH" },
+    { _this#0 setBehaviour "CARELESS" },
+    600,                                
+    [],                                 
+    "hiding",                           
+    "pooped my pants, hiding for ten minutes"
+] call grad_civs_legacy_fnc_doCustomActivity;
 ```
 
 **NOTE**: this whole thing will *NOT* work while they are panicking.
 
 **NOTE**: do clean up after yourself in the `_doEnd` parameter. reset disableAI stuff etc!
 
-#### Syntax
-`[civ, doStart, doEnd, timeoutOrCondition, moreParameters, name, description] call grad_civs_fnc_setFaces`
+#### Parameters
 
 Parameter           | Explanation
 --------------------|-----------------------------------------------------------
@@ -177,123 +116,96 @@ moreParameters      | array (optional) - more parameters to be passed to doStart
 name                | string (optional) - behavior name
 description         | string (optional) - behavior description
 
-### grad_civs_fnc_setClothes
-Sets all clothes that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_loadout_fnc_setClothes
+
+Sets all clothes that civilians may wear. Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[clothes] call grad_civs_fnc_setClothes`
+`[clothes] call grad_civs_loadout_fnc_setClothes`
 
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 clothes   | Array - All classnames of clothes that civilians may wear.
 
-### grad_civs_fnc_setFaces
-Sets all faces that civilians may have. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_loadout_fnc_setFaces
+Sets all faces that civilians may have.  Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[faces] call grad_civs_fnc_setFaces`
+`[faces] call grad_civs_loadout_fnc_setFaces`
 
 Parameter | Explanation
 ----------|---------------------------------------------------------
 faces     | Array - All classnames of faces that civilians may have.
 
 
-### grad_civs_fnc_setGoggles
-Sets all goggles that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_loadout_fnc_setGoggles
+Sets all goggles that civilians may wear.  Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[goggles] call grad_civs_fnc_setGoggles`
+`[goggles] call grad_civs_loadout_fnc_setGoggles`
 
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 goggles   | Array - All classnames of goggles that civilians may wear.
 
-### grad_civs_fnc_setHeadgear
-Sets all headgear that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_loadout_fnc_setHeadgear
+Sets all headgear that civilians may wear.  Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[headgear] call grad_civs_fnc_setHeadgear`
+`[headgear] call grad_civs_loadout_fnc_setHeadgear`
 
 Parameter | Explanation
 ----------|-----------------------------------------------------------
 headgear  | Array - All classnames of clothes that civilians may wear.
 
-### grad_civs_fnc_setBackpacks
-Sets all backpacks that civilians may wear and sets probability. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_loadout_fnc_setBackpacks
+Sets all backpacks that civilians may wear and sets probability. Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[backpacks,probability] call grad_civs_fnc_setHeadgear`
+`[backpacks,probability] call grad_civs_legacy_fnc_setHeadgear`
 
 Parameter   | Explanation
 ------------|-----------------------------------------------------------------------
 backpacks   | Array - All classnames of clothes that civilians may wear.
 probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
 
-### grad_civs_fnc_setVehicles
-Sets all vehicles that civilians may drive. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_voyage_fnc_setVehicles
+Sets all vehicles that civilians may drive. Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[vehicles] call grad_civs_fnc_setVehicles`
+`[vehicles] call grad_civs_voyage_fnc_setVehicles`
 
 Parameter | Explanation
 ----------|-------------------------------------------------------------
 vehicles  | Array - All classnames of vehicles that civilians may drive.
 
-### grad_civs_fnc_setDebugMode
-Sets debug mode. Overwrites `cfgGradCivs` value. Effect is global.
+### grad_civs_legacy_fnc_setDebugMode
+Sets debug mode. Overwrites value from CBA settings. Execute local.
 
 #### Syntax
-`[debugCivState] call grad_civs_fnc_setDebugMode`  
+`[debugCivState] call grad_civs_legacy_fnc_setDebugMode`  
 
 Parameter     | Explanation
 --------------|--------------------------
 debugCivState | Bool - Debug mode on/off.
 
-### grad_civs_fnc_initModule
-Used to manually initialize module. Has to be executed on all machines. Effect is local.
 
-#### Syntax
-`[] call grad_civs_fnc_initModule`  
-`[] remoteExec ["grad_civs_fnc_initModule",0,true]`
-
-Parameter | Explanation
-----------|-----------------------------------------------------------
-headgear  | Array - All classnames of clothes that civilians may wear.
-
-### grad_civs_fnc_populateArea
-Manually populates an area with civilians. These civilians count towards the maximum amount.
-
-*probably horribly broken right now, dont rely on*
-
-#### Syntax
-`[area,amount,excludeFromCleanup,staticVehicles,staticVehiclesMax] call grad_civs_fnc_populateArea`
-
-Parameter                     | Explanation
-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------
-area                          | Array / Object - Area array in format `[a, b, angle, isRectangle]` or array of area arrays or gamelogic synchronzed to one or multiple triggers.
-amount                        | Number - Amount of civilians to spawn.
-excludeFromCleanup (optional) | Bool - Sets if these civilians will be excluded from cleanup when no players are near. (default: true)
-staticVehicles (optional)     | Bool - Sets if static vehicles will be created in the area. (default: false)
-staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to create. Actual amount is based on number of roads and houses in area.
-
-
-![](http://i.imgur.com/Cimaz4c.jpg)
-
-### grad_civs_fnc_addExclusionZone and grad_civs_fnc_addPopulationZone
+### grad_civs_legacy_fnc_addExclusionZone and grad_civs_legacy_fnc_addPopulationZone
 
 Prevent civilians from entering areas.
 
-Optionally whitelist areas using `[_area] call grad_civs_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_fnc_addExclusionZone` .
+Optionally whitelist areas using `[_area] call grad_civs_legacy_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_legacy_fnc_addExclusionZone` .
 
 *known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
 
 #### Syntax
 
-`[_trigger] call grad_civs_fnc_addExclusionZone;`  
+`[_trigger] call grad_civs_legacy_fnc_addExclusionZone;`  
 
 ## Development
 
-* we're using the CBA state machine implementation, see `/functions/sm_*/`
+* we're using the CBA state machine implementation, see `addons/*/functions/sm_*/`
+* there's also some extensions being done to the CBA state machnie implementation to allow for nested states and other shenanigans, see addons/cba_statemachine
 * if you add states or transitions, please update the DOT files in `/docs`
     * which is where you'll find the compiled SVG files, too.
     * install [Graphviz](https://graphviz.gitlab.io/) and generate them using `dot -Tsvg states.gv > states.svg` or use an online editor   
@@ -315,9 +227,9 @@ Let's have a very simple example:
 ```sqf
 MY_CIV_LIST = ["C_Offroad_01_F" createVehicle position player];
 _machine = [{MY_CIV_LIST}] call CBA_statemachine_fnc_create;
-_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_fnc_addState;
-_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_fnc_addState;
-_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_fnc_addTransition;
+_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_legacy_fnc_addState;
+_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_legacy_fnc_addState;
+_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_legacy_fnc_addTransition;
 ```
 
 this will print something like this to RPT:
@@ -340,12 +252,12 @@ wörk
 In our case, and with CBA state machines, that means:
 
 * we have a bunch of state machines, chief of which is the *activities* state machine. It is implemented in `/functions/sm_activities/fn_activities.sqf`
-* states are added to it using [grad_civs_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
+* states are added to it using [grad_civs_legacy_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
     * every state has a bunch of callbacks that are called with a civilian as parameter
         * one is called periodically as long as the civ is in the state
         * one is called when the civ enters the state
         * one is called when the civ leaves the state
-* transitions are being added by using [grad_civs_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
+* transitions are being added by using [grad_civs_legacy_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
     * every transition is defined as a one-way connection between two states
     * every transition gets two callbacks
         * one is called periodically to check whether a civ can move along the transition

@@ -1,0 +1,33 @@
+#include "script_component.hpp"
+
+if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
+    INFO("GRAD civs is disabled. Good bye!");
+};
+
+[
+    QEGVAR(legacy,spawnAllowed),
+    {
+        ISNILS(GVAR(maxCivsOnFoot), [QGVAR(maxCivsOnFoot)] call CBA_settings_fnc_get);
+        if ((count (["patrol"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {
+            [ALL_HUMAN_PLAYERS] call FUNC(addFootsy);
+        };
+    }
+] call CBA_fnc_addEventHandler;
+
+private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get);
+[
+    "patrol",
+    _spawnDistances#1 * 1.5
+] call EFUNC(common,registerCivTaskType);
+
+[
+    {"business" in (allVariables EGVAR(common,stateMachines))},
+    {
+        [EGVAR(common,stateMachines) getVariable "business"] call FUNC(sm_business);
+    },
+    [],
+    300,
+    {
+        ERROR("'business' state machine did not get initialized - cannot add to it");
+    }
+] call CBA_fnc_waitUntilAndExecute;

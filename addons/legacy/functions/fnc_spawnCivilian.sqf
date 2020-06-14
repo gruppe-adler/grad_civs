@@ -1,0 +1,19 @@
+#include "..\script_component.hpp"
+
+params [
+    ["_pos", [0, 0, 0]],
+    ["_group", grpNull],
+    ["_primaryTask", ""]
+];
+
+private _civClass = [QGVAR(civClass)] call CBA_settings_fnc_get;
+private _civ = _group createUnit [_civClass, _pos, [], 0, "NONE"]; // TODO: ensure unit is not spawning within editor-placed rocks/houses
+
+GVAR(localCivs) = GVAR(localCivs) + [_civ];
+[QGVAR(civ_added), [_civ]] call CBA_fnc_globalEvent;
+
+
+_civ setVariable ["grad_civs_primaryTask", _primaryTask, true];
+_civ setVariable ["acex_headless_blacklist", true, true];
+
+_civ
