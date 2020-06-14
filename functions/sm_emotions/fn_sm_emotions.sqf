@@ -1,3 +1,4 @@
+#include "..\..\component.hpp"
 
 private _emotions = [] call CBA_statemachine_fnc_create;
 
@@ -51,7 +52,9 @@ assert ([
         [_this, format["%1 seconds until cooldown", round _timeUntilCooldown]] call grad_civs_fnc_setCurrentlyThinking;
         _timeUntilCooldown <= 0
     },
-    {},
+    {
+        _this call FUNC(forceEmotionSpeed);
+    },
     _emo_panic + _emo_wary
 ] call grad_civs_fnc_addTransition);
 
@@ -66,7 +69,9 @@ assert ([
         [_this, format["%1 seconds until cooldown", round _timeUntilCooldown]] call grad_civs_fnc_setCurrentlyThinking;
         _timeUntilCooldown <= 0
     },
-    {},
+    {
+        _this call FUNC(forceEmotionSpeed);
+    },
     _emo_wary + _emo_relaxed
 ] call grad_civs_fnc_addTransition);
 

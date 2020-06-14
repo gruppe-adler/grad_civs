@@ -7,6 +7,6 @@ params [
 ];
 
 {
-    _map drawIcon [_icon, [1,1,0,1], getPos _x,24,24, getDir _x, "grad civ", 0, 0.03, 'TahomaB', 'right'];
+    _map drawIcon [_icon, [0.4,0,0.5,0.5], getPos _x,24,24, getDir _x, "grad civ", 0, 0.03, 'TahomaB', 'right'];
     false
 } count _units;

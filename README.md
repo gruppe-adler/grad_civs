@@ -8,9 +8,12 @@ Spawn ambient civilians on the map.
 
 * civilians patrol and drive around the country, alone and in small groups
 * stop and raise their hands when threatened with weapons
+* vehicles will stop when you gesture at them (ACE 'hold' gesture)
+* ACE interactions: "back up vehicle", "carry on"
 * will panic and flee in firefights
 * will move out of player's way when getting honked at
 * civilian players will get hints as to what a "grad-civ" civilian would notice (like, being pointed at with a gun, told to go away by ACE interact, ...)
+* civilians get assigned homes
 
 ## Dependencies
 
@@ -137,25 +140,42 @@ class CfgGradCivs {
 };
 ```
 
-## Events
-
-### custom activity
-
-To let civilians break from their usual activity and do something else, you can use events:
-
-This will make the civilian available to be given custom commands without interference from grad-civs:
-
-`["GRAD_civs_customActivity_start", [_civ], _civ] call CBA_fnc_targetEvent;`
-
-To end the custom activity and make the civ resume their normal stuff, fire another event:
-
-`["GRAD_civs_customActivity_end", [_civ], _civ] call CBA_fnc_targetEvent;`
-
-**NOTE**: this whole thing will *NOT* work while they are panicking.
-
 ## Functions
 
 All functions meant for use from outside sit in the `/functions/api` directory.
+
+### grad_civs_fnc_doCustomActivity
+
+To let civilians break from their usual activity and do something else:
+
+```
+[
+    _civ,                               // _civilian
+    { _this#0 setBehaviour "STEALTH" }, // _doStart
+    { _this#0 setBehaviour "CARELESS" },// _doEnd
+    600,                                // _timeout or _endCondition
+    [],                                 // _moreParameters
+    "hiding",                           // _id
+    "pooped my pants, hiding for ten minutes" // self-description
+] call grad_civs_fnc_doCustomActivity;
+```
+
+**NOTE**: this whole thing will *NOT* work while they are panicking.
+
+**NOTE**: do clean up after yourself in the `_doEnd` parameter. reset disableAI stuff etc!
+
+#### Syntax
+`[civ, doStart, doEnd, timeoutOrCondition, moreParameters, name, description] call grad_civs_fnc_setFaces`
+
+Parameter           | Explanation
+--------------------|-----------------------------------------------------------
+civ                 | unit - civilian to apply to
+doStart             | code - execute desired behavior. gets `civ` as first parameter, and the elements of `moreParameters`
+doEnd               | code - end desired behavior. gets `civ` as first parameter, and the elements of `moreParameters`.
+timeoutOrCondition  | number or code - behavior length in seconds, or condition to end behavior
+moreParameters      | array (optional) - more parameters to be passed to doStart and doEnd
+name                | string (optional) - behavior name
+description         | string (optional) - behavior description
 
 ### grad_civs_fnc_setClothes
 Sets all clothes that civilians may wear. Overwrites `cfgGradCivs` value. Effect is global.
@@ -243,6 +263,8 @@ headgear  | Array - All classnames of clothes that civilians may wear.
 ### grad_civs_fnc_populateArea
 Manually populates an area with civilians. These civilians count towards the maximum amount.
 
+*probably horribly broken right now, dont rely on*
+
 #### Syntax
 `[area,amount,excludeFromCleanup,staticVehicles,staticVehiclesMax] call grad_civs_fnc_populateArea`
 
@@ -257,9 +279,11 @@ staticVehiclesMax (optional)  | Number - Maximum amount of static vehicles to cr
 
 ![](http://i.imgur.com/Cimaz4c.jpg)
 
-### grad_civs_fnc_addExclusionZone
+### grad_civs_fnc_addExclusionZone and grad_civs_fnc_addPopulationZone
 
-Prevent civilians from entering an area.
+Prevent civilians from entering areas.
+
+Optionally whitelist areas using `[_area] call grad_civs_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_fnc_addExclusionZone` .
 
 *known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
 

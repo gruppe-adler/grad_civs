@@ -11,7 +11,8 @@ LOG_2("looking for unclaimed house at %1 within %2 m", _position, _radius);
 
 private _houses = [
     _position,
-    _radius
+    _radius,
+    true
 ] call grad_civs_fnc_findBuildings;
 
 //exclusion list for houses
@@ -36,7 +37,7 @@ private _minPosCount = 2;
 LOG_3("%1 houses within %2m of %3, will whittle down by positions and excluded types", count _houses, _radius, _position);
 
 private _idx = _houses findIf {
-    // assumprions:
+    // assumptions:
     // a) there will be many more houses than civs - hence, occupation filter should come last
     // b) there are many unsuited house types, and their number will grow (heck even *fences* can be of type "house") - good filter, comes first
 

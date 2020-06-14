@@ -8,7 +8,7 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\accessors;
 
         class clearCurrentlyThinking {};
-        class forceBusinessSpeed {};
+        class forceEmotionSpeed {};
         class forcePanicSpeed {};
         class getCurrentlyThinking {};
         class getGroupVehicle {};
@@ -21,6 +21,7 @@ class grad_civs {
 
         class addExclusionZone {};
         class clearExclusionZones {};
+        class doCustomActivity {};
         class getExclusionZones {};
         class addPopulationZone {};
         class clearPopulationZones {};
@@ -39,6 +40,7 @@ class grad_civs {
         file = MODULES_DIRECTORY\grad-civs\functions\behaviour;
 
         class addCycleWaypoint {};
+        class customActivity_reverse {};
 		class taskPatrol {};
         class taskPatrolAddWaypoint {};
         class taskPatrolFindWaypoints {};
@@ -47,9 +49,9 @@ class grad_civs {
 
     class common {
         file = MODULES_DIRECTORY\grad-civs\functions\common;
-
         class arrayContains {};
         class compare {};
+        class feelsAddressedByGesture {};
         class findBuildings {};
         class findPositionOfInterest {};
         class findRandomPos {};
@@ -57,10 +59,19 @@ class grad_civs {
         class formatNowPlusSeconds {};
         class getCurrentState {};
         class getGlobalCivs {};
+        class handleAnimation {};
+        class handleGestureStop {};
+        class handleGestureGo {};
         class isInHouse {};
         class nowPlusSeconds {};
         class isInPopulatedZone {};
         class removeFromStateMachine {};
+        class reverse {};
+        class reverse_abort {};
+        class reverse_internal_end {};
+        class reverse_internal_stopCondition {};
+        class reverse_internal_pfh {};
+        class uid {};
     };
 
 	class debug {
@@ -75,6 +86,7 @@ class grad_civs {
     class init {
         file = MODULES_DIRECTORY\grad-civs\functions\init;
 
+        class initCommonEventhandlers {postInit = 1;};
         class initConfig {preInit = 1;};
         class initHCs {postInit = 1;};
         class initModule {};
@@ -85,9 +97,14 @@ class grad_civs {
     class player {
         file = MODULES_DIRECTORY\grad-civs\functions\player;
 
+        class addCivInteractions {};
         class checkHonkingOnCivilian {};
         class checkWeaponOnCivilianPerception {};
         class checkWeaponOnCivilianPointer {};
+        class interact_backUpAction {};
+        class interact_backUpCondition {};
+        class interact_carryOnAction {};
+        class interact_carryOnCondition {};
         class isPlayerHonking {};
         class playerLoop {};
         class registerAceInteractionHandler {};

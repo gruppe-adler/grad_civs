@@ -18,7 +18,7 @@ private _waypointPosition = [];
 //create waypoints
 
 for "_i" from 1 to _maxTries do {
-    LOG_1("trying to create wp, pass #%1 ", _i);
+    LOG_1("trying to create wp - pass #%1 ", _i);
 
     private _searchPosition = [
         _position,

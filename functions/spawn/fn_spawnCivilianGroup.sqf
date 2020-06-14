@@ -14,11 +14,25 @@ private _group = createGroup [civilian, true];
 _group setCombatMode "GREEN";
 
 for "_i" from 1 to _groupSize do {
-    [_pos, _group, _primaryTask] call grad_civs_fnc_spawnCivilian;
+    private _civ = [_pos, _group, _primaryTask] call FUNC(spawnCivilian);
+
+    // for convenience & speed: shortcut so units dont have to lengthily embark on their own
+    // also, prevents issues with civs spawning inside their vehicle,
+    //   which for some reason happens to lone drivers regardless of "NONE" collision flag on spawn
+    if (!(isNull _vehicle)) then {
+        if (_i == 1) then {
+            _civ moveInDriver _vehicle;
+            _civ assignAsDriver _vehicle;
+        } else {
+            _civ moveInCargo _vehicle;
+            _civ assignAsCargo _vehicle;
+        };
+
+    };
 };
 
 if (!(isNull _vehicle)) then {
-    [_group, _vehicle] call grad_civs_fnc_setGroupVehicle;
+    [_group, _vehicle] call FUNC(setGroupVehicle);
 };
 
 if (isNull _house) then {

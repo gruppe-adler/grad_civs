@@ -9,6 +9,7 @@ assert(_position isEqualType []);
 private _inAnyPopulationZone = if (count GVAR(POPULATION_ZONES) == 0) then {
     true
 } else {
+    // TODO uhm… how about [] findIf {} != -1 ?
     [GVAR(POPULATION_ZONES), {_position inArea (_this#0)}] call FUNC(arrayContains)
 };
 if (!_inAnyPopulationZone) exitWith {false};
