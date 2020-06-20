@@ -2,7 +2,6 @@
 
 #define TIMEDTRANSITIONCONDITION(var) (var + "_onTimedTransitionCondition")
 #define TIMEDTRANSITIONHANDLER(var) (var + "_onTimedTransitionHandler")
-#define STATEMACHINEIDVAR(var) (var getVariable "CBA_statemachine_ID")
 #define TIMEVAR(var) format["grad_civs_state_time_%1", var]
 
 params [
@@ -18,13 +17,15 @@ if (_name isEqualTo "") exitWith {false}; // NEED a name here!
 
 private _wrappedCondition = {
     private _origCondition = _stateMachine getVariable [TIMEDTRANSITIONCONDITION(_thisTransition), {}];
-    private _thisStateTime = _this getVariable [TIMEVAR(STATEMACHINEIDVAR(_stateMachine)), 0];
+    private _smIdVar = _stateMachine getVariable ["CBA_statemachine_ID", ""];
+    private _thisStateTime = _this getVariable [TIMEVAR(_smIdVar), 0];
     _this call _origCondition;
 };
 
 private _wrappedHandler = {
     private _origHandler = _stateMachine getVariable [TIMEDTRANSITIONHANDLER(_thisTransition), {}];
-    private _thisStateTime = _this getVariable [TIMEVAR(STATEMACHINEIDVAR(_stateMachine)), 0];
+    private _smIdVar = _stateMachine getVariable ["CBA_statemachine_ID", ""];
+    private _thisStateTime = _this getVariable [TIMEVAR(_smIdVar), 0];
     _this call _origHandler;
 };
 
