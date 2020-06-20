@@ -10,11 +10,12 @@ private _vehicleSpawnDistanceMin = _vehicleSpawnDistances#0;
 private _vehicleSpawnDistanceMax = _vehicleSpawnDistances#1;
 
 private _pos = if (_forcePosition isEqualTo []) then {
+    private _allVoyagers = ["voyage"] call EFUNC(legacy,getGlobalCivs);
     private _segment = [
         _allPlayers,
         _vehicleSpawnDistanceMin,
         _vehicleSpawnDistanceMax,
-        ["voyage"] call EFUNC(legacy,getGlobalCivs)
+        _allVoyagers
     ] call FUNC(findSpawnRoadSegment);
 
     if (isNull _segment) exitWith {
