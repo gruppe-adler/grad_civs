@@ -20,7 +20,7 @@ private _settingsGroup = ["GRAD Civs", "6) loadout"];
     "SLIDER",
     "Ratio of civs who will wear backpacks",
     _settingsGroup,
-    [0, 100, 50, 0, true], // TODO when reading this setting, take care - its a percentage now
+    [0, 1, 0.5, 0, true], // TODO when reading this setting, take care - its a percentage now
     true,
     {},
     false
