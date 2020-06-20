@@ -104,6 +104,4 @@ assert ([
 
 EGVAR(common,stateMachines) setVariable ["emotions", _emotions];
 
-
-
 _emotions

@@ -65,6 +65,4 @@ assert ([
 
 EGVAR(common,stateMachines) setVariable ["lifecycle", _lifecycle];
 
-
-
 _lifecycle

@@ -60,6 +60,4 @@ assert ([
 
 EGVAR(common,stateMachines) setVariable ["panic", _panic];
 
-
-
 _panic

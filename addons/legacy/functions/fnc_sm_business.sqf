@@ -13,6 +13,4 @@ private _bus_rally  = [
 
 EGVAR(common,stateMachines) setVariable ["business", _business];
 
-
-
 _business

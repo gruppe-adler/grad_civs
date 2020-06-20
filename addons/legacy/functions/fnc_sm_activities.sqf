@@ -109,7 +109,6 @@ private _panic = [] call FUNC(sm_panic);
     }
 ] call CBA_fnc_addEventHandler;
 
-
 [QGVAR(gestured_at_stop), {
     params [
         ["_target", objNull]
@@ -259,7 +258,5 @@ assert ([
 ] call CBA_statemachine_fnc_addEventTransition);
 
 EGVAR(common,stateMachines) setVariable ["activities", _activities];
-
-
 
 _activities
