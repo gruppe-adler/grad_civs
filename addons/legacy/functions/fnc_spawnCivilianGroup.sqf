@@ -16,7 +16,7 @@ private _group = createGroup [civilian, true];
 _group setCombatMode "GREEN";
 
 for "_i" from 1 to _groupSize do {
-    private _civ = [_pos, _group, _primaryTask] call FUNC(spawnCivilian);
+    [_pos, _group, _primaryTask] call FUNC(spawnCivilian);
 };
 
 if (isNull _house) then {
