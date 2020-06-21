@@ -23,5 +23,4 @@ jobs:
         python -m pip install https://github.com/gruppe-adler/sqf/archive/0f6edf0d7b928afc8783ccad3c3c7cb7120feb1a.tar.gz
     - name: Lint with
       run: |
-        sqflint -d . -e e
-
+        sqflint -d .
