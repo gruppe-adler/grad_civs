@@ -97,8 +97,8 @@ private _panic = [] call FUNC(sm_panic);
                 if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
                     _moveVector = _moveVectors select 1;
                 };
-                _civ call FUNC(forcePanicSpeed);
-                _civ doMove ((position _civ) vectorAdd _moveVector);
+                _target call FUNC(forcePanicSpeed);
+                _target doMove ((position _civ) vectorAdd _moveVector);
             },
             {},
             _waitTime,
