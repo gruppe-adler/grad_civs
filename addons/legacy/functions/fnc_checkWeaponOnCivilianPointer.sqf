@@ -11,8 +11,8 @@ if (
     {"sras" in (animationState player)}
 ) then {
 
-    _currentCiv = player getVariable ["GRAD_isPointingAtObj", objNull];
-    _possibleCiv = driver cursorTarget;
+    private _currentCiv = player getVariable ["GRAD_isPointingAtObj", objNull];
+    private _possibleCiv = driver cursorTarget;
 
     /* remove my marker on civ, if i dont target him anymore */
     if !((_currentCiv isEqualTo _possibleCiv) || (cursorTarget isEqualTo (_currentCiv call EFUNC(voyage,getGroupVehicle)))) then { // TODO resolve circular dependency // maybe use `vehicle _currentCiv` instead?
@@ -38,7 +38,7 @@ if (
 
 } else {
     /* lowering weapon should remove civ pointer as well */
-    _currentCiv = player getVariable ["GRAD_isPointingAtObj", objNull];
+    private _currentCiv = player getVariable ["GRAD_isPointingAtObj", objNull];
 
     if (!isNull _currentCiv) then {
         player setVariable ["GRAD_isPointingAtObj", objNull];

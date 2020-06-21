@@ -34,7 +34,7 @@ if (typeName _endConditionOrTimeout == typeName 0) then {
 };
 
 // force the previous custom activity to end
-_currentCustomActivity = _civ getVariable [QGVAR(customActivity_id), ""];
+private _currentCustomActivity = _civ getVariable [QGVAR(customActivity_id), ""];
 if (_currentCustomActivity != "") then {
     INFO_2("civ %1: forcing previous custom activity %2 to end.", _civ, _currentCustomActivity);
     private _prevDoEnd = _civ getVariable [QGVAR(customActivity_doEnd), {}];

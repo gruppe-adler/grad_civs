@@ -2,12 +2,12 @@
 
 params ["_area",["_vehicleType","B_Soldier_F"],["_findWaterPos",false],["_findRoadPos",false]];
 
-_pos = [];
+private _pos = [];
 for [{private _i=0}, {_i<25}, {_i=_i+1}] do {
-    _searchPos = _area call BIS_fnc_randomPosTrigger;
+    private _searchPos = _area call BIS_fnc_randomPosTrigger;
 
     if (_findRoadPos) then {
-        _nearRoads = _searchPos nearRoads 50;
+        private _nearRoads = _searchPos nearRoads 50;
         _searchPos = if (count _nearRoads > 0) then {getPos (_nearRoads select 0)} else {[]};
     };
 
