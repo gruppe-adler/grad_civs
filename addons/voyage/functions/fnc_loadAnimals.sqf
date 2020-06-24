@@ -5,7 +5,9 @@ params [
     ["_chance", 0, [0]]
 ];
 
-assert(!(isNull _vehicle));
+if (isNull _vehicle) exitWith {
+    ERROR("cannot load animals, passed vehicle is null");
+};
 
 if ((random 1) >= _chance) exitWith {};
 

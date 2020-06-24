@@ -5,6 +5,8 @@ params [
     ["_forcePosition", []]
 ];
 
+scopeName "main";
+
 private _vehicleSpawnDistances = parseSimpleArray ([QGVAR(spawnDistancesInVehicles)] call CBA_settings_fnc_get);
 private _vehicleSpawnDistanceMin = _vehicleSpawnDistances#0;
 private _vehicleSpawnDistanceMax = _vehicleSpawnDistances#1;
@@ -17,8 +19,9 @@ private _pos = if (_forcePosition isEqualTo []) then {
         ["voyage"] call EFUNC(legacy,getGlobalCivs)
     ] call FUNC(findSpawnRoadSegment);
 
-    if (isNull _segment) exitWith {
-        LOG("could not find spawn position for car at this time");
+    if (isNull _segment) then {
+        INFO("could not find spawn position for car at this time");
+        breakOut "main";
     };
     getPos _segment
 } else {
