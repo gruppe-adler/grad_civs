@@ -5,7 +5,11 @@ ASSERT_PLAYER("");
 GVAR(civStateFormat) = 0;
 
 [{
-	if (!([QGVAR(debugCivState)] call CBA_settings_fnc_get)) exitWith {[_this select 1] call CBA_fnc_removePerFrameHandler};
+	params [
+		["_args", [], [[]]],
+		["_handle", 0, [0]]
+	];
+	if (!([QGVAR(debugCivState)] call CBA_settings_fnc_get)) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
 
 	if (!isGameFocused || isGamePaused) exitWith {};
 
