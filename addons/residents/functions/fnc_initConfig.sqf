@@ -8,7 +8,7 @@ private _settingsGroup = ["GRAD Civs", "3) residents"];
 [
     QGVAR(maxCivsResidents),
     "SLIDER",
-    "Maximum total number of civilian residents",
+    "Max number of civilian residents",
     _settingsGroup,
     [0, 300, 20, 0],
     true,

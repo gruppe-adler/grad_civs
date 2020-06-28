@@ -29,7 +29,7 @@ private _settingsGroup = ["GRAD Civs", "5) voyagers"];
 [
     QGVAR(maxCivsInVehicles),
     "SLIDER",
-    "Maximum total number of civilian voyagers",
+    "Max number of civilian voyagers",
     _settingsGroup,
     [0, 300, 10, 0],
     true,
