@@ -13,6 +13,7 @@ PREP(customActivity_reverse);
 PREP(deleteIfDamaged);
 PREP(doCustomActivity);
 PREP(drawCivs);
+PREP(endCustomActivity);
 // PREP(feelsAddressedByGesture.spec);
 PREP(feelsAddressedByGesture);
 PREP(findBuildings);

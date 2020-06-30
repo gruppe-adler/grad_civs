@@ -36,7 +36,7 @@ private _wrappedOnState = {
 
 private _state = [_stateMachine, _onState, _wrappedOnStateEntered, _wrappedOnStateLeaving, _name] call CBA_statemachine_fnc_addState;
 
-if (_state == "") exitWith {ERROR_1("could not add state", _name); ""};
+if (_state == "") exitWith {ERROR_1("could not add state %1", _name); ""};
 
 _stateMachine setVariable [TIMEDONSTATEENTERED(_state), _onStateEntered];
 _stateMachine setVariable [TIMEDONSTATELEAVING(_state), _onStateLeaving];

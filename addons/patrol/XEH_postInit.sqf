@@ -20,14 +20,4 @@ private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesOnFoot)] call C
     _spawnDistances#1 * 1.5
 ] call EFUNC(common,registerCivTaskType);
 
-[
-    {"business" in (allVariables EGVAR(common,stateMachines))},
-    {
-        [EGVAR(common,stateMachines) getVariable "business"] call FUNC(sm_business);
-    },
-    [],
-    300,
-    {
-        ERROR("'business' state machine did not get initialized - cannot add to it");
-    }
-] call CBA_fnc_waitUntilAndExecute;
+["business", ["bus_rally"], FUNC(sm_business)] call EFUNC(common,augmentStateMachine);

@@ -3,7 +3,7 @@
 ["GRAD-CIVS","ADD CAR",
     {
         params [
-            ["_clickPos", [0, 0, 0]]
+            ["_clickPos", [0, 0, 0], [[]]]
         ];
 
         [[], ASLToAGL _clickPos] call FUNC(addCarCrew);

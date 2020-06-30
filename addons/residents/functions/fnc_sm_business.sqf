@@ -3,6 +3,7 @@
 params [
     ["_business", locationNull, [locationNull]]
 ];
+assert(!(isNull _business));
 
 private _bus_rally = "bus_rally";
 

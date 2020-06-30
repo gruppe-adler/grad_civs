@@ -1,7 +1,5 @@
 #include "..\script_component.hpp"
 
-INFO_1("elogic is called with: %1", _this);
-
 private _mode = param [0,"",[""]];
 private _input = param [1,[],[[]]];
 

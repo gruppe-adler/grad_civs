@@ -30,6 +30,7 @@ private _emo_panic = [
     _emotions,
     {},
     {
+        _this call FUNC(endCustomActivity);
         ["grad_civs_panicking", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     {
