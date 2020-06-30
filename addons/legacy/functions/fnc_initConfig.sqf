@@ -62,7 +62,7 @@ private _settingsGroup = ["GRAD Civs", "2) basics"];
 [
     QGVAR(panicCooldown),
     "EDITBOX",
-    "Time for panic to wear off [lowest, median, highest]",
+    "Time for panic to wear off [low, med, high]",
     _settingsGroup,
     QUOTE([ARR_3(15,120,240)]),
     false,
@@ -73,7 +73,7 @@ private _settingsGroup = ["GRAD Civs", "2) basics"];
 [
     QGVAR(cleanupCorpses),
     "CHECKBOX",
-    "Clean up corpses (requires corpseManagerMode set!)",
+    "support corpseManagerMode",
     _settingsGroup,
     true,
     true,

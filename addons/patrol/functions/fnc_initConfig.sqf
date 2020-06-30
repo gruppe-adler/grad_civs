@@ -18,7 +18,7 @@ private _settingsGroup = ["GRAD Civs", "4) patrols"];
 [
     QGVAR(maxCivsOnFoot),
     "SLIDER",
-    "Maximum total number of civilians patroling on foot",
+    "Max number of civilians patroling on foot",
     _settingsGroup,
     [0, 300, 30, 0],
     true,
