@@ -45,6 +45,8 @@ PREP(isInHouse);
 PREP(isInPopulatedZone);
 PREP(isPlayerHonking);
 PREP(mapMarkers);
+PREP(module_addExclusionZone);
+PREP(module_addPopulationZone);
 PREP(nowPlusSeconds);
 PREP(playerLoop);
 PREP(reverse_abort);

@@ -7,10 +7,7 @@ class CfgVehicles
 			class ModuleDescription;
 			class Units;
 		};
-		// Description base classes, for more information see below
-		class ModuleDescription {
-
-		};
+		class ModuleDescription {};
 	};
 	class GVAR(addPopulationZone): Module_F
 	{
@@ -18,8 +15,6 @@ class CfgVehicles
 		displayName = "add population zone";
 		icon = ""; // Map icon. Delete this entry to use the default icon
 		category = QEGVAR(main,modules);
-
-		// Name of function triggered once conditions are met
 		function = QFUNC(module_addPopulationZone);
 		functionPriority = 0; // first to execute
 		isGlobal = 1;
@@ -31,6 +26,7 @@ class CfgVehicles
 		class ModuleDescription: ModuleDescription
 		{
 			description = "GRAD civs : add population zone where civilians may spawn and live."; // Short description, will be formatted as structured text
+			sync[] = {}; // Array of synced entities (can contain base classes)
 		};
 	};
 	class GVAR(addExclusionZone): Module_F
@@ -39,8 +35,6 @@ class CfgVehicles
 		displayName = "add exclusion zone";
 		icon = ""; // Map icon. Delete this entry to use the default icon
 		category = QEGVAR(main,modules);
-
-		// Name of function triggered once conditions are met
 		function = QFUNC(module_addExclusionZone);
 		functionPriority = 0; // first to execute
 		isGlobal = 1;
