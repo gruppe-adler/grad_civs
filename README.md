@@ -80,6 +80,16 @@ spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to playe
 spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
 vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]            | All classnames of vehicles that civilians may drive.
 
+## 3DEN modules
+
+### add exclusion zone
+
+Blacklist an area for civs by syncing it to a trigger.
+
+### add population zone
+
+Whitelist an area for civs by syncing it to a trigger.
+
 ## API
 
 ### grad_civs_legacy_fnc_doCustomActivity
