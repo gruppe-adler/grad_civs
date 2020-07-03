@@ -3,4 +3,8 @@
 private _veh = vehicle _target;
 private _reverseTargetPos = (getPos _veh) vectorAdd ((vectorDir _veh) vectorMultiply -50);
 
-[_target, _reverseTargetPos] call FUNC(customActivity_reverse);
+[
+    QGVAR(told_to_reverse),
+    [_target, _reverseTargetPos],
+    _target
+] call CBA_fnc_targetEvent;
