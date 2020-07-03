@@ -153,6 +153,21 @@ private _panic = [] call FUNC(sm_panic);
     [_target, _reverseTargetPos] call FUNC(customActivity_reverse);
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(told_to_reverse), {
+    params [
+        ["_target", objNull, [objNull]],
+        ["_reverseTargetPos", [0, 0, 0], [[]]]
+    ];
+    [_target, _reverseTargetPos] call FUNC(customActivity_reverse);
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(told_to_carry_on), {
+    params [
+        ["_target", objNull, [objNull]]
+    ];
+    _target call FUNC(endCustomActivity);
+}] call CBA_fnc_addEventHandler;
+
 
 // STATES
 assert(_activities isEqualType locationNull);

@@ -57,7 +57,7 @@ INFO_2("civ %1: starts custom activity %2", _civ, _id);
  //       I am however afraid of broadcasting code (where I have no idea how large it is) everytime a civ does something special.
  //       Also, when civ changes owner it starts a new life anyway, so there's that /shrug
  //       If in doubt, that's the place where a lot of things (anim, AI props) should be reset anyway. (TODO)
-_civ setVariable [QGVAR(customActivity_id), _id];
+_civ setVariable [QGVAR(customActivity_id), _id, true]; // needs to be global, serves as indicator for player interactions
 _civ setVariable [QGVAR(customActivity_doEnd), _doEnd];
 _civ setVariable [QGVAR(customActivity_parameters), _moreParameters];
 
@@ -68,10 +68,10 @@ private _endCode = {
         INFO_2("civ %1: ending custom activity %2", _civ, _id);
         private _doEnd = _civ getVariable [QGVAR(customActivity_doEnd), {}];
         private _moreParameters = _civ getVariable [QGVAR(customActivity_parameters), []];
-        ([_civ] + _moreParameters) call _doEnd;            
+        ([_civ] + _moreParameters) call _doEnd;
         _this call _doEnd;
 
-        _civ setVariable [QGVAR(customActivity_id), nil];
+        _civ setVariable [QGVAR(customActivity_id), nil, true];
         _civ setVariable [QGVAR(customActivity_doEnd), nil];
         _civ setVariable [QGVAR(customActivity_parameters), nil];
         [_target, ""] call FUNC(setCurrentlyThinking);

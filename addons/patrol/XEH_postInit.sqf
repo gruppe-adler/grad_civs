@@ -4,20 +4,22 @@ if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
     INFO("GRAD civs is disabled. Good bye!");
 };
 
-[
-    QEGVAR(legacy,spawnAllowed),
-    {
-        ISNILS(GVAR(maxCivsOnFoot), [QGVAR(maxCivsOnFoot)] call CBA_settings_fnc_get);
-        if ((count (["patrol"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {
-            [ALL_HUMAN_PLAYERS] call FUNC(addFootsy);
-        };
-    }
-] call CBA_fnc_addEventHandler;
+if (isServer || !hasInterface) then {
+    [
+        QEGVAR(legacy,spawnAllowed),
+        {
+            ISNILS(GVAR(maxCivsOnFoot), [QGVAR(maxCivsOnFoot)] call CBA_settings_fnc_get);
+            if ((count (["patrol"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {
+                [ALL_HUMAN_PLAYERS] call FUNC(addFootsy);
+            };
+        }
+    ] call CBA_fnc_addEventHandler;
 
-private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get);
-[
-    "patrol",
-    _spawnDistances#1 * 1.5
-] call EFUNC(common,registerCivTaskType);
+    private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get);
+    [
+        "patrol",
+        _spawnDistances#1 * 1.5
+    ] call EFUNC(common,registerCivTaskType);
 
-["business", ["bus_rally"], FUNC(sm_business)] call EFUNC(common,augmentStateMachine);
+    ["business", ["bus_rally"], FUNC(sm_business)] call EFUNC(common,augmentStateMachine);
+};
