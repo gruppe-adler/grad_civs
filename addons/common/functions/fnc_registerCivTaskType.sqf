@@ -6,7 +6,7 @@ params [
         ["_despawnCondition", {false}, [{}]]
 ];
 
-ISNILS(GVAR(civTaskTypes), call CBA_fnc_createNamespace);
+ISNILS(GVAR(civTaskTypes), false call CBA_fnc_createNamespace);
 
 if (_type in (allVariables GVAR(civTaskTypes))) exitWith {
     ERROR_1("civTaskType %1 has already been registered", _type);

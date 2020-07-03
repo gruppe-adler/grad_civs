@@ -15,7 +15,7 @@ if (
     _possibleCiv = driver cursorTarget;
 
     /* remove my marker on civ, if i dont target him anymore */
-    if !((_currentCiv isEqualTo _possibleCiv) || (cursorTarget isEqualTo (_currentCiv call EFUNC(voyage,getGroupVehicle)))) then { // TODO resolve circular dependency // maybe use `vehicle _currentCiv` instead?
+    if !((_currentCiv isEqualTo _possibleCiv) || (cursorTarget isEqualTo (_currentCiv call EFUNC(cars,getGroupVehicle)))) then { // TODO resolve circular dependency // maybe use `vehicle _currentCiv` instead?
         if (!isNull _currentCiv) then {
             player setVariable ["GRAD_isPointingAtObj", objNull];
             if (([QGVAR(debugCivState)] call CBA_settings_fnc_get)) then { hint format ["depointing %1", _currentCiv]; };

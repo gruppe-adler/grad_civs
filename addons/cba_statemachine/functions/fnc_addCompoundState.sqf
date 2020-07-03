@@ -45,7 +45,7 @@ private _wrappedOnStateLeaving = {
 
 private _state = [_outerStateMachine, _onState, _wrappedOnStateEntered, _wrappedOnStateLeaving, _name] call FUNC(addState);
 
-if (_state == "") exitWith {ERROR_1("could not add state", _name); ""};
+if (_state == "") exitWith {ERROR_1("could not add compound state '%1'", _name); ""};
 
 _outerStateMachine setVariable [NESTED(_state), _nestedStateMachines];
 _outerStateMachine setVariable [COMPOUNDONSTATEENTERED(_state), _onStateEntered];

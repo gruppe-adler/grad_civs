@@ -1,3 +1,5 @@
+#include "..\script_component.hpp"
+
 private _grp = group _this;
 
 [_grp] call CBA_fnc_clearWaypoints;

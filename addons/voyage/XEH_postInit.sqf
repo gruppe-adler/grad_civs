@@ -7,8 +7,8 @@ if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
 [
     QEGVAR(legacy,spawnAllowed),
     {
-        ISNILS(GVAR(maxCivsInVehicles), [QGVAR(maxCivsInVehicles)] call CBA_settings_fnc_get);
-        if ((count (["voyage"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsInVehicles)) then {
+        private _maxCivsInVehicles = [QGVAR(maxCivsInVehicles)] call CBA_settings_fnc_get;
+        if ((count (["voyage"] call EFUNC(legacy,getGlobalCivs))) < _maxCivsInVehicles) then {
             [ALL_HUMAN_PLAYERS] call FUNC(addCarCrew);
         };
     }
@@ -20,16 +20,6 @@ private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesInVehicles)] ca
     _spawnDistances#1 * 1.5
 ] call EFUNC(common,registerCivTaskType);
 
-[
-    {"business" in (allVariables EGVAR(common,stateMachines))},
-    {
-        [EGVAR(common,stateMachines) getVariable "business"] call FUNC(sm_business);
-    },
-    [],
-    300,
-    {
-        ERROR("'business' state machine did not get initialized - cannot add to it");
-    }
-] call CBA_fnc_waitUntilAndExecute;
+["business", ["bus_mountUp"], FUNC(sm_business)] call EFUNC(common,augmentStateMachine);
 
 [] call FUNC(setupZeusModules);

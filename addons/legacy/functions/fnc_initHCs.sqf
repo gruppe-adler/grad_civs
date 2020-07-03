@@ -11,8 +11,8 @@ if (isServer || !hasInterface) then {
     };
 
     GVAR(localCivs) = [];
-    EGVAR(common,stateMachines) = [] call CBA_fnc_createNamespace;
-    
+    EGVAR(common,stateMachines) = false call CBA_fnc_createNamespace;
+
     [] call FUNC(sm_lifecycle);
     [] call FUNC(serverLoop);
 };

@@ -3,8 +3,8 @@
 private _leader = leader _this;
 
 /*if leader is calling for mounting up: get in*/
-if (([_this, "business"] call EFUNC(common,civGetState)) == "bus_mountUp") then {
-    private _veh = _this call EFUNC(voyage,getGroupVehicle); // TODO resolve circular dependency
+if (([_leader, "business"] call EFUNC(common,civGetState)) == "bus_mountUp") then { // TODO resolve circular dependency
+    private _veh = _this call EFUNC(cars,getGroupVehicle); // TODO resolve circular dependency - create new "passenger" state for passengers
     if (_veh != vehicle _this) then {
         _this assignAsCargo _veh;
         [_this] orderGetIn true;

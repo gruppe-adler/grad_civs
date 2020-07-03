@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "7) player mimikry"];
+private _settingsGroup = ["GRAD Civs", "8) player mimikry"];
 
 [
     QGVAR(enabled),
