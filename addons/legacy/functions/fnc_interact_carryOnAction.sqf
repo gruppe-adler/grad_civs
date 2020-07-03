@@ -1,3 +1,7 @@
 #include "..\script_component.hpp"
 
-_target call FUNC(endCustomActivity);
+[
+    QGVAR(told_to_carry_on),
+    [_target],
+    _target
+] call CBA_fnc_targetEvent;
