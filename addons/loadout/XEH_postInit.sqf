@@ -4,7 +4,6 @@ if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
     INFO("GRAD civs is disabled. Good bye!");
 };
 
-
 [QEGVAR(legacy,civ_added), {
     params [["_civ", objNull, [objNull]]];
     assert(!isNull _civ);
@@ -14,7 +13,14 @@ if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(broadcastFace), {
-    params ["_unit", "_face"];
+    params [
+        ["_unit", objNull, [objNull]],
+        ["_face", "", [""]]
+    ];
     if (isNull _unit) exitWith {};
+
+    diag_log _unit;
+    diag_log _face;
+    diag_log str local _unit;
     _unit setFace _face;
 }] call CBA_fnc_addEventHandler;

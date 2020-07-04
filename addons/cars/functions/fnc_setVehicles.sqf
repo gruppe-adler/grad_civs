@@ -2,4 +2,4 @@
 
 params [["_value",[]]];
 
-[QGVAR(vehicles), _value, 0, "mission"] call CBA_settings_fnc_set;
+[QGVAR(vehicles), _value, 1, "mission"] call CBA_settings_fnc_set;

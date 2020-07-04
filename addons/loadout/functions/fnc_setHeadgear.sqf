@@ -2,4 +2,4 @@
 
 params [["_value",[]]];
 
-[QGVAR(headgear), _value, 0, "mission"] call CBA_settings_fnc_set;
+[QGVAR(headgear), str _value, 1, "mission"] call CBA_settings_fnc_set;
