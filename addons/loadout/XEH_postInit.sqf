@@ -12,3 +12,9 @@ if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
         [_civ] call FUNC(civAddLoadout);
     };
 }] call CBA_fnc_addEventHandler;
+
+[QGVAR(broadcastFace), {
+    params ["_unit", "_face"];
+    if (isNull _unit) exitWith {};
+    _unit setFace _face;
+}] call CBA_fnc_addEventHandler;

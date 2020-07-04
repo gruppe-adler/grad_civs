@@ -40,7 +40,7 @@ if (random 1 > 0.01) then {
     _unit,
     {
         params ["_unit", "_value"];
-        [_unit, _value] remoteExec ["setFace", 0, _unit];
+        [QGVAR(broadcastFace), [_unit, _value]] call CBA_fnc_globalEventJIP;
     }
 ] call FUNC(applyRandomConfigArrayValue);
 
