@@ -1,3 +1,4 @@
+PREP(applyRandomConfigArrayValue);
 PREP(civAddLoadout);
 PREP(initConfig);
 PREP(setBackpacks);
