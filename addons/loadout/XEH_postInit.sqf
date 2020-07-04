@@ -18,9 +18,5 @@ if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
         ["_face", "", [""]]
     ];
     if (isNull _unit) exitWith {};
-
-    diag_log _unit;
-    diag_log _face;
-    diag_log str local _unit;
     _unit setFace _face;
 }] call CBA_fnc_addEventHandler;
