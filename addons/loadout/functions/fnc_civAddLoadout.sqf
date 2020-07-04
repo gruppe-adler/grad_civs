@@ -39,11 +39,16 @@ if (random 1 > 0.01) then {
     QGVAR(faces),
     _unit,
     {
-        params ["_unit", "_value"];
-        INFO_1("ok face %1", _value);
-        [QGVAR(broadcastFace), [_unit, _value]] call CBA_fnc_globalEventJIP;
+        [
+            {
+                [QGVAR(broadcastFace), _this] call CBA_fnc_globalEventJIP;
+            },
+            _this,
+            2
+        ] call CBA_fnc_waitAndExecute;
     }
 ] call FUNC(applyRandomConfigArrayValue);
+
 
 [
     QGVAR(goggles),
