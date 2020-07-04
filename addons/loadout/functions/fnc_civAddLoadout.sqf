@@ -5,43 +5,62 @@ params [
 ];
 
 assert(!isNull _unit);
+assert(local _unit);
 
-
-private _reclotheHim = {
-	params ["_unit", "_loadout"];
-
-	_unit setUnitLoadout _loadout;
-    private _faces = parseSimpleArray ([QGVAR(faces)] call cba_settings_fnc_get);
-	if (count _faces > 0) then {
-		[_unit, selectRandom _faces] remoteExec ["setFace", 0, _unit];
-	};
+if (random 1 > 0.5) then {
+    _unit unlinkItem "ItemWatch";
+};
+if (random 1 > 0.05) then {
+    _unit unlinkItem "ItemMap";
+};
+if (random 1 > 0.01) then {
+    _unit unlinkItem "ItemCompass";
 };
 
-private _addBeard = {
-	params ["_unit"];
-    private _goggles = parseSimpleArray ([QGVAR(goggles)] call cba_settings_fnc_get);
-	if (count _goggles > 0) then {
-		_unit addGoggles selectRandom _goggles;
-	};
+[
+    QGVAR(clothes),
+    _unit,
+    {
+        params ["_unit", "_value"];
+        _unit addUniform _value;
+    }
+] call FUNC(applyRandomConfigArrayValue);
+
+[
+    QGVAR(headgear),
+    _unit,
+    {
+        params ["_unit", "_value"];
+        _unit addHeadgear _value;
+    }
+] call FUNC(applyRandomConfigArrayValue);
+
+[
+    QGVAR(faces),
+    _unit,
+    {
+        params ["_unit", "_value"];
+        [_unit, _value] remoteExec ["setFace", 0, _unit];
+    }
+] call FUNC(applyRandomConfigArrayValue);
+
+[
+    QGVAR(goggles),
+    _unit,
+    {
+        params ["_unit", "_value"];
+        _unit addGoggles _value;
+    }
+] call FUNC(applyRandomConfigArrayValue);
+
+private _backpackProbability = [QGVAR(backpackProbability)] call cba_settings_fnc_get;
+if (_backpackProbability > (random 1)) then {
+    [
+        QGVAR(backpacks),
+        _unit,
+        {
+            params ["_unit", "_value"];
+            _unit addBackpackGlobal _value;
+        }
+    ] call FUNC(applyRandomConfigArrayValue);
 };
-
-private _addBackpack = {
-	params ["_unit"];
-
-    private _backpacks = parseSimpleArray ([QGVAR(backpacks)] call cba_settings_fnc_get);
-    private _backpackProbability = [QGVAR(backpackProbability)] call cba_settings_fnc_get;
-	if ((_backpackProbability > (random 1)) && {count _backpacks > 0}) then {
-		_unit addBackpackGlobal selectRandom _backpacks;
-	};
-};
-
-private _clothes = parseSimpleArray ([QGVAR(clothes)] call cba_settings_fnc_get);
-private _headgear = parseSimpleArray ([QGVAR(headgear)] call cba_settings_fnc_get);
-if ((count _clothes > 0) && (count _headgear > 0)) then {
-	private _unitLoadout = [[],[],[],[selectRandom _clothes,[]],[],[],selectRandom _headgear,"""",[],["""","""","""","""","""",""""]];
-	[_unit, _unitLoadout] call _reclotheHim;
-};
-
-
-[_unit] call _addBeard;
-[_unit] call _addBackpack;
