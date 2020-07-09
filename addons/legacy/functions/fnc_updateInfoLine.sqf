@@ -17,4 +17,4 @@ private _states = (_statemachineNames apply {
 _text = format ["%1 | %2 | %3", _this, _states, _x call FUNC(getCurrentlyThinking)];
 
 _this setVariable ["grad_civs_infoLine", _text, true];
-_this setVariable ["grad_civs_owner", clientOwner, true];
+_this setVariable ["grad_civs_local_at", clientOwner, true];

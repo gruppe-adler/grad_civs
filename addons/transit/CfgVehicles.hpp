@@ -14,7 +14,7 @@ class CfgVehicles
 	class GVAR(transitSource): Module_F
 	{
 		scope = 2; // visible in editor
-		displayName = "add transit traffic source";
+		displayName = "Transit Traffic Source";
 		icon = ""; // Map icon. Delete this entry to use the default icon
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_transitSource);
@@ -63,7 +63,7 @@ class CfgVehicles
 	class GVAR(transitSink): Module_F
 	{
 		scope = 2; // visible in editor
-		displayName = "add transit traffic sink";
+		displayName = "Transit Traffic Sink";
 		icon = ""; // Map icon. Delete this entry to use the default icon
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_transitSink);

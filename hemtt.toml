@@ -7,9 +7,11 @@ folder_optionals = true
 sig_version = 3
 
 files = [
+    "adlerkopp_32.paa",
+    "logo_64.paa",
+    "logo_64_w.paa",
+    "logo_1024_w.paa",
     "mod.cpp",
-    "logo.paa",
-    "logo_w.paa",
     "README.md"
 ]
 include = [
