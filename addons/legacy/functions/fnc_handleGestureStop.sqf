@@ -13,13 +13,16 @@ _potentialObservers = _potentialObservers + (nearestObjects [_gesturer, ["Car"],
 INFO_1("%1 people & cars are near gesturer", count _potentialObservers);
 
 // select civs
-private _triggeredObserverCount = count (_potentialObservers select {
+private _observers = _potentialObservers select {
     (side _x) == civilian
 } select {
     [_gesturer, vectorDirVisual _gesturer, _x] call FUNC(feelsAddressedByGesture)
-} select {
-    [QGVAR(gestured_at_stop), [_x], _x] call CBA_fnc_targetEvent;
-    true
-});
+};
 
-INFO_1("%1 civs were triggered for being gestured with 'stop'", _triggeredObserverCount);
+{
+    private _recklessness = _x getVariable ["grad_civs_recklessness", 5];
+    private _waitTime = linearConversion [0, 10, _recklessness, 60*15, 15, false];
+    [_x, _waitTime] call FUNC(doStop);
+} forEach _observers;
+
+INFO_1("%1 civs were triggered for being gestured with 'stop'", count _observers);

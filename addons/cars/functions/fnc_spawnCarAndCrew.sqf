@@ -10,14 +10,18 @@ params [
     ["_vehicleClass", "", [""]]
 ];
 
-if (_vehicleClass == "") then {
-    private _vehicleClasses = [GVAR(vehicles)] call EFUNC(common,parseCsv);
-    if (_vehicleClasses isEqualTo []) exitWith {
-        WARNING("will not spawn vehicles as zero vehicle classes are defined");
-    };
-    _vehicleClass = selectRandom _vehicleClasses;
+private _vehicleClasses = [];
+if (_vehicleClass != "") then {
+    _vehicleClasses = [_vehicleClass];
+};
+if (_vehicleClasses isEqualTo []) then {
+    _vehicleClasses = [GVAR(vehicles)] call EFUNC(common,parseCsv);
+};
+if (_vehicleClasses isEqualTo []) exitWith {
+    WARNING("will not spawn vehicles as zero vehicle classes are defined");
 };
 
+_vehicleClass = selectRandom _vehicleClasses;
 
 _veh = [_pos, _vehicleClass] call FUNC(spawnVehicle);
 ["ace_common_setDir", [_veh, _dir], _veh] call CBA_fnc_targetEvent;

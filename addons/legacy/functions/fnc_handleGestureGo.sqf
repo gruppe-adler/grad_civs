@@ -13,15 +13,16 @@ private _potentialObservers = nearestObjects [_gesturer, ["Car"], 200] apply { d
 INFO_1("%1 cars with driver are near gesturer", count _potentialObservers);
 
 // select civs
-private _triggeredObserverCount = count (_potentialObservers select {
+private _observers = _potentialObservers select {
     (side _x) == civilian
 } select {
 
     [_gesturer, vectorDirVisual _gesturer, _x] call FUNC(feelsAddressedByGesture)
     || (_gesturer distance _x < SEND_RADIUS) /* HACK: as this is also triggered by ACE interact "go away", we need to disregard direction when very close*/
-} select {
-    [QGVAR(gestured_at_vehicle_go), [_x, vectorDirVisual _gesturer], _x] call CBA_fnc_targetEvent;
-    true
-});
+};
 
-INFO_1("%1 civs were triggered for being gestured with 'go'", _triggeredObserverCount);
+{
+   [QGVAR(gestured_at_vehicle_go), [_x, vectorDirVisual _gesturer], _x] call CBA_fnc_targetEvent;
+} forEach _observers;
+
+INFO_1("%1 civs were triggered for being gestured with 'go'", count _observers);

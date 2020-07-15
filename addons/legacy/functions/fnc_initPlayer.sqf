@@ -4,7 +4,6 @@ if (hasInterface) then {
 
     [] call FUNC(playerLoop);
     [] call FUNC(addCivInteractions);
-    [] call FUNC(setupZeusModules);
     if ((GVAR(debugCivState))) then {
         [] call FUNC(showWhatTheyThink);
 

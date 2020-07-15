@@ -8,6 +8,11 @@ PREP(customActivity_reverse);
 PREP(deleteIfDamaged);
 PREP(doCustomActivity);
 PREP(drawCivs);
+
+PREP(doStop);
+PREP(isStopped);
+PREP(doCarryOn);
+
 PREP(endCustomActivity);
 // PREP(feelsAddressedByGesture.spec);
 PREP(feelsAddressedByGesture);
@@ -49,7 +54,6 @@ PREP(reverse);
 PREP(serverLoop);
 PREP(setCurrentlyThinking);
 PREP(setDebugMode);
-PREP(setupZeusModules);
 PREP(showWhatTheyThink);
 PREP(sm_activities_helper_freeCondition);
 PREP(sm_activities_helper_surrenderCondition);
