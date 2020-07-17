@@ -5,7 +5,7 @@ private _isLeader = (leader _civ) == _civ;
 private _allMounted = {
     private _units = units _civ;
     private _mountedUnits = crew vehicle _civ;
-    _units arrayIntersect _mountedUnits) isEqualTo _units
+    (_units arrayIntersect _mountedUnits) isEqualTo _units
 };
 
 private _isTaskTransit = {
