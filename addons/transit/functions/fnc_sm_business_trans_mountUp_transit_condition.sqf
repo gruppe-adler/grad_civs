@@ -1,5 +1,15 @@
-private _isLeader = (leader _this) == _this;
-private _vehicle = vehicle _this;
-private _allMounted = ((units _this) findIf { vehicle _x != _vehicle}) == -1;
+private _civ = _this;
 
-_isLeader && _allMounted && (_this getVariable ["grad_civs_primaryTask", ""] == "transit")
+private _isLeader = (leader _civ) == _civ;
+
+private _allMounted = {
+    private _units = units _civ;
+    private _mountedUnits = crew vehicle _civ;
+    _units arrayIntersect _mountedUnits) isEqualTo _units
+};
+
+private _isTaskTransit = {
+    _civ getVariable ["grad_civs_primaryTask", ""] == "transit"
+};
+
+_isLeader && _allMounted && _isTaskTransit
