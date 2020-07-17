@@ -18,14 +18,7 @@ switch _mode do {
             _x isKindOf QGVAR(transitSink)
         };
 
-		private _vics = _logic getVariable "Vehicles";
-		if (_vics isEqualType "") then {
-			if (_vics == "") then  {
-				_vics = [];
-			} else {
-				_vics = parseSimpleArray (_logic getVariable "Vehicles");
-			};
-		};
+		private _vics = [_logic getVariable ["Vehicles", ""]] call EFUNC(common,parseCsv);
 
 		[
 			getPos _logic,

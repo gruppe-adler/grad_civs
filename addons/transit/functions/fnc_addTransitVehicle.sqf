@@ -3,17 +3,15 @@
 params [
     ["_pos", [], [[]]],
     ["_dir", 0, [0]],
+    ["_vehicleClasses", [], [[]]],
     ["_destination", [], [[]]]
 ];
 
 assert(count _pos > 1);
 assert(count _destination > 1);
 
-scopeName "main";
-
-private _vehicleClasses = parseSimpleArray ([QGVAR(vehicles)] call CBA_settings_fnc_get);
 if (_vehicleClasses isEqualTo []) exitWith {
-    WARNING("will not spawn vehicles as zero vehicle classes are defined");
+    WARNING_2("will not spawn vehicles as zero vehicle classes are defined for route from %1 to %2", _pos, _destination);
 };
 private _vehicleClass = selectRandom _vehicleClasses;
 

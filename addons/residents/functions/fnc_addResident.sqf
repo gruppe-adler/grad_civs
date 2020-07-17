@@ -4,7 +4,7 @@ params [
     ["_allPlayers", []]
 ];
 
-private _residentSpawnDistances = parseSimpleArray ([QGVAR(spawnDistancesResidents)] call CBA_settings_fnc_get);
+private _residentSpawnDistances = [[QGVAR(spawnDistancesResidents)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
 private _residentSpawnDistanceMin = _residentSpawnDistances#0;
 private _residentSpawnDistanceMax = _residentSpawnDistances#1;
 

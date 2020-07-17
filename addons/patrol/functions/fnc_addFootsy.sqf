@@ -4,7 +4,7 @@ params [
     ["_allPlayers", []]
 ];
 
-private _footSpawnDistances = parseSimpleArray ([QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get);
+private _footSpawnDistances = [[QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
 private _footSpawnDistanceMin = _footSpawnDistances#0;
 private _footSpawnDistanceMax = _footSpawnDistances#1;
 
