@@ -15,7 +15,7 @@ if (isServer || !hasInterface) then {
         }
     ] call CBA_fnc_addEventHandler;
 
-    private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get);
+    private _spawnDistances = [[QGVAR(spawnDistancesOnFoot)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
     [
         "patrol",
         _spawnDistances#1 * 1.5

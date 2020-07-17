@@ -11,7 +11,7 @@ params [
 ];
 
 if (_vehicleClass == "") then {
-    private _vehicleClasses = parseSimpleArray ([QGVAR(vehicles)] call CBA_settings_fnc_get);
+    private _vehicleClasses = [[QGVAR(vehicles)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
     if (_vehicleClasses isEqualTo []) exitWith {
         WARNING("will not spawn vehicles as zero vehicle classes are defined");
     };

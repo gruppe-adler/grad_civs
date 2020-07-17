@@ -15,8 +15,9 @@ _route setVariable ["lastSpawn", CBA_missionTime, true];
 private _source = _route getVariable ["source", [0, 0, 0]];
 private _sourceDir = _route getVariable ["sourceDir", 0];
 private _sinks = _route getVariable ["sinks", []];
+private _vehicleClasses = _route getVariable ["vehicles", []];
 if (_sinks isEqualTo []) exitWith {
     ERROR_2("no sinks for transit route %1 starting at %2", _route. _source);
 };
 
-[_source, _sourceDir, selectRandom _sinks] call FUNC(addTransitVehicle);
+[_source, _sourceDir, _vehicleClasses, selectRandom _sinks] call FUNC(addTransitVehicle);

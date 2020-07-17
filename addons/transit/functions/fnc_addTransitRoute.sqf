@@ -5,19 +5,22 @@ params [
     ["_sourceDir", 0, [0]],
     ["_sinks", [], [[]]],
     ["_interval", 60, [0]],
-    ["_vehicles", [], [[]]]
+    ["_vehicleClasses", [], [[]]]
 ];
 
 assert(isServer);
 
 scopeName "main";
 
-if (_vehicles isEqualTo []) then {
-    private _vehicles = parseSimpleArray ([QEGVAR(cars,vehicles)] call CBA_settings_fnc_get);
-    if (_vehicles isEqualTo []) then {
-        WARNING("will not spawn vehicles as zero vehicle classes are defined");
-        breakOut "main";
-    };
+if (_vehicleClasses isEqualTo []) then {
+    _vehicleClasses = [[QGVAR(vehicles)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
+};
+if (_vehicleClasses isEqualTo []) then {
+    _vehicleClasses = [[QEGVAR(cars,vehicles)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
+};
+if (_vehicleClasses isEqualTo []) then {
+    WARNING_1("will not spawn vehicles in transit source %1 as no vehicle classes are defined anywhere");
+    breakOut "main";
 };
 
 assert(_interval > 0);
@@ -34,7 +37,7 @@ _newRoute setVariable ["source", _source, true];
 _newRoute setVariable ["sourceDir", _sourceDir, true];
 _newRoute setVariable ["sinks", _sinks, true];
 _newRoute setVariable ["interval", _interval, true];
-_newRoute setVariable ["vehicles", _vehicles, true];
+_newRoute setVariable ["vehicles", _vehicleClasses, true];
 _newRoute setVariable ["lastSpawn", -999999, true];
 
 GVAR(transitRoutes) pushBack _newRoute;

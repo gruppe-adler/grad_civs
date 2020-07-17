@@ -15,7 +15,7 @@ if (isServer || !hasInterface) then {
         }
     ] call CBA_fnc_addEventHandler;
 
-    private _spawnDistances = parseSimpleArray ([QGVAR(spawnDistancesResidents)] call CBA_settings_fnc_get);
+    private _spawnDistances = [[QGVAR(spawnDistancesResidents)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
     [
         "reside",
         _spawnDistances#1 * 1.2
