@@ -24,6 +24,14 @@ private _bus_dismount  = [
     "bus_dismount"
 ] call EFUNC(cba_statemachine,addState);
 
+private _bus_rideInBack = [
+    _business,
+    {},
+    { _this call FUNC(sm_business_state_rideInBack_enter) },
+    { _this call FUNC(sm_business_state_rideInBack_exit) },
+    "bus_rideInBack"
+] call EFUNC(cba_statemachine,addState);
+
 // TRANSITIONS
 
 assert ([
@@ -49,6 +57,22 @@ assert ([
     { _this call FUNC(sm_business_trans_dismount_rally_condition) },
     {},
     _bus_dismount + _bus_rally
+] call EFUNC(cba_statemachine,addTransition));
+
+assert ([
+    _business,
+    _bus_rally, _bus_rideInBack,
+    { _this call FUNC(sm_business_trans_rally_rideInBack_condition) },
+    {},
+    _bus_rally + _bus_rideInBack
+] call EFUNC(cba_statemachine,addTransition));
+
+assert ([
+    _business,
+    _bus_rideInBack, _bus_rally,
+    { _this call FUNC(sm_business_trans_rideInBack_rally_condition) },
+    {},
+    _bus_rideInBack + _bus_rally
 ] call EFUNC(cba_statemachine,addTransition));
 
 _business
