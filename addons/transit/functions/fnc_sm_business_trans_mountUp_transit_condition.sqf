@@ -1,15 +1,21 @@
+#include "..\script_component.hpp"
+
 private _civ = _this;
 
-private _isLeader = (leader _civ) == _civ;
+if (leader _civ != _this) exitWith {false};
+
+private _groupVehicle = _civ call EFUNC(cars,getGroupVehicle);
+private _units = units _civ;
+
+private _allAssigned = {
+    (_units arrayIntersect (crew _groupVehicle)) isEqualTo _units
+};
 
 private _allMounted = {
-    private _units = units _civ;
-    private _mountedUnits = crew vehicle _civ;
+    private _mountedUnits = _units select {vehicle _x == _groupVehicle};
     (_units arrayIntersect _mountedUnits) isEqualTo _units
 };
 
-private _isTaskTransit = {
-    _civ getVariable ["grad_civs_primaryTask", ""] == "transit"
-};
+private _isTaskTransit = _civ getVariable ["grad_civs_primaryTask", ""] == "transit";
 
-_isLeader && _allMounted && _isTaskTransit
+_isTaskTransit && _allAssigned && _allMounted
