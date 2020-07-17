@@ -77,7 +77,6 @@ PREP(sm_activities_trans_surrendered_business_condition);
 PREP(sm_activities_trans_surrendered_panic_condition);
 PREP(sm_business);
 PREP(sm_business_state_rally_enter);
-PREP(sm_business_state_rally_loop);
 PREP(sm_emotions);
 PREP(sm_lifecycle);
 PREP(sm_lifecycle_state_death_enter);
