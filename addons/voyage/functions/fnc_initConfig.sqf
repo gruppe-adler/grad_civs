@@ -25,3 +25,14 @@ private _settingsGroup = ["GRAD Civs", "6) voyagers"];
     {},
     false
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(maxTravelRadius),
+    "SLIDER",
+    "max travel radius around spawn (otional)",
+    _settingsGroup,
+    [0, 100000, 0, 0],
+    false,
+    {},
+    false
+] call CBA_fnc_addSetting;

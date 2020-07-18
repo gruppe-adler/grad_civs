@@ -13,8 +13,8 @@
 */
 
 params [
-    ["_groupOrUnit", grpNull, [grpNull]],
-    ["_centerPositionOrObject", [0, 0, 0], [[0, 0, 0]]],
+    ["_groupOrUnit", grpNull, [grpNull, objNull]],
+    ["_centerPositionOrObject", [0, 0, 0], [objNull, [0, 0, 0]]],
     ["_radius", 0, [0, [0, 0]]],
     ["_count", 3, [0, [0, 0]]],
     ["_timeout",[0,0,0], [[0, 0, 0]]],
