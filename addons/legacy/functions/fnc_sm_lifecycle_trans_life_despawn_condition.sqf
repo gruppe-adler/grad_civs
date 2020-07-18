@@ -17,13 +17,15 @@ _civTaskTypeInfo params [
     ["_despawnCondition", {false}, [{}]]
 ];
 
+private _tooDistantFromPlayers = false;
 if ((count ALL_HUMAN_PLAYERS > 0) || ([QGVAR(spawnOnlyWithPlayers)] call CBA_settings_fnc_get)) then {
     if ([ALL_HUMAN_PLAYERS, getPos _this, _cleanupDistance] call FUNC(isInDistanceFromOtherPlayers)) then {
         INFO("despawning civ based on distance");
-        breakOut "main";
+        _tooDistantFromPlayers = true;
+        breakTo "main";
     };
 } else {
     INFO("no human players connected, but civs allowed - will abstain from despawning civilians based on player distance");
 };
 
-_this call _despawnCondition
+_tooDistantFromPlayers || {_this call _despawnCondition}
