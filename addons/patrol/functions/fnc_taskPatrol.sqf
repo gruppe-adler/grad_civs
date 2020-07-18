@@ -13,14 +13,14 @@
 */
 
 params [
-    ["_groupOrUnit", grpNull],
-    ["_centerPositionOrObject", [0, 0, 0]],
-    ["_radius", 0],
-    ["_count", 3],
-    ["_timeout",[0,0,0]],
-    ["_findPosOfInterest",false],
-    ["_findRoadPos",false],
-    ["_findWaterPos",false]
+    ["_groupOrUnit", grpNull, [grpNull]],
+    ["_centerPositionOrObject", [0, 0, 0], [[0, 0, 0]]],
+    ["_radius", 0, [0, [0, 0]]],
+    ["_count", 3, [0, [0, 0]]],
+    ["_timeout",[0,0,0], [[0, 0, 0]]],
+    ["_findPosOfInterest",false, [false]],
+    ["_findRoadPos",false, [false]],
+    ["_findWaterPos",false, [false]]
 ];
 
 private _clearWaypoints =  {
@@ -34,8 +34,8 @@ private _clearWaypoints =  {
 
 private _group = if (typeName _groupOrUnit == "OBJECT") then {group _groupOrUnit} else {_groupOrUnit};
 private _centerPosition = if (typeName _centerPositionOrObject == "OBJECT") then {getPos _centerPositionOrObject} else {_centerPositionOrObject};
-_radius = if (typeName _radius == "ARRAY") then {(random ((_radius select 1) - (_radius select 0))) + (_radius select 1)} else {_radius};
-_count = if (typeName _count == "ARRAY") then {(random ((_count select 1) - (_count select 0))) + (_count select 1)} else {_count};
+_radius = if (typeName _radius == "ARRAY") then {(random ((_radius select 1) - (_radius select 0))) + (_radius select 0)} else {_radius};
+_count = if (typeName _count == "ARRAY") then {(random ((_count select 1) - (_count select 0))) + (_count select 0)} else {_count};
 private _position = _centerPosition;
 
 assert(_count > 0);
