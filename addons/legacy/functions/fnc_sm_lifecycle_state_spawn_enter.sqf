@@ -58,7 +58,7 @@ private _addVars = {
 
 _unit enableDynamicSimulation true;
 
-_unit setVariable ["asr_ai_exclude", true];
+_unit setVariable ["asr_ai_exclude", true, true];
 
 [_unit] call _addKilledNews;
 [_unit] call _addGunfightNewsAndFlee;
