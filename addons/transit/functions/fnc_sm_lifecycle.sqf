@@ -12,5 +12,5 @@ assert ([
     _lifecycle_life, _lifecycle_despawn,
     { _this call FUNC(sm_lifecycle_trans_life_despawn_condition) },
     {},
-    _lifecycle_life + _lifecycle_despawn
+    "transit_" + _lifecycle_life + _lifecycle_despawn
 ] call EFUNC(cba_statemachine,addTransition));
