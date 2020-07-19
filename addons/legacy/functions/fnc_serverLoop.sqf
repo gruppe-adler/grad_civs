@@ -6,6 +6,7 @@ ISNILS(GVAR(EXITON), {});
 
 private _mainLoop = {
     params ["_args", "_handle"];
+    if (!isGameFocused || isGamePaused) exitWith {};
 
     if (call GVAR(EXITON)) exitWith {
         INFO("exiting because GRAD_CIVS_EXITON returned true");
@@ -32,6 +33,7 @@ private _mainLoop = {
 
 GVAR(debugLoopHandle) = [{
     params ["_args", "_handle"];
+    if (!isGameFocused || isGamePaused) exitWith {};
     if (call GVAR(EXITON)) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
     if (([QGVAR(debugCivState)] call CBA_settings_fnc_get)) then {
         { _x call FUNC(updateInfoLine); } forEach GVAR(localCivs);
@@ -53,6 +55,7 @@ GVAR(debugLoopHandle) = [{
 [
     {
         GVAR(localCivs) = GVAR(localCivs) select {
+            // NOTE: do not handle `alive` here, we've got a transition & state for proper disposal of dead civilians
             if (isNull _x) then {
                 INFO_1("abandoning civilian they have become NULL (deleted?)", _x);
                 false
