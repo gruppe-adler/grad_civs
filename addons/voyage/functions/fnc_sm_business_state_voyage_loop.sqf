@@ -1,6 +1,9 @@
 #include "..\script_component.hpp"
 
 private _group = group _this;
+if (isNull _group) exitWith {
+    WARNING_2("unit %1 in voyage loop has no group, will ignore. is it dead? :%2", _this, alive _this);
+};
 private _wps = waypoints _group;
 private _wppos = waypointPosition (_wps select (currentWaypoint _group));
 
