@@ -58,10 +58,6 @@ private _addVars = {
 
 _unit enableDynamicSimulation true;
 
-ISNILS(GRAD_CIVS_ONSPAWN, {}); // TODO trigger event instead
-[_unit] call GRAD_CIVS_ONSPAWN;
-
-
 _unit setVariable ["asr_ai_exclude", true];
 
 [_unit] call _addKilledNews;

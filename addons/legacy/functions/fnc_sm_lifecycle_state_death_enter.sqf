@@ -3,17 +3,9 @@
 private _deathPos = getPos _this;
 private _killer = _this getVariable ["ace_medical_lastDamageSource", objNull];
 
-// old killed event to be used with publicVariable EH
-// DEPRECATED
-CIV_KILLED = [_deathPos, _killer];
-INFO_2("civ killed at %1 by %2", _deathPos, _killer);
-publicVariableServer "CIV_KILLED";
+INFO_2("releasing civ killed at %1 by %2", _deathPos, _killer);
 
-// new killed event to be used with config
-[_this, _killer] call GRAD_CIVS_ONKILLED;
-
-// even newer CBA event magic
-["grad_civs_civKilled", CIV_KILLED] call CBA_fnc_globalEvent;
+["grad_civs_civKilled", [_deathPos, _killer]] call CBA_fnc_globalEvent;
 
 GVAR(localCivs) = GVAR(localCivs) - [_this];
 ["grad_civs_civ_removed", [_this]] call CBA_fnc_globalEvent;
