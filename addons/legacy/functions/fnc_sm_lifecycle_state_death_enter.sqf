@@ -6,7 +6,7 @@ private _killer = _this getVariable ["ace_medical_lastDamageSource", objNull];
 // old killed event to be used with publicVariable EH
 // DEPRECATED
 CIV_KILLED = [_deathPos, _killer];
-INFO_1("civ killed: %1", CIV_KILLED);
+INFO_2("civ killed at %1 by %2", _deathPos, _killer);
 publicVariableServer "CIV_KILLED";
 
 // new killed event to be used with config
