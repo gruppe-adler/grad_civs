@@ -24,6 +24,7 @@ private _addKilledNews = {
    (_this select 0) addEventHandler ["Killed",
     {
 		params ["_unit"];
+		INFO_2("civ %1 was killed (index: %2), firing internal 'killed' event", _unit, GVAR(localCivs) find _unit);
 
 		["killed", [_unit], [_unit]] call CBA_fnc_targetEvent;
 

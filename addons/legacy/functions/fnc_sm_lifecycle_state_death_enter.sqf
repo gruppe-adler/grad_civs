@@ -2,8 +2,9 @@
 
 private _deathPos = getPos _this;
 private _killer = _this getVariable ["ace_medical_lastDamageSource", objNull];
+_this setVariable ["grad_civs_livedAs", str _this, true]; // as dead units dont have a group - or the group mightve been deleted since - this var is my only way to identify the body later on
 
-INFO_2("releasing civ killed at %1 by %2", _deathPos, _killer);
+INFO_3("releasing civ %1 killed at %2 by %3", _this, _deathPos, _killer);
 
 ["grad_civs_civKilled", [_deathPos, _killer]] call CBA_fnc_globalEvent;
 

@@ -3,7 +3,7 @@
 if (CBA_missionTime - (_this getVariable [QGVAR(lastDespawnCheck), 0]) < 10) exitWith {};
 _this setVariable [QGVAR(lastDespawnCheck), CBA_missionTime];
 
-INFO_1("check despawn cond for %1", _this);
+LOG_1("check despawn cond for %1", _this);
 
 if (_this getVariable ["grad_civs_excludeFromCleanup",false]) exitWith {false};
 
