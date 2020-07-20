@@ -24,6 +24,7 @@ private _addKilledNews = {
    (_this select 0) addEventHandler ["Killed",
     {
 		params ["_unit"];
+		INFO_2("civ %1 was killed (index: %2), firing internal 'killed' event", _unit, GVAR(localCivs) find _unit);
 
 		["killed", [_unit], [_unit]] call CBA_fnc_targetEvent;
 
@@ -58,11 +59,7 @@ private _addVars = {
 
 _unit enableDynamicSimulation true;
 
-ISNILS(GRAD_CIVS_ONSPAWN, {}); // TODO trigger event instead
-[_unit] call GRAD_CIVS_ONSPAWN;
-
-
-_unit setVariable ["asr_ai_exclude", true];
+_unit setVariable ["asr_ai_exclude", true, true];
 
 [_unit] call _addKilledNews;
 [_unit] call _addGunfightNewsAndFlee;

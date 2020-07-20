@@ -2,18 +2,11 @@
 
 private _deathPos = getPos _this;
 private _killer = _this getVariable ["ace_medical_lastDamageSource", objNull];
+_this setVariable ["grad_civs_livedAs", str _this, true]; // as dead units dont have a group - or the group mightve been deleted since - this var is my only way to identify the body later on
 
-// old killed event to be used with publicVariable EH
-// DEPRECATED
-CIV_KILLED = [_deathPos, _killer];
-INFO_1("civ killed: %1", CIV_KILLED);
-publicVariableServer "CIV_KILLED";
+INFO_3("releasing civ %1 killed at %2 by %3", _this, _deathPos, _killer);
 
-// new killed event to be used with config
-[_this, _killer] call GRAD_CIVS_ONKILLED;
-
-// even newer CBA event magic
-["grad_civs_civKilled", CIV_KILLED] call CBA_fnc_globalEvent;
+["grad_civs_civKilled", [_deathPos, _killer]] call CBA_fnc_globalEvent;
 
 GVAR(localCivs) = GVAR(localCivs) - [_this];
 ["grad_civs_civ_removed", [_this]] call CBA_fnc_globalEvent;
