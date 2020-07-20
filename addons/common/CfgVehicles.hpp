@@ -13,7 +13,7 @@ class CfgVehicles
 	{
 		scope = 2; // visible in editor
 		displayName = "population zone";
-		icon = ""; // Map icon. Delete this entry to use the default icon
+		icon = QPATHTOF(ui\icon_module_population_zone_ca.paa);
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_populationZone);
 		functionPriority = 0; // first to execute
@@ -33,7 +33,7 @@ class CfgVehicles
 	{
 		scope = 2; // visible in editor
 		displayName = "exclusion zone";
-		icon = ""; // Map icon. Delete this entry to use the default icon
+		icon = QPATHTOF(ui\icon_module_exclusion_zone_ca.paa);
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_exclusionZone);
 		functionPriority = 0; // first to execute

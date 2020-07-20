@@ -15,7 +15,7 @@ class CfgVehicles
 	{
 		scope = 2; // visible in editor
 		displayName = "Transit Traffic Source";
-		icon = ""; // Map icon. Delete this entry to use the default icon
+		icon = QPATHTOF(ui\icon_module_transit_source_ca.paa);
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_transitSource);
 		functionPriority = 0; // first to execute
@@ -64,7 +64,7 @@ class CfgVehicles
 	{
 		scope = 2; // visible in editor
 		displayName = "Transit Traffic Sink";
-		icon = ""; // Map icon. Delete this entry to use the default icon
+		icon = QPATHTOF(ui\icon_module_transit_sink_ca.paa);
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_transitSink);
 		functionPriority = 0; // first to execute
