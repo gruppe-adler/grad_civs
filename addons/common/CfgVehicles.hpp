@@ -9,13 +9,13 @@ class CfgVehicles
 		};
 		class ModuleDescription {};
 	};
-	class GVAR(addPopulationZone): Module_F
+	class GVAR(PopulationZone): Module_F
 	{
 		scope = 2; // visible in editor
-		displayName = "add population zone";
-		icon = ""; // Map icon. Delete this entry to use the default icon
+		displayName = "population zone";
+		icon = QPATHTOF(ui\icon_module_population_zone_ca.paa);
 		category = QEGVAR(main,modules);
-		function = QFUNC(module_addPopulationZone);
+		function = QFUNC(module_populationZone);
 		functionPriority = 0; // first to execute
 		isGlobal = 1;
 		isTriggerActivated = 0;
@@ -29,13 +29,13 @@ class CfgVehicles
 			sync[] = {}; // Array of synced entities (can contain base classes)
 		};
 	};
-	class GVAR(addExclusionZone): Module_F
+	class GVAR(ExclusionZone): Module_F
 	{
 		scope = 2; // visible in editor
-		displayName = "add exclusion zone";
-		icon = ""; // Map icon. Delete this entry to use the default icon
+		displayName = "exclusion zone";
+		icon = QPATHTOF(ui\icon_module_exclusion_zone_ca.paa);
 		category = QEGVAR(main,modules);
-		function = QFUNC(module_addExclusionZone);
+		function = QFUNC(module_exclusionZone);
 		functionPriority = 0; // first to execute
 		isGlobal = 1;
 		isTriggerActivated = 0;

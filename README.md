@@ -79,11 +79,11 @@ vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02
 
 ## 3DEN modules
 
-### add exclusion zone
+### exclusion zone
 
 Blacklist an area for civs by syncing it to a trigger.
 
-### add population zone
+### population zone
 
 Whitelist an area for civs by syncing it to a trigger.
 
@@ -176,7 +176,7 @@ Parameter   | Explanation
 backpacks   | Array - All classnames of clothes that civilians may wear.
 probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
 
-### grad_civs_voyage_fnc_setVehicles
+### grad_civs_cars_fnc_setVehicles
 Sets all vehicles that civilians may drive. Overwrites value from CBA settings. Execute globally
 
 #### Syntax
@@ -197,17 +197,17 @@ Parameter     | Explanation
 debugCivState | Bool - Debug mode on/off.
 
 
-### grad_civs_legacy_fnc_addExclusionZone and grad_civs_legacy_fnc_addPopulationZone
+### grad_civs_common_fnc_addExclusionZone and grad_civs_common_fnc_addPopulationZone
 
 Prevent civilians from entering areas.
 
-Optionally whitelist areas using `[_area] call grad_civs_legacy_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_legacy_fnc_addExclusionZone` .
+Optionally whitelist areas using `[_area] call grad_civs_common_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_common_fnc_addExclusionZone` .
 
 *known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
 
 #### Syntax
 
-`[_trigger] call grad_civs_legacy_fnc_addExclusionZone;`  
+`[_trigger] call grad_civs_common_fnc_addExclusionZone;`  
 
 ## Development
 

@@ -10,13 +10,12 @@ private _populationZones = [] call FUNC(getPopulationZones);
 private _exclusionZones = [] call FUNC(getExclusionZones);
 
 private _inAnyPopulationZone = if (count _populationZones == 0) then {
-    true
+    true; // "there is no population zone" defaults to "*everywhere* is population zone"
 } else {
-    // TODO uhm… how about [] findIf {} != -1 ?
-    [_populationZones, {_position inArea (_this#0)}] call FUNC(arrayContains)
+    _populationZones findIf {_position inArea _x} != -1;
 };
 if (!_inAnyPopulationZone) exitWith {false};
 
-private _inAnyExclusionZone = [_exclusionZones, {_position inArea (_this#0)}] call FUNC(arrayContains);
+private _inAnyExclusionZone = _exclusionZones findIf {_position inArea (_x)} != -1;
 
 !_inAnyExclusionZone

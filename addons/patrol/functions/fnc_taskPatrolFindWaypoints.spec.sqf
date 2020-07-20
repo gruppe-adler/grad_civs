@@ -2,15 +2,15 @@
     {
         private _trgW = createTrigger ["EmptyDetector", [-250, 150, 0]];
         _trgW setTriggerArea [150, 250, 0, true];
-        [_trgW] call grad_civs_legacy_fnc_addExclusionZone;
+        [_trgW] call grad_civs_common_fnc_addExclusionZone;
 
         private _trgS = createTrigger ["EmptyDetector", [0, -250, 0]];
         _trgS setTriggerArea [200, 150, 0, true];
-        [_trgS] call grad_civs_legacy_fnc_addExclusionZone;
+        [_trgS] call grad_civs_common_fnc_addExclusionZone;
 
         private _trgE = createTrigger ["EmptyDetector", [250, 150, 0]];
         _trgE setTriggerArea [150, 250, 0, true];
-        [_trgE] call grad_civs_legacy_fnc_addExclusionZone;
+        [_trgE] call grad_civs_common_fnc_addExclusionZone;
     },
     [
         ["when a patrol path is created",
@@ -37,7 +37,7 @@
                                     format ["waypoint %1 at %2 is not in exclusion zone at %3 (%4)", _forEachIndex, _x, getPos _exclusionZone, triggerArea _exclusionZone]
                                 ] call grad_testing_fnc_assertFalse;
                             } forEach _positions;
-                        } forEach (call grad_civs_legacy_fnc_getExclusionZones);
+                        } forEach (call grad_civs_common_fnc_getExclusionZones);
                     }
                 ],
                 ["will avoid crossing exclusion zones",
@@ -48,7 +48,7 @@
             ]
         ]
     ],
-    grad_civs_legacy_fnc_clearExclusionZones
+    grad_civs_common_fnc_clearExclusionZones
 ] call grad_testing_fnc_executeTest;
 
 ["GIVEN a point and no exclusion zones WHEN a patrol path is created",

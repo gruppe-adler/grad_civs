@@ -1,4 +1,13 @@
+PREP(addExclusionZone);
+PREP(addPopulationZone);
 PREP(augmentStateMachine);
-PREP(registerCivTaskType);
 PREP(civGetState);
+PREP(clearExclusionZones);
+PREP(clearPopulationZones);
+PREP(getExclusionZones);
+PREP(getPopulationZones);
+PREP(isInPopulatedZone);
+PREP(module_exclusionZone);
+PREP(module_populationZone);
 PREP(parseCsv);
+PREP(registerCivTaskType);
