@@ -81,9 +81,3 @@ player addEventHandler [
         [GVAR(stolenVehiclePfh)] call CBA_fnc_removePerFrameHandler;
     }
 ];
-
-
-// TEST
-//["grad_civs_vehicleTheft", {
-//    systemChat format ["%1 has been stolen by %2", _this#0, _this#1];
-//}] call CBA_fnc_addEventHandler;
