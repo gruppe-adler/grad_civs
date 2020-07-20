@@ -1,11 +1,13 @@
 #include "..\script_component.hpp"
 
 /*
-    parse list of strings
+    parse list of strings into an array. tolerates arrays, will return input value in that case
 */
 params [
-    ["_rawValue", "", [""]]
+    ["_rawValue", "", ["", []]]
 ];
+
+if (_rawValue isEqualType []) exitWith { _rawValue };
 
 private _delimiter = ",";
 
