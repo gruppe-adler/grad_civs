@@ -19,7 +19,7 @@
         };
         private _marker = _areaMarkersAtPos select (_minDistanceAndIndex#1);
 
-        [_marker] call FUNC(addExclusionZone);
+        [_marker] call EFUNC(common,addExclusionZone);
         _marker setMarkerBrushLocal "BORDER";
         _marker setMarkerColorLocal "ColorUNKNOWN";
     }
@@ -44,7 +44,7 @@
         };
         private _marker = _areaMarkersAtPos select (_minDistanceAndIndex#1);
 
-        [_marker] call FUNC(addPopulationZone);
+        [_marker] call EFUNC(common,addPopulationZone);
         _marker setMarkerBrushLocal "BORDER";
         _marker setMarkerColorLocal "ColorCIV";
     }
