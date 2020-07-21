@@ -11,8 +11,6 @@ private _settingsGroup = ["GRAD Civs", "2) basics"];
     _settingsGroup,
     "C_Man_1",
     true,
-    {
-        GVAR(civClasses) = []; // be lazy. getter function will retrieve setting.
-    },
+    {},
     false
 ] call CBA_fnc_addSetting;
