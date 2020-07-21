@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _baseChatTime = [QGVAR(chatTime)] call CBA_settings_fnc_get;
+private _baseChatTime = GVAR(chatTime);
 
 private _chatTime = _baseChatTime * random [0.2, 1, 5];
 _this setVariable ["grad_civs_chat_time", _chatTime];

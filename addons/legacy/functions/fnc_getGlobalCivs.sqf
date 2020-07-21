@@ -7,8 +7,8 @@ params [
 
 if (isNil QFUNC(getGlobalCivs_arr)) then {
     // on first run, init array with existing civs
-    private _civClass = [QGVAR(civClass)] call CBA_settings_fnc_get;
-    private _potentialCivs = entities [[_civClass], [], true, true];
+    private _civClasses = call EFUNC(common,config_getCivClasses);
+    private _potentialCivs = entities [_civClasses, [], true, true];
     FUNC(getGlobalCivs_arr) = _potentialCivs select { (_x getVariable ["grad_civs_primaryTask", ""]) != ""};
 
     // then, register event handler to update the array appropriately to always include all living civs

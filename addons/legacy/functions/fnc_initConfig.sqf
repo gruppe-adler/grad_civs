@@ -5,17 +5,6 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "2) basics"];
 
 [
-    QGVAR(civClass),
-    "EDITBOX",
-    "Unit class to use for spawning civilians",
-    _settingsGroup,
-    "C_Man_1",
-    true,
-    {},
-    false
-] call CBA_fnc_addSetting;
-
-[
     QGVAR(debugCivState),
     "CHECKBOX",
     "Toggle civ behavior debugging mode.",

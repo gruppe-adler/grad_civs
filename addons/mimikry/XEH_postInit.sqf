@@ -1,10 +1,10 @@
 #include "script_component.hpp"
 
-if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
+if (!(EGVAR(main,enabled))) exitWith {
     INFO("GRAD civs is disabled. Good bye!");
 };
 
-if (!([QGVAR(enabled)] call CBA_settings_fnc_get)) exitWith {
+if (!(GVAR(enabled))) exitWith {
     INFO("module disabled. good bye.");
 };
 

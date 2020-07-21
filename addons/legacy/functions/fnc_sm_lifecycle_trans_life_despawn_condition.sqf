@@ -15,7 +15,7 @@ _civTaskTypeInfo params [
 ];
 
 private _tooDistantFromPlayers = false;
-if ((count ALL_HUMAN_PLAYERS > 0) || ([QGVAR(spawnOnlyWithPlayers)] call CBA_settings_fnc_get)) then {
+if ((count ALL_HUMAN_PLAYERS > 0) || (GVAR(spawnOnlyWithPlayers))) then {
     if ([ALL_HUMAN_PLAYERS, getPos _this, _cleanupDistance] call FUNC(isInDistanceFromOtherPlayers)) then {
         INFO_1("despawning civ %1 based on distance", _this);
         _tooDistantFromPlayers = true;

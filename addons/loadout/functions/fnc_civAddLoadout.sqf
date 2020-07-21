@@ -59,7 +59,7 @@ if (random 1 > 0.01) then {
     }
 ] call FUNC(applyRandomConfigArrayValue);
 
-private _backpackProbability = [QGVAR(backpackProbability)] call cba_settings_fnc_get;
+private _backpackProbability = GVAR(backpackProbability);
 if (_backpackProbability > (random 1)) then {
     [
         QGVAR(backpacks),

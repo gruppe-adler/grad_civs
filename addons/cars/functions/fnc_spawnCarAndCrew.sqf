@@ -11,7 +11,7 @@ params [
 ];
 
 if (_vehicleClass == "") then {
-    private _vehicleClasses = [[QGVAR(vehicles)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
+    private _vehicleClasses = [GVAR(vehicles)] call EFUNC(common,parseCsv);
     if (_vehicleClasses isEqualTo []) exitWith {
         WARNING("will not spawn vehicles as zero vehicle classes are defined");
     };
@@ -22,8 +22,8 @@ if (_vehicleClass == "") then {
 _veh = [_pos, _vehicleClass] call FUNC(spawnVehicle);
 ["ace_common_setDir", [_veh, _dir], _veh] call CBA_fnc_targetEvent;
 
-private _maxInitialGroupSize = [QEGVAR(patrol,initialGroupSize)] call CBA_settings_fnc_get;
-private _automaticVehicleGroupSize = [QGVAR(automaticVehicleGroupSize)] call CBA_settings_fnc_get;
+private _maxInitialGroupSize = EGVAR(patrol,initialGroupSize);
+private _automaticVehicleGroupSize = GVAR(automaticVehicleGroupSize);
 
 private _groupSize = (floor random _maxInitialGroupSize) + 1;
 if (_automtaicVehicleGroupSize) then {

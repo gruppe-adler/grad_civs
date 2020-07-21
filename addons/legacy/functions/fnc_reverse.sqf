@@ -26,7 +26,7 @@ if (effectiveCommander _vehicle == _driver) then {
             breakOut "main";
         };
         _ec = (group _driver) createUnit ["C_Soldier_VR_F", [0, 0, 0], [], 0, "NONE"];
-        if (!([QGVAR(debugCivState)] call CBA_settings_fnc_get)) then {
+        if (!(GVAR(debugCivState))) then {
             ["ace_common_hideObjectGlobal", [_ec, true]] call CBA_fnc_serverEvent;
         };
         _ec assignAsCargo _vehicle;

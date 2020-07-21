@@ -15,7 +15,7 @@
 [
     "server_fps",
     {
-        if ([QGVAR(debugFps)] call CBA_settings_fnc_get) then {
+        if (GVAR(debugFps)) then {
             systemChat format ["%1 fps on %2", _this select 1, _this select 0];
         };
     }

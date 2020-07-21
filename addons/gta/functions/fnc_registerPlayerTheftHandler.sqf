@@ -39,8 +39,8 @@ player addEventHandler [
                     INFO("known thief. stopping pfh");
                     [GVAR(stolenVehiclePfh)] call CBA_fnc_removePerFrameHandler;
                 };
-
-                private _hasBeenSeen = -1 != ((player nearEntities [EGVAR(legacy,civClass), 200]) findIf {
+                private _civClasses = call EFUNC(common,config_getCivClasses);
+                private _hasBeenSeen = -1 != ((player nearEntities [_civClasses, 200]) findIf {
                     private _knows = (([vehicle player, "VIEW"] checkVisibility [eyePos _x, getPosASL player]) > 0.5);
                     if (_knows) then {
                         ["grad_civs_vehicleTheft", [_vehicle, player]] call CBA_fnc_globalEvent;

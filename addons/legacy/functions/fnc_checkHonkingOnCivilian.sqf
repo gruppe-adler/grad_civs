@@ -3,7 +3,7 @@
 private _playerPos = getPosATL player;
 private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call FUNC(getGlobalCivs));
 
-if (!([QGVAR(debugCivState)] call CBA_settings_fnc_get) && (count _nearCivs) == 0) exitWith {};
+if (!(GVAR(debugCivState)) && (count _nearCivs) == 0) exitWith {};
 
 private _playerVelocity = velocity player;
 private _speed = vectorMagnitude _playerVelocity;
@@ -42,7 +42,7 @@ private _dangerPolyInPlayerHeight = _dangerPoly apply {
     [_x select 0, _x select 1, _playerPos select 2]
 };
 
-if (([QGVAR(debugCivState)] call CBA_settings_fnc_get)) then {
+if (GVAR(debugCivState)) then {
     player setVariable ["grad_civs_dangerPolyInPlayerHeight", _dangerPolyInPlayerHeight];
 };
 

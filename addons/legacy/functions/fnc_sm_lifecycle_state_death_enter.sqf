@@ -11,6 +11,6 @@ INFO_3("releasing civ %1 killed at %2 by %3", _this, _deathPos, _killer);
 GVAR(localCivs) = GVAR(localCivs) - [_this];
 ["grad_civs_civ_removed", [_this]] call CBA_fnc_globalEvent;
 
-if ([QGVAR(cleanupCorpses)] call CBA_settings_fnc_get) then {
+if (GVAR(cleanupCorpses)) then {
     addToRemainsCollector [_this];
 };

@@ -7,7 +7,7 @@ params [
 
 scopeName "main";
 
-private _vehicleSpawnDistances = [[QGVAR(spawnDistancesInVehicles)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
+private _vehicleSpawnDistances = [GVAR(spawnDistancesInVehicles)] call EFUNC(common,parseCsv);
 private _vehicleSpawnDistanceMin = _vehicleSpawnDistances#0;
 private _vehicleSpawnDistanceMax = _vehicleSpawnDistances#1;
 
