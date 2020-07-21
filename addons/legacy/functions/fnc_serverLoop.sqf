@@ -79,8 +79,8 @@ GVAR(debugLoopHandle) = [{
 if (!hasInterface && !isDedicated) then {
     [
         {
-            private _civClass = [QGVAR(civClass)] call CBA_settings_fnc_get;
-            private _allCivs = entities _civClass;
+            private _civClasses = call EFUNC(common,config_getCivClasses);
+            private _allCivs = entities [_civClasses, [], true, true];
             private _myCivs = _allCivs select { local _x && (_x getVariable ["grad_civs_primaryTask", ""] != "")};
             private _orphanedCivs = _myCivs - GVAR(localCivs);
             INFO_1("%1 orphaned civs - putting them into my own array", count _orphanedCivs);

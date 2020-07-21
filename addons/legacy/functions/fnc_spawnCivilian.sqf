@@ -6,8 +6,8 @@ params [
     ["_primaryTask", ""]
 ];
 
-private _civClass = [QGVAR(civClass)] call CBA_settings_fnc_get;
-private _civ = _group createUnit [_civClass, _pos, [], 0, "NONE"]; // TODO: ensure unit is not spawning within editor-placed rocks/houses
+private _civClasses = call EFUNC(common,config_getCivClasses);
+private _civ = _group createUnit [selectRandom _civClasses, _pos, [], 0, "NONE"]; // TODO: ensure unit is not spawning within editor-placed rocks/houses
 
 GVAR(localCivs) = GVAR(localCivs) + [_civ];
 

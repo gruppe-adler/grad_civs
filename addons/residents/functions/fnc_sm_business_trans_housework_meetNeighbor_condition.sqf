@@ -15,8 +15,9 @@ if (random 10 < 9) exitWith {false};
 
 private _neighborToMeet = {
     private _maxDist = _x;
-    private _civClass = [QEGVAR(legacy,civClass)] call CBA_settings_fnc_get; // TODO: civclass is typeOf _this !
-    private _nearCivs = (_this nearEntities [[_civClass], _maxDist]);
+
+    private _civClasses = call EFUNC(common,config_getCivClasses);
+    private _nearCivs = (_this nearEntities [_civClasses, _maxDist]);
     private _socialNeighbors = _nearCivs select {
         (_x != _this) &&
         (_x getVariable ["grad_civs_primaryTask", ""] == "reside") &&

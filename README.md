@@ -46,21 +46,17 @@ Settings can be found as CBA Addon settings.
 
 ![settings](docs/grad_civs-cba_settings.png)
 
-### Attributes
-
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 animalTransportChance    | 0.4           | Probability that a suitable vehicle will carry some animals as cargo.
-autoInit                 | 0             | Toggles on automatic initialization of module on missions start (0/1). Keep this off if you want to use functions to set civs properties first.
 automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
-backpackProbability      | 50            | Probability that a civilian will wear a backpack, in percent
+backpackProbability      | 0.5            | Probability that a civilian will wear a backpack
 backpacks                | []            | All classnames of backpacks that civilians may wear.
-civClass                 | "C_Man_1"     | Unit class to use for spawning civilians
+civClasses               | ["C_Man_1"]   | Unit classes to use for spawning civilians
 clothes                  | []            | All classnames of clothes that civilians may wear.
 debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
-enableInVehicles         | 1             | Enable civilians in vehicles (0/1).
-enableOnFoot             | 1             | Enable civilians on foot (0/1).
+enabled                  | false         | if grad_civs is enabled (false,true)
 exitOn                   | ""            | Condition upon which grad-civs loops will stop.
 faces                    | []            | All classnames of faces that civilians may have.
 goggles                  | []            | All classnames of goggles that civilians may wear.
@@ -70,7 +66,7 @@ maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
 minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
-minFps                   | 40            | Spawn new civilians only if fps are at or above N . NOTE: the fps are taken from the machine that spawns the civs, which may be a HC.
+minFps                   | 40            | Spawn new civilians only if fps are at or above N . *NOTE*: the fps are taken from the machine that spawns the civs, which may be a HC.
 panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
@@ -81,11 +77,13 @@ vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02
 
 ### exclusion zone
 
-Blacklist an area for civs by syncing it to a trigger.
+Blacklist an area for civs by syncing it to a trigger. Exclusion zones override population zones in the same area.
 
 ### population zone
 
 Whitelist an area for civs by syncing it to a trigger.
+
+*NOTE: if no population zone is defined, the whole map will be considered a population zone.*
 
 ## API
 
