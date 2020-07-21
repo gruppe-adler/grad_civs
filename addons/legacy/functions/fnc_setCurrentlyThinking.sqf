@@ -5,6 +5,6 @@ params [
     ["_thoughts", ""]
 ];
 
-if (([QGVAR(debugCivState)] call CBA_settings_fnc_get)) then {
+if ((GVAR(debugCivState))) then {
     _unit setVariable ["grad_civs_currentlyThinking", _thoughts];
 };

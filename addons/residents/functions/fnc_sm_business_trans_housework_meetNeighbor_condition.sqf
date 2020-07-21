@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _neighborCooldown = [QGVAR(meetNeighborCooldown)] call CBA_settings_fnc_get;
+private _neighborCooldown = GVAR(meetNeighborCooldown);
 
 if ((_this getVariable ["grad_civs_lastSocialContact", 0]) + _neighborCooldown > CBA_missionTime) exitWith {false};
 

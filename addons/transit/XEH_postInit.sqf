@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if (!([QEGVAR(main,enabled)] call CBA_settings_fnc_get)) exitWith {
+if (!(EGVAR(main,enabled))) exitWith {
     INFO("GRAD civs is disabled. Good bye!");
 };
 
@@ -8,7 +8,7 @@ if (isServer || !hasInterface) then {
     [
         QEGVAR(legacy,spawnAllowed),
         {
-            _maxVehiclesInTransit = [QGVAR(maxVehiclesInTransit)] call CBA_settings_fnc_get;
+            _maxVehiclesInTransit = GVAR(maxVehiclesInTransit);
             if ((count (["transit"] call EFUNC(cars,getGlobalVehicles))) < _maxVehiclesInTransit) then {
                 [] call FUNC(spawnSomething);
             };

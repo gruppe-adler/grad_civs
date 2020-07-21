@@ -1,8 +1,8 @@
 #include "..\script_component.hpp"
 
-private _maxTravelRadius = [QGVAR(maxTravelRadius)] call CBA_settings_fnc_get;
+private _maxTravelRadius = GVAR(maxTravelRadius);
 if (_maxTravelRadius <= 0) then {
-    private _vehicleSpawnDistances = [[QGVAR(spawnDistancesInVehicles)] call CBA_settings_fnc_get] call EFUNC(common,parseCsv);
+    private _vehicleSpawnDistances = [GVAR(spawnDistancesInVehicles)] call EFUNC(common,parseCsv);
     _maxTravelRadius = _vehicleSpawnDistances#1;
 };
 

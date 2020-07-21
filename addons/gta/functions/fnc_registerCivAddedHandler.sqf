@@ -10,7 +10,7 @@
 
         if (!((_civ getVariable ["grad_civs_primaryTask", ""]) in ["reside", "patrol"])) exitWith {};
 
-        if (random 1 > ([QGVAR(carOwnershipRatio)] call CBA_settings_fnc_get)) exitWith {};
+        if (random 1 > (GVAR(carOwnershipRatio))) exitWith {};
 
         [_civ] call FUNC(createMyVehicle);
     }

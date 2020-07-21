@@ -22,7 +22,7 @@ _veh addEventHandler ["FiredNear",
      ["fired_near", _units, _units] call CBA_fnc_targetEvent;
  }];
 
-private _animalChance = [QGVAR(animalTransportChance)] call CBA_settings_fnc_get;
+private _animalChance = GVAR(animalTransportChance);
 [_veh, _animalChance] call FUNC(loadAnimals);
 
 _veh

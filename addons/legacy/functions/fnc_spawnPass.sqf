@@ -1,11 +1,11 @@
 #include "..\script_component.hpp"
 
-if ((ALL_HUMAN_PLAYERS isEqualTo []) && ([QGVAR(spawnOnlyWithPlayers)] call CBA_settings_fnc_get)) exitWith {
+if ((ALL_HUMAN_PLAYERS isEqualTo []) && (GVAR(spawnOnlyWithPlayers))) exitWith {
     INFO("no human players connected, will abstain from spawning civilians")
 };
 
-private _minCivUpdateTime = [QGVAR(minCivUpdateTime)] call cba_settings_fnc_get;
-private _minFps = [QGVAR(minFps)] call cba_settings_fnc_get;
+private _minCivUpdateTime = GVAR(minCivUpdateTime);
+private _minFps = GVAR(minFps);
 
 private _fps = diag_fps;
 if (_fps < _minFps) exitWith {LOG_2("not spawning additional civs: less FPS than required (%1/%2)", _fps, _minFps)};

@@ -9,7 +9,7 @@ GVAR(civStateFormat) = 0;
 		["_args", [], [[]]],
 		["_handle", 0, [0]]
 	];
-	if (!([QGVAR(debugCivState)] call CBA_settings_fnc_get)) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
+	if (!(GVAR(debugCivState))) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
 
 	if (!isGameFocused || isGamePaused) exitWith {};
 
@@ -69,7 +69,7 @@ GVAR(civStateFormat) = 0;
 
 } , 0, []] call CBA_fnc_addPerFrameHandler;
 
-if ([QGVAR(debugCivState)] call CBA_settings_fnc_get) then {
+if (GVAR(debugCivState)) then {
     private _addCivAction = {
         params [
             ["_title", ""],
@@ -100,7 +100,7 @@ if ([QGVAR(debugCivState)] call CBA_settings_fnc_get) then {
 
 ISNILS(GVAR(showWhatTheyThink_civ_added), 0);
 ISNILS(GVAR(showWhatTheyThinkciv_removed), 0);
-if (([QGVAR(debugCivState)] call CBA_settings_fnc_get)) then {
+if ((GVAR(debugCivState))) then {
 	GVAR(showWhatTheyThink_civ_added) = [
 		QGVAR(civ_added),
 		{
