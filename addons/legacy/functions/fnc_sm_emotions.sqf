@@ -47,13 +47,13 @@ assert ([
     _emotions,
     _emo_panic, _emo_wary,
     {
-        (_this getVariable [QGVAR("cooldownAt"), 0]) < CBA_missionTime
+        (_this getVariable [QGVAR(cooldownAt), 0]) < CBA_missionTime
     },
     {
         _this call FUNC(forceEmotionSpeed);
 
         private _cooldownAt = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60] + CBA_missionTime;
-        _this setVariable [QGVAR("cooldownAt"), _cooldownAt]);
+        _this setVariable [QGVAR(cooldownAt), _cooldownAt]);
         [
             _this,
             format[
@@ -70,14 +70,14 @@ assert ([
     _emotions,
     _emo_wary, _emo_relaxed,
     {
-        (_this getVariable [QGVAR("cooldownAt"), 0]) < CBA_missionTime
+        (_this getVariable [QGVAR(cooldownAt), 0]) < CBA_missionTime
 
     },
     {
         _this call FUNC(forceEmotionSpeed);
 
         private _cooldownAt = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60] + CBA_missionTime;
-        _this setVariable [QGVAR("cooldownAt"), _cooldownAt]);
+        _this setVariable [QGVAR(cooldownAt), _cooldownAt]);
         [
             _this,
             format[

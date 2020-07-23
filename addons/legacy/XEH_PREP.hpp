@@ -7,7 +7,6 @@ PREP(compare);
 PREP(customActivity_reverse);
 PREP(deleteIfDamaged);
 PREP(doCustomActivity);
-PREP(drawCivs);
 
 PREP(doStop);
 PREP(isStopped);
