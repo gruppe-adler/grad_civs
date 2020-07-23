@@ -13,14 +13,14 @@ if (isNil QFUNC(getGlobalCivs_arr)) then {
 
     // then, register event handler to update the array appropriately to always include all living civs
     [
-        QGVAR(civ_added),
+        QEGVAR(common,civ_added),
         {
             SCRIPT("getGlobalCivs_civ_added");
             FUNC(getGlobalCivs_arr) = FUNC(getGlobalCivs_arr) + _this;
         }
     ] call CBA_fnc_addEventHandler;
     [
-        QGVAR(civ_removed),
+        QEGVAR(common,civ_removed),
         {
             SCRIPT("getGlobalCivs_civ_removed");
             FUNC(getGlobalCivs_arr) = FUNC(getGlobalCivs_arr) - _this;

@@ -1,15 +1,14 @@
 #include "..\script_component.hpp"
 
-ASSERT_PLAYER("");
-
-GVAR(civStateFormat) = 0;
+ISNILS(GVAR(civStateFormat), 0);
+ISNILS(GVAR(actionIds), []);
 
 [{
 	params [
 		["_args", [], [[]]],
 		["_handle", 0, [0]]
 	];
-	if (!(GVAR(debugCivState))) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
+	if (!(GVAR(showInfoLine))) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
 
 	if (!isGameFocused || isGamePaused) exitWith {};
 
@@ -57,7 +56,7 @@ GVAR(civStateFormat) = 0;
 			1, 1, 0,
 			_text, 0, 0.03, "EtelkaNarrowMediumPro", "center", true
 		];
-	} forEach ([] call FUNC(getGlobalCivs));
+	} forEach ([] call EFUNC(legacy,getGlobalCivs));
 
 	// show the honked_at "danger zone" in front of the vehicle
 	private _poly = player getVariable ["grad_civs_dangerPolyInPlayerHeight", []];
@@ -67,9 +66,11 @@ GVAR(civStateFormat) = 0;
 		drawLine3D [_from, _to, [1, 0.3, 0.5, 1]];
 	} forEach _poly;
 
-} , 0, []] call CBA_fnc_addPerFrameHandler;
+}, 0, []] call CBA_fnc_addPerFrameHandler;
 
-if (GVAR(debugCivState)) then {
+if (GVAR(showInfoLine)) then {
+	if (!(GVAR(actionIds) isEqualTo [])) exitWith {};
+
     private _addCivAction = {
         params [
             ["_title", ""],
@@ -84,46 +85,23 @@ if (GVAR(debugCivState)) then {
             false,
             false,
             "",
-            QUOTE([QQGVAR(debugCivState)] call CBA_settings_fnc_get)
+            QGVAR(showInfoLine)
         ];
     };
 
-    ["<t color='#3333FF'>civstate format: infoLine</t>", 0] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: speedmode</t>", 1] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: guns</t>", 2] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: locality</t>", 3] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: behaviour</t>", 4] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: state times</t>", 5] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: waypoints</t>", 6] call _addCivAction;
-    ["<t color='#3333FF'>civstate format: empty</t>", 7] call _addCivAction;
-};
-
-ISNILS(GVAR(showWhatTheyThink_civ_added), 0);
-ISNILS(GVAR(showWhatTheyThinkciv_removed), 0);
-if ((GVAR(debugCivState))) then {
-	GVAR(showWhatTheyThink_civ_added) = [
-		QGVAR(civ_added),
-		{
-			SCRIPT("showWhatTheyThink_civ_added");
-			{
-				private _arrow = createSimpleObject ["Sign_Arrow_Large_Pink_F", [0, 0, 0]];
-				_arrow attachTo [_x, [0, 0, 5]];
-			} forEach _this;
-		}
-	] call CBA_fnc_addEventHandler;
-	GVAR(showWhatTheyThinkciv_removed) = [
-		QGVAR(civ_removed),
-		{
-			SCRIPT("showWhatTheyThink_civ_removed");
-			{
-				private _civ = _x;
-				{
-					deleteVehicle _x;
-				} forEach (attachedObjects _civ);
-			} forEach _this;
-		}
-	] call CBA_fnc_addEventHandler;
+	GVAR(actionIds) = [
+	    ["<t color='#3333FF'>civstate format: infoLine</t>", 0] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: speedmode</t>", 1] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: guns</t>", 2] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: locality</t>", 3] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: behaviour</t>", 4] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: state times</t>", 5] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: waypoints</t>", 6] call _addCivAction,
+	    ["<t color='#3333FF'>civstate format: empty</t>", 7] call _addCivAction
+	];
 } else {
-	[QGVAR(civ_added), GVAR(showWhatTheyThink_civ_added)] call CBA_fnc_removeEventHandler;
-	[QGVAR(civ_removed), GVAR(showWhatTheyThinkciv_removed)] call CBA_fnc_removeEventHandler;
+	{
+		player removeAction _x;
+	} forEach GVAR(actionIds);
+	GVAR(actionIds) = [];
 };

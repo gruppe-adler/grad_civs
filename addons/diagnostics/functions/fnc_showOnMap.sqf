@@ -1,17 +1,12 @@
 #include "..\script_component.hpp"
 
-params [
-    ["_onOff", GVAR(debugCivState)]
-];
+ISNILS(GVAR(DRAWUNITSEH), -1);
+if (GVAR(showOnMap)) then {
+	if (GVAR(DRAWUNITSEH) != -1) exitWith {};
 
-ASSERT_PLAYER("");
-
-GVAR(debugCivState) = _onOff;
-
-if (_onOff) then {
     GVAR(DRAWUNITSEH) = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {
 
-        private _civs = [] call FUNC(getGlobalCivs);
+        private _civs = [] call EFUNC(legacy,getGlobalCivs);
         private _civsInCarDrivers = _civs select {
             private _vec = vehicle _x;
             _vec != _x && driver _vec == _x
@@ -20,11 +15,12 @@ if (_onOff) then {
             vehicle _x == _x
         };
 
-        [_this select 0, _civsOnFoot, "iconMan"] call FUNC(drawCivs);
-        [_this select 0, _civsInCarDrivers, "iconCar"] call FUNC(drawCivs);
+        [_this select 0, _civsOnFoot, "iconMan"] call FUNC(showOnMap_drawCivs);
+        [_this select 0, _civsInCarDrivers, "iconCar"] call FUNC(showOnMap_drawCivs);
         //one day: iconHelicopter
     }];
 } else {
-    ISNILS(GVAR(DRAWUNITSEH), -1);
+	if (GVAR(DRAWUNITSEH) == -1) exitWith {};
     ((findDisplay 12) displayCtrl 51) ctrlRemoveEventHandler ["Draw", GVAR(DRAWUNITSEH)];
+	GVAR(DRAWUNITSEH) = -1;
 };

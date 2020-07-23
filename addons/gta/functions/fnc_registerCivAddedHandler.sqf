@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 [
-    QEGVAR(legacy,civ_added),
+    QEGVAR(common,civ_added),
     {
         params [
             ["_civ", objNull, [objNull]]
