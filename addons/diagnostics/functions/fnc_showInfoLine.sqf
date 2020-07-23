@@ -58,14 +58,6 @@ ISNILS(GVAR(actionIds), []);
 		];
 	} forEach ([] call EFUNC(legacy,getGlobalCivs));
 
-	// show the honked_at "danger zone" in front of the vehicle
-	private _poly = player getVariable ["grad_civs_dangerPolyInPlayerHeight", []];
-	{
-	    private _from = _poly select _forEachIndex;
-		private _to = _poly select ((_forEachIndex + 1) mod (count _poly));
-		drawLine3D [_from, _to, [1, 0.3, 0.5, 1]];
-	} forEach _poly;
-
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 if (GVAR(showInfoLine)) then {

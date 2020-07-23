@@ -3,8 +3,6 @@
 private _playerPos = getPosATL player;
 private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call FUNC(getGlobalCivs));
 
-if (!(GVAR(debugCivState)) && (count _nearCivs) == 0) exitWith {};
-
 private _playerVelocity = velocity player;
 private _speed = vectorMagnitude _playerVelocity;
 if (_speed < 4) then {
@@ -42,16 +40,14 @@ private _dangerPolyInPlayerHeight = _dangerPoly apply {
     [_x select 0, _x select 1, _playerPos select 2]
 };
 
-if (GVAR(debugCivState)) then {
-    player setVariable ["grad_civs_dangerPolyInPlayerHeight", _dangerPolyInPlayerHeight];
-};
-
 {
     private _civPos = getPosATL _x;
     private _civPosInPlayerHeight = [_civPos select 0, _civPos select 1, _playerPos select 2];
     if (isOnRoad _civPos || !_playerIsOnRoad) then {
         if (_civPosInPlayerHeight inPolygon _dangerPolyInPlayerHeight) then {
-            ["honked_at", [_x, _playerPos, _playerVelocity], [_x]] call CBA_fnc_targetEvent;
+            [QEGVAR(common,honked_at), [_x, _playerPos, _playerVelocity], [_x]] call CBA_fnc_targetEvent;
         };
     };
 } forEach _nearCivs;
+
+[QGVAR(honking_at_poly), _dangerPolyInPlayerHeight] call CBA_fnc_localEvent;

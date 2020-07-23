@@ -36,3 +36,14 @@ private _settingsGroup = ["GRAD Civs", "9) diagnostics"];
     FUNC(showPinkArrows),
     false
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(showHonkAtArea),
+    "CHECKBOX",
+    "Draw honked at area",
+    _settingsGroup,
+    false,
+    true,
+    FUNC(showHonkAtArea),
+    false
+] call CBA_fnc_addSetting;

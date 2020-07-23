@@ -70,7 +70,7 @@ private _panic = [] call FUNC(sm_panic);
 ] call CBA_fnc_addEventHandler;
 
 [
-    "honked_at",
+    QEGVAR(common,honked_at),
     {
         params [
             ["_target", objNull],
