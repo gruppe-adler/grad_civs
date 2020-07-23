@@ -41,7 +41,7 @@ private _panic = [] call FUNC(sm_panic);
             _waitTime,
             [],
             "ace_interaction_getDown",
-            format["am told to get down, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]
+            format["I will keep my head down until %1", _waitTime call FUNC(formatNowPlusSeconds)]
         ] call FUNC(doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;

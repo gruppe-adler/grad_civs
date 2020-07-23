@@ -20,7 +20,7 @@ params [
             60,
             { // onDone
                 params ["_vehicle"];
-                [leader group driver _vehicle, "custom activity: waiting for players to go away"] call FUNC(setCurrentlyThinking);
+                [leader group driver _vehicle, "I'm waiting for people to go away"] call FUNC(setCurrentlyThinking);
             }
         ] call FUNC(reverse);
 
