@@ -1,7 +1,6 @@
 PREP(addCarCrew);
 PREP(findSpawnRoadSegment);
 PREP(initConfig);
-PREP(setupZeusModules);
 PREP(setVehicles);
 PREP(sm_business_state_voyage_enter);
 PREP(sm_business_state_voyage_exit);

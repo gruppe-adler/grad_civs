@@ -109,35 +109,6 @@ private _panic = [] call FUNC(sm_panic);
     }
 ] call CBA_fnc_addEventHandler;
 
-
-[QGVAR(gestured_at_stop), {
-    params [
-        ["_target", objNull]
-    ];
-    if (_target == ACE_player) exitWith {};
-
-    private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
-    private _waitTime = linearConversion [0, 10, _recklessness, 60*15, 15, false];
-
-    [
-        _target,
-        {
-            params ["_target"];
-            doStop _target;
-            _target disableAI "MOVE";
-        },
-        {
-            params ["_target"];
-            _target enableAI "MOVE";
-        },
-        _waitTime,
-        [],
-        "gestured_at_stop",
-        format["am halting, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]
-    ] call FUNC(doCustomActivity);
-
-}] call CBA_fnc_addEventHandler;
-
 [QGVAR(gestured_at_vehicle_go), {
     params [
         ["_target", objNull],
@@ -160,14 +131,6 @@ private _panic = [] call FUNC(sm_panic);
     ];
     [_target, _reverseTargetPos] call FUNC(customActivity_reverse);
 }] call CBA_fnc_addEventHandler;
-
-[QGVAR(told_to_carry_on), {
-    params [
-        ["_target", objNull, [objNull]]
-    ];
-    _target call FUNC(endCustomActivity);
-}] call CBA_fnc_addEventHandler;
-
 
 // STATES
 assert(_activities isEqualType locationNull);

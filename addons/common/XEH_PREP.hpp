@@ -4,6 +4,8 @@ PREP(augmentStateMachine);
 PREP(civGetState);
 PREP(clearExclusionZones);
 PREP(clearPopulationZones);
+PREP(dismissCiv);
+PREP(dismissGroup);
 PREP(config_getCivClasses);
 PREP(getExclusionZones);
 PREP(getPopulationZones);

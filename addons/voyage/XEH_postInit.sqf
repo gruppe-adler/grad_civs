@@ -23,5 +23,3 @@ if (isServer || !hasInterface) then {
 
     ["business", ["bus_mountUp"], FUNC(sm_business)] call EFUNC(common,augmentStateMachine);
 };
-
-[] call FUNC(setupZeusModules);

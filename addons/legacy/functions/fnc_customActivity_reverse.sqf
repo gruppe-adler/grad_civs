@@ -35,6 +35,6 @@ params [
         [ALL_HUMAN_PLAYERS, getPos _civ, 200] call FUNC(isInDistanceFromOtherPlayers);
     },
     [_reverseTargetPos],
-    "gestured_at_vehicle_go",
+    "reversing",
     "sent away. reversing, then doing nothing until players have left"
 ] call FUNC(doCustomActivity);

@@ -1,6 +1,10 @@
 #include "..\script_component.hpp"
 
-["GRAD-CIVS","ADD EXCLUSION ZONE (click within existing area marker!)",
+private _category = "GRAD Civs";
+
+[
+    _category,
+    "Add Exclusion Zone from Area Marker",
     {
         params [
             ["_clickPos", [0, 0, 0]]
@@ -22,10 +26,13 @@
         [_marker] call EFUNC(common,addExclusionZone);
         _marker setMarkerBrushLocal "BORDER";
         _marker setMarkerColorLocal "ColorUNKNOWN";
-    }
+    },
+    QPATHTOEF(common,ui\icon_module_exclusion_zone_ca.paa)
 ] call zen_custom_modules_fnc_register;
 
-["GRAD-CIVS","ADD POPULATION ZONE (click within existing area marker!)",
+[
+    _category,
+    "Add Population Zone from Area Marker",
     {
         params [
             ["_clickPos", [0, 0, 0]]
@@ -47,5 +54,13 @@
         [_marker] call EFUNC(common,addPopulationZone);
         _marker setMarkerBrushLocal "BORDER";
         _marker setMarkerColorLocal "ColorCIV";
-    }
+    },
+    QPATHTOEF(common,ui\icon_module_population_zone_ca.paa)
+] call zen_custom_modules_fnc_register;
+
+[
+    _category,
+    "Add Car (Voyager)",
+    FUNC(module_addCar),
+    QPATHTOF(ui\icon_module_addCar.paa)
 ] call zen_custom_modules_fnc_register;
