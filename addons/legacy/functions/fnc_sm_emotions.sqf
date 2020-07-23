@@ -13,7 +13,7 @@ private _emo_relaxed = [
     {
     },
     "emo_relaxed"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 private _emo_wary = [
     _emotions,
@@ -24,7 +24,7 @@ private _emo_wary = [
     {
     },
     "emo_wary"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 private _emo_panic = [
     _emotions,
@@ -37,7 +37,7 @@ private _emo_panic = [
         ["grad_civs_panicking_end", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     "emo_panic"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 
     // TRANSITIONS
@@ -53,7 +53,7 @@ assert ([
         _this call FUNC(forceEmotionSpeed);
 
         private _cooldownAt = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60] + CBA_missionTime;
-        _this setVariable [QGVAR(cooldownAt), _cooldownAt]);
+        _this setVariable [QGVAR(cooldownAt), _cooldownAt];
         [
             _this,
             format[
@@ -77,7 +77,7 @@ assert ([
         _this call FUNC(forceEmotionSpeed);
 
         private _cooldownAt = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60] + CBA_missionTime;
-        _this setVariable [QGVAR(cooldownAt), _cooldownAt]);
+        _this setVariable [QGVAR(cooldownAt), _cooldownAt];
         [
             _this,
             format[
