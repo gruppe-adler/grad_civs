@@ -35,7 +35,7 @@ GVAR(debugLoopHandle) = [{
     params ["_args", "_handle"];
     if (!isGameFocused || isGamePaused) exitWith {};
     if (call GVAR(EXITON)) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
-    if ((GVAR(debugCivState))) then {
+    if (GVAR(debugCivState)) then {
         { _x call FUNC(updateInfoLine); } forEach GVAR(localCivs);
     };
 }, 0.1, []] call CBA_fnc_addPerFrameHandler;

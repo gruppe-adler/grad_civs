@@ -5,6 +5,6 @@ params [
     ["_thoughts", ""]
 ];
 
-if ((GVAR(debugCivState))) then {
+if (GVAR(debugCivState)) then {
     _unit setVariable ["grad_civs_currentlyThinking", _thoughts];
 };

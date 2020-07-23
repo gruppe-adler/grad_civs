@@ -18,7 +18,7 @@ if (
     if !((_currentCiv isEqualTo _possibleCiv) || (cursorTarget isEqualTo (_currentCiv call EFUNC(cars,getGroupVehicle)))) then { // TODO resolve circular dependency // maybe use `vehicle _currentCiv` instead?
         if (!isNull _currentCiv) then {
             player setVariable ["GRAD_isPointingAtObj", objNull];
-            if ((GVAR(debugCivState))) then { hint format ["depointing %1", _currentCiv]; };
+            if (GVAR(debugCivState)) then { hint format ["depointing %1", _currentCiv]; };
             [QEGVAR(common,pointed_at_dec), [_currentCiv], [_currentCiv]] call CBA_fnc_targetEvent;
         };
     } else {
@@ -31,7 +31,7 @@ if (
     if ((side _possibleCiv) == civilian && (alive _possibleCiv)) then {
         if ([player, _possibleCiv] call FUNC(checkWeaponOnCivilianPerception)) then {
             player setVariable ["GRAD_isPointingAtObj", _possibleCiv];
-            if ((GVAR(debugCivState))) then { hint format ["pointing at %1", _possibleCiv]; };
+            if (GVAR(debugCivState)) then { hint format ["pointing at %1", _possibleCiv]; };
             [QEGVAR(common,pointed_at_inc), [_possibleCiv], [_possibleCiv]] call CBA_fnc_targetEvent;
         };
     };
@@ -42,7 +42,7 @@ if (
 
     if (!isNull _currentCiv) then {
         player setVariable ["GRAD_isPointingAtObj", objNull];
-        if ((GVAR(debugCivState))) then { hint format ["depointing %1", _currentCiv]; };
+        if (GVAR(debugCivState)) then { hint format ["depointing %1", _currentCiv]; };
         [QEGVAR(common,pointed_at_dec), [_currentCiv], [_currentCiv]] call CBA_fnc_targetEvent;
     };
 };
