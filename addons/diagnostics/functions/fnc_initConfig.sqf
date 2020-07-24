@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "9) diagnostics"];
+private _settingsGroup = ["GRAD Civs", "a) diagnostics"];
 
 [
     QGVAR(debugFps),
