@@ -2,4 +2,4 @@
 
 alive _target &&
     (_target getVariable ["grad_civs_primaryTask", ""] != "") &&
-    (_target getVariable [QGVAR(customActivity_id), ""] != "")
+    (_target getVariable [QEGVAR(legacy,customActivity_id), ""] != "") // TODO isStopped maybe? hmm

@@ -184,9 +184,6 @@ Parameter | Explanation
 ----------|-------------------------------------------------------------
 vehicles  | Array - All classnames of vehicles that civilians may drive.
 
-### grad_civs_legacy_fnc_setDebugMode
-Sets debug mode. Overwrites value from CBA settings. Execute local.
-
 #### Syntax
 `[debugCivState] call grad_civs_legacy_fnc_setDebugMode`  
 

@@ -1,10 +1,6 @@
-PREP(addCivInteractions);
-PREP(checkHonkingOnCivilian);
-PREP(checkWeaponOnCivilianPerception);
-PREP(checkWeaponOnCivilianPointer);
 PREP(clearCurrentlyThinking);
 PREP(compare);
-PREP(customActivity_reverse);
+PREP(doReverse);
 PREP(deleteIfDamaged);
 PREP(doCustomActivity);
 
@@ -13,8 +9,7 @@ PREP(isStopped);
 PREP(doCarryOn);
 
 PREP(endCustomActivity);
-// PREP(feelsAddressedByGesture.spec);
-PREP(feelsAddressedByGesture);
+
 PREP(findBuildings);
 PREP(findPositionOfInterest);
 PREP(findRandomPosArea);
@@ -24,25 +19,15 @@ PREP(findSpawnPosition);
 PREP(findUnclaimedHouse);
 PREP(forceEmotionSpeed);
 PREP(forcePanicSpeed);
-PREP(formatNowPlusSeconds);
 PREP(getCurrentlyThinking);
 PREP(getGlobalCivs);
-PREP(handleAnimation);
-PREP(handleGestureGo);
-PREP(handleGestureStop);
+
 PREP(initCommonEventhandlers);
 PREP(initConfig);
 PREP(initHCs);
-PREP(initPlayer);
-PREP(interact_backUpAction);
-PREP(interact_backUpCondition);
-PREP(interact_carryOnAction);
-PREP(interact_carryOnCondition);
 PREP(isInDistanceFromOtherPlayers);
 PREP(isInHouse);
-PREP(isPlayerHonking);
 PREP(nowPlusSeconds);
-PREP(playerLoop);
 PREP(reverse_abort);
 PREP(reverse_internal_end);
 PREP(reverse_internal_pfh);

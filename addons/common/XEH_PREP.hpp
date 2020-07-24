@@ -7,6 +7,7 @@ PREP(clearPopulationZones);
 PREP(dismissCiv);
 PREP(dismissGroup);
 PREP(config_getCivClasses);
+PREP(formatNowPlusSeconds);
 PREP(getExclusionZones);
 PREP(getPopulationZones);
 PREP(initConfig);

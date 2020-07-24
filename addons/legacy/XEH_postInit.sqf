@@ -6,4 +6,14 @@ if (!(EGVAR(main,enabled))) exitWith {
 
 [] call FUNC(initCommonEventhandlers);
 [] call FUNC(initHCs);
-[] call FUNC(initPlayer);
+
+if (hasInterface) then {
+    [
+        "server_fps",
+        {
+            if (GVAR(debugFps)) then {
+                systemChat format ["%1 fps on %2", _this select 1, _this select 0];
+            };
+        }
+    ] call CBA_fnc_addEventHandler;
+};

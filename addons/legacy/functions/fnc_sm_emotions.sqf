@@ -58,7 +58,7 @@ assert ([
             _this,
             format[
                 "I need until %1 to get a bit calmer",
-                _cooldownAt call FUNC(formatNowPlusSeconds)
+                _cooldownAt call EFUNC(common,formatNowPlusSeconds)
             ]
         ] call FUNC(setCurrentlyThinking);
     },
@@ -82,7 +82,7 @@ assert ([
             _this,
             format[
                 "I need until %1 to calm down completely",
-                _cooldownAt call FUNC(formatNowPlusSeconds)
+                _cooldownAt call EFUNC(common,formatNowPlusSeconds)
             ]
         ] call FUNC(setCurrentlyThinking);
     },

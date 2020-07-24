@@ -27,7 +27,7 @@ if (local _object) exitWith {
         _waitTime,
         [],
         "doStop",
-        format["am halting, will resume activity at %1", _waitTime call FUNC(formatNowPlusSeconds)]
+        format["am halting, will resume activity at %1", _waitTime call EFUNC(common,formatNowPlusSeconds)]
     ] call FUNC(doCustomActivity);
 };
 

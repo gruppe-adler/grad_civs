@@ -2,7 +2,7 @@ private _bAwareOfAGesturing = [
     "then B will feel addressed by A",
     {
         params ["_a", "_b"];
-        [[_a, vectorDirVisual _a, driver _b] call grad_civs_legacy_fnc_feelsAddressedByGesture] call grad_testing_fnc_assertTrue;
+        [[_a, vectorDirVisual _a, driver _b] call grad_civs_interact_fnc_feelsAddressedByGesture] call grad_testing_fnc_assertTrue;
     }
 ];
 
@@ -10,7 +10,7 @@ private _bUnawareOfAGesturing = [
     "then B will not feel addressed by A",
     {
         params ["_a", "_b"];
-        [[_a, vectorDirVisual _a, driver _b] call grad_civs_legacy_fnc_feelsAddressedByGesture] call grad_testing_fnc_assertFalse;
+        [[_a, vectorDirVisual _a, driver _b] call grad_civs_interact_fnc_feelsAddressedByGesture] call grad_testing_fnc_assertFalse;
     }
 ];
 

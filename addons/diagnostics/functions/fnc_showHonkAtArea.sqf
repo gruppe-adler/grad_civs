@@ -4,7 +4,7 @@ ISNILS(GVAR(honkHandler), -1);
 if (GVAR(showHonkAtArea)) then {
     if (GVAR(honkHandler) > -1) exitWith {};
 
-    GVAR(honkHandler) = [QEGVAR(legacy,honking_at_poly), {
+    GVAR(honkHandler) = [QEGVAR(interact,honking_at_poly), {
         [
             {
                 params [
@@ -30,6 +30,6 @@ if (GVAR(showHonkAtArea)) then {
         ] call CBA_fnc_addPerFrameHandler;
     }] call CBA_fnc_addEventHandler;
 } else {
-    [QEGVAR(legacy,honking_at_poly), GVAR(honkHandler)] call CBA_fnc_removeEventHandler;
+    [QEGVAR(interact,honking_at_poly), GVAR(honkHandler)] call CBA_fnc_removeEventHandler;
     GVAR(honkHandler) = -1;
 };
