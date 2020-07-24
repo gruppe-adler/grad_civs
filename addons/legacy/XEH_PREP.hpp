@@ -36,7 +36,6 @@ PREP(reverse_internal_stopCondition);
 PREP(reverse);
 PREP(serverLoop);
 PREP(setCurrentlyThinking);
-PREP(setDebugMode);
 PREP(sm_activities_helper_freeCondition);
 PREP(sm_activities_helper_surrenderCondition);
 PREP(sm_activities);

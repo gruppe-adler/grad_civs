@@ -184,14 +184,6 @@ Parameter | Explanation
 ----------|-------------------------------------------------------------
 vehicles  | Array - All classnames of vehicles that civilians may drive.
 
-#### Syntax
-`[debugCivState] call grad_civs_legacy_fnc_setDebugMode`  
-
-Parameter     | Explanation
---------------|--------------------------
-debugCivState | Bool - Debug mode on/off.
-
-
 ### grad_civs_common_fnc_addExclusionZone and grad_civs_common_fnc_addPopulationZone
 
 Prevent civilians from entering areas.
