@@ -1,29 +1,33 @@
 #include "..\script_component.hpp"
 
+ISNILS(GVAR(gunpointees), [ARR_2([], 0)] call cba_fnc_hashCreate);
+
 private _depoint = {
-    private _pointees = player getVariable [QGVAR(gunpointees), []];
     {
-        _pointees deleteAt (_pointees find _x);
-        [QEGVAR(common,pointed_at_dec), [_x], [_x]] call CBA_fnc_targetEvent;
+        private _counter = [GVAR(gunpointees), _x] call CBA_fnc_hashGet;
+        if (_counter > 0) then {
+            _counter = 0 max (_counter - 1);
+            [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
+            if (_counter == 1) then {
+                [QEGVAR(common,pointed_at_dec), [_x], [_x]] call CBA_fnc_targetEvent;
+                [QGVAR(depointing), _x] call CBA_fnc_localEvent;
+            };
+        };
     } forEach _this;
-    if (count _this > 0) then {
-        [QGVAR(depointing), _this] call CBA_fnc_localEvent;
-    };
 };
 
 private _point = {
-    private _pointees = player getVariable [QGVAR(gunpointees), false];
-    if (_pointees isEqualTo false) then {
-        _pointees = [];
-        player setVariable [QGVAR(gunpointees), _pointees];
-    };
     {
-        _pointees pushBackUnique _x;
-        [QEGVAR(common,pointed_at_inc), [_x], [_x]] call CBA_fnc_targetEvent;
+        private _counter = [GVAR(gunpointees), _x] call CBA_fnc_hashGet;
+        if (_counter < 2) then {
+            _counter = 2 min (_counter + 1);
+            [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
+            if (_counter == 2) then {
+                [QEGVAR(common,pointed_at_inc), [_x], [_x]] call CBA_fnc_targetEvent;
+                [QGVAR(pointing), _this] call CBA_fnc_localEvent;
+            };
+        };
     } forEach _this;
-    if (count _this > 0) then {
-        [QGVAR(pointing), _this] call CBA_fnc_localEvent;
-    };
 };
 
 // NOTE: we need to use animationState, as !weaponLowered does *not* mean "weaponRaised"
@@ -32,7 +36,8 @@ private _weaponRaisedOnFoot = (alive player) &&
     {vehicle player == player} &&
     {"sras" in (animationState player)};
 
-private _pointees = player getVariable [QGVAR(gunpointees), []];
+//([GVAR(gunpointees), {_value > 0}] call CBA_fnc_hashFilter;  // not necessary due to https://github.com/CBATeam/CBA_A3/issues/1358
+private _pointees = ([GVAR(gunpointees)] call CBA_fnc_hashKeys);
 
 if (!_weaponRaisedOnFoot) exitWith {
     // I lowered my weapon. Everyone feels free to go. No one is added.
@@ -44,6 +49,7 @@ private _scaredPointees = _pointees select {
     [player, _x] call FUNC(checkWeaponOnCivilianPerception);
 };
 (_pointees - _scaredPointees) call _depoint;
+_scaredPointees call _point;
 
 // maybe someone new here I can threaten?
 private _possibleCiv = driver cursorTarget;

@@ -5,7 +5,7 @@ params [
     ["_pointee", objNull]
 ];
 
-private _dist = _pointer distance _pointee;
+if ([_pointer, vehicle _pointee, primaryWeapon _pointer] call FUNC(aimedAtTarget) < 0.95) exitWith {false};
 
 /*
 
@@ -31,11 +31,12 @@ private _speedDiff = (velocity _pointer) vectorDistance (velocity _pointee);
 // NOTE: speedDiff value is in m/s !
 private _perceptionAngleDiff = linearConversion [0, 50, _speedDiff, 90, 15, true];
 
+if (_angleDiff > _perceptionAngleDiff) exitWith {false};
+
 // as with the angular perception, linear conversion is a bit too simple here, but better than nothing
 private _minPerceptionDistance = linearConversion [5, 50, _speedDiff, 0, 50, true]; /* = if speed diff is larger than 5m/s, the min perception distance increases from 0m to 50m at a speed of 50m/s*/
 private _maxPerceptionDistance = linearConversion [5, 50, _speedDiff, 50, 300, true];
-
-if (_angleDiff > _perceptionAngleDiff) exitWith {false};
+private _dist = _pointer distance _pointee;
 
 if (_dist > _maxPerceptionDistance) exitWith {false};
 
