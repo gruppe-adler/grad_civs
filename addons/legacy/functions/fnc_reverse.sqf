@@ -26,9 +26,8 @@ if (effectiveCommander _vehicle == _driver) then {
             breakOut "main";
         };
         _ec = (group _driver) createUnit ["C_Soldier_VR_F", [0, 0, 0], [], 0, "NONE"];
-        if (!(GVAR(debugCivState))) then {
-            ["ace_common_hideObjectGlobal", [_ec, true]] call CBA_fnc_serverEvent;
-        };
+        // _ec disableAI "MOVE"; // TODO I saw one jump off th vehicle ... 
+        ["ace_common_hideObjectGlobal", [_ec, true]] call CBA_fnc_serverEvent;
         _ec assignAsCargo _vehicle;
         _ec moveInCargo _vehicle;
         _ec setVariable ["grad_civs_virtual_ec", true];

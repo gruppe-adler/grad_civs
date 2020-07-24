@@ -14,7 +14,7 @@ private _states = (_statemachineNames apply {
     format ["%1: %2", _x, _state];
 }) joinString ", ";
 
-_text = format ["%1 | %2 | %3", _this, _states, _x call FUNC(getCurrentlyThinking)];
+_text = format ["%1 | %2", _this, _states];
 
 _this setVariable ["grad_civs_infoLine", _text, true];
 _this setVariable ["grad_civs_local_at", clientOwner, true];

@@ -14,15 +14,15 @@ private _pan_flight = [
     { _this call FUNC(sm_panic_state_flight_enter) },
     { _this call FUNC(sm_panic_state_flight_exit) },
     "pan_flight"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 private _pan_hide = [
     _panic,
     {},
     { _this call FUNC(sm_panic_state_hide_enter) },
-    { _this call FUNC(sm_panic_state_hide_exit) },
+    {},
     "pan_hide"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 
 // NOTE concerning act_hidden and act_surrendered
@@ -34,7 +34,7 @@ private _pan_hidden = [
     { _this call FUNC(sm_panic_state_hidden_enter) },
     {},
     "pan_hidden"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 
     // TRANSITIONS

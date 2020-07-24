@@ -5,28 +5,6 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "2) basics"];
 
 [
-    QGVAR(debugCivState),
-    "CHECKBOX",
-    "Toggle civ behavior debugging mode.",
-    _settingsGroup,
-    false,
-    true,
-    {},
-    false
-] call CBA_fnc_addSetting;
-
-[
-    QGVAR(debugFps),
-    "CHECKBOX",
-    "Toggles fps debugging mode",
-    _settingsGroup,
-    false,
-    true,
-    {},
-    false
-] call CBA_fnc_addSetting;
-
-[
     QGVAR(minCivUpdateTime),
     "SLIDER",
     "Keep civ reaction times under [s]",

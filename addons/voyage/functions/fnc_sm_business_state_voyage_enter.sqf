@@ -11,5 +11,3 @@ _this setSpeedMode "LIMITED";
 _this forceSpeed -1;
 _this enableDynamicSimulation true;
 _this doFollow _this;
-
-[_this,  format ["I'm on a %1 km voyage to %2", floor((_this distance _wppos) / 100)/10, _wppos]] call EFUNC(legacy,setCurrentlyThinking);

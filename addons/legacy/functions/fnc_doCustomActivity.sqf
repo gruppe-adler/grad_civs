@@ -50,8 +50,6 @@ INFO_2("civ %1: starts custom activity %2", _civ, _id);
 
 ([_civ] + _moreParameters) call _doStart;
 
-[_target, _description] call FUNC(setCurrentlyThinking);
-
  // NOTE:
 //        civ might change owner in which case this  will break, as I dont set vars as global.
  //       I am however afraid of broadcasting code (where I have no idea how large it is) everytime a civ does something special.
@@ -74,7 +72,6 @@ private _endCode = {
         _civ setVariable [QGVAR(customActivity_id), nil, true];
         _civ setVariable [QGVAR(customActivity_doEnd), nil];
         _civ setVariable [QGVAR(customActivity_parameters), nil];
-        [_target, ""] call FUNC(setCurrentlyThinking);
 
         [QGVAR(customActivity_end), [_civ], _civ] call CBA_fnc_targetEvent;
     } else {

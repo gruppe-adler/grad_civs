@@ -13,10 +13,7 @@
         [
             _target,
             {},
-            {
-                params ["_target"];
-                [_target, ""] call EFUNC(legacy,setCurrentlyThinking);
-            },
+            {},
             _waitTime,
             [],
             "ace_interaction_getDown",

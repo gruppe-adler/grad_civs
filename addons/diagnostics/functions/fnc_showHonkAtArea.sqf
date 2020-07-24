@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 ISNILS(GVAR(honkHandler), -1);
-if (GVAR(showHonkAtArea)) then {
+if (GVAR(showMisc)) then {
     if (GVAR(honkHandler) > -1) exitWith {};
 
     GVAR(honkHandler) = [QEGVAR(interact,honking_at_poly), {

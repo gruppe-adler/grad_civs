@@ -2,8 +2,6 @@
 
 ASSERT_SERVER("");
 
-ISNILS(GVAR(EXITON), {});
-
 private _mainLoop = {
     params ["_args", "_handle"];
     if (!isGameFocused || isGamePaused) exitWith {};
@@ -12,7 +10,7 @@ private _mainLoop = {
         INFO("exiting because GRAD_CIVS_EXITON returned true");
         [_handle] call CBA_fnc_removePerFrameHandler
     };
-    if (isDedicated && (count ((entities "HeadlessClient_F") arrayIntersect allPlayers) > 0)) exitWith {
+    if (isDedicated && {count ((entities "HeadlessClient_F") arrayIntersect allPlayers) > 0}) exitWith {
         INFO("HCs are available, will not spawn any more civs");
         [_handle] call CBA_fnc_removePerFrameHandler
     };
@@ -29,27 +27,6 @@ private _mainLoop = {
     [_mainLoop],
     10
 ] call CBA_fnc_waitAndExecute;
-
-
-GVAR(debugLoopHandle) = [{
-    params ["_args", "_handle"];
-    if (!isGameFocused || isGamePaused) exitWith {};
-    if (call GVAR(EXITON)) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
-    if (GVAR(debugCivState)) then {
-        { _x call FUNC(updateInfoLine); } forEach GVAR(localCivs);
-    };
-}, 0.1, []] call CBA_fnc_addPerFrameHandler;
-
-
-[
-    {
-        if (GVAR(debugFps)) then {
-            ["server_fps", [clientOwner, diag_fps]] call CBA_fnc_globalEvent;
-        };
-    },
-    2,
-    []
-] call CBA_fnc_addPerFrameHandler;
 
 // clean up objNull references in civs array - that happens for example when a zeus person deletes them
 [

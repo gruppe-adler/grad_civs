@@ -6,7 +6,9 @@ private _depoint = {
         _pointees deleteAt (_pointees find _x);
         [QEGVAR(common,pointed_at_dec), [_x], [_x]] call CBA_fnc_targetEvent;
     } forEach _this;
-    if (GVAR(debugCivState) && {count _this > 0}) then { systemChat format ["depointing %1", _this]; };
+    if (count _this > 0) then {
+        [QGVAR(depointing), _this] call CBA_fnc_localEvent;
+    };
 };
 
 private _point = {
@@ -19,7 +21,9 @@ private _point = {
         _pointees pushBackUnique _x;
         [QEGVAR(common,pointed_at_inc), [_x], [_x]] call CBA_fnc_targetEvent;
     } forEach _this;
-    if (GVAR(debugCivState) && {count _this > 0}) then { systemChat format ["pointing at %1", _this]; };
+    if (count _this > 0) then {
+        [QGVAR(pointing), _this] call CBA_fnc_localEvent;
+    };
 };
 
 // NOTE: we need to use animationState, as !weaponLowered does *not* mean "weaponRaised"

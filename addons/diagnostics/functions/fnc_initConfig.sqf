@@ -5,6 +5,17 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "9) diagnostics"];
 
 [
+    QGVAR(debugFps),
+    "CHECKBOX",
+    "Toggles server/HC fps debugging mode",
+    _settingsGroup,
+    false,
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(showOnMap),
     "CHECKBOX",
     "Show civs on map",
@@ -29,7 +40,7 @@ private _settingsGroup = ["GRAD Civs", "9) diagnostics"];
 [
     QGVAR(showPinkArrows),
     "CHECKBOX",
-    "Helpfully hover arrows",
+    "Create 3D arrows over civ heads",
     _settingsGroup,
     false,
     true,
@@ -38,9 +49,9 @@ private _settingsGroup = ["GRAD Civs", "9) diagnostics"];
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(showHonkAtArea),
+    QGVAR(showMisc),
     "CHECKBOX",
-    "Draw honked at area",
+    "Miscellaneous stuff",
     _settingsGroup,
     false,
     true,

@@ -18,10 +18,7 @@ params [
             vehicle _civ,
             _reverseTargetPos,
             60,
-            { // onDone
-                params ["_vehicle"];
-                [leader group driver _vehicle, "I'm waiting for people to go away"] call FUNC(setCurrentlyThinking);
-            }
+            {}
         ] call FUNC(reverse);
 
         INFO_2("vehicle %1 reversing to %2 and then waiting", _civ, _reverseTargetPos);
