@@ -17,7 +17,7 @@
 }] call CBA_fnc_addEventHandler;
 
 [
-    QEGVAR(common,honked_at),
+    QGVAR(honked_at),
     {
         params [
             ["_target", objNull],

@@ -25,8 +25,8 @@ if (GVAR(showMisc)) then {
                 	drawLine3D [_from, _to, [1, 0.3, 0.5, 1]];
                 } forEach _poly;
             },
-            [CBA_missionTime + 3, _this],
-            0
+            0,
+            [CBA_missionTime + 3, _this]
         ] call CBA_fnc_addPerFrameHandler;
     }] call CBA_fnc_addEventHandler;
 } else {

@@ -49,7 +49,7 @@
 }] call CBA_fnc_addEventHandler;
 
 
-[QEGVAR(common,honked_at), {
+[QEGVAR(interact,honked_at), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
 

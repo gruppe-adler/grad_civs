@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 private _playerPos = getPosATL player;
-private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call FUNC(getGlobalCivs));
+private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call EFUNC(legacy,getGlobalCivs));
 
 private _playerVelocity = velocity player;
 private _speed = vectorMagnitude _playerVelocity;
@@ -45,7 +45,7 @@ private _dangerPolyInPlayerHeight = _dangerPoly apply {
     private _civPosInPlayerHeight = [_civPos select 0, _civPos select 1, _playerPos select 2];
     if (isOnRoad _civPos || !_playerIsOnRoad) then {
         if (_civPosInPlayerHeight inPolygon _dangerPolyInPlayerHeight) then {
-            [QEGVAR(common,honked_at), [_x, _playerPos, _playerVelocity], [_x]] call CBA_fnc_targetEvent;
+            [QGVAR(honked_at), [_x, _playerPos, _playerVelocity], [_x]] call CBA_fnc_targetEvent;
         };
     };
 } forEach _nearCivs;
