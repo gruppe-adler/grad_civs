@@ -30,7 +30,7 @@ private _addKilledNews = {
 
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
-		[QGVAR(switchMove), [_unit, ""]] call CBA_fnc_globalEvent;
+		[QGVAR(switchMove), [_unit, ""]] call CBA_fnc_globalEvent; // TODO: is that really necessary?
     }];
 };
 
@@ -38,11 +38,8 @@ private _addGunfightNewsAndFlee = {
    (_this select 0) addEventHandler ["FiredNear",
     {
 		params ["_unit"];
-
-    	CIV_GUNFIGHT_POS = getPos _unit;
-    	INFO_1("civ gunfight at %1",CIV_GUNFIGHT_POS);
-    	publicVariableServer "CIV_GUNFIGHT_POS";
-		["fired_near", [_unit], [_unit]] call CBA_fnc_targetEvent;
+    	INFO_2("gunfight close to %1 at %2", _unit, getPos _unit);
+		[QGVAR(firedNear), [_unit], [_unit]] call CBA_fnc_targetEvent;
     }];
 };
 

@@ -19,7 +19,7 @@ _veh addEventHandler ["FiredNear",
 
      private _units = crew _vec;
 
-     ["fired_near", _units, _units] call CBA_fnc_targetEvent;
+     [QEGVAR(legacy,firedNear), _units, _units] call CBA_fnc_targetEvent;
  }];
 
 private _animalChance = GVAR(animalTransportChance);

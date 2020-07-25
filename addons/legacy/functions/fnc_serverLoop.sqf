@@ -60,8 +60,10 @@ if (!hasInterface && !isDedicated) then {
             private _allCivs = entities [_civClasses, [], true, true];
             private _myCivs = _allCivs select { local _x && (_x getVariable ["grad_civs_primaryTask", ""] != "")};
             private _orphanedCivs = _myCivs - GVAR(localCivs);
-            INFO_1("%1 orphaned civs - putting them into my own array", count _orphanedCivs);
-            GVAR(localCivs) = GVAR(localCivs) + _orphanedCivs;
+            if (count _orphanedCivs > 0) then {
+                INFO_1("%1 orphaned civs - putting them into my own array", count _orphanedCivs);
+                GVAR(localCivs) = GVAR(localCivs) + _orphanedCivs;                        
+            };
         },
         30,
         []

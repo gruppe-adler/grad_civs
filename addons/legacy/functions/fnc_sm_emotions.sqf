@@ -72,7 +72,7 @@ assert ([
 assert ([
     _emotions,
     _emo_relaxed, _emo_panic,
-    ["fired_near"],
+    [QGVAR(firedNear)],
     {true},
     {},
     _emo_relaxed + _emo_panic
@@ -81,7 +81,7 @@ assert ([
 assert ([
     _emotions,
     _emo_wary, _emo_panic,
-    ["fired_near"],
+    [QGVAR(firedNear)],
     {true},
     {},
     _emo_wary + _emo_panic
