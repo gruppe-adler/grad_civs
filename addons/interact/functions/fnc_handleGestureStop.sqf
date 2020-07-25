@@ -25,4 +25,4 @@ private _observers = _potentialObservers select {
     [_x, _waitTime] call FUNC(doStop);
 } forEach _observers;
 
-INFO_1("%1 civs were triggered for being gestured with 'stop'", count _observers);
+INFO_1("%1 civ observers were triggered for being gestured with 'stop'", count _observers);

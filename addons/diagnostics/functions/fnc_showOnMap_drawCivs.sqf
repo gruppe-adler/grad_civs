@@ -7,7 +7,8 @@ params [
 ];
 
 {
-    private _bus = [_x, "business"] call EFUNC(common,civGetState);
+
+    private _bus = [_x, "business"] call EFUNC(common,civGetState); // works local only :sad:
     if (_bus == "") then {
         private _bus = [_x, "activities"] call EFUNC(common,civGetState);
     };

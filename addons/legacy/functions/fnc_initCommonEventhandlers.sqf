@@ -15,17 +15,6 @@
 }] call CBA_fnc_addEventHandler;
 
 
-[QGVAR(doStop), {
-    params [
-        ["_target", objNull, [objNull]],
-        ["_waitTime", 0, [0]]
-    ];
-    [_target, _waitTime] call FUNC(doStop);
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(doCarryOn), {
-    params [
-        ["_target", objNull, [objNull]]
-    ];
-    [_target] call FUNC(doCarryOn);
-}] call CBA_fnc_addEventHandler;
+[QGVAR(doStop), FUNC(doStop)] call CBA_fnc_addEventHandler;
+[QGVAR(doCarryOn), FUNC(doCarryOn)] call CBA_fnc_addEventHandler;
+[QGVAR(doReverse), FUNC(doReverse)] call CBA_fnc_addEventHandler;

@@ -56,21 +56,6 @@
     }
 ] call CBA_fnc_addEventHandler;
 
-[QGVAR(gestured_at_vehicle_go), {
-    params [
-        ["_target", objNull],
-        ["_vectorDir", [0, 0, 0]]
-    ];
-    if (_target == ACE_player) exitWith {};
-    if (_vectorDir isEqualTo [0, 0, 0]) exitWith {
-        WARNING_1("inconclusive 'go' gesture, %1 will do nothing", _target);
-    };
-
-    private _reverseTargetPos = (getPos _target) vectorAdd (_vectorDir vectorMultiply 50);
-
-    [_target, _reverseTargetPos] call EFUNC(legacy,doReverse);
-}] call CBA_fnc_addEventHandler;
-
 [QGVAR(told_to_reverse), {
     params [
         ["_target", objNull, [objNull]],

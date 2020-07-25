@@ -21,8 +21,11 @@ private _observers = _potentialObservers select {
     || (_gesturer distance _x < SEND_RADIUS) /* HACK: as this is also triggered by ACE interact "go away", we need to disregard direction when very close*/
 };
 
+private _vectorDir = vectorDirVisual _gesturer;
+
 {
-   [QGVAR(gestured_at_vehicle_go), [_x, vectorDirVisual _gesturer], _x] call CBA_fnc_targetEvent;
+    private _reverseTargetPos = (getPos _x) vectorAdd (_vectorDir vectorMultiply 50);
+    [_target, _reverseTargetPos] call EFUNC(legacy,doReverse);
 } forEach _observers;
 
 INFO_1("%1 civs were triggered for being gestured with 'go'", count _observers);

@@ -5,6 +5,16 @@ params [
     ["_reverseTargetPos", [0, 0, 0]]
 ];
 
+if (!(local _civ)) exitWith {
+    [
+        QGVAR(doReverse),
+        [_object, _reverseTargetPos],
+        _object
+    ] call CBA_fnc_targetEvent;
+};
+
+if (_civ == ACE_player) exitWith {};
+
 [
     _civ,
     {

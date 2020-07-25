@@ -57,10 +57,26 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(common,gestured_at_stop), {
+[QEGVAR(legacy,doStop), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
 
     private _message = "someone gestures at you to stop";
+    [_message] call FUNC(showCivHint);
+}] call CBA_fnc_addEventHandler;
+
+[QEGVAR(legacy,doReverse), {
+    params ["_civ"];
+    if (_civ != ACE_player) exitWith {};
+
+    private _message = "someone tells you to reverse";
+    [_message] call FUNC(showCivHint);
+}] call CBA_fnc_addEventHandler;
+
+[QEGVAR(legacy,doCarryOn), {
+    params ["_civ"];
+    if (_civ != ACE_player) exitWith {};
+
+    private _message = "someone tells you to carry on";
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
