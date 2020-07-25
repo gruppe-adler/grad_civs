@@ -16,4 +16,4 @@ private _states = (_statemachineNames apply {
 
 _text = format ["%1 | %2", _this, _states];
 
-_this setVariable ["grad_civs_infoLine", _text, true];
+_this setVariable [QGVAR(infoLine), _text, true];

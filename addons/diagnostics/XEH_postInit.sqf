@@ -11,7 +11,6 @@ if (hasInterface) then {
     call FUNC(showFps);
 };
 
-
 if (isServer || CBA_isHeadlessClient) then {
     GVAR(debugLoopHandle) = [{
         params ["_args", "_handle"];
@@ -38,10 +37,10 @@ if (isServer) then {
         QEGVAR(common,civ_added),
         {
             params [["_civ", objNull, [objNull]]];
-            _civ setVariable ["grad_civs_local_at", owner _civ, true];
+            _civ setVariable [QGVAR(localAt), owner _civ, true];
             _civ addEventHandler ["Local", {
             	params ["_civ", ""];
-                _civ setVariable ["grad_civs_local_at", owner _civ, true];
+                _civ setVariable [QGVAR(localAt), owner _civ, true];
             }];
         }
    ] call CBA_fnc_addEventHandler;
