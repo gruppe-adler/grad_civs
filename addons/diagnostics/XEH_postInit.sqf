@@ -37,13 +37,12 @@ if (isServer) then {
     [
         QEGVAR(common,civ_added),
         {
-            {
-                _x setVariable ["grad_civs_local_at", owner _x, true];
-                _x addEventHandler ["Local", {
-                	params ["_entity", ""];
-                    _x setVariable ["grad_civs_local_at", owner _x, true];
-                }];
-            } forEach _this;
+            params [["_civ", objNull, [objNull]]];
+            _civ setVariable ["grad_civs_local_at", owner _civ, true];
+            _civ addEventHandler ["Local", {
+            	params ["_civ", ""];
+                _civ setVariable ["grad_civs_local_at", owner _civ, true];
+            }];
         }
    ] call CBA_fnc_addEventHandler;
 };

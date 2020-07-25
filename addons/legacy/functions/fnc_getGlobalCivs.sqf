@@ -15,15 +15,17 @@ if (isNil QFUNC(getGlobalCivs_arr)) then {
     [
         QEGVAR(common,civ_added),
         {
+            params [["_civ", objNull, [objNull]]];
             SCRIPT("getGlobalCivs_civ_added");
-            FUNC(getGlobalCivs_arr) = FUNC(getGlobalCivs_arr) + _this;
+            FUNC(getGlobalCivs_arr) = FUNC(getGlobalCivs_arr) + [_civ];
         }
     ] call CBA_fnc_addEventHandler;
     [
         QEGVAR(common,civ_removed),
         {
+            params [["_civ", objNull, [objNull]]];
             SCRIPT("getGlobalCivs_civ_removed");
-            FUNC(getGlobalCivs_arr) = FUNC(getGlobalCivs_arr) - _this;
+            FUNC(getGlobalCivs_arr) = FUNC(getGlobalCivs_arr) - [_civ];
         }
     ] call CBA_fnc_addEventHandler;
 };
