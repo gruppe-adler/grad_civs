@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-if (isServer || !hasInterface) then {
+if (isServer || CBA_isHeadlessClient) then {
     INFO("Server/HC init running...");
 
     if (

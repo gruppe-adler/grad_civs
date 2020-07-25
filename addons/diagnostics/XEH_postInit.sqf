@@ -12,7 +12,8 @@ if (hasInterface) then {
     call FUNC(showInfoLine);
 };
 
-if (!hasInterface || isServer) then {
+
+if (isServer || CBA_isHeadlessClient) then {
     GVAR(debugLoopHandle) = [{
         params ["_args", "_handle"];
         if (!isGameFocused || isGamePaused) exitWith {};

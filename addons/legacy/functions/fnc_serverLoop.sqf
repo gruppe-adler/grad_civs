@@ -53,7 +53,7 @@ private _mainLoop = {
 /*
  * if a civ gets moved to the HC for some reason (for example by  acex_headless) take care to grab them
  */
-if (!hasInterface && !isDedicated) then {
+if (CBA_isHeadlessClient) then {
     [
         {
             private _civClasses = call EFUNC(common,config_getCivClasses);

@@ -4,7 +4,7 @@ if (!(EGVAR(main,enabled))) exitWith {
     INFO("GRAD civs is disabled. Good bye!");
 };
 
-if (isServer || !hasInterface) then {
+if (isServer || CBA_isHeadlessClient) then {
     [
         QEGVAR(legacy,spawnAllowed),
         {
