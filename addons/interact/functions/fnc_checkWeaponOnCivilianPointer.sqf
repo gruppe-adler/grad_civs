@@ -9,7 +9,7 @@ private _depoint = {
             _counter = 0 max (_counter - 1);
             [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
             if (_counter == 1) then {
-                [QEGVAR(common,pointed_at_dec), [_x], [_x]] call CBA_fnc_targetEvent;
+                [QGVAR(pointed_at_dec), [_x], [_x]] call CBA_fnc_targetEvent;
                 [QGVAR(depointing), _x] call CBA_fnc_localEvent;
             };
         };
@@ -23,8 +23,8 @@ private _point = {
             _counter = 2 min (_counter + 1);
             [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
             if (_counter == 2) then {
-                [QEGVAR(common,pointed_at_inc), [_x], [_x]] call CBA_fnc_targetEvent;
-                [QGVAR(pointing), _this] call CBA_fnc_localEvent;
+                [QGVAR(pointed_at_inc), [_x], [_x]] call CBA_fnc_targetEvent;
+                [QGVAR(pointing), _x] call CBA_fnc_localEvent;
             };
         };
     } forEach _this;

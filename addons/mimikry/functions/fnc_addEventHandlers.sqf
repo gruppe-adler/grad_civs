@@ -21,7 +21,7 @@
 }] call CBA_fnc_addEventHandler;
 
 
-[QEGVAR(common,pointed_at_inc), {
+[QEGVAR(interact,pointed_at_inc), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
 
@@ -32,7 +32,7 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(common,pointed_at_dec), {
+[QEGVAR(interact,pointed_at_dec), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
 

@@ -1,13 +1,13 @@
 #include "..\script_component.hpp"
 
-[QEGVAR(common,pointed_at_inc), {
+[QGVAR(pointed_at_inc), {
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
     _civ setVariable ["grad_civs_isPointedAtCount", _currentCount + 1];
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(common,pointed_at_dec), {
+[QGVAR(pointed_at_dec), {
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
