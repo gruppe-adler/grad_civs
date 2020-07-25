@@ -56,6 +56,7 @@ private _possibleCiv = driver cursorTarget;
 if (!(_possibleCiv in _pointees)) then {
     if (
         ((side _possibleCiv) == civilian) &&
+        {_possibleCiv isKindOf "Man"} &&
         {alive _possibleCiv} &&
         {[player, _possibleCiv] call FUNC(checkWeaponOnCivilianPerception)}
     ) then {

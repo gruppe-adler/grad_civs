@@ -48,7 +48,6 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-
 [QEGVAR(interact,honked_at), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
