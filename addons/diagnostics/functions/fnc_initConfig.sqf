@@ -5,9 +5,9 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "a) diagnostics"];
 
 [
-    QGVAR(debugFps),
+    QGVAR(showFps),
     "CHECKBOX",
-    "Toggles server/HC fps debugging mode",
+    "Show server & HC fps",
     _settingsGroup,
     false,
     true,
