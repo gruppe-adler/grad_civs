@@ -21,12 +21,12 @@ GVAR(fpsPfh) = [
     {
         if (!GVAR(showFps)) exitWith {};
 
-        private _text = "FPS ";        
+        private _text = "FPS ";
         [GVAR(lastFps), {
             _text = format ["%1 | %2: %3", _text, _key, _value]
         }] call CBA_fnc_hashEachPair;
         systemChat _text;
     },
-    [],
-    2
+    2,
+    []    
 ] call CBA_fnc_addPerFrameHandler;
