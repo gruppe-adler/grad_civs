@@ -1,8 +1,6 @@
 #include "script_component.hpp"
 
-if (!(EGVAR(main,enabled))) exitWith {
-    INFO("grad_civs is disabled. good bye.");
-};
+if (!(EGVAR(main,enabled))) exitWith {};
 
 ISNILS(GVAR(EXITON), {false});
 

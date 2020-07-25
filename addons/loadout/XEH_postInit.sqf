@@ -1,8 +1,6 @@
 #include "script_component.hpp"
 
-if (!(EGVAR(main,enabled))) exitWith {
-    INFO("GRAD Civs is disabled. Good bye!");
-};
+if (!(EGVAR(main,enabled))) exitWith {};
 
 [QEGVAR(common,civ_added), {
     params [["_civ", objNull, [objNull]]];
