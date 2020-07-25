@@ -51,7 +51,7 @@ private _mainLoop = {
 ] call CBA_fnc_addPerFrameHandler;
 
 /*
- * if a civ gets moved to the HC for some reason (for example by  acex_headless) take care to grab them
+ * if a civ gets moved to the HC for some reason (for example by acex_headless) take care to grab them
  */
 if (CBA_isHeadlessClient) then {
     [

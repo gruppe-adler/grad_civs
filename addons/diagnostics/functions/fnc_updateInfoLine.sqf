@@ -17,4 +17,3 @@ private _states = (_statemachineNames apply {
 _text = format ["%1 | %2", _this, _states];
 
 _this setVariable ["grad_civs_infoLine", _text, true];
-_this setVariable ["grad_civs_local_at", clientOwner, true];

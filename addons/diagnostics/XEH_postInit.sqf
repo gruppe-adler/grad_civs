@@ -20,7 +20,7 @@ if (isServer || CBA_isHeadlessClient) then {
         if (GVAR(showInfoLine)) then {
             { _x call FUNC(updateInfoLine); } forEach EGVAR(legacy,localCivs);
         };
-    }, 0.1, []] call CBA_fnc_addPerFrameHandler;
+    }, 1, []] call CBA_fnc_addPerFrameHandler;
 
     [
         {
@@ -31,4 +31,19 @@ if (isServer || CBA_isHeadlessClient) then {
         2,
         []
     ] call CBA_fnc_addPerFrameHandler;
+};
+
+if (isServer) then {
+    [
+        QEGVAR(common,civ_added),
+        {
+            {
+                _x setVariable ["grad_civs_local_at", owner _x, true];
+                _x addEventHandler ["Local", {
+                	params ["_entity", ""];
+                    _x setVariable ["grad_civs_local_at", owner _x, true];
+                }];
+            } forEach _this;
+        }
+   ] call CBA_fnc_addEventHandler;
 };
