@@ -14,7 +14,7 @@ if (hasInterface) then {
 if (isServer || CBA_isHeadlessClient) then {
     GVAR(debugLoopHandle) = [{
         params ["_args", "_handle"];
-        if (!isGameFocused || isGamePaused) exitWith {};
+        if (hasInterface && (!isGameFocused || isGamePaused)) exitWith {};
         if (call EGVAR(legacy,EXITON)) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
         if (GVAR(showInfoLine)) then {
             { _x call FUNC(updateInfoLine); } forEach EGVAR(legacy,localCivs);

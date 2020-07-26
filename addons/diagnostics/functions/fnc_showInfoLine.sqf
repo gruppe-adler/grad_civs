@@ -36,7 +36,7 @@ ISNILS(GVAR(actionIds), []);
 
 			_text = "<empty>";
 			switch (GVAR(civStateFormat)) do {
-			    case 0: { _text =_x getVariable [QGVAR(infoLine),"<no info found. is debug mode enabled where the civs are local?>"]; };
+			    case 0: { _text = _x getVariable [QGVAR(infoLine),"<no info found. is debug mode enabled where the civs are local?>"]; };
 				case 1: { _text = format["%1 | speedmode: %2 %3", _x, speedMode _x, if (leader _x == _x) then {"(is leader)"} else {""}]; };
 				case 2: { _text = format["%1 | %2 guns point at him", _x, _x getVariable ["grad_civs_isPointedAtCount", 0]]};
 				case 3: { _text = format["%1 | is local at %2", _x, _x getVariable [QGVAR(localAt), 0]]};
