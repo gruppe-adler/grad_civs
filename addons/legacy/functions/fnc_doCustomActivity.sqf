@@ -21,16 +21,16 @@ params [
 assert(local _civ);
 
 private _id = ([_name, call FUNC(uid)] select { _x != ""}) joinString "_";
-INFO_2("civ %1: generated uid %2 for custom activity", _civ, _id);
+LOG_2("civ %1: generated uid %2 for custom activity", _civ, _id);
 
 private _timeout = 86400*366; // if you run a scenario for over one year, take this bug with love <3.
 private _endCondition = _endConditionOrTimeout;
 if (typeName _endConditionOrTimeout == typeName 0) then {
-    INFO_2("civ %1: custom activity %2 seems to have timeout, will use that", _civ, _id);
+    LOG_2("civ %1: custom activity %2 has timeout", _civ, _id);
     _timeout = _endConditionOrTimeout;
     _endCondition = {false};
 } else {
-    INFO_2("civ %1: custom activity %2 seems to have code, will use that", _civ, _id);
+    LOG_2("civ %1: custom activity %2 has endCondition", _civ, _id);
 };
 
 // force the previous custom activity to end
@@ -63,7 +63,7 @@ private _endCode = {
     params  ["_civ", "_id"];
 
     if (_civ getVariable [QGVAR(customActivity_id), ""] == _id) then {
-        INFO_2("civ %1: ending custom activity %2", _civ, _id);
+        LOG_2("civ %1: ending custom activity %2", _civ, _id);
         private _doEnd = _civ getVariable [QGVAR(customActivity_doEnd), {}];
         private _moreParameters = _civ getVariable [QGVAR(customActivity_parameters), []];
         ([_civ] + _moreParameters) call _doEnd;
