@@ -13,6 +13,8 @@ PREP(interact_backUpAction);
 PREP(interact_backUpCondition);
 PREP(interact_carryOnAction);
 PREP(interact_carryOnCondition);
+PREP(interact_stopAction);
+PREP(interact_stopCondition);
 PREP(isPlayerHonking);
 PREP(sm_activities_helper_freeCondition);
 PREP(sm_activities_helper_surrenderCondition);

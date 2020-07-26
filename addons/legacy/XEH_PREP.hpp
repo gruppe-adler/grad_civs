@@ -2,6 +2,7 @@ PREP(compare);
 PREP(doReverse);
 PREP(deleteIfDamaged);
 PREP(doCustomActivity);
+PREP(doingCustomActivity);
 
 PREP(doStop);
 PREP(isStopped);
