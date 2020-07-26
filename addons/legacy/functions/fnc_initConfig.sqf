@@ -16,6 +16,17 @@ private _settingsGroup = ["GRAD Civs", "2) basics"];
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(smMultiplicator),
+    "SLIDER",
+    "CBA state machine speed multiplicator",
+    _settingsGroup,
+    [1, 10, 1, 0],
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(minFps),
     "SLIDER",
     "Keep civ owner fps over [1/s]",

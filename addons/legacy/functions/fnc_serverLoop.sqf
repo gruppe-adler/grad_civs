@@ -2,6 +2,12 @@
 
 ASSERT_SERVER("");
 
+ISNILS(GVAR(efIDs), []);
+for "_i" from 2 to GVAR(smMultiplicator) do {
+    GVAR(efIDs) pushBack (addMissionEventHandler ["EachFrame", {call cba_statemachine_fnc_clockwork}]);
+};
+INFO_1("CBA statemachines are running %1 more ticks per frame now", count GVAR(efIDs));
+
 private _mainLoop = {
     params ["_args", "_handle"];
     if (!isGameFocused || isGamePaused) exitWith {};
@@ -12,7 +18,12 @@ private _mainLoop = {
     };
     if (isServer && {count ((entities "HeadlessClient_F") arrayIntersect allPlayers) > 0}) exitWith {
         INFO("HCs are available, will not spawn any more civs");
-        [_handle] call CBA_fnc_removePerFrameHandler
+        [_handle] call CBA_fnc_removePerFrameHandler;
+        {
+            removeMissionEventHandler ["EachFrame", _x];
+        } forEach GVAR(efIDs);
+        GVAR(efIDs) = [];
+        INFO("CBA statemachines are running at default tick rate again");
     };
 
     [] call FUNC(spawnPass);
