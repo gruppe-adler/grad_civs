@@ -3,17 +3,17 @@
 [QGVAR(pointed_at_inc), {
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
-    private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
-    _civ setVariable ["grad_civs_isPointedAtCount", _currentCount + 1];
+    private _currentCount = _civ getVariable [QGVAR(pointedAtCount), 0];
+    _civ setVariable [QGVAR(pointedAtCount), _currentCount + 1];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(pointed_at_dec), {
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
-    private _currentCount = _civ getVariable ["grad_civs_isPointedAtCount", 0];
+    private _currentCount = _civ getVariable [QGVAR(pointedAtCount), 0];
     assert(_currentCount > 0);
     if (_currentCount < 1) then {_currentCount = 1;};
-    _civ setVariable ["grad_civs_isPointedAtCount", _currentCount - 1, true];
+    _civ setVariable [QGVAR(pointedAtCount), _currentCount - 1, true];
 }] call CBA_fnc_addEventHandler;
 
 [

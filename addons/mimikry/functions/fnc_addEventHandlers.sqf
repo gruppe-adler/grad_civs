@@ -25,8 +25,8 @@
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
 
-    private _newCount = (_civ getVariable ["grad_civs_isPointedAtCount", 0]) + 1;
-    _civ setVariable ["grad_civs_isPointedAtCount", _newCount];
+    private _newCount = (_civ getVariable [QGVAR(pointedAtCount), 0]) + 1;
+    _civ setVariable [QGVAR(pointedAtCount), _newCount];
 
     private _message = format["you're being pointed at with %1 guns", _newCount];
     [_message] call FUNC(showCivHint);
@@ -36,10 +36,12 @@
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
 
-    private _newCount = (_civ getVariable ["grad_civs_isPointedAtCount", 0]) - 1;
-    assert(_newCount >= 0);
-    if (_newCount < 0) then {_newCount = 0;};
-    _civ setVariable ["grad_civs_isPointedAtCount", _newCount];
+    private _newCount = (_civ getVariable [QGVAR(pointedAtCount), 0]) - 1;
+    if (_newCount < 0) then {
+        _newCount = 0;
+        WARNING("pointed at underrun!");
+    };
+    _civ setVariable [QGVAR(pointedAtCount), _newCount];
 
     private _message = format["you're being pointed at with %1 guns", _newCount];
     if (_newCount == 0) then {
