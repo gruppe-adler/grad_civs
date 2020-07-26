@@ -43,7 +43,6 @@ PREP(sm_activities_state_surrendered_enter);
 PREP(sm_activities_state_surrendered_exit);
 PREP(sm_activities_trans_business_panic_condition);
 PREP(sm_activities_trans_business_surrendered_condition);
-PREP(sm_activities_trans_dismount_surrendered_condition);
 PREP(sm_activities_trans_surrendered_business_condition);
 PREP(sm_activities_trans_surrendered_panic_condition);
 PREP(sm_business);
