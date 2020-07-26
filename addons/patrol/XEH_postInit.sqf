@@ -4,7 +4,7 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,spawnAllowed),
+        QEGVAR(legacy,localSpawn),
         {
             ISNILS(GVAR(maxCivsOnFoot), GVAR(maxCivsOnFoot));
             if ((count (["patrol"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {

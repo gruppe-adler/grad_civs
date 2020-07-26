@@ -5,10 +5,10 @@ if ((ALL_HUMAN_PLAYERS isEqualTo []) && (GVAR(spawnOnlyWithPlayers))) exitWith {
 };
 
 private _minCivUpdateTime = GVAR(minCivUpdateTime);
-private _minFps = GVAR(minFps);
+private _minFps = GVAR(minCivOwnerFps);
 
 private _fps = diag_fps;
 if (_fps < _minFps) exitWith {LOG_2("not spawning additional civs: less FPS than required (%1/%2)", _fps, _minFps)};
 if ((_fps * _minCivUpdateTime) < (count GVAR(localCivs))) exitWith {LOG_3("not spawning additional civs: cannot guarantee update times less than %1 for %2 civs with %3 fps", _minCivUpdateTime, count GVAR(localCivs), _fps)};
 
-[QGVAR(spawnAllowed), []] call CBA_fnc_localEvent;
+[QGVAR(localSpawn), []] call CBA_fnc_localEvent;

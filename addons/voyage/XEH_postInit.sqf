@@ -4,7 +4,7 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,spawnAllowed),
+        QEGVAR(legacy,localSpawn),
         {
             private _maxCivsInVehicles = GVAR(maxCivsInVehicles);
             if ((count (["voyage"] call EFUNC(legacy,getGlobalCivs))) < _maxCivsInVehicles) then {

@@ -1,6 +1,7 @@
 #define COMPONENT main
 #include "\z\grad_civs\addons\main\script_mod.hpp"
 
+#define DEBUG_ENABLED_MAIN
 // #define DEBUG_MODE_FULL
 // #define DISABLE_COMPILE_CACHE
 
