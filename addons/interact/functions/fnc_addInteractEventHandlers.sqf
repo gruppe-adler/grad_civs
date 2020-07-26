@@ -61,5 +61,6 @@
         ["_target", objNull, [objNull]],
         ["_reverseTargetPos", [0, 0, 0], [[]]]
     ];
+    if (_target == ACE_player) exitWith {};
     [_target, _reverseTargetPos] call EFUNC(legacy,doReverse);
 }] call CBA_fnc_addEventHandler;

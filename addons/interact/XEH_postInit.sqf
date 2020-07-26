@@ -4,9 +4,7 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (hasInterface) then {
     call FUNC(aceInteractWrapper);
-    call FUNC(addInteractEventHandlers);
     call FUNC(addCivInteractions);
-
 
     [{
         if (!isGameFocused || isGamePaused) exitWith {};
@@ -22,6 +20,8 @@ if (hasInterface) then {
 
 
 };
+
+[] call FUNC(addInteractEventHandlers);
 
 if (isServer || CBA_isHeadlessClient) then {
     ["activities", ["act_business"], FUNC(sm_activities)] call EFUNC(common,augmentStateMachine);
