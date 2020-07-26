@@ -4,7 +4,7 @@
     params ["_civ"];
     if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable [QGVAR(pointedAtCount), 0];
-    _civ setVariable [QGVAR(pointedAtCount), _currentCount + 1];
+    _civ setVariable [QGVAR(pointedAtCount), _currentCount + 1, true];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(pointed_at_dec), {
