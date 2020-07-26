@@ -10,10 +10,11 @@ GVAR(fpsHandler) = [
         if (!GVAR(showFps)) exitWith {};
         params [
             ["_clientId", -1, [0]],
-            ["_fps", -1, [0]]
+            ["_fps", -1, [0]],
+            ["_civCount", 0, [0]]
         ];
 
-        [GVAR(lastFps), _clientId, _fps] call CBA_fnc_hashSet;
+        [GVAR(lastFps), _clientId, [_fps, _civCount]] call CBA_fnc_hashSet;
     }
 ] call CBA_fnc_addEventHandler;
 
@@ -23,10 +24,10 @@ GVAR(fpsPfh) = [
 
         private _text = "FPS ";
         [GVAR(lastFps), {
-            _text = format ["%1 | %2: %3", _text, _key, _value]
+            _text = format ["%1 | %2: %3 (%4)", _text, _key, _value#0, _value#1]
         }] call CBA_fnc_hashEachPair;
         systemChat _text;
     },
     2,
-    []    
+    []
 ] call CBA_fnc_addPerFrameHandler;

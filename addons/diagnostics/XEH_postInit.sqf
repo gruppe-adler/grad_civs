@@ -24,7 +24,7 @@ if (isServer || CBA_isHeadlessClient) then {
     [
         {
             if (GVAR(showFps)) then {
-                [QGVAR(fps), [clientOwner, diag_fps]] call CBA_fnc_globalEvent;
+                [QGVAR(fps), [clientOwner, diag_fps, count EGVAR(legacy,localCivs)]] call CBA_fnc_globalEvent;
             };
         },
         2,
