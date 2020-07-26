@@ -21,7 +21,7 @@ private _carryOnAction = [
 } forEach _civClasses;
 
 private _backUpAction = [
-    QGVAR(carryOnAction),
+    QGVAR(backUpAction),
     "back up your vehicle!",
     "", // icon
     FUNC(interact_backUpAction),
@@ -36,4 +36,4 @@ private _backUpAction = [
         _backUpAction,
         true
     ] call ace_interact_menu_fnc_addActionToClass;
-} forEach _civClasses;
+} forEach (_civClasses + ["Car"]);
