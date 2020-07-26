@@ -22,3 +22,7 @@ if (hasInterface) then {
 
 
 };
+
+if (isServer || CBA_isHeadlessClient) then {
+    ["activities", ["act_business"], FUNC(sm_activities)] call EFUNC(common,augmentStateMachine);
+};
