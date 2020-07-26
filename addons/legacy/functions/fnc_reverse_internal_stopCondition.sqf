@@ -1,4 +1,5 @@
 #include "..\script_component.hpp"
+#define TARGET_PRECISION 5 /*precision in meters*/
 
 params ["_handle", "_vehicle", "_targetPos", "_tryAtLeastUntil", "", "_abortCondition"];
 private _nowDst = (_targetPos distance _vehicle);

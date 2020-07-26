@@ -8,8 +8,6 @@ params [
     ["_abortCondition", {false}]
 ];
 
-#define TARGET_PRECISION 5 /*precision in meters*/
-
 scopeName "main";
 
 private _driver = driver _vehicle;
@@ -26,7 +24,7 @@ if (effectiveCommander _vehicle == _driver) then {
             breakOut "main";
         };
         _ec = (group _driver) createUnit ["C_Soldier_VR_F", [0, 0, 0], [], 0, "NONE"];
-        // _ec disableAI "MOVE"; // TODO I saw one jump off th vehicle ... 
+        // _ec disableAI "MOVE"; // TODO I saw one jump off th vehicle ...
         ["ace_common_hideObjectGlobal", [_ec, true]] call CBA_fnc_serverEvent;
         _ec assignAsCargo _vehicle;
         _ec moveInCargo _vehicle;
@@ -35,7 +33,7 @@ if (effectiveCommander _vehicle == _driver) then {
         _ec = (crew _vehicle) select 1;
     };
 
-    INFO_1("setting EC to %1", typeOf _ec);
+    LOG_1("setting EC to %1", typeOf _ec);
     _vehicle setEffectiveCommander _ec;
 };
 
