@@ -13,14 +13,15 @@ clearWeaponCargoGlobal _veh;
 clearItemCargoGlobal _veh;
 clearMagazineCargoGlobal _veh;
 
-_veh addEventHandler ["FiredNear",
- {
-     params ["_vec", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
-
-     private _units = crew _vec;
-
-     [QEGVAR(legacy,firedNear), _units, _units] call CBA_fnc_targetEvent;
- }];
+_veh addEventHandler [
+    "FiredNear",
+    {
+        params ["_vec", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
+        {
+            [QEGVAR(legacy,firedNear), [_x], _x] call CBA_fnc_targetEvent;
+        } forEach (crew _vec);
+     }
+ ];
 
 private _animalChance = GVAR(animalTransportChance);
 [_veh, _animalChance] call FUNC(loadAnimals);
