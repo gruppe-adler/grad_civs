@@ -8,3 +8,5 @@
 
 #define REQUIRED_VERSION 1.96
 #define AUTHOR Gruppe##Adler
+
+#define DEBUG_ENABLED_MAIN
