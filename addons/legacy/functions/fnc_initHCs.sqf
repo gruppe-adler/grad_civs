@@ -23,6 +23,6 @@ if (isServer) then {
 };
 
 if (CBA_isHeadlessClient) then {
-    call FUNC(overclockStateMachines);
+    [] call FUNC(overclockStateMachines);
     [FUNC(adoptAbandonedCivs), 30, []] call CBA_fnc_addPerFrameHandler;
 };
