@@ -24,7 +24,7 @@ private _bus_meetNeighbor = [
     _business,
      { _this call FUNC(sm_business_state_meetNeighbor_loop) },
      { _this call FUNC(sm_business_state_meetNeighbor_enter) },
-     { _this call FUNC(sm_business_state_meetNeighbor_exit) },
+     {},
      "bus_meetNeighbor"
 ] call EFUNC(cba_statemachine,addState);
 

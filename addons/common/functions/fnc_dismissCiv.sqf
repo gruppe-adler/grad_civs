@@ -35,6 +35,6 @@ _civ enableAI "MOVE";
 } forEach allVariables _civ;
 
 // trigger event last
-["grad_civs_civ_removed", [_civ]] call CBA_fnc_globalEvent;
+[QGVAR(civ_removed), [_civ]] call CBA_fnc_globalEvent;
 
 INFO_1("dismissed civ %1", _civ);

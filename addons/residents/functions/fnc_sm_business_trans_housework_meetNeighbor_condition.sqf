@@ -6,7 +6,6 @@ if ((_this getVariable ["grad_civs_lastSocialContact", 0]) + _neighborCooldown >
 
 private _neighborToMeet = _this getVariable ["grad_civs_neighborToMeet", objNull];
 if (!(isNull _neighborToMeet)) exitWith {
-    [_this, format ["going to chat with %1", _neighborToMeet]] call EFUNC(legacy,setCurrentlyThinking);
     true
 };
 
@@ -33,5 +32,4 @@ if (isNil "_neighborToMeet") exitWith {false};
 if (isNull _neighborToMeet) exitWith {false};
 
 _this setVariable ["grad_civs_neighborToMeet", _neighborToMeet, true];
-[_this, format ["going to chat with %1", _neighborToMeet]] call EFUNC(legacy,setCurrentlyThinking);
 true

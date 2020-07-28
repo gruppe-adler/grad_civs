@@ -54,10 +54,8 @@ backpackProbability      | 0.5            | Probability that a civilian will wea
 backpacks                | []            | All classnames of backpacks that civilians may wear.
 civClasses               | ["C_Man_1"]   | Unit classes to use for spawning civilians
 clothes                  | []            | All classnames of clothes that civilians may wear.
-debugCivState            | 0             | Toggles civ behavior debugging mode (0/1).
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
 enabled                  | false         | if grad_civs is enabled (false,true)
-exitOn                   | ""            | Condition upon which grad-civs loops will stop.
 faces                    | []            | All classnames of faces that civilians may have.
 goggles                  | []            | All classnames of goggles that civilians may wear.
 headgear                 | []            | All classnames of headgear that civilians may wear.
@@ -183,17 +181,6 @@ Sets all vehicles that civilians may drive. Overwrites value from CBA settings. 
 Parameter | Explanation
 ----------|-------------------------------------------------------------
 vehicles  | Array - All classnames of vehicles that civilians may drive.
-
-### grad_civs_legacy_fnc_setDebugMode
-Sets debug mode. Overwrites value from CBA settings. Execute local.
-
-#### Syntax
-`[debugCivState] call grad_civs_legacy_fnc_setDebugMode`  
-
-Parameter     | Explanation
---------------|--------------------------
-debugCivState | Bool - Debug mode on/off.
-
 
 ### grad_civs_common_fnc_addExclusionZone and grad_civs_common_fnc_addPopulationZone
 

@@ -14,6 +14,6 @@ GVAR(localCivs) = GVAR(localCivs) + [_civ];
 _civ setVariable ["grad_civs_primaryTask", _primaryTask, true];
 _civ setVariable ["acex_headless_blacklist", true, true];
 
-[QGVAR(civ_added), [_civ]] call CBA_fnc_globalEvent;
+[QEGVAR(common,civ_added), [_civ]] call CBA_fnc_globalEvent;
 
 _civ

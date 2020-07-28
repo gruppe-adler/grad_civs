@@ -21,16 +21,16 @@ params [
 assert(local _civ);
 
 private _id = ([_name, call FUNC(uid)] select { _x != ""}) joinString "_";
-INFO_2("civ %1: generated uid %2 for custom activity", _civ, _id);
+LOG_2("civ %1: generated uid %2 for custom activity", _civ, _id);
 
 private _timeout = 86400*366; // if you run a scenario for over one year, take this bug with love <3.
 private _endCondition = _endConditionOrTimeout;
 if (typeName _endConditionOrTimeout == typeName 0) then {
-    INFO_2("civ %1: custom activity %2 seems to have timeout, will use that", _civ, _id);
+    LOG_2("civ %1: custom activity %2 has timeout", _civ, _id);
     _timeout = _endConditionOrTimeout;
     _endCondition = {false};
 } else {
-    INFO_2("civ %1: custom activity %2 seems to have code, will use that", _civ, _id);
+    LOG_2("civ %1: custom activity %2 has endCondition", _civ, _id);
 };
 
 // force the previous custom activity to end
@@ -50,8 +50,6 @@ INFO_2("civ %1: starts custom activity %2", _civ, _id);
 
 ([_civ] + _moreParameters) call _doStart;
 
-[_target, _description] call FUNC(setCurrentlyThinking);
-
  // NOTE:
 //        civ might change owner in which case this  will break, as I dont set vars as global.
  //       I am however afraid of broadcasting code (where I have no idea how large it is) everytime a civ does something special.
@@ -65,7 +63,7 @@ private _endCode = {
     params  ["_civ", "_id"];
 
     if (_civ getVariable [QGVAR(customActivity_id), ""] == _id) then {
-        INFO_2("civ %1: ending custom activity %2", _civ, _id);
+        LOG_2("civ %1: ending custom activity %2", _civ, _id);
         private _doEnd = _civ getVariable [QGVAR(customActivity_doEnd), {}];
         private _moreParameters = _civ getVariable [QGVAR(customActivity_parameters), []];
         ([_civ] + _moreParameters) call _doEnd;
@@ -74,7 +72,6 @@ private _endCode = {
         _civ setVariable [QGVAR(customActivity_id), nil, true];
         _civ setVariable [QGVAR(customActivity_doEnd), nil];
         _civ setVariable [QGVAR(customActivity_parameters), nil];
-        [_target, ""] call FUNC(setCurrentlyThinking);
 
         [QGVAR(customActivity_end), [_civ], _civ] call CBA_fnc_targetEvent;
     } else {

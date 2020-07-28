@@ -13,31 +13,40 @@ private _emo_relaxed = [
     {
     },
     "emo_relaxed"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 private _emo_wary = [
     _emotions,
     {
     },
     {
+        _this call FUNC(forceEmotionSpeed);
+
+        private _cooldownAt = (_this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60]) + CBA_missionTime;
+        _this setVariable [QGVAR(cooldownAt), _cooldownAt];
     },
     {
     },
     "emo_wary"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 private _emo_panic = [
     _emotions,
     {},
     {
         _this call FUNC(endCustomActivity);
+        _this call FUNC(forceEmotionSpeed);
+
+        private _cooldownAt = (_this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60]) + CBA_missionTime;
+        _this setVariable [QGVAR(cooldownAt), _cooldownAt];
+
         ["grad_civs_panicking", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     {
         ["grad_civs_panicking_end", [_this], [_this]] call CBA_fnc_targetEvent;
     },
     "emo_panic"
-] call EFUNC(cba_statemachine,addState);;
+] call EFUNC(cba_statemachine,addState);
 
 
     // TRANSITIONS
@@ -46,16 +55,8 @@ private _emo_panic = [
 assert ([
     _emotions,
     _emo_panic, _emo_wary,
-    {
-        private _cooldown = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60];
-        private _timeUntilCooldown = _thisStateTime + _cooldown - CBA_missionTime;
-
-        [_this, format["%1 seconds until cooldown", round _timeUntilCooldown]] call FUNC(setCurrentlyThinking);
-        _timeUntilCooldown <= 0
-    },
-    {
-        _this call FUNC(forceEmotionSpeed);
-    },
+    {(_this getVariable [QGVAR(cooldownAt), 0]) < CBA_missionTime},
+    {},
     _emo_panic + _emo_wary
 ] call EFUNC(cba_statemachine,addTransition));
 
@@ -63,23 +64,15 @@ assert ([
 assert ([
     _emotions,
     _emo_wary, _emo_relaxed,
-    {
-        private _cooldown = _this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60];
-        private _timeUntilCooldown = _thisStateTime + _cooldown - CBA_missionTime;
-
-        [_this, format["%1 seconds until cooldown", round _timeUntilCooldown]] call FUNC(setCurrentlyThinking);
-        _timeUntilCooldown <= 0
-    },
-    {
-        _this call FUNC(forceEmotionSpeed);
-    },
+    {(_this getVariable [QGVAR(cooldownAt), 0]) < CBA_missionTime},
+    {},
     _emo_wary + _emo_relaxed
 ] call EFUNC(cba_statemachine,addTransition));
 
 assert ([
     _emotions,
     _emo_relaxed, _emo_panic,
-    ["fired_near"],
+    [QGVAR(firedNear)],
     {true},
     {},
     _emo_relaxed + _emo_panic
@@ -88,7 +81,7 @@ assert ([
 assert ([
     _emotions,
     _emo_wary, _emo_panic,
-    ["fired_near"],
+    [QGVAR(firedNear)],
     {true},
     {},
     _emo_wary + _emo_panic
@@ -104,7 +97,6 @@ assert ([
 ] call CBA_statemachine_fnc_addEventTransition);
 
 EGVAR(common,stateMachines) setVariable ["emotions", _emotions];
-
 
 
 _emotions

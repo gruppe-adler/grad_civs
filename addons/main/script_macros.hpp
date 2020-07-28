@@ -12,12 +12,12 @@
 
 #ifdef DEBUG_MODE_FULL
 
-#define ASSERT_SERVER(var1)   if (!assert(!hasInterface || isServer)) exitWith { diag_log(var1); }
+#define ASSERT_SERVER(var1)   if (!assert(CBA_isHeadlessClient || isServer)) exitWith { diag_log(var1); }
 #define ASSERT_PLAYER(var1)   if (!assert(hasInterface)) exitWith { diag_log(var1); }
 
 #else
 
-#define ASSERT_SERVER(var1)   if (!(!hasInterface || isServer)) exitWith { diag_log(var1); }
+#define ASSERT_SERVER(var1)   if (!(CBA_isHeadlessClient || isServer)) exitWith { diag_log(var1); }
 #define ASSERT_PLAYER(var1)   if (!hasInterface) exitWith { diag_log(var1); }
 
 #endif

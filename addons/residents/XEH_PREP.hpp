@@ -8,7 +8,6 @@ PREP(sm_business_state_housework_enter);
 PREP(sm_business_state_housework_exit);
 PREP(sm_business_trans_chat_housework_condition);
 PREP(sm_business_state_meetNeighbor_enter);
-PREP(sm_business_state_meetNeighbor_exit);
 PREP(sm_business_state_meetNeighbor_loop);
 PREP(sm_business_trans_housework_housework_condition);
 PREP(sm_business_trans_housework_meetNeighbor_condition);

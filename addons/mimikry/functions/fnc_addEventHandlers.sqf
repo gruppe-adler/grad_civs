@@ -3,6 +3,7 @@
 ["ace_interaction_sendAway", {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
 
     addCamShake [4, 0.5, 5];
 
@@ -13,6 +14,7 @@
 ["ace_interaction_getDown", {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
 
     addCamShake [4, 0.5, 5];
 
@@ -21,25 +23,29 @@
 }] call CBA_fnc_addEventHandler;
 
 
-[QEGVAR(common,pointed_at_inc), {
+[QEGVAR(interact,pointed_at_inc), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
 
-    private _newCount = (_civ getVariable ["grad_civs_isPointedAtCount", 0]) + 1;
-    _civ setVariable ["grad_civs_isPointedAtCount", _newCount];
+    private _newCount = (_civ getVariable [QGVAR(pointedAtCount), 0]) + 1;
+    _civ setVariable [QGVAR(pointedAtCount), _newCount];
 
     private _message = format["you're being pointed at with %1 guns", _newCount];
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(common,pointed_at_dec), {
+[QEGVAR(interact,pointed_at_dec), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
 
-    private _newCount = (_civ getVariable ["grad_civs_isPointedAtCount", 0]) - 1;
-    assert(_newCount >= 0);
-    if (_newCount < 0) then {_newCount = 0;};
-    _civ setVariable ["grad_civs_isPointedAtCount", _newCount];
+    private _newCount = (_civ getVariable [QGVAR(pointedAtCount), 0]) - 1;
+    if (_newCount < 0) then {
+        _newCount = 0;
+        WARNING("pointed at underrun!");
+    };
+    _civ setVariable [QGVAR(pointedAtCount), _newCount];
 
     private _message = format["you're being pointed at with %1 guns", _newCount];
     if (_newCount == 0) then {
@@ -48,19 +54,38 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-
-[QEGVAR(common,honked_at), {
+[QEGVAR(interact,honked_at), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
 
     private _message = "a car honks at you";
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(common,gestured_at_stop), {
+[QEGVAR(legacy,doStop), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
 
     private _message = "someone gestures at you to stop";
+    [_message] call FUNC(showCivHint);
+}] call CBA_fnc_addEventHandler;
+
+[QEGVAR(legacy,doReverse), {
+    params ["_civ"];
+    if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
+
+    private _message = "someone tells you to reverse";
+    [_message] call FUNC(showCivHint);
+}] call CBA_fnc_addEventHandler;
+
+[QEGVAR(legacy,doCarryOn), {
+    params ["_civ"];
+    if (_civ != ACE_player) exitWith {};
+    if (side player != civilian) exitWith {};
+
+    private _message = "someone tells you to carry on";
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;

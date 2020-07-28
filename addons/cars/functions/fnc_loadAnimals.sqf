@@ -11,12 +11,16 @@ if (isNull _vehicle) exitWith {
 
 if ((random 1) >= _chance) exitWith {};
 
-if (isNil "grad_animalTransport_fnc_findSuitableSpaces") exitWith {
-    WARNING("grad_animalTransport_fnc_findSuitableSpaces does not exist, not spawning animals");
+if (isNil "grad_animalTransport_fnc_getSupportedAnimalConfigs") exitWith {
+    WARNING("grad_animalTransport does not exist, not spawning animals");
+    grad_animalTransport_fnc_getSupportedAnimalConfigs = {[]}; // yes this is evil.
 };
 
 
-private _animalConfig = selectRandom ([] call grad_animalTransport_fnc_getSupportedAnimalConfigs);
+private _supportedAnimalConfigs = [] call grad_animalTransport_fnc_getSupportedAnimalConfigs;
+if (_supportedAnimalConfigs isEqualTo []) exitWith {};
+
+private _animalConfig = selectRandom _supportedAnimalConfigs;
 private _animalClassName = configName _animalConfig;
 
 private _spaces = [_vehicle, _animalClassName] call grad_animalTransport_fnc_findSuitableSpaces;

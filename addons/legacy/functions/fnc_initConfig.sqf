@@ -5,28 +5,6 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "2) basics"];
 
 [
-    QGVAR(debugCivState),
-    "CHECKBOX",
-    "Toggle civ behavior debugging mode.",
-    _settingsGroup,
-    false,
-    true,
-    {},
-    false
-] call CBA_fnc_addSetting;
-
-[
-    QGVAR(debugFps),
-    "CHECKBOX",
-    "Toggles fps debugging mode",
-    _settingsGroup,
-    false,
-    true,
-    {},
-    false
-] call CBA_fnc_addSetting;
-
-[
     QGVAR(minCivUpdateTime),
     "SLIDER",
     "Keep civ reaction times under [s]",
@@ -38,11 +16,33 @@ private _settingsGroup = ["GRAD Civs", "2) basics"];
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(minFps),
+    QGVAR(smMultiplicator),
+    "SLIDER",
+    "CBA state machine speed multiplicator on HCs",
+    _settingsGroup,
+    [1, 10, 1, 0],
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(minCivOwnerFps),
     "SLIDER",
     "Keep civ owner fps over [1/s]",
     _settingsGroup,
-    [10, 50, 35, 0],
+    [10, 50, 30, 0],
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(minServerFps),
+    "SLIDER",
+    "Keep server fps over [1/s]",
+    _settingsGroup,
+    [10, 50, 40, 0],
     true,
     {},
     false

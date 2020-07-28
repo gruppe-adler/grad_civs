@@ -12,7 +12,7 @@ class CfgVehicles
 	class GVAR(PopulationZone): Module_F
 	{
 		scope = 2; // visible in editor
-		displayName = "population zone";
+		displayName = "Population Zone";
 		icon = QPATHTOF(ui\icon_module_population_zone_ca.paa);
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_populationZone);
@@ -32,7 +32,7 @@ class CfgVehicles
 	class GVAR(ExclusionZone): Module_F
 	{
 		scope = 2; // visible in editor
-		displayName = "exclusion zone";
+		displayName = "Exclusion Zone";
 		icon = QPATHTOF(ui\icon_module_exclusion_zone_ca.paa);
 		category = QEGVAR(main,modules);
 		function = QFUNC(module_exclusionZone);

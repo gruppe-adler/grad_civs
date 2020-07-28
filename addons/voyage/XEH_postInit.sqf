@@ -1,12 +1,10 @@
 #include "script_component.hpp"
 
-if (!(EGVAR(main,enabled))) exitWith {
-    INFO("GRAD civs is disabled. Good bye!");
-};
+if (!(EGVAR(main,enabled))) exitWith {};
 
-if (isServer || !hasInterface) then {
+if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,spawnAllowed),
+        QEGVAR(legacy,localSpawn),
         {
             private _maxCivsInVehicles = GVAR(maxCivsInVehicles);
             if ((count (["voyage"] call EFUNC(legacy,getGlobalCivs))) < _maxCivsInVehicles) then {
