@@ -15,7 +15,7 @@ if ((count (entities "HeadlessClient_F") > 0) && CBA_missionTime < 10) exitWith 
 
 private _hcs = (entities "HeadlessClient_F") arrayIntersect allPlayers;
 if (count _hcs > 0) then {
-    [QGVAR(globalSpawn), [], _hcs] call CBA_fnc_targetEvent;
+    [QGVAR(globalSpawn), [], selectRandom _hcs] call CBA_fnc_targetEvent;
 } else {
     [QGVAR(globalSpawn), []] call CBA_fnc_serverEvent;
 };
