@@ -1,6 +1,6 @@
 # GRAD Civilians
 
-![logo](docs/gradcivs_logo.svg)
+<img src="docs/gradcivs_logo.svg" width="400" />
 
 Spawn ambient civilians on the map.
 
