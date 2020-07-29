@@ -1,5 +1,7 @@
 # GRAD Civilians
 
+![logo](docs/gradcivs_logo.svg)
+
 Spawn ambient civilians on the map.
 
 [![Issues](https://img.shields.io/github/issues/gruppe-adler/grad-civs.svg)](https://github.com/gruppe-adler/grad-civs/issues)
