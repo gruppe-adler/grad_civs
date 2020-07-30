@@ -49,6 +49,17 @@ private _settingsGroup = ["GRAD Civs", "a) diagnostics"];
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(showPaths),
+    "SLIDER",
+    "Show up to N paths",
+    _settingsGroup,
+    [0, 20, 0, 0],
+    true,
+    FUNC(showOnMap),
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(showMisc),
     "CHECKBOX",
     "Miscellaneous stuff",
