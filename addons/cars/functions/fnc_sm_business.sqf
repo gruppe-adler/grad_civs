@@ -32,6 +32,14 @@ private _bus_rideInBack = [
     "bus_rideInBack"
 ] call EFUNC(cba_statemachine,addState);
 
+private _bus_trafficJam = [
+    _business,
+    {},
+    { _this call FUNC(sm_business_state_trafficJam_enter) },
+    { _this call FUNC(sm_business_state_trafficJam_exit) },
+    "bus_trafficJam"
+] call EFUNC(cba_statemachine,addState);
+
 // TRANSITIONS
 
 assert ([
