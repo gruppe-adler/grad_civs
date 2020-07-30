@@ -20,8 +20,8 @@ private _addBehaviour = {
 
 _unit setVariable ["BIS_noCoreConversations",true];
 
-private _addKilledNews = {
-   (_this select 0) addEventHandler ["Killed",
+_unit addEventHandler [
+	"Killed",
     {
 		params ["_unit"];
 		INFO_2("civ %1 was killed (index: %2), firing internal 'killed' event", _unit, GVAR(localCivs) find _unit);
@@ -31,17 +31,22 @@ private _addKilledNews = {
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
 		[QGVAR(switchMove), [_unit, ""]] call CBA_fnc_globalEvent; // TODO: is that really necessary?
-    }];
-};
+    }
+];
 
-private _addGunfightNewsAndFlee = {
-	(_this select 0) addEventHandler ["FiredNear",
+_unit addEventHandler [
+	"FiredNear",
     {
 		params ["_unit"];
-    	INFO_2("gunfight close to %1 at %2", _unit, getPos _unit);
+
+		// throttle to once every 15s max - which is still a lot
+		if ((_unit getVariable [QGVAR(lastFiredNear), 0]) > (CBA_missionTime - 15)) exitWith {};
+		_unit setVariable [QGVAR(lastFiredNear), CBA_missionTime];
+
+		LOG_2("gunfight close to %1 at %2", _unit, getPos _unit);
 		[QGVAR(firedNear), [_unit], _unit] call CBA_fnc_targetEvent;
-    }];
-};
+    }
+];
 
 private _addVars = {
 	params [
@@ -58,7 +63,5 @@ _unit enableDynamicSimulation true;
 
 _unit setVariable ["asr_ai_exclude", true, true];
 
-[_unit] call _addKilledNews;
-[_unit] call _addGunfightNewsAndFlee;
 [_unit] call _addBehaviour;
 [_unit] call _addVars;
