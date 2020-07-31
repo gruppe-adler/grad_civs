@@ -5,10 +5,10 @@
     {
         params [
             ["_group", grpNull, [grpNull]],
-            ["_pathId", -1, [0]]
+            ["_pathId", -1, [0]],
             ["_path", [], [[]]]
         ];
-        _path call FUNC(paintPath);
+        [_path, "colorCivilian"] call FUNC(paintPath);
     }
 ] call CBA_fnc_addEventHandler;
 
