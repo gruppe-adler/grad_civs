@@ -69,7 +69,7 @@ _agent addEventHandler [
         ] call CBA_fnc_localEvent; // TODO document diagnostics!
         _agent setVariable [QGVAR(createdPath), _path];
     }
-]);
+];
 
 // wait for N seconds
 
