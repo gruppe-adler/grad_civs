@@ -36,7 +36,7 @@ private _targetPos = [
     ["B_Soldier_F", "C_Van_01_fuel_F"] select _isOnRoad,
     _isOnWater,
     _isOnRoad
-] call FUNC(common,findRandomPos);
+] call EFUNC(common,findRandomPos);
 
 if (_targetPos isEqualTo []) exitWith {
     LOG("could not find position in target area");
@@ -84,7 +84,7 @@ _agent addEventHandler [
         ["", _agent getVariable [QGVAR(createdPath), []]] call _callback;
     },
     [_agent, _callback],
-    10,
+    _timeout,
     {
         params ["_agent", "_callback"];
         deleteVehicle _agent;
