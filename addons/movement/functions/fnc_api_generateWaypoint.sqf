@@ -1,3 +1,5 @@
+#include "..\script_component.hpp"
+
 /*
  * high level function to generate pathed waypoint for a group.
  * lots of options to pass here, unfortunately - will still try to keep param count low
@@ -37,8 +39,10 @@ private _targetPos = [
 ] call FUNC(common,findRandomPos);
 
 if (_targetPos isEqualTo []) exitWith {
+    LOG("could not find position in target area");
     ["could not find position in target area", objNull] call _callback;
 };
+LOG_1("target pos: %1", _targetPos);
 
 
 ISNILS(GVAR(lastPathId), 0);
@@ -52,8 +56,9 @@ _agent addEventHandler [
     {
 		params ["_agent", "_path"];
         if (count _path == 2) exitWith {
-            INFO("PathCalculated useless callback with target only");
+            LOG("PathCalculated useless callback with target only");
         };
+        LOG_2("path calculated for id %1 with %2 elements", _agent getVariable [QGVAR(pathId), -1], count _path);
         [
             QGVAR(path_calculated),
             [

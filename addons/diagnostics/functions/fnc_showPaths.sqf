@@ -13,7 +13,7 @@
 ] call CBA_fnc_addEventHandler;
 
 [
-    FUNC(paintPathCleanup)
+    FUNC(paintPathCleanup),
     [],
     5
 ] call CBA_fnc_addPerFrameHandler;
