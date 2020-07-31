@@ -7,8 +7,9 @@ params [
 
 ISNILS(GVAR(pathMarkers), []);
 
+private _id = count GVAR(pathMarkers);
 GVAR(pathMarkers) pushBack (_path apply {
-    private _name = format [format ["marker_path_%1_%2"], _x, _forEachIndex];
+    private _name = format [format ["marker_path_%1_%2"], _id, _forEachIndex];
     private _mrk = createMarker [_name, _x];
     _mrk setMarkerType "mil_dot";
     _mrk setMarkerColor _color;

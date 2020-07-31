@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 [
-    QEGVAR(legacy,path_calculated),
+    QEGVAR(movement,path_calculated),
     {
         params [
             ["_group", grpNull, [grpNull]],

@@ -1,3 +1,5 @@
+// TODO afaict, this function does not return an even distribution over all of the desired area
+
 #include "..\script_component.hpp"
 
 params [
@@ -25,8 +27,14 @@ for [{private _i=0}, {_i<25}, {_i=_i+1}] do {
         _searchPos = if (count _nearRoads > 0) then {getPos (_nearRoads select 0)} else {[]};
     };
 
+
+
     _pos = if (_vehicleType != "" && {count _searchPos > 0}) then {_searchPos findEmptyPosition [0,10,_vehicleType]} else {_searchPos};
-    if (count _pos > 0 && {(surfaceIsWater _pos) isEqualTo _findWaterPos}) exitWith {};
+    if (
+        count _pos > 0 &&
+        {(surfaceIsWater _pos) isEqualTo _findWaterPos} &&
+        {[_pos] call FUNC(isInPopulatedZone)}
+    ) exitWith {};
 };
 
 _pos // return position or empty array
