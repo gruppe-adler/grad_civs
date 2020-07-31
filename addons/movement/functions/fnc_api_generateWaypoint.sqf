@@ -15,10 +15,10 @@ params [
     ["_distance", [0, 0], [[]], 2], /*min,max*/
     ["_direction", [0, 360], [[]], 2], /*from,to*/
     ["_vehicleType", "", [""]],
-    ["_callback", {}, [{}]] /*code that will be called with [ ["_err", "", [""]], ["_path", [], [[]]] ] */
+    ["_callbackAndParams", [{}, []], [[]], 2] /*array: 0) code that will be called with [ ["_err", "", [""]], ["_path", [], [[]]], ["_args", [], []] ] ; 1) arguments*/
 ];
 
-private _timeout = 10;
+private _timeout = 30;
 
 assert(_vehicleType in ["man", "car", "tank", "wheeled_APC", "boat", "plane", "helicopter"]);
 
@@ -26,6 +26,11 @@ _flags params [
     ["_isOnRoad", false, [true]],
     ["_isInHouse", false, [true]],
     ["_isOnWater", false, [true]]
+];
+
+_callbackAndParams params [
+    ["_callback", {}, [{}]],
+    ["_callbackArgs", [], []]
 ];
 
 // find a position
@@ -40,7 +45,7 @@ private _targetPos = [
 
 if (_targetPos isEqualTo []) exitWith {
     LOG("could not find position in target area");
-    ["could not find position in target area", objNull] call _callback;
+    ["could not find position in target area", objNull, _callbackArgs] call _callback;
 };
 LOG_1("target pos: %1", _targetPos);
 
@@ -71,25 +76,30 @@ _agent addEventHandler [
     }
 ];
 
-// wait for N seconds
-
 [
     {
         params ["_agent"];
-        (_agent getVariable [QGVAR(createdPath), false]) isEqualType []
+        isNull _agent || {(_agent getVariable [QGVAR(createdPath), false]) isEqualType []}
     },
     {
-        params ["_agent", "_callback"];
+        params ["_agent", "_callback", "_callbackArgs"];
+
+        if (isNull _agent) exitWith {
+            ["agent became null", [], _callbackArgs] call _callback;
+            WARNING_1("pathing failed - agent became null", _agent);
+        };
         deleteVehicle _agent;
-        ["", _agent getVariable [QGVAR(createdPath), []]] call _callback;
+        ["", _agent getVariable [QGVAR(createdPath), []], _callbackArgs] call _callback;
     },
-    [_agent, _callback],
+    [_agent, _callback, _callbackArgs],
     _timeout,
     {
-        params ["_agent", "_callback"];
+        params ["_agent", "_callback", "_callbackArgs"];
         WARNING_1("pathing takes too long - deleting %1", _agent);
         deleteVehicle _agent;
-        ["pathing timeout!", []] call _callback;
+        ["pathing timeout!", [], _callbackArgs] call _callback;
 
     }
 ] call CBA_fnc_waitUntilAndExecute;
+
+true

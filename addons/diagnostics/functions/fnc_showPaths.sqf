@@ -8,7 +8,7 @@
             ["_pathId", -1, [0]],
             ["_path", [], [[]]]
         ];
-        if (GVAR(showPaths)) then {
+        if (GVAR(showPaths) > 0) then {
             [_path, "colorCivilian"] call FUNC(paintPath);
         };
     }
