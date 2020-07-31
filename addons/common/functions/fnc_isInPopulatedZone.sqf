@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 params [
-    ["_position", [0, 0, 0]]
+    ["_position", [0, 0, 0], [[]], [2,3]]
 ];
 
 assert(_position isEqualType []);

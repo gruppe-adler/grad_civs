@@ -36,7 +36,7 @@ private _targetPos = [
     ["B_Soldier_F", "C_Van_01_fuel_F"] select _isOnRoad,
     _isOnWater,
     _isOnRoad
-] call EFUNC(common,findRandomPos);
+] call EFUNC(legacy,findRandomPos);
 
 if (_targetPos isEqualTo []) exitWith {
     LOG("could not find position in target area");
@@ -87,8 +87,7 @@ _agent addEventHandler [
     _timeout,
     {
         params ["_agent", "_callback"];
-        deleteVehicle _agent;
-        WARNING_1("pathing takes too long, deleting %1", _agent);
+        WARNING_1("pathing takes too long - deleting %1", _agent);
         deleteVehicle _agent;
         ["pathing timeout!", []] call _callback;
 
