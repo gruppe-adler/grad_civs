@@ -9,6 +9,7 @@ if (hasInterface) then {
     call FUNC(showPointingHints);
     call FUNC(showInfoLine);
     call FUNC(showFps);
+    call FUNC(showPaths);
 };
 
 if (isServer || CBA_isHeadlessClient) then {

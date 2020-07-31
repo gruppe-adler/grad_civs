@@ -60,7 +60,7 @@ _agent addEventHandler [
         };
         LOG_2("path calculated for id %1 with %2 elements", _agent getVariable [QGVAR(pathId), -1], count _path);
         [
-            QGVAR(path_calculated),
+            QGVAR(pathCalculated),
             [
                 grpNull,
                 _agent getVariable [QGVAR(pathId), -1],
