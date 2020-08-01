@@ -24,8 +24,13 @@ for [{private _i=0}, {_i<25}, {_i=_i+1}] do {
     private _searchPos = _center getPos [_searchDist, _searchAngle];
 
     if (_findRoadPos) then {
-        private _nearRoads = _searchPos nearRoads 50;
-        _searchPos = if (count _nearRoads > 0) then {getPos (_nearRoads select 0)} else {[]};
+        private _nearRoads = _searchPos nearRoads 250;        
+        _searchPos = if (count _nearRoads > 0) then {
+            private _closestRoad = floor (count _nearRoads / 2); 
+            getPos (_nearRoads select _closestRoad)
+        } else {
+            []
+        };
     };
 
     _pos = if (_vehicleType != "" && {count _searchPos > 0}) then {_searchPos findEmptyPosition [0,10,_vehicleType]} else {_searchPos};
