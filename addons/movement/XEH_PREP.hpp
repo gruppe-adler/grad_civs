@@ -1,1 +1,2 @@
-PREP(api_generateWaypoint);
+PREP(api_generateDestination);
+PREP(generatePath);
