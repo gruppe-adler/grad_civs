@@ -36,6 +36,8 @@ private _weaponRaisedOnFoot = (alive player) &&
     {vehicle player == player} &&
     {"sras" in (animationState player)};
 
+// ----------------------------------------------------------------
+
 //([GVAR(gunpointees), {_value > 0}] call CBA_fnc_hashFilter;  // not necessary due to https://github.com/CBATeam/CBA_A3/issues/1358
 private _pointees = ([GVAR(gunpointees)] call CBA_fnc_hashKeys);
 
@@ -44,22 +46,35 @@ if (!_weaponRaisedOnFoot) exitWith {
     _pointees call _depoint;
 };
 
+private _target = cursorTarget; // TODO cursorObject might be a better choice for when cursorTarget doesnt give results.
+
 // I have my weapon raised. Check existing targets if they still feel threatened
-private _scaredPointees = _pointees select {
-    [player, _x] call FUNC(checkWeaponOnCivilianPerception);
+
+// also , do *not* depoint ppl that belong to the car that im' pointing at, (if i'm pointing at a car)
+// under the assumption that those were mounted before (else they wouldnt be in the pointee group!) this will work out fine :)
+
+private _unitsFromCar = [];
+if (_target isKindOf "Car") then {
+    _unitsFromCar = units (_target getVariable ["grad_civs_owner", grpNull]);
 };
+
+private _scaredPointees = _pointees select {
+    (_x in _unitsFromCar) || {[player, _x] call FUNC(checkWeaponOnCivilianPerception)};
+};
+
+
 (_pointees - _scaredPointees) call _depoint;
 _scaredPointees call _point;
 
 // maybe someone new here I can threaten?
-private _possibleCiv = driver cursorTarget;
-if (!(_possibleCiv in _pointees)) then {
-    if (
-        ((side _possibleCiv) == civilian) &&
-        {_possibleCiv isKindOf "Man"} &&
-        {alive _possibleCiv} &&
-        {[player, _possibleCiv] call FUNC(checkWeaponOnCivilianPerception)}
-    ) then {
-        [_possibleCiv] call _point;
-    };
+private _possibleCivs = [];
+if (((_target isKindOf "Car") || (_target isKindOf "Man")) && {[player, _target] call FUNC(checkWeaponOnCivilianPerception)}) then {    
+    _possibleCivs = (crew _target);
 };
+
+private _newlyScaredCivs = (_possibleCivs - _pointees) select {
+    private _possibleCiv = _x;
+    ((side _possibleCiv) == civilian) && {alive _possibleCiv};
+};
+
+_newlyScaredCivs call _point;
