@@ -24,9 +24,9 @@ if (hasInterface) then {
             if !(alive player) exitWith {};
             if !((lifeState player) in ["HEALTHY", "INJURED"]) exitWith {}; // NOTE: incapacitated players are side civ
 
-            private _playerIsCiv = side player == civilian;
+            private _playerIsCiv = (side player) isEqualTo civilian;
 
-            if (GVAR(playerActsAsCiv) == _playerIsCiv) exitWith {};
+            if (GVAR(playerActsAsCiv) isEqualTo _playerIsCiv) exitWith {};
             
             if (_playerIsCiv) then {
                 GVAR(INFOCHANNEL) radioChannelAdd [player];
