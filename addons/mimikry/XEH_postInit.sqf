@@ -17,22 +17,25 @@ if (hasInterface) then {
     [] call FUNC(addEventHandlers);
 
 
-    GVAR(PLAYERSIDE) = sideUnknown;
+    GVAR(playerActsAsCiv) = false;
     [
         {
             if (!isGameFocused || isGamePaused) exitWith {};
             if !(alive player) exitWith {};
-            if (GVAR(PLAYERSIDE) == side player) exitWith {};
-            if ((["HEALTHY", "INJURED"] find (lifeState player)) == -1) exitWith {};
+            if !((lifeState player) in ["HEALTHY", "INJURED"]) exitWith {}; // NOTE: incapacitated players are side civ
 
-            if (side player == civilian) then {
+            private _playerIsCiv = (side player) isEqualTo civilian;
+
+            if (GVAR(playerActsAsCiv) isEqualTo _playerIsCiv) exitWith {};
+            
+            if (_playerIsCiv) then {
                 GVAR(INFOCHANNEL) radioChannelAdd [player];
                 ["you are CIVILIAN now"] call FUNC(showCivHint);
-            } else { if (GVAR(PLAYERSIDE) == civilian) then {
+            } else { if (GVAR(playerActsAsCiv)) then {
                 ["you are NO LONGER CIVILIAN"] call FUNC(showCivHint);
                 GVAR(INFOCHANNEL) radioChannelRemove [player];
             }};
-            GVAR(PLAYERSIDE) = side player;
+            GVAR(playerActsAsCiv) = _playerIsCiv;
         },
         5,
         []
