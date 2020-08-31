@@ -23,7 +23,7 @@ private _point = {
             _counter = 2 min (_counter + 1);
             [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
             if (_counter == 2) then {
-                [QGVAR(pointed_at_inc), [_x], [_x]] call CBA_fnc_targetEvent;
+                [QGVAR(pointed_at_inc), [_x, player], [_x]] call CBA_fnc_targetEvent;
                 [QGVAR(pointing), _x] call CBA_fnc_localEvent;
             };
         };

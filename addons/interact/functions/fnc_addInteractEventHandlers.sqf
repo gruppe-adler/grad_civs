@@ -1,10 +1,11 @@
 #include "..\script_component.hpp"
 
 [QGVAR(pointed_at_inc), {
-    params ["_civ"];
+    params ["_civ", "_pointingPlayer"];
     if (_civ == ACE_player) exitWith {};
     private _currentCount = _civ getVariable [QGVAR(pointedAtCount), 0];
     _civ setVariable [QGVAR(pointedAtCount), _currentCount + 1, true];
+    _civ setVariable [QGVAR(pointingPlayer), _pointingPlayer]; // local is enough, used for immediate effect
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(pointed_at_dec), {
