@@ -23,7 +23,7 @@ if (_vehicleClasses isEqualTo []) exitWith {
 
 _vehicleClass = selectRandom _vehicleClasses;
 
-_veh = [_pos, _vehicleClass] call FUNC(spawnVehicle);
+private _veh = [_pos, _vehicleClass] call FUNC(spawnVehicle);
 ["ace_common_setDir", [_veh, _dir], _veh] call CBA_fnc_targetEvent;
 
 private _maxInitialGroupSize = EGVAR(patrol,initialGroupSize);
