@@ -21,6 +21,7 @@ digraph lifecycle {
             label="act";
 
             subgraph cluster_business {
+                bgcolor="lightgreen";
                 label="bus";
                 cluster_business_node [shape=point style=invis];
                 bus_rally -> bus_patrol;
@@ -29,7 +30,7 @@ digraph lifecycle {
                 bus_mountUp -> bus_transit;
                 bus_mountUp -> bus_voyage;
                 bus_mountUp -> bus_dismount;
-                bus_voyage -> bus_dismount [color=red]; # panic event
+                bus_transit -> bus_dismount [color=red]; # panic event
                 bus_voyage -> bus_dismount [color=red]; # panic event
                 bus_dismount -> bus_rally;
                 bus_rally -> bus_housework;
@@ -54,10 +55,10 @@ digraph lifecycle {
 
             act_surrendered -> cluster_business_node [lhead=cluster_business];
             cluster_business_node -> act_surrendered [ltail=cluster_business];
-            act_asOrdered -> cluster_business_node [lhead=cluster_business color=red];
-            cluster_business_node -> act_asOrdered [ltail=cluster_business color=red];
+            act_asOrdered -> cluster_business_node [lhead=cluster_business color=blue];
+            cluster_business_node -> act_asOrdered [ltail=cluster_business color=blue];
 
-            cluster_panic_node -> cluster_business_node [color=blue lhead=cluster_business ltail=cluster_panic]
+            cluster_panic_node -> cluster_business_node [color=red lhead=cluster_business ltail=cluster_panic]
             cluster_business_node -> cluster_panic_node [ltail=cluster_business lhead=cluster_panic color=red]
 
         }
@@ -66,8 +67,11 @@ digraph lifecycle {
     cyc_spawn [shape=Msquare];
     cyc_despawn [shape=Msquare];
     cyc_death [shape=Msquare];
+    cyc_unconscious [shape=Msquare];
 
     cyc_spawn -> cluster_life_node [lhead=cluster_life];
     cluster_life_node -> cyc_despawn [ltail=cluster_life];
-    cluster_life_node -> cyc_death [ltail=cluster_life color=red];
+    cluster_life_node -> cyc_death [ltail=cluster_life color=blue];
+    cluster_life_node -> cyc_unconscious [ltail=cluster_life color=blue];
+    cyc_unconscious -> cluster_life_node [ltail=cluster_life color=blue];
 }
