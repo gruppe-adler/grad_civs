@@ -25,15 +25,19 @@ digraph lifecycle {
                 cluster_business_node [shape=point style=invis];
                 bus_rally -> bus_patrol;
                 bus_rally -> bus_mountUp;
+                bus_rally -> bus_rideInBack;
+                bus_mountUp -> bus_transit;
                 bus_mountUp -> bus_voyage;
                 bus_mountUp -> bus_dismount;
                 bus_voyage -> bus_dismount [color=red]; # panic event
+                bus_voyage -> bus_dismount [color=red]; # panic event
                 bus_dismount -> bus_rally;
                 bus_rally -> bus_housework;
+                bus_rideInBack -> bus_rally;
                 bus_housework -> bus_meetNeighbor;
                 bus_meetNeighbor -> bus_chat;
                 bus_chat -> bus_housework;
-                // bus_housework -> bus_gawk;
+                bus_housework -> bus_housework;
             }
 
             subgraph cluster_panic {
