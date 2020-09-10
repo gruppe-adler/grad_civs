@@ -20,6 +20,7 @@ PREP(findSpawnPosition);
 PREP(findUnclaimedHouse);
 PREP(forceEmotionSpeed);
 PREP(forcePanicSpeed);
+PREP(handleAceUnconscious);
 PREP(getGlobalCivs);
 
 PREP(initCommonEventhandlers);
