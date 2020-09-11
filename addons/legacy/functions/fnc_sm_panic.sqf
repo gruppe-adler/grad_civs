@@ -6,7 +6,7 @@
  * flight behavior - fleeing, hiding, staying hidden
  */
 
-private _panic = [] call CBA_statemachine_fnc_create;
+private _panic = [[], true, "panic"] call EFUNC(cba_statemachine,create);
 
 private _pan_flight = [
     _panic,

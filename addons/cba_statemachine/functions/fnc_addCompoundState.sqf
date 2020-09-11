@@ -25,6 +25,7 @@ private _wrappedOnStateEntered = {
     private _origOnStateEntered = _stateMachine getVariable [COMPOUNDONSTATEENTERED(_entering), {}];  /*in onEnter. _thisState is the previous state -.-*/
     private _nestedStateMachines = _stateMachine getVariable [NESTED(_entering), []];
 
+    LOG_4("%1 is entering %2 / %3. adding to nested machines %4", _this, _stateMachine getVariable "#var", _entering, _nestedStateMachines apply {_x getVariable "#var"});
     _this call _origOnStateEntered;
     {
         [_this, _x] call FUNC(addToStateMachine);
@@ -33,9 +34,10 @@ private _wrappedOnStateEntered = {
 
 private _wrappedOnStateLeaving = {
 
-    private _origOnStateLeaving = _stateMachine getVariable [COMPOUNDONSTATELEAVING(_thisTarget), {}];
+    private _origOnStateLeaving = _stateMachine getVariable [COMPOUNDONSTATELEAVING(_thisState), {}];
     private _nestedStateMachines = _stateMachine getVariable [NESTED(_thisState), []];
 
+    LOG_4("%1 is leaving %2 / %3. removing from nested machines %4", _this, _stateMachine getVariable "#var", _thisState, _nestedStateMachines apply {_x getVariable "#var"});
     {
         [_this, _x] call FUNC(removeFromStateMachine);
     } forEach _nestedStateMachines;

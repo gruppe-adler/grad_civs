@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _business = [[], true] call CBA_statemachine_fnc_create;
+private _business = [[], true, "business"] call EFUNC(cba_statemachine,create);
 
 // entry point
 private _bus_rally  = [

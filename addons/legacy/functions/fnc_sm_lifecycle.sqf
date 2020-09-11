@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _lifecycle = [{GVAR(localCivs)}, true] call CBA_statemachine_fnc_create;
+private _lifecycle = [{GVAR(localCivs)}, true, "lifecycle"] call EFUNC(cba_statemachine,create);
 
 private _activities = [] call FUNC(sm_activities);
 private _emotions = [] call FUNC(sm_emotions);

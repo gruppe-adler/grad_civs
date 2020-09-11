@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _emotions = [] call CBA_statemachine_fnc_create;
+private _emotions = [[], true, "emotions"] call EFUNC(cba_statemachine,create);
 
         // STATES
 
