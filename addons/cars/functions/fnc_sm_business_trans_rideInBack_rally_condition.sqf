@@ -1,5 +1,7 @@
 #include "..\script_component.hpp"
 
+if (leader _this == _this) exitWith {true};
+
 private _leader = leader _this;
 private _leaderStatus = [_leader, "business"] call EFUNC(common,civGetState);
 
