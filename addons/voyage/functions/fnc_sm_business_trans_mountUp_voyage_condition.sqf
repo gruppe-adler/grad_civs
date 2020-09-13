@@ -8,12 +8,12 @@ private _groupVehicle = _civ call EFUNC(cars,getGroupVehicle);
 private _units = units _civ;
 
 private _allAssigned = {
-    (_units arrayIntersect (crew _groupVehicle)) isEqualTo _units
+    count (_units arrayIntersect (crew _groupVehicle)) == count _units
 };
 
 private _allMounted = {
     private _mountedUnits = _units select {vehicle _x == _groupVehicle};
-    (_units arrayIntersect _mountedUnits) isEqualTo _units
+    count _mountedUnits == count _units
 };
 
 private _isTaskTransit = _civ getVariable ["grad_civs_primaryTask", ""] == "voyage";
