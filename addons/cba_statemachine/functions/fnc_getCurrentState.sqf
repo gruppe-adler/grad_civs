@@ -24,5 +24,9 @@ params [
     ["_default", ""]
 ];
 
-private _id = _stateMachine getVariable "cba_statemachine_ID";
-[_listItem getVariable ("cba_statemachine_state" + str _id)] param [0, _default];
+private _list = _stateMachine getVariable ["cba_statemachine_list", []];
+if !(_listItem in _list) exitWith {
+    _default
+};
+
+[_listItem, _stateMachine] call CBA_statemachine_fnc_getCurrentState;

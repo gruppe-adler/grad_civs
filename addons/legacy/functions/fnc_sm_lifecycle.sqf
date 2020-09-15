@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _lifecycle = [{GVAR(localCivs)}, true] call CBA_statemachine_fnc_create;
+private _lifecycle = [{GVAR(localCivs)}, true, "lifecycle"] call EFUNC(cba_statemachine,create);
 
 private _activities = [] call FUNC(sm_activities);
 private _emotions = [] call FUNC(sm_emotions);
@@ -23,6 +23,14 @@ private _lifecycle_life  = [
     { _this call FUNC(sm_lifecycle_state_life_exit) },
     "lfc_life"
 ] call EFUNC(cba_statemachine,addCompoundState);
+
+private _lifecycle_unconscious  = [
+    _lifecycle,
+    {},
+    {},
+    {},
+    "lfc_unconscious"
+] call EFUNC(cba_statemachine,addState);
 
 private _lifecycle_death  = [
     _lifecycle,
@@ -65,6 +73,24 @@ assert ([
     { true },
     {},
     _lifecycle_life + _lifecycle_death
+] call CBA_statemachine_fnc_addEventTransition);
+
+assert ([
+    _lifecycle,
+    _lifecycle_life, _lifecycle_unconscious,
+    [QGVAR(unconscious)],
+    {},
+    {},
+    _lifecycle_life + _lifecycle_unconscious
+] call CBA_statemachine_fnc_addEventTransition);
+
+assert ([
+    _lifecycle,
+    _lifecycle_unconscious, _lifecycle_life,
+    [QGVAR(conscious)],
+    {},
+    {},
+    _lifecycle_unconscious + _lifecycle_life
 ] call CBA_statemachine_fnc_addEventTransition);
 
 EGVAR(common,stateMachines) setVariable ["lifecycle", _lifecycle];

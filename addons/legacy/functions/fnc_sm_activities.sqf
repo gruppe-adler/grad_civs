@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _activities = [[], true] call CBA_statemachine_fnc_create;
+private _activities = [[], true, "activities"] call EFUNC(cba_statemachine,create);
 private _business = [] call FUNC(sm_business);
 private _panic = [] call FUNC(sm_panic);
 
