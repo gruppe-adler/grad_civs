@@ -1,5 +1,9 @@
 #include "..\script_component.hpp"
 
+if (isNil "zen_custom_modules_fnc_register") exitWith {
+    WARNING("ZEN mod does not seem to be loaded: will not define ZEN context functions");
+};
+
 private _category = "GRAD Civs";
 
 [
