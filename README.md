@@ -89,7 +89,10 @@ Whitelist an area for civs by syncing it to a trigger.
 
 ### EVENTS
 
+#### global
+
     ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
+    ["grad_civs_civKilled", { params ["_deathPos", "_killer"]; }] call CBA_fnc_addEventHandler;
 
 ### grad_civs_legacy_fnc_doCustomActivity
 
