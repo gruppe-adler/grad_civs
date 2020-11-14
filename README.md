@@ -87,6 +87,10 @@ Whitelist an area for civs by syncing it to a trigger.
 
 ## API
 
+### EVENTS
+
+    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
+
 ### grad_civs_legacy_fnc_doCustomActivity
 
 To let civilians break from their usual activity and do something else for a limited time.
