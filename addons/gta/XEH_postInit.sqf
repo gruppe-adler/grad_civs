@@ -3,9 +3,11 @@
 if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
-    [] call FUNC(registerCivAddedHandler);
+    [QEGVAR(common,civ_added), FUNC(onCivAdded)] call CBA_fnc_addEventHandler;
 };
 
 if (hasInterface) then {
-    [] call FUNC(registerPlayerTheftHandler);
+    ACE_player addEventHandler ["GetInMan", FUNC(onGetInMan)];
+    ACE_player addEventHandler ["GetOutMan", FUNC(onGetOutMan)];
+    ACE_player addEventHandler ["GetOutMan", FUNC(onSeatSwitchedMan)];
 };
