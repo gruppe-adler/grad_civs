@@ -2,6 +2,8 @@
 
 if (!(EGVAR(main,enabled))) exitWith {};
 
+if (!(GVAR(enabled))) exitWith {};
+
 if (isServer || CBA_isHeadlessClient) then {
     [QEGVAR(common,civ_added), FUNC(onCivAdded)] call CBA_fnc_addEventHandler;
 };
