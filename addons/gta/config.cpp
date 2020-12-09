@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"grad_civs_main", "grad_civs_voyage"};
+        requiredAddons[] = {"grad_civs_main", "grad_civs_cars"};
         author = "AUTHOR";
         VERSION_CONFIG;
     };

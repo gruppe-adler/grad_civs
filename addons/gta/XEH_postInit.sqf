@@ -9,7 +9,7 @@ if (isServer || CBA_isHeadlessClient) then {
 };
 
 if (hasInterface) then {
-    ACE_player addEventHandler ["GetInMan", FUNC(onGetInMan)];
-    ACE_player addEventHandler ["GetOutMan", FUNC(onGetOutMan)];
-    ACE_player addEventHandler ["GetOutMan", FUNC(onSeatSwitchedMan)];
+    player addEventHandler ["GetInMan", FUNC(onGetInMan)];
+    player addEventHandler ["GetOutMan", FUNC(onGetOutMan)];
+    player addEventHandler ["SeatSwitchedMan", FUNC(onSeatSwitchedMan)];
 };

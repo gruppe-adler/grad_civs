@@ -5,6 +5,6 @@ PREP(onGetInMan);
 PREP(onGetOutMan);
 PREP(onSeatSwitchedMan);
 PREP(pfh_waitingForWitness);
-PREP(isPlayerBeingSeen);
-PREP(isSpotBeingSeen);
+PREP(isUnitBeingSeenByCivs);
+PREP(isSpotBeingSeenBy);
 PREP(registerStolen);
