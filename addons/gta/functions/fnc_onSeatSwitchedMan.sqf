@@ -20,7 +20,7 @@ if ((_unit2 getVariable ["grad_civs_primaryTask", ""]) == "") exitWith {
 	INFO_2("seat switched in %1, but switching partner %2 is no grad-civ: no theft", _vehicle, _unit2);
 };
 
-INFO("player switched seat to driver position with a grad-civ: likely theft.", _vehicle, _role);
+INFO_2("player switched seat to driver position with a grad-civ: likely theft.", _vehicle, _role);
 [ACE_player, _vehicle] call FUNC(registerStolen);
 
 // TODO: make sure the civ gets out and continues his life
