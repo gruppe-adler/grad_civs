@@ -5,6 +5,18 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "8) gta"];
 
 [
+    QGVAR(enabled),
+    "CHECKBOX",
+    "Enable auto theft events",
+    _settingsGroup,
+    true,
+    true,
+    {},
+    true
+] call CBA_fnc_addSetting;
+
+
+[
     QGVAR(carOwnershipRatio),
     "SLIDER",
     "Ratio of civs who will own (and not use) cars",

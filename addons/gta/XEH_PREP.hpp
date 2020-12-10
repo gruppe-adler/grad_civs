@@ -1,4 +1,10 @@
 PREP(initConfig);
 PREP(createMyVehicle);
-PREP(registerPlayerTheftHandler);
-PREP(registerCivAddedHandler);
+PREP(onCivAdded);
+PREP(onGetInMan);
+PREP(onGetOutMan);
+PREP(onSeatSwitchedMan);
+PREP(pfh_waitingForWitness);
+PREP(isUnitBeingSeenByCivs);
+PREP(isSpotBeingSeenBy);
+PREP(registerStolen);

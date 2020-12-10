@@ -8,29 +8,23 @@ Spawn ambient civilians on the map.
 
 ## Features
 
-* automatically populate the map with civilians
-* dedicated to
-    * doing foot patrols
-    * driving around the country
-    * living in houses (that they leave only to visit their neighbors)
-* everything is automatically offloaded to Headless Clients (if available)
-* interactions with players:
-    * stop and raise their hands when threatened with weapons
-    * vehicles will stop when you gesture at them (ACE 'hold' gesture)
-    * ACE interactions: "back up vehicle", "carry on"
-    * will move out of player's way when getting honked at
-* will panic and flee in firefights
-* civilian *players* get visual aids when trying to pose as AI civilians (like, if they're being pointed at with a gun, told to go away by ACE interact, ...)
+Automatically populate the map with civilians who live in their own houses, go for long walks and short chats with their nightbors, or drive around the country.
+Civilians can interact with players in various ways - surrendering when threatened with violence, hiding in panic when violence actually happens. 
+They will halt their cars if signaled to stop, or move out of the way when getting honked at. If you're lucky they will even back up their vehicles if being told to do so (known unreliable).
+Civilian *players* will get help trying to mimikry AI civilians by getting hints as to the interactions players perform that AI civilians would "notice".
+Mission makers can use a bunch of options to clothe their civilians, get CBA events to detect players stealing civilian vehicles, and can restrict civilians to certain areas of the map.
+Zeus gets some modules & menu entries too, ZEN mod is recommended to make use of all of them.
 
+The mod is meant to make use of Headless Clients, no extra configuration necessary.
 
 ## Dependencies
 
 * [CBA_A3](https://github.com/CBATeam/CBA_A3)
 * [ACE3](https://github.com/acemod/ACE3)
+* optional: [ZEN](https://github.com/zen-mod/ZEN/) adds some context menus for Zeus
+* optional: [Gruppe Adler Mod](https://github.com/gruppe-adler/gruppe_adler_mod/) will have livestock onto trucks
 
 ## Installation
-
-*It's a mod now, baby!*
 
 Do grab a zip file from the releases page, or look it up on the Steam Workshop where it may or may not appear sometime.
 
@@ -91,8 +85,13 @@ Whitelist an area for civs by syncing it to a trigger.
 
 #### global
 
-    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
+common events:
+
     ["grad_civs_civKilled", { params ["_deathPos", "_killer"]; }] call CBA_fnc_addEventHandler;
+
+[GTA module](addons/gta/README.md) TL;DR:
+
+    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
 
 ### grad_civs_legacy_fnc_doCustomActivity
 
