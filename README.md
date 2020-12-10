@@ -21,6 +21,10 @@ Spawn ambient civilians on the map.
     * will move out of player's way when getting honked at
 * will panic and flee in firefights
 * civilian *players* get visual aids when trying to pose as AI civilians (like, if they're being pointed at with a gun, told to go away by ACE interact, ...)
+* when players steal civilian vehicles, CBA events will be thrown
+    * needs the 'gta' module enabled
+    * depends on the affected civilians observing the vehicle being taken / the player driving it
+    
 
 
 ## Dependencies
@@ -91,6 +95,10 @@ Whitelist an area for civs by syncing it to a trigger.
 
 #### global
 
+    // make sure the gta module is enabled
+    // may fire twice for a given vehicle 
+    //   * first with thief := objNull 
+    //   * then with _thief being a unit
     ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
     ["grad_civs_civKilled", { params ["_deathPos", "_killer"]; }] call CBA_fnc_addEventHandler;
 
