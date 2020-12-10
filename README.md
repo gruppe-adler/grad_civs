@@ -95,12 +95,13 @@ Whitelist an area for civs by syncing it to a trigger.
 
 #### global
 
-    // make sure the gta module is enabled
-    // may fire twice for a given vehicle 
-    //   * first with thief := objNull 
-    //   * then with _thief being a unit
-    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
+common events:
+
     ["grad_civs_civKilled", { params ["_deathPos", "_killer"]; }] call CBA_fnc_addEventHandler;
+
+[GTA module](addons/gta/README.md) TL;DR:
+
+    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
 
 ### grad_civs_legacy_fnc_doCustomActivity
 
