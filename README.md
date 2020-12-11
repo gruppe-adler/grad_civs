@@ -87,7 +87,7 @@ Whitelist an area for civs by syncing it to a trigger.
 
 common events:
 
-    ["grad_civs_civKilled", { params ["_deathPos", "_killer"]; }] call CBA_fnc_addEventHandler;
+    ["grad_civs_civKilled", { params ["_deathPos", "_killer", "_civilian"]; }] call CBA_fnc_addEventHandler;
 
 [GTA module](addons/gta/README.md) TL;DR:
 
