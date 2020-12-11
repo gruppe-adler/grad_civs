@@ -1,11 +1,5 @@
 #include "..\script_component.hpp"
 
-#define TIMEDONSTATEENTERED(var) (var + "_onTimedStateEntered")
-#define TIMEDONSTATELEAVING(var) (var + "_onTimedStateLeaving")
-#define TIMEDONSTATE(var) (var + "_onTimedState")
-#define STATEMACHINEIDVAR(var) (var getVariable "CBA_statemachine_ID")
-#define TIMEVAR(var) format["grad_civs_state_time_%1", var]
-
 params [
     ["_stateMachine", locationNull, [locationNull]],
     ["_onState", {}, [{}]],

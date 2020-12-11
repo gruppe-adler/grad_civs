@@ -1,9 +1,5 @@
 #include "..\script_component.hpp"
 
-#define NESTED(var) (var + "_nested")
-#define COMPOUNDONSTATEENTERED(var) (var + "_onCompoundStateEntered")
-#define COMPOUNDONSTATELEAVING(var) (var + "_onCompoundStateLeaving")
-
 params [
     ["_outerStateMachine", locationNull, [locationNull]],
     ["_nestedStateMachines", [], [locationNull, []]],

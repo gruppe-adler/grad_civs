@@ -1,8 +1,5 @@
 #include "..\script_component.hpp"
 
-// see https://github.com/CBATeam/CBA_A3/blob/f62038fadd4fdc0690beb29271bd4cdf8eb57301/addons/statemachine/script_component.hpp#L21
-#define ONSTATELEAVING(var) (var + "_onStateLeaving")
-
 params [
     ["_listItem", objNull, [missionNamespace, objNull, grpNull, teamMemberNull, taskNull, locationNull]],
     ["_stateMachine", locationNull]
