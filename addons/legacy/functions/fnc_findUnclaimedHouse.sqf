@@ -18,7 +18,7 @@ private _houses = [
 // TODO exclude watchtowers
 
 //exclusion list for houses
-private _exclusionListConcreteClasses = [
+private _excludedFinalClasses = [
 	"Land_Pier_F",
 	"Land_Pier_small_F",
 	"Land_NavigLight",
@@ -28,7 +28,7 @@ private _exclusionListConcreteClasses = [
     "Land_MilOffices_V1_F"
 ];
 
-private _exclusionListParentclasses = [
+private _excludedParentClasses = [
     "CargoPlatform_01_base_F",
     "Cargo_Tower_base_F",
     "Cargo_HQ_base_F",
@@ -61,9 +61,9 @@ private _idx = _houses findIf {
         (count (_x buildingPos -1)) >= _minPosCount;
     };
     private _goodHouseType2 = {
-        -1 == _exclusionListParentclasses findIf {_house typeOf _x};
+        -1 == _excludedParentClasses findIf {_house typeOf _x};
     };
-    private _goodHouseType = !((typeOf _x) in _exclusionListConcreteClasses);
+    private _goodHouseType = !((typeOf _x) in _excludedFinalClasses);
 
     _goodHouseType && _goodHouseType2 && _hasEnoughPositions && _isUnoccupied
 };
