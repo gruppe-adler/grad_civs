@@ -10,14 +10,7 @@ PREP(isStopped);
 PREP(doCarryOn);
 
 PREP(endCustomActivity);
-
-PREP(findBuildings);
 PREP(findPositionOfInterest);
-PREP(findRandomPosArea);
-PREP(findRandomPos);
-// PREP(findSpawnPosition.spec);
-PREP(findSpawnPosition);
-PREP(findUnclaimedHouse);
 PREP(forceEmotionSpeed);
 PREP(forcePanicSpeed);
 PREP(handleAceUnconscious);
@@ -44,13 +37,6 @@ PREP(sm_activities_trans_business_panic_condition);
 PREP(sm_business);
 PREP(sm_business_state_rally_enter);
 PREP(sm_emotions);
-PREP(sm_lifecycle);
-PREP(sm_lifecycle_state_death_enter);
-PREP(sm_lifecycle_state_despawn_enter);
-PREP(sm_lifecycle_state_life_enter);
-PREP(sm_lifecycle_state_life_exit);
-PREP(sm_lifecycle_state_spawn_enter);
-PREP(sm_lifecycle_trans_life_despawn_condition);
 PREP(sm_panic);
 PREP(sm_panic_state_flight_enter);
 PREP(sm_panic_state_flight_loop);

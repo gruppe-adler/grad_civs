@@ -19,7 +19,7 @@ private _lifecycle_life  = [
     _lifecycle,
     [_activities, _emotions],
     {},
-    {  _this call FUNC(sm_lifecycle_state_life_enter) },
+    { _this call FUNC(sm_lifecycle_state_life_enter) },
     { _this call FUNC(sm_lifecycle_state_life_exit) },
     "lfc_life"
 ] call EFUNC(cba_statemachine,addCompoundState);
