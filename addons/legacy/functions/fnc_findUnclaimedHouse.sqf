@@ -18,13 +18,23 @@ private _houses = [
 // TODO exclude watchtowers
 
 //exclusion list for houses
-private _exclusionList = [
+private _exclusionListConcreteClasses = [
 	"Land_Pier_F",
 	"Land_Pier_small_F",
 	"Land_NavigLight",
 	"Land_LampHarbour_F",
 	"Land_runway_edgelight",
-    "gm_structure_euro_80_wall_base"
+    "gm_structure_euro_80_wall_base",
+    "Land_MilOffices_V1_F"
+];
+
+private _exclusionListParentclasses = [
+    "CargoPlatform_01_base_F",
+    "Cargo_Tower_base_F",
+    "Cargo_HQ_base_F",
+    "Cargo_House_base_F",
+    "Cargo_Patrol_base_F",
+    "Land_i_Barracks_V1_F" // yes, is parent for others!
 ];
 
 /*
@@ -42,6 +52,7 @@ private _idx = _houses findIf {
     // assumptions:
     // a) there will be many more houses than civs - hence, occupation filter should come last
     // b) there are many unsuited house types, and their number will grow (heck even *fences* can be of type "house") - good filter, comes first
+    private _house = _x;
 
     private _isUnoccupied = {
         (count (_x getVariable ["grad_civs_residents", []])) == 0;
@@ -49,9 +60,12 @@ private _idx = _houses findIf {
     private _hasEnoughPositions = {
         (count (_x buildingPos -1)) >= _minPosCount;
     };
-    private _goodHouseType = !((typeOf _x) in _exclusionList);
+    private _goodHouseType2 = {
+        -1 == _exclusionListParentclasses findIf {_house typeOf _x};
+    };
+    private _goodHouseType = !((typeOf _x) in _exclusionListConcreteClasses);
 
-    _goodHouseType && _hasEnoughPositions && _isUnoccupied
+    _goodHouseType && _goodHouseType2 && _hasEnoughPositions && _isUnoccupied
 };
 
 if (_idx != -1) then {
