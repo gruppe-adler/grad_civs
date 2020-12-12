@@ -6,7 +6,7 @@ params [
     ["_primaryTask", ""]
 ];
 
-private _civClasses = call EFUNC(common,config_getCivClasses);
+private _civClasses = call FUNC(config_getCivClasses);
 private _civ = _group createUnit [selectRandom _civClasses, _pos, [], 0, "NONE"]; // TODO: ensure unit is not spawning within editor-placed rocks/houses
 
 GVAR(localCivs) = GVAR(localCivs) + [_civ];

@@ -5,7 +5,7 @@
  * this *should not happen, as we're setting the acex exlusion var, but you never know...
  */
 
-private _civClasses = call EFUNC(common,config_getCivClasses);
+private _civClasses = call EFUNC(lifecycle,config_getCivClasses);
 private _allCivs = entities [_civClasses, [], true, true];
 private _myCivs = _allCivs select { local _x && (_x getVariable ["grad_civs_primaryTask", ""] != "")};
 private _orphanedCivs = _myCivs - GVAR(localCivs);

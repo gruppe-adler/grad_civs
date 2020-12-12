@@ -7,7 +7,7 @@ params [
 
 if (isNil QGVAR(getGlobalCivs_arr)) then {
     // on first run, init array with existing civs
-    private _civClasses = call EFUNC(common,config_getCivClasses);
+    private _civClasses = call FUNC(config_getCivClasses);
     private _potentialCivs = entities [_civClasses, [], true, true];
     GVAR(getGlobalCivs_arr) = _potentialCivs select { (_x getVariable ["grad_civs_primaryTask", ""]) != ""};
 

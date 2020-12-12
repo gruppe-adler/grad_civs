@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _civClasses = call EFUNC(common,config_getCivClasses);
+private _civClasses = call EFUNC(lifecycle,config_getCivClasses);
 
 private _carryOnAction = [
     QGVAR(carryOnAction),

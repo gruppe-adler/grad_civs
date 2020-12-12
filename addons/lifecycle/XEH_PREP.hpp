@@ -1,4 +1,5 @@
 PREP(cleanupLocalCivs);
+PREP(config_getCivClasses);
 PREP(dismissCiv);
 PREP(dismissGroup);
 PREP(initConfig);

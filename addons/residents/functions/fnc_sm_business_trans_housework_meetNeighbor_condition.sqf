@@ -15,7 +15,7 @@ if (random 10 < 9) exitWith {false};
 private _neighborToMeet = {
     private _maxDist = _x;
 
-    private _civClasses = call EFUNC(common,config_getCivClasses);
+    private _civClasses = call EFUNC(lifecycle,config_getCivClasses);
     private _nearCivs = (_this nearEntities [_civClasses, _maxDist]);
     private _socialNeighbors = _nearCivs select {
         (_x != _this) &&
