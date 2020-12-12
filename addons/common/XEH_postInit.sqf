@@ -8,7 +8,7 @@ if (!(EGVAR(main,enabled))) exitWith {};
         params [
             ["_object", objNull, [objNull, grpNull]]
         ];
-        if (!((leader _object) in EGVAR(legacy,localCivs))) exitWith {
+        if (!((leader _object) in EGVAR(lifecycle,localCivs))) exitWith {
             INFO_2("not dismissing %1 (%2) as it is not local civ led", _object, typeName _object);
         };
 

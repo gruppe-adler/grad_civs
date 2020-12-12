@@ -13,5 +13,5 @@ if (_this == leader _this) then {
         _x enableDynamicSimulation true;
         false
     } count (units _grp);
-    _this call EFUNC(legacy,forceEmotionSpeed);
+    _this call EFUNC(activities,forceEmotionSpeed);
 };

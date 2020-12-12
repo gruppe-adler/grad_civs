@@ -13,12 +13,12 @@ private _house = [
     _residentSpawnDistanceMin,
     _residentSpawnDistanceMax,
     "house"
-] call EFUNC(legacy,findSpawnPosition);
+] call EFUNC(lifecycle,findSpawnPosition);
 
 if (isNil "_house") exitWith {LOG("could not find spawn position for resident this time (nil)")};
 if (isNull _house) exitWith {LOG("could not find spawn position for resident this time (null)")};
 
-private _group = [getPos _house, 1, _house, "reside"] call EFUNC(legacy,spawnCivilianGroup);
+private _group = [getPos _house, 1, _house, "reside"] call EFUNC(lifecycle,spawnCivilianGroup);
 if (isNull _group) exitWith {};
 
 _group

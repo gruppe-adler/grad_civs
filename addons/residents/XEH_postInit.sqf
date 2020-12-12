@@ -4,10 +4,10 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,localSpawn),
+        QEGVAR(lifecycle,localSpawn),
         {
             ISNILS(GVAR(maxCivsResidents), GVAR(maxCivsResidents));
-            if ((count (["reside"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsResidents)) then {
+            if ((count (["reside"] call EFUNC(lifecycle,getGlobalCivs))) < GVAR(maxCivsResidents)) then {
                 [ALL_HUMAN_PLAYERS] call FUNC(addResident);
             };
         }

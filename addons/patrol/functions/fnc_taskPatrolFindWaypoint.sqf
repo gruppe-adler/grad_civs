@@ -27,13 +27,13 @@ for "_i" from 1 to _maxTries do {
         nil,
         _findWaterPos,
         _findRoadPos
-    ] call EFUNC(legacy,findRandomPos);
+    ] call EFUNC(lifecycle,findRandomPos);
     if (_searchPosition isEqualTo []) then {
         _searchPosition = _position;
     };
 
     _searchPosition = if (_findPosOfInterest && {80 > random 100}) then {
-        [_searchPosition, false] call EFUNC(legacy,findPositionOfInterest);
+        [_searchPosition, false] call EFUNC(lifecycle,findPositionOfInterest);
     } else {
         _searchPosition
     };

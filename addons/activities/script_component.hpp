@@ -1,4 +1,4 @@
-#define COMPONENT legacy
+#define COMPONENT activities
 #include "\z\grad_civs\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL

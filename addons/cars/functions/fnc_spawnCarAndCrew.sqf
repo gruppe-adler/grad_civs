@@ -37,7 +37,7 @@ if (_automtaicVehicleGroupSize) then {
     _groupSize = (floor random [0, 1, _maxCount]) + 1
 };
 
-private _group = [_pos, _groupSize, _house, _primaryTask] call EFUNC(legacy,spawnCivilianGroup);
+private _group = [_pos, _groupSize, _house, _primaryTask] call EFUNC(lifecycle,spawnCivilianGroup);
 
 {
     // for convenience & speed: shortcut so units dont have to lengthily embark on their own

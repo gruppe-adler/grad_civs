@@ -4,10 +4,10 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,localSpawn),
+        QEGVAR(lifecycle,localSpawn),
         {
             private _maxCivsInVehicles = GVAR(maxCivsInVehicles);
-            if ((count (["voyage"] call EFUNC(legacy,getGlobalCivs))) < _maxCivsInVehicles) then {
+            if ((count (["voyage"] call EFUNC(lifecycle,getGlobalCivs))) < _maxCivsInVehicles) then {
                 [ALL_HUMAN_PLAYERS] call FUNC(addCarCrew);
             };
         }

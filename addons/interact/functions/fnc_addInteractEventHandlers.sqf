@@ -45,7 +45,7 @@
                 if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
                     _moveVector = _moveVectors select 1;
                 };
-                _civ call EFUNC(legacy,forcePanicSpeed);
+                _civ call EFUNC(activities,forcePanicSpeed);
                 _civ doMove ((position _civ) vectorAdd _moveVector);
             },
             {},
@@ -53,7 +53,7 @@
             [_carPos, _carVelocity],
             "honked_at",
             format["am avoiding honking car, will resume activity at %1", _waitTime call EFUNC(common,formatNowPlusSeconds)]
-        ] call EFUNC(legacy,doCustomActivity);
+        ] call EFUNC(activities,doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;
 
@@ -63,5 +63,5 @@
         ["_reverseTargetPos", [0, 0, 0], [[]]]
     ];
     if (_target == ACE_player) exitWith {};
-    [_target, _reverseTargetPos] call EFUNC(legacy,doReverse);
+    [_target, _reverseTargetPos] call EFUNC(activities,doReverse);
 }] call CBA_fnc_addEventHandler;

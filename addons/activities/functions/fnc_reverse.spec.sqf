@@ -21,7 +21,7 @@ if (isClass (configFile >> "CfgVehicles" >> "LOP_AFR_Civ_Ural_open")) then {
                     [
                         ["WHEN I let it reverse",
                             {
-                                [_this, [0, -50, 0]] call grad_civs_legacy_fnc_reverse;
+                                [_this, [0, -50, 0]] call grad_civs_activities_fnc_reverse;
                                 _this
                             },
                             [
@@ -54,7 +54,7 @@ if (isClass (configFile >> "CfgVehicles" >> "LOP_AFR_Civ_Ural_open")) then {
                     [
                         ["WHEN I let it reverse",
                             {
-                                [_this, [0, -50, 0]] call grad_civs_legacy_fnc_reverse;
+                                [_this, [0, -50, 0]] call grad_civs_activities_fnc_reverse;
                                 _this
                             },
                             [
@@ -92,7 +92,7 @@ if (isClass (configFile >> "CfgVehicles" >> "LOP_AFR_Civ_Ural_open")) then {
                     [
                         ["WHEN I let it reverse",
                             {
-                                [_this, [0, -20, 0]] call grad_civs_legacy_fnc_reverse;
+                                [_this, [0, -20, 0]] call grad_civs_activities_fnc_reverse;
                                 _this
                             },
                             [
@@ -126,9 +126,9 @@ if (isClass (configFile >> "CfgVehicles" >> "LOP_AFR_Civ_Ural_open")) then {
                         ],
                         ["WHEN I let it reverse 100m AND abort after 2 seconds",
                             {
-                                [_this, [0, -100, 0]] call grad_civs_legacy_fnc_reverse;
+                                [_this, [0, -100, 0]] call grad_civs_activities_fnc_reverse;
                                 sleep 2;
-                                [_this] call grad_civs_legacy_fnc_reverse_abort;
+                                [_this] call grad_civs_activities_fnc_reverse_abort;
                                 _this
                             },
                             [

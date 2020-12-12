@@ -4,7 +4,7 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,localSpawn),
+        QEGVAR(lifecycle,localSpawn),
         {
             _maxVehiclesInTransit = GVAR(maxVehiclesInTransit);
             if ((count (["transit"] call EFUNC(cars,getGlobalVehicles))) < _maxVehiclesInTransit) then {

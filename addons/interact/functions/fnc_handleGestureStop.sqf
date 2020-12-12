@@ -22,7 +22,7 @@ private _observers = _potentialObservers select {
 {
     private _recklessness = _x getVariable ["grad_civs_recklessness", 5];
     private _waitTime = linearConversion [0, 10, _recklessness, 60*15, 15, false];
-    [_x, _waitTime] call EFUNC(legacy,doStop);
+    [_x, _waitTime] call EFUNC(activities,doStop);
 } forEach _observers;
 
 INFO_1("%1 civ observers were triggered for being gestured with 'stop'", count _observers);

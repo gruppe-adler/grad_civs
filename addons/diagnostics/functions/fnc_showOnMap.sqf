@@ -6,7 +6,7 @@
 		GVAR(DRAWUNITSEH) = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {
 			if (!GVAR(showOnMap)) exitWith {};
 
-		    private _civs = [] call EFUNC(legacy,getGlobalCivs);
+		    private _civs = [] call EFUNC(lifecycle,getGlobalCivs);
 		    private _civsInCarDrivers = _civs select {
 		        private _vec = vehicle _x;
 		        _vec != _x && driver _vec == _x

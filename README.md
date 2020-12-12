@@ -93,7 +93,7 @@ common events:
 
     ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
 
-### grad_civs_legacy_fnc_doCustomActivity
+### grad_civs_activities_fnc_doCustomActivity
 
 To let civilians break from their usual activity and do something else for a limited time.
 
@@ -108,7 +108,7 @@ Example:
     [],                                 
     "hiding",                           
     "pooped my pants, hiding for ten minutes"
-] call grad_civs_legacy_fnc_doCustomActivity;
+] call grad_civs_activities_fnc_doCustomActivity;
 ```
 
 **NOTE**: this whole thing will *NOT* work while they are panicking.

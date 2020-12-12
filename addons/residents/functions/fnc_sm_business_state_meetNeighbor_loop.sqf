@@ -12,5 +12,5 @@ private _neighborPos = getPos _neighbor;
 if ((_knownNeighborPos distance _neighborPos) > 1) then {
     _this setVariable ["grad_civs_neighborPos", _neighborPos];
     _this doMove _neighborPos;
-    _this call EFUNC(legacy,forceEmotionSpeed);
+    _this call EFUNC(activities,forceEmotionSpeed);
 };
