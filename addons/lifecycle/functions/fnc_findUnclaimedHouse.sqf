@@ -61,7 +61,7 @@ private _idx = _houses findIf {
         (count (_x buildingPos -1)) >= _minPosCount;
     };
     private _goodHouseType2 = {
-        -1 == _excludedParentClasses findIf {_house typeOf _x};
+        -1 == (_excludedParentClasses findIf {_house isKindOf _x});
     };
     private _goodHouseType = !((typeOf _x) in _excludedFinalClasses);
 

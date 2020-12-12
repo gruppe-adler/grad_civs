@@ -1,3 +1,4 @@
+PREP(cleanupLocalCivs);
 PREP(initConfig);
 PREP(findBuildings);
 PREP(findRandomPosArea);
@@ -5,6 +6,7 @@ PREP(findRandomPos);
 // PREP(findSpawnPosition.spec);
 PREP(findSpawnPosition);
 PREP(findUnclaimedHouse);
+PREP(initHCs);
 PREP(isInDistanceFromOtherPlayers);
 PREP(globalSpawnPass);
 PREP(sm_lifecycle);

@@ -17,8 +17,6 @@ PREP(getGlobalCivs);
 
 PREP(initCommonEventhandlers);
 PREP(initConfig);
-PREP(initHCs);
-PREP(isInDistanceFromOtherPlayers);
 PREP(isInHouse);
 PREP(overclockStateMachines);
 PREP(reverse_abort);
@@ -43,9 +41,5 @@ PREP(sm_panic_state_hidden_enter);
 PREP(sm_panic_state_hide_enter);
 PREP(sm_panic_trans_hide_hidden_condition);
 PREP(sm_panic_trans_hide_hidden_handler);
-PREP(spawnCivilianGroup);
-PREP(spawnCivilian);
-PREP(localSpawnPass);
-PREP(globalSpawnPass);
 PREP(uid);
 PREP(cleanupLocalCivs);
