@@ -1,8 +1,13 @@
 #include "..\script_component.hpp"
 
+params [
+    ["_sm_lifecycle", locationNull, [locationNull]]
+];
+
+
 private _emotions = [[], true, "emotions"] call EFUNC(cba_statemachine,create);
 
-        // STATES
+// STATES
 
 private _emo_relaxed = [
     _emotions,
@@ -48,9 +53,7 @@ private _emo_panic = [
     "emo_panic"
 ] call EFUNC(cba_statemachine,addState);
 
-
-    // TRANSITIONS
-
+// TRANSITIONS
 
 assert ([
     _emotions,
@@ -96,7 +99,8 @@ assert ([
     _emo_relaxed + _emo_wary
 ] call CBA_statemachine_fnc_addEventTransition);
 
-EGVAR(common,stateMachines) setVariable ["emotions", _emotions];
+[_sm_lifecycle, "lfc_life", _emotions] call EFUNC(cba_statemachine,addNestedStateMachine);
 
+EGVAR(common,stateMachines) setVariable ["emotions", _emotions];
 
 _emotions

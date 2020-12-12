@@ -1,9 +1,11 @@
 #include "..\script_component.hpp"
 
+LOG("creating sm_lifecycle...");
+
 private _lifecycle = [{GVAR(localCivs)}, true, "lifecycle"] call EFUNC(cba_statemachine,create);
 
-private _activities = [] call FUNC(sm_activities);
-private _emotions = [] call FUNC(sm_emotions);
+
+TRACE_1("sm_lifecycle '%1' created", _lifecycle);
 
 // STATES
 
@@ -15,14 +17,18 @@ private _lifecycle_spawn  = [
     "lfc_spawn"
 ] call EFUNC(cba_statemachine,addState);
 
+TRACE_1("lifecycle state 'spawn' created %1", _lifecycle_spawn);
+
 private _lifecycle_life  = [
     _lifecycle,
-    [_activities, _emotions],
+    [],
     {},
     { _this call FUNC(sm_lifecycle_state_life_enter) },
     { _this call FUNC(sm_lifecycle_state_life_exit) },
     "lfc_life"
 ] call EFUNC(cba_statemachine,addCompoundState);
+
+TRACE_1("compound lifecycle state 'life' created %1", _lifecycle_life);
 
 private _lifecycle_unconscious  = [
     _lifecycle,
@@ -32,6 +38,8 @@ private _lifecycle_unconscious  = [
     "lfc_unconscious"
 ] call EFUNC(cba_statemachine,addState);
 
+TRACE_1("lifecycle state 'lfc_unconscious' created %1", _lifecycle_unconscious);
+
 private _lifecycle_death  = [
     _lifecycle,
     {},
@@ -40,6 +48,8 @@ private _lifecycle_death  = [
     "lfc_death"
 ] call EFUNC(cba_statemachine,addState);
 
+TRACE_1("lifecycle state 'lfc_death' created %1", _lifecycle_death);
+
 private _lifecycle_despawn  = [
     _lifecycle,
     {},
@@ -47,6 +57,8 @@ private _lifecycle_despawn  = [
     {},
     "lfc_despawn"
 ] call EFUNC(cba_statemachine,addState);
+
+TRACE_1("lifecycle state 'lfc_despawn' created %1", _lifecycle_despawn);
 
 // TRANSITIONS
 

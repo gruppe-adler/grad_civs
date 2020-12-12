@@ -53,8 +53,7 @@ private _addVars = {
 		["_civ", objNull]
 	];
 	private _fastSpeed = _civ getSpeed "FAST";
-	private _panicCooldown = [GVAR(panicCooldown)] call EFUNC(common,parseCsv);
-	_civ setVariable["GRAD_CIVS_PANICCOOLDOWN" , random _panicCooldown, true];
+
 	_civ setVariable["grad_civs_runspeed", random [_fastSpeed * 0.5, _fastSpeed, _fastSpeed * 1.3], true];
 	_civ setVariable["grad_civs_recklessness", random [0, 5, 10], true];
 };

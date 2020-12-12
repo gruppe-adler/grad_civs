@@ -1,10 +1,16 @@
 #include "..\script_component.hpp"
 
+params [
+    ["_sm_lifecycle", locationNull, [locationNull]]
+];
+
+
 private _activities = [[], true, "activities"] call EFUNC(cba_statemachine,create);
 private _business = [] call FUNC(sm_business);
 private _panic = [] call FUNC(sm_panic);
 
 // STATES
+
 assert(_activities isEqualType locationNull);
 assert(_business isEqualType locationNull);
 assert(_panic isEqualType locationNull);
@@ -75,7 +81,6 @@ assert ([
     _act_asOrdered + _act_business + "_event"
 ] call CBA_statemachine_fnc_addEventTransition);
 
+[_sm_lifecycle, "lfc_life", _activities] call EFUNC(cba_statemachine,addNestedStateMachine);
+
 EGVAR(common,stateMachines) setVariable ["activities", _activities];
-
-
-_activities
