@@ -1,7 +1,5 @@
 #include "..\script_component.hpp"
 
-#define NESTED(var) (var + "_nested")
-
 params [
     ["_outerStateMachine", locationNull, [locationNull]],
 	["_outerState", "", [""]],

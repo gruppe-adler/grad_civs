@@ -42,4 +42,3 @@ PREP(sm_panic_state_hide_enter);
 PREP(sm_panic_trans_hide_hidden_condition);
 PREP(sm_panic_trans_hide_hidden_handler);
 PREP(uid);
-PREP(cleanupLocalCivs);
