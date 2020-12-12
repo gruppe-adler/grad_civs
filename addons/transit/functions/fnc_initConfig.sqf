@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "9) transit"];
+private _settingsGroup = ["GRAD Civs", "a) transit: traffic between pre-set points"];
 
 [
     QGVAR(maxVehiclesInTransit),

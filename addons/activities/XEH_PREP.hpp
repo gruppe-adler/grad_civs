@@ -13,8 +13,6 @@ PREP(findPositionOfInterest);
 PREP(forceEmotionSpeed);
 PREP(forcePanicSpeed);
 PREP(handleAceUnconscious);
-PREP(getGlobalCivs);
-
 PREP(initCommonEventhandlers);
 PREP(initConfig);
 PREP(isInHouse);

@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "7) loadout"];
+private _settingsGroup = ["GRAD Civs", "3) loadout: everything from underwear to scarves"];
 
 [
     QGVAR(backpacks),

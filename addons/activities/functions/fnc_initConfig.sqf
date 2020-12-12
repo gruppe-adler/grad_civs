@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "2) basics"];
+private _settingsGroup = ["GRAD Civs", "4) basic activities: panicking"];
 
 [
     QGVAR(panicCooldown),

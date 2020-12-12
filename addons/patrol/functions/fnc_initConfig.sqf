@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "4) patrols"];
+private _settingsGroup = ["GRAD Civs", "6) patrols"];
 
 [
     QGVAR(initialGroupSize),

@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "5) cars"];
+private _settingsGroup = ["GRAD Civs", "7) cars"];
 
 [
     QGVAR(animalTransportChance),
