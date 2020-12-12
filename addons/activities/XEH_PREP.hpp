@@ -1,5 +1,4 @@
 PREP(adoptAbandonedCivs);
-PREP(compare);
 PREP(doReverse);
 PREP(deleteIfDamaged);
 PREP(doCustomActivity);

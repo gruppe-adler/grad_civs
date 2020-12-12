@@ -6,7 +6,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"CBA_Extended_EventHandlers", "ace_common", "grad_civs_legacy"};
+        requiredAddons[] = {"CBA_Extended_EventHandlers", "ace_common", "grad_civs_activities"};
         author = "AUTHOR";
         VERSION_CONFIG;
     };

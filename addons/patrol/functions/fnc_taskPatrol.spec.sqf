@@ -27,7 +27,7 @@
                 ["who is tasked to patrol on foot",
                     {
                         params [["_civ", objNull]];
-                        [_civ,  getPos _civ, 250, 3] call grad_civs_legacy_fnc_taskPatrol;
+                        [_civ,  getPos _civ, 250, 3] call grad_civs_patrol_fnc_taskPatrol;
                         [_civ]
                     },
                     [
@@ -114,7 +114,7 @@
                 ["and tasked to patrol",
                     {
                         params [["_civ", objNull]];
-                        [_civ,  getPos _civ, 250, 3] call grad_civs_legacy_fnc_taskPatrol;
+                        [_civ,  getPos _civ, 250, 3] call grad_civs_patrol_fnc_taskPatrol;
                         [_civ]
                     },
                     [
