@@ -16,7 +16,9 @@ GVAR(excludedFinalClasses) = [
 	"Land_runway_edgelight",
     "gm_structure_euro_80_wall_base",
     "Land_MilOffices_V1_F",
-    "Land_Radar_F"
+    "Land_Radar_F",
+	"Land_dp_bigTank_F",
+	"Land_dp_bigTank_old_F"
 ];
 
 GVAR(excludedParentClasses) = [
