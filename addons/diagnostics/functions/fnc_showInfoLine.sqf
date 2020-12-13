@@ -56,7 +56,7 @@ ISNILS(GVAR(actionIds), []);
 			1, 1, 0,
 			_text, 0, 0.03, "EtelkaNarrowMediumPro", "center", true
 		];
-	} forEach ([] call EFUNC(legacy,getGlobalCivs));
+	} forEach ([] call EFUNC(lifecycle,getGlobalCivs));
 
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 

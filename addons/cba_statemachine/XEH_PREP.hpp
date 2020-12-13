@@ -1,4 +1,5 @@
 PREP(addCompoundState);
+PREP(addNestedStateMachine);
 PREP(addState);
 PREP(addToStateMachine);
 PREP(addTransition);

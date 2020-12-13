@@ -9,7 +9,7 @@ if (!(local _civ)) exitWith {
 };
 
 // take control from state machine first!
-EGVAR(legacy,localCivs) = EGVAR(legacy,localCivs) - [_civ];
+GVAR(localCivs) = GVAR(localCivs) - [_civ];
 
 // reset AI capabilities that were disabled at the very start
 _civ enableAI "TARGET";

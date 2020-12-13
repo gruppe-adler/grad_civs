@@ -63,7 +63,7 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(legacy,doStop), {
+[QEGVAR(activities,doStop), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
     if !GVAR(playerActsAsCiv) exitWith {};
@@ -72,7 +72,7 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(legacy,doReverse), {
+[QEGVAR(activities,doReverse), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
     if !GVAR(playerActsAsCiv) exitWith {};
@@ -81,7 +81,7 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-[QEGVAR(legacy,doCarryOn), {
+[QEGVAR(activities,doCarryOn), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};
     if !GVAR(playerActsAsCiv) exitWith {};

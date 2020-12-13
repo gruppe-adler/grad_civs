@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "6) voyagers"];
+private _settingsGroup = ["GRAD Civs", "8) voyagers - AI driving unleashed"];
 
 [
     QGVAR(maxCivsInVehicles),
@@ -29,7 +29,7 @@ private _settingsGroup = ["GRAD Civs", "6) voyagers"];
 [
     QGVAR(maxTravelRadius),
     "SLIDER",
-    "max travel radius around spawn (otional)",
+    "max travel radius around spawn (optional)",
     _settingsGroup,
     [0, 100000, 0, 0],
     false,

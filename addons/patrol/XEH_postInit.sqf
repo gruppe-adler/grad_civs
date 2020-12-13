@@ -4,10 +4,10 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (isServer || CBA_isHeadlessClient) then {
     [
-        QEGVAR(legacy,localSpawn),
+        QEGVAR(activities,localSpawn),
         {
             ISNILS(GVAR(maxCivsOnFoot), GVAR(maxCivsOnFoot));
-            if ((count (["patrol"] call EFUNC(legacy,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {
+            if ((count (["patrol"] call EFUNC(lifecycle,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {
                 [ALL_HUMAN_PLAYERS] call FUNC(addFootsy);
             };
         }

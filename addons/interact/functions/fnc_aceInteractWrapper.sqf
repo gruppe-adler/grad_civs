@@ -18,7 +18,7 @@
             [],
             "ace_interaction_getDown",
             format["I will keep my head down until %1", _waitTime call EFUNC(common,formatNowPlusSeconds)]
-        ] call EFUNC(legacy,doCustomActivity);
+        ] call EFUNC(activities,doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;
 
@@ -41,7 +41,7 @@
             [],
             "ace_interaction_sendAway",
             format["am being sent away to %1, will resume activity at %2", _pos, _waitTime call EFUNC(common,formatNowPlusSeconds)]
-        ] call EFUNC(legacy,doCustomActivity);
+        ] call EFUNC(activities,doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;
 

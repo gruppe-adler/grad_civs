@@ -93,7 +93,7 @@ common events:
 
     ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
 
-### grad_civs_legacy_fnc_doCustomActivity
+### grad_civs_activities_fnc_doCustomActivity
 
 To let civilians break from their usual activity and do something else for a limited time.
 
@@ -108,7 +108,7 @@ Example:
     [],                                 
     "hiding",                           
     "pooped my pants, hiding for ten minutes"
-] call grad_civs_legacy_fnc_doCustomActivity;
+] call grad_civs_activities_fnc_doCustomActivity;
 ```
 
 **NOTE**: this whole thing will *NOT* work while they are panicking.
@@ -173,7 +173,7 @@ headgear  | Array - All classnames of clothes that civilians may wear.
 Sets all backpacks that civilians may wear and sets probability. Overwrites value from CBA settings. Execute globally
 
 #### Syntax
-`[backpacks,probability] call grad_civs_legacy_fnc_setHeadgear`
+`[backpacks,probability] call grad_civs_loadout_fnc_setHeadgear`
 
 Parameter   | Explanation
 ------------|-----------------------------------------------------------------------
@@ -227,9 +227,9 @@ Let's have a very simple example:
 ```sqf
 MY_CIV_LIST = ["C_Offroad_01_F" createVehicle position player];
 _machine = [{MY_CIV_LIST}] call CBA_statemachine_fnc_create;
-_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_legacy_fnc_addState;
-_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_legacy_fnc_addState;
-_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_legacy_fnc_addTransition;
+_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_cba_statemachine_fnc_addState;
+_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_cba_statemachine_fnc_addState;
+_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_cba_statemachine_fnc_addTransition;
 ```
 
 this will print something like this to RPT:
@@ -252,12 +252,12 @@ wörk
 In our case, and with CBA state machines, that means:
 
 * we have a bunch of state machines, chief of which is the *activities* state machine. It is implemented in `/functions/sm_activities/fn_activities.sqf`
-* states are added to it using [grad_civs_legacy_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
+* states are added to it using [grad_civs_cba_statemachine_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
     * every state has a bunch of callbacks that are called with a civilian as parameter
         * one is called periodically as long as the civ is in the state
         * one is called when the civ enters the state
         * one is called when the civ leaves the state
-* transitions are being added by using [grad_civs_legacy_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
+* transitions are being added by using [grad_civs_cba_statemachine_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
     * every transition is defined as a one-way connection between two states
     * every transition gets two callbacks
         * one is called periodically to check whether a civ can move along the transition

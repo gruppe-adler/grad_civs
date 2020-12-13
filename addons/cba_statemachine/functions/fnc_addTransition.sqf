@@ -1,10 +1,5 @@
 #include "..\script_component.hpp"
 
-#define TIMEDTRANSITIONCONDITION(var) (var + "_onTimedTransitionCondition")
-#define TIMEDTRANSITIONHANDLER(var) (var + "_onTimedTransitionHandler")
-#define STATEMACHINEIDVAR(var) (var getVariable "CBA_statemachine_ID")
-#define TIMEVAR(var) format["grad_civs_state_time_%1", var]
-
 params [
     ["_stateMachine", locationNull, [locationNull]],
     ["_originalState", "", [""]],

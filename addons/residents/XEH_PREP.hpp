@@ -1,4 +1,5 @@
 PREP(addResident);
+PREP(compare);
 PREP(initConfig);
 PREP(sm_business);
 PREP(sm_business_state_chat_enter);

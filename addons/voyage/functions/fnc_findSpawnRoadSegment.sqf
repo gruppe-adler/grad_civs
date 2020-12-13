@@ -8,4 +8,4 @@ if (_allPlayers isEqualTo []) exitWith {LOG("_allPlayers is empty"); objNull};
 
 private _refPlayerPos = getPos (selectRandom _allPlayers);
 
-([ALL_HUMAN_PLAYERS, _minSpawnDistance, _maxSpawnDistance, "road"] call EFUNC(legacy,findSpawnPosition));
+([ALL_HUMAN_PLAYERS, _minSpawnDistance, _maxSpawnDistance, "road"] call EFUNC(lifecycle,findSpawnPosition));

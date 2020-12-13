@@ -1,3 +1,4 @@
+PREP(dismountCondition);
 PREP(getGlobalVehicles);
 PREP(getGroupVehicle);
 PREP(initConfig);

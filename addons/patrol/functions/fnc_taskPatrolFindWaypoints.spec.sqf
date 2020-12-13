@@ -15,7 +15,7 @@
     [
         ["when a patrol path is created",
             {
-                [([[0, 0, 0], 250, 3] call grad_civs_legacy_fnc_taskPatrolFindWaypoints)]
+                [([[0, 0, 0], 250, 3] call grad_civs_patrol_fnc_taskPatrolFindWaypoints)]
             },
             [
                 ["three positions are returned as requested",
@@ -53,7 +53,7 @@
 
 ["GIVEN a point and no exclusion zones WHEN a patrol path is created",
     {
-        [([[0, 0, 0], 250, 3] call grad_civs_legacy_fnc_taskPatrolFindWaypoints)]
+        [([[0, 0, 0], 250, 3] call grad_civs_patrol_fnc_taskPatrolFindWaypoints)]
     },
     [
         ["three positions are returned as requested",

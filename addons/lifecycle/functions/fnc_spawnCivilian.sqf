@@ -6,7 +6,7 @@ params [
     ["_primaryTask", ""]
 ];
 
-private _civClasses = call EFUNC(common,config_getCivClasses);
+private _civClasses = call FUNC(config_getCivClasses);
 private _civ = _group createUnit [selectRandom _civClasses, _pos, [], 0, "NONE"]; // TODO: ensure unit is not spawning within editor-placed rocks/houses
 
 GVAR(localCivs) = GVAR(localCivs) + [_civ];
@@ -14,6 +14,6 @@ GVAR(localCivs) = GVAR(localCivs) + [_civ];
 _civ setVariable ["grad_civs_primaryTask", _primaryTask, true];
 _civ setVariable ["acex_headless_blacklist", true, true];
 
-[QEGVAR(common,civ_added), [_civ]] call CBA_fnc_globalEvent;
+[QGVAR(civ_added), [_civ]] call CBA_fnc_globalEvent;
 
 _civ

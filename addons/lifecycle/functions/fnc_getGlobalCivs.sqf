@@ -7,13 +7,13 @@ params [
 
 if (isNil QGVAR(getGlobalCivs_arr)) then {
     // on first run, init array with existing civs
-    private _civClasses = call EFUNC(common,config_getCivClasses);
+    private _civClasses = call FUNC(config_getCivClasses);
     private _potentialCivs = entities [_civClasses, [], true, true];
     GVAR(getGlobalCivs_arr) = _potentialCivs select { (_x getVariable ["grad_civs_primaryTask", ""]) != ""};
 
     // then, register event handler to update the array appropriately to always include all living civs
     [
-        QEGVAR(common,civ_added),
+        QGVAR(civ_added),
         {
             params [["_civ", objNull, [objNull]]];
             SCRIPT("getGlobalCivs_civ_added");
@@ -21,7 +21,7 @@ if (isNil QGVAR(getGlobalCivs_arr)) then {
         }
     ] call CBA_fnc_addEventHandler;
     [
-        QEGVAR(common,civ_removed),
+        QGVAR(civ_removed),
         {
             params [["_civ", objNull, [objNull]]];
             SCRIPT("getGlobalCivs_civ_removed");

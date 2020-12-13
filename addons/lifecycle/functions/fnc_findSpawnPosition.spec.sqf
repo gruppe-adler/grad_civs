@@ -41,7 +41,7 @@
                         private _house = objNull;
                         for "_i" from 0 to 10 do
                         {
-                            _house = [_allPlayers, 50, 100, "house"] call grad_civs_legacy_fnc_findSpawnPosition;
+                            _house = [_allPlayers, 50, 100, "house"] call grad_civs_lifecycle_fnc_findSpawnPosition;
                             if (!(isNull _house)) exitWith {};
                         };
 

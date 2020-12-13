@@ -1,9 +1,5 @@
 #include "..\script_component.hpp"
 
-#define NESTED(var) (var + "_nested")
-#define COMPOUNDONSTATEENTERED(var) (var + "_onCompoundStateEntered")
-#define COMPOUNDONSTATELEAVING(var) (var + "_onCompoundStateLeaving")
-
 params [
     ["_outerStateMachine", locationNull, [locationNull]],
     ["_nestedStateMachines", [], [locationNull, []]],
@@ -14,7 +10,11 @@ params [
 ];
 
 if (!(_nestedStateMachines isEqualType [])) then { _nestedStateMachines = [_nestedStateMachines]; };
-if (!(_nestedStateMachines isEqualTypeAll locationNull)) exitWith {ERROR_2("when trying to create state %1: not all _nestedStateMachines %2 are CBA state machines!", _name, _nestedStateMachines); ""};
+if (!((_nestedStateMachines isEqualTo []) ||  (_nestedStateMachines isEqualTypeAll locationNull))) exitWith {
+    // NOTE bug: isEqualTypeAll returns false for empty arrays
+    ERROR_2("when trying to create state %1: not all _nestedStateMachines %2 are CBA state machines!", _name, _nestedStateMachines); ""
+};
+
 {
     if (!((_x getVariable ["cba_statemachine_list", []]) isEqualType [])) exitWith {ERROR("nested state machines must have empty items array!"); ""};
 } forEach _nestedStateMachines;

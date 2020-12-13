@@ -13,7 +13,7 @@ private _house = [
     _footSpawnDistanceMin,
     _footSpawnDistanceMax,
     "house"
-] call EFUNC(legacy,findSpawnPosition);
+] call EFUNC(lifecycle,findSpawnPosition);
 
 if (isNull _house) exitWith {
     LOG("could not find house for patrol");
@@ -22,4 +22,4 @@ if (isNull _house) exitWith {
 private _maxInitialGroupSize = GVAR(initialGroupSize);
 private _groupSize = (floor random _maxInitialGroupSize) + 1;
 
-_group = [getPos _house, _groupSize, _house, "patrol"] call EFUNC(legacy,spawnCivilianGroup);
+_group = [getPos _house, _groupSize, _house, "patrol"] call EFUNC(lifecycle,spawnCivilianGroup);

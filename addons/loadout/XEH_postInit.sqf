@@ -2,7 +2,7 @@
 
 if (!(EGVAR(main,enabled))) exitWith {};
 
-[QEGVAR(common,civ_added), {
+[QEGVAR(lifecycle,civ_added), {
     params [["_civ", objNull, [objNull]]];
     assert(!isNull _civ);
     if (local _civ) then {

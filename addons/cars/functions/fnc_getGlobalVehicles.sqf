@@ -5,7 +5,7 @@ params [
     ["_primaryTask", "", [""]] /* filter civs by primary task */
 ];
 
-private _civs = _this call EFUNC(legacy,getGlobalCivs);
+private _civs = _this call EFUNC(lifecycle,getGlobalCivs);
 private _vehicles = [];
 {
     private _veh = vehicle _x;

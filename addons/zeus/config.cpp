@@ -8,7 +8,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "grad_civs_common"
-            ,"grad_civs_legacy"
+            ,"grad_civs_activities"
             ,"grad_civs_voyage"
 #ifdef HARD_DEPENDENCIES 
             ,"zen_context_menu"

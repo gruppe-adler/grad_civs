@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 private _playerPos = getPosATL player;
-private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call EFUNC(legacy,getGlobalCivs));
+private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call EFUNC(lifecycle,getGlobalCivs));
 
 private _playerVelocity = velocity player;
 private _speed = vectorMagnitude _playerVelocity;

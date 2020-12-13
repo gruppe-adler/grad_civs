@@ -18,7 +18,7 @@ _veh addEventHandler [
     {
         params ["_vec", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
         {
-            [QEGVAR(legacy,firedNear), [_x], _x] call CBA_fnc_targetEvent;
+            [QEGVAR(activities,firedNear), [_x], _x] call CBA_fnc_targetEvent;
         } forEach (crew _vec);
      }
  ];
