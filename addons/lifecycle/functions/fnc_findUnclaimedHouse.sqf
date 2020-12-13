@@ -15,35 +15,6 @@ private _houses = [
     true
 ] call FUNC(findBuildings);
 
-// TODO exclude watchtowers
-
-//exclusion list for houses
-private _excludedFinalClasses = [
-	"Land_Pier_F",
-	"Land_Pier_small_F",
-	"Land_NavigLight",
-	"Land_LampHarbour_F",
-	"Land_runway_edgelight",
-    "gm_structure_euro_80_wall_base",
-    "Land_MilOffices_V1_F"
-];
-
-private _excludedParentClasses = [
-    "CargoPlatform_01_base_F",
-    "Cargo_Tower_base_F",
-    "Cargo_HQ_base_F",
-    "Cargo_House_base_F",
-    "Cargo_Patrol_base_F",
-    "Land_i_Barracks_V1_F" // yes, is parent for others!
-];
-
-/*
-private _exclusionPrefixList = [
-    "land_gm_fence"
-];
-*/
-
-
 private _minPosCount = 2;
 
 LOG_3("%1 houses within %2m of %3, will whittle down by positions and excluded types", count _houses, _radius, _position);
@@ -61,9 +32,9 @@ private _idx = _houses findIf {
         (count (_x buildingPos -1)) >= _minPosCount;
     };
     private _goodHouseType2 = {
-        -1 == (_excludedParentClasses findIf {_house isKindOf _x});
+        -1 == (GVAR(excludedParentClasses) findIf {_house isKindOf _x});
     };
-    private _goodHouseType = !((typeOf _x) in _excludedFinalClasses);
+    private _goodHouseType = !((typeOf _x) in GVAR(excludedFinalClasses));
 
     _goodHouseType && _goodHouseType2 && _hasEnoughPositions && _isUnoccupied
 };
