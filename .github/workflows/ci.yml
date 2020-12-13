@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build with HEMTT
-      uses: gruppe-adler/action-release-with-hemtt@2
+      uses: gruppe-adler/action-release-with-hemtt@2.1.1
       id: build
 
     - name: Upload artifact
