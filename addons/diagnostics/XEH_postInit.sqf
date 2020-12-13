@@ -34,7 +34,7 @@ if (isServer || CBA_isHeadlessClient) then {
 
 if (isServer) then {
     [
-        QEGVAR(common,civ_added),
+        QEGVAR(lifecycle,civ_added),
         {
             params [["_civ", objNull, [objNull]]];
             _civ setVariable [QGVAR(localAt), owner _civ, true];

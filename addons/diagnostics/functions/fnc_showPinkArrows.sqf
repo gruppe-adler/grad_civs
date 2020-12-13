@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 GVAR(showWhatTheyThink_civ_added) = [
-	QEGVAR(common,civ_added),
+	QEGVAR(lifecycle,civ_added),
 	{
 		if (!GVAR(showPinkArrows)) exitWith {};
 		params [["_civ", objNull, [objNull]]];
@@ -12,7 +12,7 @@ GVAR(showWhatTheyThink_civ_added) = [
 ] call CBA_fnc_addEventHandler;
 
 GVAR(showWhatTheyThinkciv_removed) = [
-	QEGVAR(common,civ_removed),
+	QEGVAR(lifecycle,civ_removed),
 	{
 		params [["_civ", objNull, [objNull]]];
 		SCRIPT("showWhatTheyThink_civ_removed");
