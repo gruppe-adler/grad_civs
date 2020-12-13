@@ -5,6 +5,7 @@
 Spawn ambient civilians on the map.
 
 [![Issues](https://img.shields.io/github/issues/gruppe-adler/grad-civs.svg)](https://github.com/gruppe-adler/grad-civs/issues)
+![Build](https://github.com/gruppe-adler/grad_civs/workflows/CI/badge.svg)
 
 ## Features
 
