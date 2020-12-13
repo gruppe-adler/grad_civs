@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "2) lifecycle: performance & spawning"];
+private _settingsGroup = ["GRAD Civs", "2) lifecycle - performance & spawning"];
 
 [
     QGVAR(civClasses),

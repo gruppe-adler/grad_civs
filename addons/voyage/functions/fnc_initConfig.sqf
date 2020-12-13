@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "8) voyagers: AI driving unleashed"];
+private _settingsGroup = ["GRAD Civs", "8) voyagers - AI driving unleashed"];
 
 [
     QGVAR(maxCivsInVehicles),

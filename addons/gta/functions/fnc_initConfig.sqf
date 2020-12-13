@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "9) GTA: vehicles have owners"];
+private _settingsGroup = ["GRAD Civs", "9) GTA - vehicles have owners now"];
 
 [
     QGVAR(enabled),
@@ -15,7 +15,7 @@ private _settingsGroup = ["GRAD Civs", "9) GTA: vehicles have owners"];
     true
 ] call CBA_fnc_addSetting;
 
-
+/*
 [
     QGVAR(carOwnershipRatio),
     "SLIDER",
@@ -26,3 +26,4 @@ private _settingsGroup = ["GRAD Civs", "9) GTA: vehicles have owners"];
     {},
     false
 ] call CBA_fnc_addSetting;
+*/
