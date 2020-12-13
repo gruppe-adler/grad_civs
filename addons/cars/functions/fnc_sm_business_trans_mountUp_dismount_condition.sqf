@@ -1,5 +1,3 @@
 #include "..\script_component.hpp"
 
-if (leader _this != _this) exitWith {true};
-
-(([_this, "emotions"] call EFUNC(common,civGetState)) == "emo_panic") || (_this call EFUNC(interact,sm_activities_helper_surrenderCondition))
+_this call FUNC(dismountCondition);
