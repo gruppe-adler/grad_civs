@@ -15,6 +15,8 @@ if (_isGetNearest) then {
 	_buildings append (_searchPosition nearObjects ["Building",100]);
 };
 
+_buildings = _buildings select {!(isObjectHidden _x)};
+
 private _nearestBuilding = if (count _buildings > 0) then {_buildings select 0} else {objNull};
 private _buildingPositions = [_nearestBuilding] call BIS_fnc_buildingPositions;
 private _position = if (count _buildingPositions > 0) then {selectRandom _buildingPositions} else {
