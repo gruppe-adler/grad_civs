@@ -27,7 +27,7 @@ private _emo_wary = [
     {
         _this call FUNC(forceEmotionSpeed);
 
-        private _cooldownAt = (_this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60]) + CBA_missionTime;
+        private _cooldownAt = (_this getVariable[QGVAR(panicCooldown), 60]) + CBA_missionTime;
         _this setVariable [QGVAR(cooldownAt), _cooldownAt];
     },
     {
@@ -42,7 +42,7 @@ private _emo_panic = [
         _this call FUNC(endCustomActivity);
         _this call FUNC(forceEmotionSpeed);
 
-        private _cooldownAt = (_this getVariable["GRAD_CIVS_PANICCOOLDOWN", 60]) + CBA_missionTime;
+        private _cooldownAt = (_this getVariable[QGVAR(panicCooldown), 60]) + CBA_missionTime;
         _this setVariable [QGVAR(cooldownAt), _cooldownAt];
 
         ["grad_civs_panicking", [_this], [_this]] call CBA_fnc_targetEvent;
