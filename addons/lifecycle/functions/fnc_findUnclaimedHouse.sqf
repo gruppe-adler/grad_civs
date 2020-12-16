@@ -25,6 +25,9 @@ private _idx = _houses findIf {
     // b) there are many unsuited house types, and their number will grow (heck even *fences* can be of type "house") - good filter, comes first
     private _house = _x;
 
+    private _isVisible = { 
+        !(isObjectHidden _x); 
+    };
     private _isUnoccupied = {
         (count (_x getVariable ["grad_civs_residents", []])) == 0;
     };
@@ -36,7 +39,7 @@ private _idx = _houses findIf {
     };
     private _goodHouseType = !((typeOf _x) in GVAR(excludedFinalClasses));
 
-    _goodHouseType && _goodHouseType2 && _hasEnoughPositions && _isUnoccupied
+    _goodHouseType && _goodHouseType2 && _hasEnoughPositions && _isUnoccupied && _isVisible
 };
 
 if (_idx != -1) then {
