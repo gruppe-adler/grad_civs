@@ -10,7 +10,7 @@ private _settingsGroup = ["GRAD Civs", "c) diagnostics - debugging info"];
     "Show server & HC fps",
     _settingsGroup,
     false,
-    true,
+    false,
     {},
     false
 ] call CBA_fnc_addSetting;
@@ -21,7 +21,7 @@ private _settingsGroup = ["GRAD Civs", "c) diagnostics - debugging info"];
     "Show civs on map",
     _settingsGroup,
     false,
-    true,
+    false,
     FUNC(showOnMap),
     false
 ] call CBA_fnc_addSetting;
@@ -32,7 +32,7 @@ private _settingsGroup = ["GRAD Civs", "c) diagnostics - debugging info"];
     "Show info line",
     _settingsGroup,
     false,
-    true,
+    false,
     FUNC(showInfoLine),
     false
 ] call CBA_fnc_addSetting;
@@ -43,7 +43,7 @@ private _settingsGroup = ["GRAD Civs", "c) diagnostics - debugging info"];
     "Create 3D arrows over civ heads",
     _settingsGroup,
     false,
-    true,
+    false,
     FUNC(showPinkArrows),
     false
 ] call CBA_fnc_addSetting;
@@ -54,7 +54,7 @@ private _settingsGroup = ["GRAD Civs", "c) diagnostics - debugging info"];
     "Miscellaneous stuff",
     _settingsGroup,
     false,
-    true,
+    false,
     FUNC(showHonkAtArea),
     false
 ] call CBA_fnc_addSetting;
