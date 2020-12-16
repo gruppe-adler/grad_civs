@@ -16,6 +16,7 @@ PREP(handleAceUnconscious);
 PREP(initCommonEventhandlers);
 PREP(initConfig);
 PREP(isInHouse);
+PREP(onCivAdded);
 PREP(overclockStateMachines);
 PREP(reverse_abort);
 PREP(reverse_internal_end);
