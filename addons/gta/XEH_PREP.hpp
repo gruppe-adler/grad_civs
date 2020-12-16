@@ -1,6 +1,4 @@
 PREP(initConfig);
-PREP(createMyVehicle);
-PREP(onCivAdded);
 PREP(onGetInMan);
 PREP(onGetOutMan);
 PREP(onSeatSwitchedMan);
