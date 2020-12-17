@@ -30,7 +30,6 @@ _unit addEventHandler [
 
 		_unit removeAllEventHandlers "Killed";
 		_unit removeAllEventHandlers "FiredNear";
-		[QEGVAR(common,switchMove), [_unit, ""]] call CBA_fnc_globalEvent; // TODO: is that really necessary?
     }
 ];
 
