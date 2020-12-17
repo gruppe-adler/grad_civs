@@ -5,4 +5,4 @@ if (isNull _neighbor) exitWith {true}; // go to chat only so that chat can lead 
 if (!(alive _neighbor)) exitWith {true};
 
 /*get closer than 2m to have a conversation*/
-(_this distance _neighbor) < 2 || ((_thisStateTime + 90) < CBA_missionTime)
+(_this distance _neighbor) < 2 || ((_thisStateTime + 60) < CBA_missionTime)

@@ -7,7 +7,7 @@ _this call EFUNC(activities,forceEmotionSpeed);
 if (isNull _house) exitWith {};
 
 if (random 4 > 1) then { // in 2 of 3 cases , do change position
-    [QGVAR(switchMove), [_this, ""]] call CBA_fnc_globalEvent;
+    [QEGVAR(common,switchMove), [_this, ""]] call CBA_fnc_globalEvent;
     doStop _this;
 
     // add one random really close position to house positions
@@ -19,7 +19,7 @@ if (random 4 > 1) then { // in 2 of 3 cases , do change position
     _this moveTo _pos;
 } else {
     private _anim = selectRandom ["Acts_B_M05_briefing", "Acts_JetsOfficerSpilling", "acts_miller_knockout", "InBaseMoves_HandsBehindBack1"];
-    [QGVAR(switchMove), [_this, _anim]] call CBA_fnc_globalEvent;
+    [QEGVAR(common,switchMove), [_this, _anim]] call CBA_fnc_globalEvent;
 };
 
 /*

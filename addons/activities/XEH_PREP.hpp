@@ -12,7 +12,6 @@ PREP(endCustomActivity);
 PREP(findPositionOfInterest);
 PREP(forceEmotionSpeed);
 PREP(forcePanicSpeed);
-PREP(handleAceUnconscious);
 PREP(initCommonEventhandlers);
 PREP(initConfig);
 PREP(isInHouse);
