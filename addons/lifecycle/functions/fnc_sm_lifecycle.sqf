@@ -90,6 +90,15 @@ assert ([
     _lifecycle_unconscious + _lifecycle_life
 ] call CBA_statemachine_fnc_addEventTransition);
 
+assert ([
+    _lifecycle,
+    _lifecycle_unconscious, _lifecycle_death,
+    ["killed"],
+    { true },
+    {},
+    _lifecycle_unconscious + _lifecycle_death
+] call CBA_statemachine_fnc_addEventTransition);
+
 EGVAR(common,stateMachines) setVariable ["lifecycle", _lifecycle];
 
 _lifecycle

@@ -74,4 +74,5 @@ digraph lifecycle {
     cluster_life_node -> cyc_death [ltail=cluster_life color=blue];
     cluster_life_node -> cyc_unconscious [ltail=cluster_life color=blue];
     cyc_unconscious -> cluster_life_node [ltail=cluster_life color=blue];
+    cyc_unconscious -> cyc_death [ltail=cluster_life color=blue];
 }
