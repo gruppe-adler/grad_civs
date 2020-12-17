@@ -12,6 +12,9 @@ _civ addEventHandler [
 	"FiredNear",
     {
 		params ["_unit"];
+		if !(alive _unit) exitWith {
+			_unit removeEventHandler ["FiredNear", _thisEventHandler];
+		};
 
 		// throttle to once every 15s max - which is still a lot
 		if ((_unit getVariable [QGVAR(lastFiredNear), 0]) > (CBA_missionTime - 15)) exitWith {};
