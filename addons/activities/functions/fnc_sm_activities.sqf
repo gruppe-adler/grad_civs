@@ -59,7 +59,7 @@ assert ([
     _act_panic, _act_business,
     ["grad_civs_panicking_end"],
     {true},
-    {[QGVAR(switchMove), [_this, ""]] call CBA_fnc_globalEvent;},
+    {[QEGVAR(common,switchMove), [_this, ""]] call CBA_fnc_globalEvent;},
     _act_panic + _act_business
 ] call CBA_statemachine_fnc_addEventTransition);
 
