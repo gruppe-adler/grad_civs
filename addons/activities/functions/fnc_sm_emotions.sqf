@@ -90,15 +90,6 @@ assert ([
     _emo_wary + _emo_panic
 ] call CBA_statemachine_fnc_addEventTransition);
 
-assert ([
-    _emotions,
-    _emo_relaxed, _emo_wary,
-    ["fired_far"],
-    {true},
-    {},
-    _emo_relaxed + _emo_wary
-] call CBA_statemachine_fnc_addEventTransition);
-
 [_sm_lifecycle, "lfc_life", _emotions] call EFUNC(cba_statemachine,addNestedStateMachine);
 
 EGVAR(common,stateMachines) setVariable ["emotions", _emotions];

@@ -11,7 +11,7 @@ digraph lifecycle {
         subgraph cluster_emotions {
             bgcolor="lightyellow";
             label="emo";
-            emo_relaxed -> emo_wary;
+            emo[shape=point,width=0.2,height=0.2]; emo -> emo_relaxed [len=0.2];
             {emo_wary, emo_relaxed} -> emo_panic [color="red"];
             emo_panic -> emo_wary -> emo_relaxed;
         }
@@ -24,6 +24,7 @@ digraph lifecycle {
                 bgcolor="lightgreen";
                 label="bus";
                 cluster_business_node [shape=point style=invis];
+                bus [shape=point,width=0.2,height=0.2]; bus -> bus_rally [len=0.2,weight=5];
                 bus_rally -> bus_patrol;
                 bus_rally -> bus_mountUp;
                 bus_rally -> bus_rideInBack;
@@ -45,8 +46,11 @@ digraph lifecycle {
                 bgcolor="pink";
                 label="panic";
                 cluster_panic_node [shape=point style=invis];
+                pan [shape=point,width=0.2,height=0.2]; pan -> pan_flight;
                 pan_flight -> pan_hide -> pan_hidden;
             }
+
+            act [shape=point,width=0.2,height=0.2]; act -> cluster_business_node [lhead=cluster_business];
 
             act_asOrdered [shape=rectangle];
             act_surrendered [shape=rectangle];
@@ -69,6 +73,8 @@ digraph lifecycle {
     cyc_death [shape=Msquare];
     cyc_unconscious [shape=Msquare];
 
+    cyc_0 [shape=point,width=0.2,height=0.2]; cyc_0 -> cyc_spawn;
+    cyc_1 [shape=point,width=0.2,height=0.2,peripheries=2]; cyc_death -> cyc_1; cyc_despawn -> cyc_1;
     cyc_spawn -> cluster_life_node [lhead=cluster_life];
     cluster_life_node -> cyc_despawn [ltail=cluster_life];
     cluster_life_node -> cyc_death [ltail=cluster_life color=blue];

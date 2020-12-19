@@ -23,7 +23,7 @@ The mod is meant to make use of Headless Clients, no extra configuration necessa
 * [CBA_A3](https://github.com/CBATeam/CBA_A3)
 * [ACE3](https://github.com/acemod/ACE3)
 * optional: [ZEN](https://github.com/zen-mod/ZEN/) adds some context menus for Zeus
-* optional: [Gruppe Adler Mod](https://github.com/gruppe-adler/gruppe_adler_mod/) will have livestock onto trucks
+* optional: [Gruppe Adler Mod](https://github.com/gruppe-adler/gruppe_adler_mod/) to enable having livestock onto trucks
 
 ## Installation
 
@@ -36,6 +36,27 @@ To avoid micro lags / fps dips on the server, it is recommended to add a headles
 If that is not possible, civilian group size (looking at you, [Ikarus 260](https://de.wikipedia.org/wiki/Ikarus_260)!) as well as total population count should be kept small.
 
 Civilians on separate islands can run into pathing problems. Avoid by creating exclusion zones.
+
+## Detailed documentation
+
+should be found for the distinct modules: 
+
+* [activities](addons/activities/README.md)
+* [cars](addons/cars/README.md)
+* [cba_statemachine](addons/cba_statemachine/README.md)
+* [common](addons/common/README.md)
+* [diagnostics](addons/diagnostics/README.md)
+* [gta](addons/gta/README.md)
+* [interact](addons/interact/README.md)
+* [lifecycle](addons/lifecycle/README.md)
+* [loadout](addons/loadout/README.md)
+* [main](addons/main/README.md)
+* [mimikry](addons/mimikry/README.md)
+* [patrol](addons/patrol/README.md)
+* [residents](addons/residents/README.md)
+* [transit](addons/transit/README.md)
+* [voyage](addons/voyage/README.md)
+* [zeus](addons/zeus/README.md)
 
 ## Config
 
@@ -68,19 +89,9 @@ spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to playe
 spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
 vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]            | All classnames of vehicles that civilians may drive.
 
-## 3DEN modules
-
-### exclusion zone
-
-Blacklist an area for civs by syncing it to a trigger. Exclusion zones override population zones in the same area.
-
-### population zone
-
-Whitelist an area for civs by syncing it to a trigger.
-
-*NOTE: if no population zone is defined, the whole map will be considered a population zone.*
-
 ## API
+
+see the various module READMEs 
 
 ### EVENTS
 
@@ -90,188 +101,21 @@ common events:
 
     ["grad_civs_civKilled", { params ["_deathPos", "_killer", "_civilian"]; }] call CBA_fnc_addEventHandler;
 
-[GTA module](addons/gta/README.md) TL;DR:
 
     ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
 
-### grad_civs_activities_fnc_doCustomActivity
-
-To let civilians break from their usual activity and do something else for a limited time.
-
-Example:
-
-```
-[
-    _civ,                               
-    { _this#0 setBehaviour "STEALTH" },
-    { _this#0 setBehaviour "CARELESS" },
-    600,                                
-    [],                                 
-    "hiding",                           
-    "pooped my pants, hiding for ten minutes"
-] call grad_civs_activities_fnc_doCustomActivity;
-```
-
-**NOTE**: this whole thing will *NOT* work while they are panicking.
-
-**NOTE**: do clean up after yourself in the `_doEnd` parameter. reset disableAI stuff etc!
-
-#### Parameters
-
-Parameter           | Explanation
---------------------|-----------------------------------------------------------
-civ                 | unit - civilian to apply to
-doStart             | code - execute desired behavior. gets `civ` as first parameter, and the elements of `moreParameters`
-doEnd               | code - end desired behavior. gets `civ` as first parameter, and the elements of `moreParameters`.
-timeoutOrCondition  | number or code - behavior length in seconds, or condition to end behavior
-moreParameters      | array (optional) - more parameters to be passed to doStart and doEnd
-name                | string (optional) - behavior name
-description         | string (optional) - behavior description
-
-### grad_civs_loadout_fnc_setClothes
-
-Sets all clothes that civilians may wear. Overwrites value from CBA settings. Execute globally
-
-#### Syntax
-`[clothes] call grad_civs_loadout_fnc_setClothes`
-
-Parameter | Explanation
-----------|-----------------------------------------------------------
-clothes   | Array - All classnames of clothes that civilians may wear.
-
-### grad_civs_loadout_fnc_setFaces
-Sets all faces that civilians may have.  Overwrites value from CBA settings. Execute globally
-
-#### Syntax
-`[faces] call grad_civs_loadout_fnc_setFaces`
-
-Parameter | Explanation
-----------|---------------------------------------------------------
-faces     | Array - All classnames of faces that civilians may have.
-
-
-### grad_civs_loadout_fnc_setGoggles
-Sets all goggles that civilians may wear.  Overwrites value from CBA settings. Execute globally
-
-#### Syntax
-`[goggles] call grad_civs_loadout_fnc_setGoggles`
-
-Parameter | Explanation
-----------|-----------------------------------------------------------
-goggles   | Array - All classnames of goggles that civilians may wear.
-
-### grad_civs_loadout_fnc_setHeadgear
-Sets all headgear that civilians may wear.  Overwrites value from CBA settings. Execute globally
-
-#### Syntax
-`[headgear] call grad_civs_loadout_fnc_setHeadgear`
-
-Parameter | Explanation
-----------|-----------------------------------------------------------
-headgear  | Array - All classnames of clothes that civilians may wear.
-
-### grad_civs_loadout_fnc_setBackpacks
-Sets all backpacks that civilians may wear and sets probability. Overwrites value from CBA settings. Execute globally
-
-#### Syntax
-`[backpacks,probability] call grad_civs_loadout_fnc_setHeadgear`
-
-Parameter   | Explanation
-------------|-----------------------------------------------------------------------
-backpacks   | Array - All classnames of clothes that civilians may wear.
-probability | Number - Probability that civilian will wear a backpack. Default: 0.5.
-
-### grad_civs_cars_fnc_setVehicles
-Sets all vehicles that civilians may drive. Overwrites value from CBA settings. Execute globally
-
-#### Syntax
-`[vehicles] call grad_civs_voyage_fnc_setVehicles`
-
-Parameter | Explanation
-----------|-------------------------------------------------------------
-vehicles  | Array - All classnames of vehicles that civilians may drive.
-
-### grad_civs_common_fnc_addExclusionZone and grad_civs_common_fnc_addPopulationZone
-
-Prevent civilians from entering areas.
-
-Optionally whitelist areas using `[_area] call grad_civs_common_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_common_fnc_addExclusionZone` .
-
-*known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
-
-#### Syntax
-
-`[_trigger] call grad_civs_common_fnc_addExclusionZone;`  
 
 ## Development
 
-* we're using the CBA state machine implementation, see `addons/*/functions/sm_*/`
-* there's also some extensions being done to the CBA state machnie implementation to allow for nested states and other shenanigans, see addons/cba_statemachine
-* if you add states or transitions, please update the DOT files in `/docs`
-    * which is where you'll find the compiled SVG files, too.
-    * install [Graphviz](https://graphviz.gitlab.io/) and generate them using `dot -Tsvg states.gv > states.svg` or use an online editor   
+* we're using the CBA state machine implementation, see `addons/*/functions/fn_sm_*/`
+* there's also some extensions being done to the CBA state machnie implementation to allow for nested states and other shenanigans, see [`addons/cba_statemachine`](addons/cba_statemachine/README.md)
+* if you add states or transitions, do update the DOT files in `/docs` 
+* also, install [Graphviz](https://graphviz.gitlab.io/) and generate graphs using `dot -Tsvg states.gv > states.svg` etc or use an online editor   
 
-### state stot wot?
+### State Machines
 
-worry not, here comes a friendly introduction:
-
-**CBA state machine for dummies**
-
-#### what are state machines
-
-A state machine is a construct made of states and transitions between states. It can be visualized very easily as a directed graph with nodes (states) and edges (transitions). The state machine gets fed with a bunch of entities that inhabit the states. It periodically checks the states and moves the entities along the transitions from one state to the next.
-
-#### how do they look like with CBA
-
-Let's have a very simple example:
-
-```sqf
-MY_CIV_LIST = ["C_Offroad_01_F" createVehicle position player];
-_machine = [{MY_CIV_LIST}] call CBA_statemachine_fnc_create;
-_state_init = [_machine, { diag_log "init"; }, { diag_log "onEnter_init" }, { diag_log "onExit_init" }] call grad_civs_cba_statemachine_fnc_addState;
-_state_stuff = [_machine, {diag_log "wörk" }, {diag_log "onEnter_wörk"}, {}] call grad_civs_cba_statemachine_fnc_addState;
-_transition = [_machine, _state_init, _state_stuff, {CBA_missionTime > 30}, {diag_log "changing state" }] call grad_civs_cba_statemachine_fnc_addTransition;
-```
-
-this will print something like this to RPT:
-
-```
-onEnter_init
-init
-# … (until CBA_missionTime > 30)
-init
-onExit_init
-changing state
-onEnter_wörk
-wörk
-wörk
-# …
-```
-
-#### how do we use them
-
-In our case, and with CBA state machines, that means:
-
-* we have a bunch of state machines, chief of which is the *activities* state machine. It is implemented in `/functions/sm_activities/fn_activities.sqf`
-* states are added to it using [grad_civs_cba_statemachine_fnc_addState](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addState-sqf.html) .
-    * every state has a bunch of callbacks that are called with a civilian as parameter
-        * one is called periodically as long as the civ is in the state
-        * one is called when the civ enters the state
-        * one is called when the civ leaves the state
-* transitions are being added by using [grad_civs_cba_statemachine_fnc_addTransition](https://cbateam.github.io/CBA_A3/docs/files/statemachine/fnc_addTransition-sqf.html) (or fnc_addEventTransition for transitions triggered by CBA events)
-    * every transition is defined as a one-way connection between two states
-    * every transition gets two callbacks
-        * one is called periodically to check whether a civ can move along the transition
-        * the second is called once when the civ actually makes the transition
-* The state machine can get big quickly.
-    * The callbacks should not execute code directly, but execute in separate functions:
-        * states in `fn_sm_activities_state_<name>_(loop|enter|exit).sqf`
-        * transitions in `fn_sm_activities_trans_<state1>_<state2>_(condition|handler).sqf`
-    * this makes for easier Profiling using the [Arma Script Profiler](https://github.com/dedmen/ArmaScriptProfiler)
-    * and reduces file size for `fn_sm_activities.sqf`
-
-#### what it looks like
-
-This is the current structure (plz update when you change anything!):
+This is the current structure:
 
 ![activities state machine](docs/states.png)
+
+see `addons/*/fnc_sm*.sqf` for all the places where state machines are defined/added to.
