@@ -7,5 +7,12 @@ if (!(EGVAR(main,enabled))) exitWith {};
 if (isServer || CBA_isHeadlessClient) then {
 	["lifecycle", ["lfc_life"], FUNC(sm_emotions)] call EFUNC(common,augmentStateMachine);
 	["lifecycle", ["lfc_life"], FUNC(sm_activities)] call EFUNC(common,augmentStateMachine);
-	[QEGVAR(lifecycle,civ_added), FUNC(onCivAdded)] call CBA_fnc_addEventHandler;
+	[
+		QEGVAR(lifecycle,civ_added), 
+		{
+			{
+				[_x] call FUNC(onCivAdded);			
+			} forEach _this;
+		}
+	] call CBA_fnc_addEventHandler;
 };

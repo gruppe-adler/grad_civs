@@ -36,12 +36,15 @@ if (isServer) then {
     [
         QEGVAR(lifecycle,civ_added),
         {
-            params [["_civ", objNull, [objNull]]];
-            _civ setVariable [QGVAR(localAt), owner _civ, true];
-            _civ addEventHandler ["Local", {
-            	params ["_civ", ""];
+            {
+                private _civ = _x;
                 _civ setVariable [QGVAR(localAt), owner _civ, true];
-            }];
+                _civ addEventHandler ["Local", {
+                    params ["_civ", ""];
+                    _civ setVariable [QGVAR(localAt), owner _civ, true];
+                }];
+            } forEach _this;
+
         }
    ] call CBA_fnc_addEventHandler;
 };
