@@ -39,7 +39,7 @@ Civilians on separate islands can run into pathing problems. Avoid by creating e
 
 ## Detailed documentation
 
-should be found for the distinct modules: 
+All modules have their own READMEs that describe features, settings & APIs: 
 
 * [activities](addons/activities/README.md)
 * [cars](addons/cars/README.md)
@@ -58,29 +58,9 @@ should be found for the distinct modules:
 * [voyage](addons/voyage/README.md)
 * [zeus](addons/zeus/README.md)
 
-## Config
-
-Settings can be found as CBA Addon settings.
-
-![settings](docs/grad_civs-cba_settings.png)
-
-Attribute                | Default Value | Explanation
--------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
-maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
-spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
-
-## API
-
-see the various module READMEs 
-
-### EVENTS
+## global APIs
 
 #### global
-
-common events:
-
-    ["grad_civs_civKilled", { params ["_deathPos", "_killer", "_civilian"]; }] call CBA_fnc_addEventHandler;
-
 
     ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
 

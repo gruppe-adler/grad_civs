@@ -24,3 +24,13 @@ spawnOnlyWithPlayers     | true          | Spawn civilians only if players are c
 
 If civilians come under the control of grad-civs or are removed from grad-civs control, respectively.
 Argument is an *array of* civilians (i.e. units)
+
+```sqf
+["grad_civs_lifecycle_civ_added", { systemChat format ["new civs: %1", _this]}] call CBA_fnc_addEventHandler; 
+```
+
+#### `grad_civs_civKilled`
+
+```sqf 
+["grad_civs_civKilled", { params ["_deathPos", "_killer", "_civilian"]; }] call CBA_fnc_addEventHandler;
+```
