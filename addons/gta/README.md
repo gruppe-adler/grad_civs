@@ -28,3 +28,11 @@ Serves to create events around civilian-owned vehicles getting stolen by players
                 * THEN LATER no event will have been triggered
                 * AND the player switches seats with the driver
                     * THEN ONCE a global event will be triggered: `"grad_civs_vehicleTheft", [_vehicle, player]`
+
+## API
+
+### Events
+
+```sqf
+["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler; 
+```

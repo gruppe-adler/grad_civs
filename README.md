@@ -1,6 +1,6 @@
 # GRAD Civilians
 
-<img src="docs/gradcivs_logo.svg" width="400" />
+<img alt="logo: Gruppe Adler eagle being both posh and dorky" src="docs/gradcivs_logo.svg" width="400" />
 
 Spawn ambient civilians on the map.
 
@@ -57,13 +57,6 @@ All modules have their own READMEs that describe features, settings & APIs:
 * [transit](addons/transit/README.md)
 * [voyage](addons/voyage/README.md)
 * [zeus](addons/zeus/README.md)
-
-## global APIs
-
-#### global
-
-    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
-
 
 ## Development
 
