@@ -2,6 +2,18 @@
 
 Determine clothing etc for civilians
 
+## Settings
+
+
+Attribute                | Default Value | Explanation
+-------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
+backpackProbability      | 0.5            | Probability that a civilian will wear a backpack
+backpacks                | []            | All classnames of backpacks that civilians may wear.
+clothes                  | []            | All classnames of clothes that civilians may wear.
+faces                    | []            | All classnames of faces that civilians may have.
+goggles                  | []            | All classnames of goggles that civilians may wear.
+headgear                 | []            | All classnames of headgear that civilians may wear.
+
 ## API
 
 

@@ -4,6 +4,13 @@
 
 Manages basic life states. Emotions, special activities, 
 
+## Settings
+
+
+Attribute                | Default Value | Explanation
+-------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
+panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
+
 ## API
 
 ### grad_civs_activities_fnc_doCustomActivity

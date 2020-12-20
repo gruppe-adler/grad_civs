@@ -1,6 +1,6 @@
 # GRAD Civilians
 
-<img src="docs/gradcivs_logo.svg" width="400" />
+<img alt="logo: Gruppe Adler eagle being both posh and dorky" src="docs/gradcivs_logo.svg" width="400" />
 
 Spawn ambient civilians on the map.
 
@@ -39,7 +39,7 @@ Civilians on separate islands can run into pathing problems. Avoid by creating e
 
 ## Detailed documentation
 
-should be found for the distinct modules: 
+All modules have their own READMEs that describe features, settings & APIs: 
 
 * [activities](addons/activities/README.md)
 * [cars](addons/cars/README.md)
@@ -57,53 +57,6 @@ should be found for the distinct modules:
 * [transit](addons/transit/README.md)
 * [voyage](addons/voyage/README.md)
 * [zeus](addons/zeus/README.md)
-
-## Config
-
-Settings can be found as CBA Addon settings.
-
-![settings](docs/grad_civs-cba_settings.png)
-
-Attribute                | Default Value | Explanation
--------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
-animalTransportChance    | 0.4           | Probability that a suitable vehicle will carry some animals as cargo.
-automaticVehicleGroupSize| 1             | Allow vehicles to be filled according to capacity, ignoring *initialGroupSize* (0,1).
-backpackProbability      | 0.5            | Probability that a civilian will wear a backpack
-backpacks                | []            | All classnames of backpacks that civilians may wear.
-civClasses               | ["C_Man_1"]   | Unit classes to use for spawning civilians
-clothes                  | []            | All classnames of clothes that civilians may wear.
-debugFps                 | 0             | Toggles fps monitoring mode (0/1).
-enabled                  | false         | if grad_civs is enabled (false,true)
-faces                    | []            | All classnames of faces that civilians may have.
-goggles                  | []            | All classnames of goggles that civilians may wear.
-headgear                 | []            | All classnames of headgear that civilians may wear.
-initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
-maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
-maxCivsOnFoot            | 30            | Maximum number of civs on foot.
-maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
-minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
-minFps                   | 40            | Spawn new civilians only if fps are at or above N . *NOTE*: the fps are taken from the machine that spawns the civs, which may be a HC.
-panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
-spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
-spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
-spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
-vehicles                 | ["C_Van_01_fuel_F", "C_Hatchback_01_F", "C_Offroad_02_unarmed_F", "C_Truck_02_fuel_F", "C_Truck_02_covered_F", "C_Offroad_01_F", "C_SUV_01_F", "C_Van_01_transport_F", "C_Van_01_box_F"]            | All classnames of vehicles that civilians may drive.
-
-## API
-
-see the various module READMEs 
-
-### EVENTS
-
-#### global
-
-common events:
-
-    ["grad_civs_civKilled", { params ["_deathPos", "_killer", "_civilian"]; }] call CBA_fnc_addEventHandler;
-
-
-    ["grad_civs_vehicleTheft", { params ["_vehicle", "_thief"]; }] call CBA_fnc_addEventHandler;
-
 
 ## Development
 

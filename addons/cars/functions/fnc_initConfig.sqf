@@ -7,7 +7,7 @@ private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian dr
 [
     QGVAR(animalTransportChance),
     "SLIDER",
-    "Suitable vehicles that will have animals as cargo",
+    "Ratio of suitable vehicles that will have animals as cargo",
     _settingsGroup,
     [0, 1, 0.4, 0, true],
     true,
