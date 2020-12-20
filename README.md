@@ -66,7 +66,6 @@ Settings can be found as CBA Addon settings.
 
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
-debugFps                 | 0             | Toggles fps monitoring mode (0/1).
 initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
