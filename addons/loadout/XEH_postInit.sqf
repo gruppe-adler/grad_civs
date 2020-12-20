@@ -2,12 +2,13 @@
 
 if (!(EGVAR(main,enabled))) exitWith {};
 
-[QEGVAR(lifecycle,civ_added), {
-    params [["_civ", objNull, [objNull]]];
-    assert(!isNull _civ);
-    if (local _civ) then {
-        [_civ] call FUNC(civAddLoadout);
-    };
+[QEGVAR(lifecycle,civ_added), {    
+    {
+        private _civ = _x;
+        if (local _civ) then {
+            [_civ] call FUNC(civAddLoadout);
+        };
+    } forEach _this;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(broadcastFace), {
