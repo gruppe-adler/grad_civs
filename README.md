@@ -66,13 +66,7 @@ Settings can be found as CBA Addon settings.
 
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
-backpackProbability      | 0.5            | Probability that a civilian will wear a backpack
-backpacks                | []            | All classnames of backpacks that civilians may wear.
-clothes                  | []            | All classnames of clothes that civilians may wear.
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
-faces                    | []            | All classnames of faces that civilians may have.
-goggles                  | []            | All classnames of goggles that civilians may wear.
-headgear                 | []            | All classnames of headgear that civilians may wear.
 initialGroupSize         | 3             | Initial group size for civilians, between 1..N . Value may be any valid parameter to the `random` command.
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
