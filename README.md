@@ -70,7 +70,6 @@ backpackProbability      | 0.5            | Probability that a civilian will wea
 backpacks                | []            | All classnames of backpacks that civilians may wear.
 clothes                  | []            | All classnames of clothes that civilians may wear.
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
-enabled                  | false         | if grad_civs is enabled (false,true)
 faces                    | []            | All classnames of faces that civilians may have.
 goggles                  | []            | All classnames of goggles that civilians may wear.
 headgear                 | []            | All classnames of headgear that civilians may wear.
