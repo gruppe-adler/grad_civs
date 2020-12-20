@@ -71,7 +71,6 @@ initialGroupSize         | 3             | Initial group size for civilians, bet
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
-panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
 spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
