@@ -67,9 +67,7 @@ Settings can be found as CBA Addon settings.
 Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
-maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
-spawnDistancesResidents  | [500, 1000]   | Minimum and maximum distance to players that civilians living in houses spawn in.
 
 ## API
 
