@@ -68,7 +68,6 @@ Attribute                | Default Value | Explanation
 -------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------
 backpackProbability      | 0.5            | Probability that a civilian will wear a backpack
 backpacks                | []            | All classnames of backpacks that civilians may wear.
-civClasses               | ["C_Man_1"]   | Unit classes to use for spawning civilians
 clothes                  | []            | All classnames of clothes that civilians may wear.
 debugFps                 | 0             | Toggles fps monitoring mode (0/1).
 enabled                  | false         | if grad_civs is enabled (false,true)
@@ -79,8 +78,6 @@ initialGroupSize         | 3             | Initial group size for civilians, bet
 maxCivsInVehicles        | 10            | Maximum number of civs in vehicles.
 maxCivsOnFoot            | 30            | Maximum number of civs on foot.
 maxCivsResidents         | 20            | Maximum number of civs that are residents, mostly doing their thing at home.
-minCivUpdateTime         | 2             | Spawn new civilians only if their beheviour states get updated at least every N seconds. NOTE: each frame only one civ gets updated. Example: With 40fps and minCivUpdateTime=2, not more than 80 civs will be alive at any given time. This setting is meant to prevent civs from becoming too unresponsive.
-minFps                   | 40            | Spawn new civilians only if fps are at or above N . *NOTE*: the fps are taken from the machine that spawns the civs, which may be a HC.
 panicCooldown            | [15,120,240]  | Time it takes until a civilian relaxes after panicking (trivariate: [lowest, median, highest])
 spawnDistancesInVehicles | [1500,6000]   | Minimum and maximum distance to players that civilians in vehicles can spawn in.
 spawnDistancesOnFoot     | [1000,4500]   | Minimum and maximum distance to players that civilians on foot can spawn in.
