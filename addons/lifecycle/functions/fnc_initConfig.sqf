@@ -85,6 +85,7 @@ private _settingsGroup = ["GRAD Civs", "2) lifecycle - performance & spawning"];
         {
             removeMissionEventHandler ["EachFrame", _x];
         } forEach GVAR(efIDs);
+        GVAR(efIDs) = [];
     
         [] call FUNC(overclockStateMachines);
     },
