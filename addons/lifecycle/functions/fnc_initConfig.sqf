@@ -77,6 +77,17 @@ private _settingsGroup = ["GRAD Civs", "2) lifecycle - performance & spawning"];
     _settingsGroup,
     [1, 10, 1, 0],
     true,
-    {},
+    {
+        if (!CBA_isHeadlessClient) exitWith {};
+
+        ISNILS(GVAR(efIDs), []);
+        INFO_1("removing %1 previous addditional state machine ticks per frame", count GVAR(efIDs));
+        {
+            removeMissionEventHandler ["EachFrame", _x];
+        } forEach GVAR(efIDs);
+        GVAR(efIDs) = [];
+    
+        [] call FUNC(overclockStateMachines);
+    },
     false
 ] call CBA_fnc_addSetting;

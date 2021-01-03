@@ -13,6 +13,7 @@ PREP(getGlobalCivs);
 PREP(globalSpawnPass);
 PREP(initHCs);
 PREP(isInDistanceFromOtherPlayers);
+PREP(overclockStateMachines);
 PREP(sm_lifecycle);
 PREP(sm_lifecycle_state_death_enter);
 PREP(sm_lifecycle_state_despawn_enter);
