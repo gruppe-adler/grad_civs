@@ -29,4 +29,9 @@ if (count _spaces == 0) exitWith {};
 for "_i" from 0 to ((floor random count _spaces) + 1) do {
     private _a = createAgent [_animalClassName, [0, 0, 0], [], 5, "CAN_COLLIDE"];
     [_vehicle, _a] call grad_animalTransport_fnc_vehicle_loadAnimal;
+    [ // HACK as ACE will postinit or something its dragging code and then set the canCarry flag...
+        { _this setVariable ["ace_dragging_canCarry", false, true]; },
+        _a,
+        5
+    ] call CBA_fnc_waitAndExecute;
 };
