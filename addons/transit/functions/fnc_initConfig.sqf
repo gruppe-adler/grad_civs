@@ -22,6 +22,9 @@ private _settingsGroup = ["GRAD Civs", "a) transit - traffic between pre-set poi
     _settingsGroup,
     "[]",
     true,
-    {},
+    {
+        params ["_vehicles"];
+        GVAR(vehiclesArray) = [_vehicles] call EFUNC(common,parseCsv);
+    },
     false
 ] call CBA_fnc_addSetting;

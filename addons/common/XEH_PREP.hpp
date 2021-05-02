@@ -1,5 +1,6 @@
 PREP(addExclusionZone);
 PREP(addPopulationZone);
+PREP(arraySome);
 PREP(augmentStateMachine);
 PREP(civGetState);
 PREP(clearExclusionZones);

@@ -13,9 +13,12 @@ if ((random 1) >= _chance) exitWith {};
 
 if (isNil "grad_animalTransport_fnc_getSupportedAnimalConfigs") exitWith {
     WARNING("grad_animalTransport does not exist, not spawning animals");
-    grad_animalTransport_fnc_getSupportedAnimalConfigs = {[]}; // yes this is evil.
+    grad_animalTransport_fnc_getSupportedAnimalConfigs = {[]}; // yes this is evil, but this way the warning will be printed once only.
 };
 
+if ((GVAR(animalTransportVehiclesArray) isNotEqualTo []) && !([GVAR(animalTransportVehiclesArray), {_vehicle isKindOf _this#0}] call EFUNC(common,arraySome))) exitWith {
+    TRACE_1("animalTransportVehicles does not contain vehicle of type %1", typeOf _vehicle);
+};
 
 private _supportedAnimalConfigs = [] call grad_animalTransport_fnc_getSupportedAnimalConfigs;
 if (_supportedAnimalConfigs isEqualTo []) exitWith {};
