@@ -16,7 +16,7 @@ private _settingsGroup = ["GRAD Civs", "a) transit - traffic between pre-set poi
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(vehiclesSettingString),
+    QGVAR(vehicles),
     "EDITBOX",
     "Vehicle classes for transit (optional)",
     _settingsGroup,
@@ -24,7 +24,7 @@ private _settingsGroup = ["GRAD Civs", "a) transit - traffic between pre-set poi
     true,
     {
         params ["_vehicles"];
-        GVAR(vehicles) = [_vehicles] call EFUNC(common,parseCsv);
+        GVAR(vehiclesArray) = [_vehicles] call EFUNC(common,parseCsv);
     },
     false
 ] call CBA_fnc_addSetting;

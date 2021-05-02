@@ -5,7 +5,7 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian drivers"];
 
 [
-    QGVAR(vehiclesSettingString),
+    QGVAR(vehicles),
     "EDITBOX",
     "Vehicles that civilians may drive (class names).",
     _settingsGroup,
@@ -13,13 +13,13 @@ private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian dr
     true,
     {
         params ["_value"];
-        GVAR(vehicles) = [_value] call EFUNC(common,parseCsv);
+        GVAR(vehiclesArray) = [_value] call EFUNC(common,parseCsv);
     },
     false
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(animalTransportVehiclesSettingString),
+    QGVAR(animalTransportVehicles),
     "EDITBOX",
     "Vehicles with animals as cargo (class names)",
     _settingsGroup,
@@ -27,7 +27,7 @@ private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian dr
     true,
     {
         params ["_value"];
-        GVAR(animalTransportVehicles) = [_value] call EFUNC(common,parseCsv);
+        GVAR(animalTransportVehiclesArray) = [_value] call EFUNC(common,parseCsv);
     },
     false
 ] call CBA_fnc_addSetting;
