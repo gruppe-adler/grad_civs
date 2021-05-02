@@ -16,7 +16,7 @@ if (isNil "grad_animalTransport_fnc_getSupportedAnimalConfigs") exitWith {
     grad_animalTransport_fnc_getSupportedAnimalConfigs = {[]}; // yes this is evil, but this way the warning will be printed once only.
 };
 
-if ((GVAR(animalTransportVehicles) isNotEqualTo []) && !([GVAR(animalTransportVehicles), {_vehicle isKindOf _this#0}] call EFUNC(common, arraySome))) exitWith {
+if ((GVAR(animalTransportVehicles) isNotEqualTo []) && !([GVAR(animalTransportVehicles), {_vehicle isKindOf _this#0}] call EFUNC(common,arraySome))) exitWith {
     TRACE_1("animalTransportVehicles does not contain vehicle of type %1", typeOf _vehicle);
 };
 
