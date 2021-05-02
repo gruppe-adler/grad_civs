@@ -15,7 +15,7 @@ if (_vehicleClass != "") then {
     _vehicleClasses = [_vehicleClass];
 };
 if (_vehicleClasses isEqualTo []) then {
-    _vehicleClasses = [GVAR(vehicles)] call EFUNC(common,parseCsv);
+    _vehicleClasses = GVAR(vehicles);
 };
 if (_vehicleClasses isEqualTo []) exitWith {
     WARNING("will not spawn vehicles as zero vehicle classes are defined");

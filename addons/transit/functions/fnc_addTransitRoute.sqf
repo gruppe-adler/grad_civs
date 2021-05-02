@@ -13,10 +13,10 @@ assert(isServer);
 scopeName "main";
 
 if (_vehicleClasses isEqualTo []) then {
-    _vehicleClasses = [GVAR(vehicles)] call EFUNC(common,parseCsv);
+    _vehicleClasses = GVAR(vehicles);
 };
 if (_vehicleClasses isEqualTo []) then {
-    _vehicleClasses = [EGVAR(cars,vehicles)] call EFUNC(common,parseCsv);
+    _vehicleClasses = EGVAR(cars,vehicles);
 };
 if (_vehicleClasses isEqualTo []) then {
     WARNING_1("will not spawn vehicles in transit source %1 as no vehicle classes are defined anywhere");

@@ -5,6 +5,34 @@ INFO("initConfig running...");
 private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian drivers"];
 
 [
+    QGVAR(vehiclesSettingString),
+    "EDITBOX",
+    "Vehicles that civilians may drive (class names).",
+    _settingsGroup,
+    "[""C_Van_01_fuel_F"",""C_Hatchback_01_F"",""C_Truck_02_fuel_F"",""C_Truck_02_covered_F"",""C_Offroad_01_F"",""C_SUV_01_F"",""C_Van_01_transport_F"",""C_Van_01_box_F""]",
+    true,
+    {
+        params ["_value"];
+        GVAR(vehicles) = [_value] call EFUNC(common,parseCsv);
+    },
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(animalTransportVehiclesSettingString),
+    "EDITBOX",
+    "Vehicles with animals as cargo (class names)",
+    _settingsGroup,
+    "",
+    true,
+    {
+        params ["_value"];
+        GVAR(animalTransportVehicles) = [_value] call EFUNC(common,parseCsv);
+    },
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(animalTransportChance),
     "SLIDER",
     "Ratio of suitable vehicles that will have animals as cargo",
@@ -26,13 +54,3 @@ private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian dr
     false
 ] call CBA_fnc_addSetting;
 
-[
-    QGVAR(vehicles),
-    "EDITBOX",
-    "Classnames of vehicles that civilians may drive.",
-    _settingsGroup,
-    "[""C_Van_01_fuel_F"",""C_Hatchback_01_F"",""C_Truck_02_fuel_F"",""C_Truck_02_covered_F"",""C_Offroad_01_F"",""C_SUV_01_F"",""C_Van_01_transport_F"",""C_Van_01_box_F""]",
-    true,
-    {},
-    false
-] call CBA_fnc_addSetting;
