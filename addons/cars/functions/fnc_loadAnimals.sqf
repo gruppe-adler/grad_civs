@@ -11,7 +11,7 @@ if (isNull _vehicle) exitWith {
 
 if ((random 1) >= _chance) exitWith {};
 
-if (isNil "grad_animalTransport_fnc_common_getSupportedAnimalConfigs") exitWith {
+if (isNil "grad_animalTransport_common_fnc_getSupportedAnimalConfigs") exitWith {
     WARNING("grad_animalTransport does not exist, not spawning animals");
     grad_animalTransport_common_fnc_getSupportedAnimalConfigs = {[]}; // yes this is evil, but this way the warning will be printed once only.
 };
