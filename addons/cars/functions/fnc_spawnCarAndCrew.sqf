@@ -30,7 +30,7 @@ private _maxInitialGroupSize = EGVAR(patrol,initialGroupSize);
 private _automaticVehicleGroupSize = GVAR(automaticVehicleGroupSize);
 
 private _groupSize = (floor random _maxInitialGroupSize) + 1;
-if (_automtaicVehicleGroupSize) then {
+if (_automaticVehicleGroupSize) then {
     private _maxCount = count ((fullCrew [_veh, "", true]) select {
         !(_veh lockedCargo _x#2);
     });
