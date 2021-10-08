@@ -4,10 +4,8 @@ private _vec = vehicle _this;
 if (_vec != _this) then {
     GVAR(localCivs) = GVAR(localCivs) - (crew _vec);
     [QGVAR(civ_removed), (crew _vec)] call CBA_fnc_globalEvent;
-    private _count = {
-        _vec deleteVehicleCrew _x;
-        true
-    } count crew _vec;
+    private _count = count crew _vec;
+    deleteVehicleCrew _vec;
     deleteVehicle _vec;
     INFO_1("vehicle with %1 civs was despawned", _count);
 } else {
