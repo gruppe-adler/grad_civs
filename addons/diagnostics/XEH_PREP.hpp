@@ -1,5 +1,7 @@
+PREP(drawFlyScarePoly);
 PREP(initConfig);
 PREP(showFps);
+PREP(showFlyScarePoly);
 PREP(showHonkAtArea);
 PREP(showInfoLine);
 PREP(showOnMap_drawCivs);

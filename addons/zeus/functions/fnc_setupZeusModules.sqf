@@ -68,3 +68,17 @@ private _category = "GRAD Civilians";
     FUNC(module_addCar),
     QPATHTOF(ui\icon_module_addCar.paa)
 ] call zen_custom_modules_fnc_register;
+
+[
+    _category,
+    "Add Patrol",
+    FUNC(module_addPatrol),
+    QPATHTOF(ui\icon_module_addPatrol.paa)
+] call zen_custom_modules_fnc_register;
+
+[
+    _category,
+    "Add Resident",
+    FUNC(module_addResident),
+    QPATHTOF(ui\icon_module_addResident.paa)
+] call zen_custom_modules_fnc_register;

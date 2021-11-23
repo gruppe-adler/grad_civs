@@ -5,6 +5,7 @@ PREP(doCustomActivity);
 PREP(doingCustomActivity);
 
 PREP(doStop);
+PREP(getCustomActivity);
 PREP(isStopped);
 PREP(doCarryOn);
 

@@ -4,6 +4,7 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (hasInterface) then {
     call FUNC(showHonkAtArea);
+    call FUNC(showFlyScarePoly);
     call FUNC(showOnMap);
     call FUNC(showPinkArrows);
     call FUNC(showPointingHints);

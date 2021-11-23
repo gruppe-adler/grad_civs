@@ -40,7 +40,7 @@ private _position = _centerPosition;
 
 assert(_count > 0);
 
-LOG_3("taskPatrol start. waypoints to be added: %1, group: %2. previous waypoints: %3", _count, _group, count waypoints _group);
+LOG_4("taskPatrol start (road mode: %4). waypoints to be added: %1, group: %2. previous waypoints: %3", _count, _group, count waypoints _group, _findRoadPos);
 
 if !(local _group) exitWith {};
 [_group] call _clearWaypoints;
@@ -62,4 +62,4 @@ LOG("adding cycle wp close by group position");
 // NOTE : a cycle waypoint points to the *closest waypoint other than the previous one*! which means in our case: close to the initial waypoint
 [_group, _position vectorAdd [10, 0, 0]] call FUNC(addCycleWaypoint);
 
-LOG_2("taskPatrol end. waypoints for group %1 : %2", _group, count waypoints _group);
+LOG_3("taskPatrol end (road mode: %3). waypoints for group %1 : %2", _group, count waypoints _group, _findRoadPos);

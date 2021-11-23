@@ -4,6 +4,7 @@ GVAR(honkHandler) = [QEGVAR(interact,honking_at_poly), {
     if (!GVAR(showMisc)) exitWith {};
     [
         {
+            if (!isGameFocused || isGamePaused) exitWith {};
             params [
                 ["_args", [], [[]]],
                 ["_handle", 0, [0]]
@@ -18,8 +19,8 @@ GVAR(honkHandler) = [QEGVAR(interact,honking_at_poly), {
 
             { // show the honked_at "danger zone" in front of the vehicle
                 private _from = _poly select _forEachIndex;
-            	private _to = _poly select ((_forEachIndex + 1) mod (count _poly));
-            	drawLine3D [_from, _to, [1, 0.3, 0.5, 1]];
+                private _to = _poly select ((_forEachIndex + 1) mod (count _poly));
+                drawLine3D [ASLToAGL _from, ASLToAGL _to, [1, 0.3, 0.5, 1]];
             } forEach _poly;
         },
         0,
