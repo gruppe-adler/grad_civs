@@ -7,10 +7,10 @@ folder_optionals = true
 sig_version = 3
 
 files = [
-    "adlerkopp_32.paa",
-    "logo_64.paa",
-    "logo_64_w.paa",
-    "logo_1024_w.paa",
+    "logo_active_ca.paa",
+    "logo_ca.paa",
+    "overview_co.paa",
+    "logo_small_ca.paa"
     "mod.cpp",
     "README.md"
 ]
