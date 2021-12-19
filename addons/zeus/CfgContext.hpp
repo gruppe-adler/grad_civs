@@ -1,6 +1,6 @@
 class zen_context_menu_actions {
     class GRAD_Civs {
-        displayName = "GRAD Civs";
+        displayName = "GRAD Civilians";
         icon = PATHTOEF(main,ui\adlerkopp_white_64.paa);
         priority = 1;
         condition = QUOTE(_this call FUNC(context_condition_gradCivs));

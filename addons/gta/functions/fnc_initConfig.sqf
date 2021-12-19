@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "9) GTA - vehicles have owners now"];
+private _settingsGroup = ["GRAD Civilians", "9) GTA - vehicles have owners now"];
 
 [
     QGVAR(enabled),

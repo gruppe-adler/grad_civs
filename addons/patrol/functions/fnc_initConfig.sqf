@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "6) patrols - going for long walks"];
+private _settingsGroup = ["GRAD Civilians", "6) patrols - going for long walks"];
 
 [
     QGVAR(maxCivsOnFoot),

@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "7) cars - basic settings for civilian drivers"];
+private _settingsGroup = ["GRAD Civilians", "7) cars - basic settings for civilian drivers"];
 
 [
     QGVAR(vehicles),
