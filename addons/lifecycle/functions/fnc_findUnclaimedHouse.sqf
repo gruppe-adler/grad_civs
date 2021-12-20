@@ -58,7 +58,7 @@ if (_getClosest) then {
 };
 
 if (_idx != -1) then {
-_houses select _idx
+    _houses select _idx
 } else {
     objNull
 }

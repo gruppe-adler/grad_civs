@@ -21,7 +21,7 @@ private _pos = if (_forcePosition isEqualTo [0, 0, 0]) then {
 
     if (isNull _segment) then {
         INFO("could not find spawn position for car at this time");
-        breakOut "main";
+        grpNull breakOut "main";
     };
     getPos _segment
 } else {

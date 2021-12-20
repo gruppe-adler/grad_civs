@@ -23,7 +23,7 @@ private _position = if (_forcePosition isEqualTo [0, 0, 0]) then {
 
     if (isNull _house) exitWith {
         LOG("could not find house for patrol");
-        breakOut "main";
+        grpNull breakOut "main";
     };
     getPos _house
 } else { _forcePosition };
@@ -31,4 +31,4 @@ private _position = if (_forcePosition isEqualTo [0, 0, 0]) then {
 private _maxInitialGroupSize = GVAR(initialGroupSize);
 private _groupSize = (floor random _maxInitialGroupSize) + 1;
 
-_group = [_position, _groupSize, _house, "patrol"] call EFUNC(lifecycle,spawnCivilianGroup);
+[_position, _groupSize, _house, "patrol"] call EFUNC(lifecycle,spawnCivilianGroup);

@@ -22,10 +22,17 @@ private _house = if (_forcePosition isEqualTo [0, 0, 0]) then {
 };
 
 
-if (isNil "_house") exitWith {LOG("could not find spawn position for resident this time (nil)")};
-if (isNull _house) exitWith {LOG("could not find spawn position for resident this time (null)")};
+if (isNil "_house") exitWith {
+    ERROR("could not find spawn position for resident this time (nil)")
+    grpNull
+};
+if (isNull _house) exitWith {
+    if (_forcePosition isNotEqualTo [0, 0, 0]) then {
+        WARNING_1("could not find spawn position for resident near %1", _forcePosition);
+    } else {
+        LOG("could not find spawn position for resident this time (null)")
+    };
+    grpNull
+};
 
-private _group = [getPos _house, 1, _house, "reside"] call EFUNC(lifecycle,spawnCivilianGroup);
-if (isNull _group) exitWith {};
-
-_group
+[getPos _house, 1, _house, "reside"] call EFUNC(lifecycle,spawnCivilianGroup);
