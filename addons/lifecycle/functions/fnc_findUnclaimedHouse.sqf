@@ -45,8 +45,6 @@ private _filter = {
 
 private _idx = -1;
 if (_getClosest) then {
-    private _idx = _houses findIf _filter;
-} else {
     private _closestDist = 999999;
     {
         _xDist = (getPos _x) distance _position;
@@ -55,6 +53,8 @@ if (_getClosest) then {
             _idx = _forEachIndex;
         };
     } forEach (_houses select _filter);
+} else {
+    _idx = _houses findIf _filter;
 };
 
 if (_idx != -1) then {

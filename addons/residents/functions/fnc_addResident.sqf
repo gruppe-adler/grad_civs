@@ -18,7 +18,7 @@ private _house = if (_forcePosition isEqualTo [0, 0, 0]) then {
         "house"
     ] call EFUNC(lifecycle,findSpawnPosition);
 } else {
-    ([_forcePosition, 100] call EFUNC(lifecycle,findUnclaimedHouse))
+    ([_forcePosition, 100, true] call EFUNC(lifecycle,findUnclaimedHouse))
 };
 
 
