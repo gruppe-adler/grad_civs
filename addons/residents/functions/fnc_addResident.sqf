@@ -23,14 +23,14 @@ private _house = if (_forcePosition isEqualTo [0, 0, 0]) then {
 
 
 if (isNil "_house") exitWith {
-    ERROR("could not find spawn position for resident this time (nil)")
+    ERROR("could not find spawn position for resident this time (nil)");
     grpNull
 };
 if (isNull _house) exitWith {
     if (_forcePosition isNotEqualTo [0, 0, 0]) then {
         WARNING_1("could not find spawn position for resident near %1", _forcePosition);
     } else {
-        LOG("could not find spawn position for resident this time (null)")
+        LOG("could not find spawn position for resident this time (null)");
     };
     grpNull
 };
