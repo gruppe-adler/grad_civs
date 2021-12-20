@@ -4,4 +4,4 @@ params [
     ["_clickPos", [0, 0, 0], [[]]]
 ];
 
-[[], _clickPos] call EFUNC(voyage,addCarCrew);
+[[], [_clickPos#0, _clickPos#1, 0]] call EFUNC(voyage,addCarCrew);
