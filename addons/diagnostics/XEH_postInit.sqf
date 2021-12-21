@@ -6,7 +6,6 @@ if (hasInterface) then {
     call FUNC(showHonkAtArea);
     call FUNC(showFlyScarePoly);
     call FUNC(showOnMap);
-    call FUNC(showPinkArrows);
     call FUNC(showPointingHints);
     call FUNC(showInfoLine);
     call FUNC(showFps);

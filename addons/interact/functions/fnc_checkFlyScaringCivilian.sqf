@@ -8,9 +8,7 @@ if (!(_vic isKindOf "Air")) exitWith {
     WARNING_1("wtf, %1 not an air vic", _vic);
 };
 
-if (!(isEngineOn _vic) && ((getPos _vic)#2 < 0.5)) exitWith {
-    LOG_1("vehicle %1 is on the ground, engine off", _vic);
-};
+if (!(isEngineOn _vic) && ((getPos _vic)#2 < 0.5)) exitWith {};
 
 private _dangerPolyAirAGL = [_vic] call FUNC(getDangerPolyAir);
 _dangerPolyAirAGL params [
