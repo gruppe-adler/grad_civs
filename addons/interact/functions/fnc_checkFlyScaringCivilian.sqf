@@ -5,7 +5,11 @@ private _vic = vehicle ACE_player;
 if (!(_vic isKindOf "Air")) exitWith {
     // FIXME this will trigger when player dies! fix!
     // also after ejecting
-    WARNING("wtf, not an air vic");
+    WARNING_1("wtf, %1 not an air vic", _vic);
+};
+
+if (!(isEngineOn _vic) && ((getPos _vic)#2 < 0.5)) exitWith {
+    LOG_1("vehicle %1 is on the ground, engine off", _vic);
 };
 
 private _dangerPolyAirAGL = [_vic] call FUNC(getDangerPolyAir);
