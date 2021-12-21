@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-private _settingsGroup = ["GRAD Civs", "1) main"];
+private _settingsGroup = ["GRAD Civilians", "1) main"];
 
 [
     QGVAR(enabled),

@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civs", "5) residents - between housework and chats with the neighbors"];
+private _settingsGroup = ["GRAD Civilians", "5) residents - between housework and chats with the neighbors"];
 
 
 [
