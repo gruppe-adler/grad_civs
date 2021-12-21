@@ -46,7 +46,7 @@ if (_currentCustomActivity != "") then {
     [QGVAR(customActivity_start), [_civ], _civ] call CBA_fnc_targetEvent;
 };
 
-INFO_2("civ %1: starts custom activity %2", _civ, _id);
+LOG_2("civ %1: starts custom activity %2", _civ, _id);
 
 ([_civ] + _moreParameters) call _doStart;
 
