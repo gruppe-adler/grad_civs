@@ -7,5 +7,8 @@ PREP(showInfoLine);
 PREP(showOnMap_drawCivs);
 PREP(showOnMap);
 PREP(showPinkArrows);
+PREP(showPinkArrows_arrowAdd);
+PREP(showPinkArrows_arrowDelete);
+PREP(showPinkArrows_arrowEnsure);
 PREP(showPointingHints);
 PREP(updateInfoLine);
