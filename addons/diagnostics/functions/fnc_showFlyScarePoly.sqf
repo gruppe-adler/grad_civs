@@ -25,11 +25,10 @@ GVAR(flyscareHandler) = [QEGVAR(interact,flyscare_poly), {
     ] call CBA_fnc_addPerFrameHandler;
 
     ISNILS(GVAR(dangerPolyGroundHelpers), []);
-    { deleteVehicle _x } foreach GVAR(dangerPolyGroundHelpers);
+    { deleteVehicle _x } forEach GVAR(dangerPolyGroundHelpers);
     GVAR(dangerPolyGroundHelpers) = [];
     {
         GVAR(dangerPolyGroundHelpers) pushBackUnique (createSimpleObject ["Sign_Sphere100cm_F", _x, true]);
         private _y = [_x#0, _x#1, (_x#2) + 1];
-        GVAR(dangerPolyGroundHelpers) pushBackUnique (createSimpleObject ["Sign_Pointer_F", _y, true]);
     } forEach (_this#1);
 }] call CBA_fnc_addEventHandler;
