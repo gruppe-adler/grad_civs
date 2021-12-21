@@ -1,5 +1,7 @@
 #include "..\script_component.hpp"
 
+LOG_1("running showPinkArrows with %1 ", GVAR(showPinkArrows));
+
 if (!GVAR(showPinkArrows)) exitWith {
 	[QEGVAR(lifecycle,civ_added), GVAR(showWhatTheyThink_civ_added)] call CBA_fnc_removeEventHandler;
 	[QEGVAR(lifecycle,civ_removed), GVAR(showWhatTheyThinkciv_removed)] call CBA_fnc_removeEventHandler;
