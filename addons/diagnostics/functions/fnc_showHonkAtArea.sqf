@@ -1,7 +1,11 @@
 #include "..\script_component.hpp"
 
+[QEGVAR(interact,honking_at_poly), GVAR(honkHandler)] call CBA_fnc_removeEventHandler;
+GVAR(honkHandler) = -1;
+
+if (!GVAR(showMisc)) exitWith {};
+
 GVAR(honkHandler) = [QEGVAR(interact,honking_at_poly), {
-    if (!GVAR(showMisc)) exitWith {};
     [
         {
             if (!isGameFocused || isGamePaused) exitWith {};
@@ -24,6 +28,6 @@ GVAR(honkHandler) = [QEGVAR(interact,honking_at_poly), {
             } forEach _poly;
         },
         0,
-        [CBA_missionTime + 3, _this]
+        [CBA_missionTime + 5, _this]
     ] call CBA_fnc_addPerFrameHandler;
 }] call CBA_fnc_addEventHandler;

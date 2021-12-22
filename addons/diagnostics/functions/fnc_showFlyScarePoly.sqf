@@ -1,7 +1,14 @@
 #include "..\script_component.hpp"
 
+[QEGVAR(interact,flyscare_poly), GVAR(flyscareHandler)] call CBA_fnc_removeEventHandler;
+GVAR(flyscareHandler) = -1;
+
+ISNILS(GVAR(dangerPolyGroundHelpers), []);
+[] call FUNC(showFlyScarePoly_cleanupGroundHelpers);
+
+if (!GVAR(showMisc)) exitWith {};
+
 GVAR(flyscareHandler) = [QEGVAR(interact,flyscare_poly), {
-    if (!GVAR(showMisc)) exitWith {};
     [
         {
             if (!isGameFocused || isGamePaused) exitWith {};
@@ -24,11 +31,8 @@ GVAR(flyscareHandler) = [QEGVAR(interact,flyscare_poly), {
         [CBA_missionTime + 0.5, _this#0]
     ] call CBA_fnc_addPerFrameHandler;
 
-    ISNILS(GVAR(dangerPolyGroundHelpers), []);
-    { deleteVehicle _x } forEach GVAR(dangerPolyGroundHelpers);
-    GVAR(dangerPolyGroundHelpers) = [];
+    [] call FUNC(showFlyScarePoly_cleanupGroundHelpers);
     {
-        GVAR(dangerPolyGroundHelpers) pushBackUnique (createSimpleObject ["Sign_Sphere100cm_F", _x, true]);
-        private _y = [_x#0, _x#1, (_x#2) + 1];
+        [_x] call FUNC(showFlyScarePoly_addGroundHelper);
     } forEach (_this#1);
 }] call CBA_fnc_addEventHandler;

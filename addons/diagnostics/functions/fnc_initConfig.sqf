@@ -56,8 +56,10 @@ private _settingsGroup = ["GRAD Civilians", "c) diagnostics - debugging info"];
     false,
     false,
     {
-        // see showFlyScarePoly - need to clean up on setting swwitch
         { deleteVehicle _x } forEach GVAR(dangerPolyGroundHelpers);
+        [] call FUNC(showHonkAtArea);
+        [] call FUNC(showFlyScarePoly);
+
     },
     false
 ] call CBA_fnc_addSetting;
