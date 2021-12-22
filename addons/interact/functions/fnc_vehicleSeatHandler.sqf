@@ -35,7 +35,7 @@ if IS_DRIVER then {
 	LOG("is not driver!");
 	if (GVAR(roadDefaultActionEH) != -1) exitWith {
 		LOG_1("removing EH %1", GVAR(roadDefaultActionEH));
-		ACE_player removeEventHandler ["DefaultAction", GVAR(roadDefaultActionEH)];
+		ACE_player removeUserActionEventHandler ["DefaultAction", GVAR(roadDefaultActionEH)];
 		GVAR(defaultActionEH) = -1;
 	};
 	if (GVAR(airPfh) != -1) then {
