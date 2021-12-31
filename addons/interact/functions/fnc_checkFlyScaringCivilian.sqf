@@ -1,12 +1,8 @@
 #include "..\script_component.hpp"
 
-private _vic = vehicle ACE_player;
-
-if (!(_vic isKindOf "Air")) exitWith {
-    // FIXME this will trigger when player dies! fix!
-    // also after ejecting
-    WARNING_1("wtf, %1 not an air vic", _vic);
-};
+params [
+    ["_vic", objNull, [objNull]]
+];
 
 if (!(isEngineOn _vic) && ((getPos _vic)#2 < 0.5)) exitWith {};
 
