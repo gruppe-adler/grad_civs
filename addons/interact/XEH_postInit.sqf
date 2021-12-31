@@ -14,6 +14,8 @@ if (hasInterface) then {
     ACE_player addEventHandler ["GetInMan", FUNC(vehicleSeatHandler)];
     ACE_player addEventHandler ["SeatSwitchedMan", FUNC(vehicleSeatHandler)];
     ACE_player addEventHandler ["GetOutMan", FUNC(vehicleSeatHandler)];
+    ACE_player addEventHandler ["Killed", { FUNC(vehicleSeatHandler) }];
+    ACE_player addEventHandler ["Respawn", { FUNC(vehicleSeatHandler) }];
     [] call FUNC(vehicleSeatHandler);
 };
 
