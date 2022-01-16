@@ -19,6 +19,7 @@ if (_vehicleClasses isEqualTo []) then {
 };
 if (_vehicleClasses isEqualTo []) exitWith {
     WARNING("will not spawn vehicles as zero vehicle classes are defined");
+    grpNull
 };
 
 _vehicleClass = selectRandom _vehicleClasses;

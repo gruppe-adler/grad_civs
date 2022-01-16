@@ -34,16 +34,20 @@
         [
             _target,
             {
-                params ["_target", "_carPos", "_carVelocity"];
-
+                params [
+                    ["_target", objNull, [objNull]],
+                    ["_carPos", [0, 0, 0], [[]]],
+                    ["_carVelocity", [0, 0, 0], [[]]]
+                ];
+                private _civPos = getPos _target;
                 private _moveVectors = [
-                    [-(_carVelocity select 1), _carVelocity select 0, _carPos select 2],
-                    [_carVelocity select 1, -(_carVelocity select 0),  _carPos select 2]
+                    [-(_carVelocity#1), _carVelocity#0, 0],
+                    [_carVelocity#1, -(_carVelocity#0),  0]
                 ];
                 // go left or right, depending on where to get further from the vehicle
-                private _moveVector = _moveVectors select 0;
-                if ((_moveVector distance _carPos) > ((_moveVectors select 1) distance _carPos)) then {
-                    _moveVector = _moveVectors select 1;
+                private _moveVector = _moveVectors#0;
+                if (((_moveVectors#0 vectorAdd _civPos) distance _carPos) < ((_moveVectors#1 vectorAdd _civPos) distance _carPos)) then {
+                    _moveVector = _moveVectors#1;
                 };
                 _civ call EFUNC(activities,forcePanicSpeed);
                 _civ doMove ((position _civ) vectorAdd _moveVector);
@@ -53,6 +57,67 @@
             [_carPos, _carVelocity],
             "honked_at",
             format["am avoiding honking car, will resume activity at %1", _waitTime call EFUNC(common,formatNowPlusSeconds)]
+        ] call EFUNC(activities,doCustomActivity);
+    }
+] call CBA_fnc_addEventHandler;
+
+[
+    QGVAR(flown_over),
+    {
+        params [
+            ["_target", objNull],
+            ["_carPos", [0, 0, 0]],
+            ["_carVelocity", [0, 0, 0]]
+        ];
+        if (_target == ACE_player) exitWith {};
+        LOG_1("civ %1 is being flown over", _target);
+
+        private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
+        private _waitTime = linearConversion [0, 10, _recklessness, 15, 3, false];
+
+        if ([_target] call EFUNC(activities,doingCustomActivity)) exitWith {
+            LOG_1("civ %1 : not interrupting customn activity %2", _target, [_target] call EFUNC(activities,getCustomActivity));
+        }; // being flown over is _not_ interrupting, esp it should  not interrupt itself
+
+        [
+            _target,
+            {
+                params [
+                    ["_target", objNull, [objNull]],
+                    ["_carPos", [0, 0, 0], [[]]],
+                    ["_carVelocity", [0, 0, 0], [[]]]
+                ];
+                private _minRunDist = 20;
+                private _civPos = getPos _target; _civPos set [2, 0];
+
+                private _moveVector = [0, 0, 0];
+                if ((vectorMagnitude [_carVelocity#0, _carVelocity#1]) < 5) then { // decide for random direction and magnitude on low horizontal velocity
+                    _moveVector = (vectorNormalized [(random 2) - 1, (random 2) - 1]) vectorMultiply _minRunDist;
+                } else  {
+                    private _moveVectors = [
+                        [-(_carVelocity#1), _carVelocity#0, 0],
+                        [_carVelocity#1, -(_carVelocity#0),  0]
+                    ];
+                    // go left or right, depending on where to get further from the vehicle
+                    _moveVector = _moveVectors#0;
+                    if (((_moveVectors#0 vectorAdd _civPos) distance _carPos) < ((_moveVectors#1 vectorAdd _civPos) distance _carPos)) then {
+                        _moveVector = _moveVectors#1;
+                    };
+                    if ((vectorMagnitude _moveVector) < _minRunDist) then {
+                         _moveVector = (vectorNormalized _moveVector) vectorMultiply _minRunDist
+                    };
+                };
+                _target call EFUNC(activities,forcePanicSpeed);
+                _target doMove (_civPos vectorAdd _moveVector vectorAdd (_carVelocity vectorMultiply (random [0, 0.5, 1])));
+            },
+            {
+                params [["_target", objNull, [objNull]]];
+                doStop _target;
+            },
+            _waitTime,
+            [_carPos, _carVelocity],
+            "flown_over",
+            format["am avoiding air vehicle, will resume activity at %1", _waitTime call EFUNC(common,formatNowPlusSeconds)]
         ] call EFUNC(activities,doCustomActivity);
     }
 ] call CBA_fnc_addEventHandler;

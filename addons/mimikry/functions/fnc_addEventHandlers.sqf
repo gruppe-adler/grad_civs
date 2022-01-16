@@ -63,6 +63,15 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
+[QEGVAR(interact,flown_over), {
+    params ["_civ"];
+    if (_civ != ACE_player) exitWith {};
+    if !GVAR(playerActsAsCiv) exitWith {};
+
+    private _message = "a helicopter comes dangerously close";
+    [_message] call FUNC(showCivHint);
+}] call CBA_fnc_addEventHandler;
+
 [QEGVAR(activities,doStop), {
     params ["_civ"];
     if (_civ != ACE_player) exitWith {};

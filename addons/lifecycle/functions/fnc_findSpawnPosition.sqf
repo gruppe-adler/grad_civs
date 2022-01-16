@@ -44,7 +44,7 @@ private _result = {
                 }
             };
             case "house": {
-                ([_refPos, _halfSectorWidth] call FUNC(findUnclaimedHouse))
+                ([_refPos, _halfSectorWidth, false] call FUNC(findUnclaimedHouse))
             };
             default {
                 _refPos

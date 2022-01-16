@@ -20,6 +20,7 @@ GVAR(fpsHandler) = [
 
 GVAR(fpsPfh) = [
     {
+        if (!isGameFocused || isGamePaused) exitWith {};
         if (!GVAR(showFps)) exitWith {};
 
         private _text = "FPS ";

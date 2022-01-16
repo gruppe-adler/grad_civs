@@ -7,7 +7,9 @@ if (isServer || CBA_isHeadlessClient) then {
         QEGVAR(lifecycle,localSpawn),
         {
             ISNILS(GVAR(maxCivsOnFoot), GVAR(maxCivsOnFoot));
+            LOG("checking for maxCivsOnFoot / whether i am allowed to spawn more patrols");
             if ((count (["patrol"] call EFUNC(lifecycle,getGlobalCivs))) < GVAR(maxCivsOnFoot)) then {
+                LOG("calling addFootsy");
                 [ALL_HUMAN_PLAYERS] call FUNC(addFootsy);
             };
         }

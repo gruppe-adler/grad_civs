@@ -1,14 +1,21 @@
 #include "..\script_component.hpp"
 
+LOG_1("running showPinkArrows with %1 ", GVAR(showPinkArrows));
+
+if (!GVAR(showPinkArrows)) exitWith {
+	[QEGVAR(lifecycle,civ_added), GVAR(showWhatTheyThink_civ_added)] call CBA_fnc_removeEventHandler;
+	[QEGVAR(lifecycle,civ_removed), GVAR(showWhatTheyThinkciv_removed)] call CBA_fnc_removeEventHandler;
+
+	{
+		[_x] call FUNC(showPinkArrows_arrowDelete);
+	} forEach ([] call EFUNC(lifecycle,getGlobalCivs));
+};
+
 GVAR(showWhatTheyThink_civ_added) = [
 	QEGVAR(lifecycle,civ_added),
 	{
-		if (!GVAR(showPinkArrows)) exitWith {};
-		SCRIPT("showWhatTheyThink_civ_added");
 		{
-			private _civ = _x;
-			private _arrow = createSimpleObject ["Sign_Arrow_Large_Pink_F", [0, 0, 0]];
-			_arrow attachTo [_civ, [0, 0, 5]];
+			[_x] call FUNC(showPinkArrows_arrowEnsure);
 		} forEach _this;
 	}
 ] call CBA_fnc_addEventHandler;
@@ -16,12 +23,12 @@ GVAR(showWhatTheyThink_civ_added) = [
 GVAR(showWhatTheyThinkciv_removed) = [
 	QEGVAR(lifecycle,civ_removed),
 	{
-		SCRIPT("showWhatTheyThink_civ_removed");
 		{
-			private _civ = _x;
-			{
-				deleteVehicle _x;
-			} forEach (attachedObjects _civ);
+			[_x] call FUNC(showPinkArrows_arrowDelete);
 		} forEach _this;
 	}
 ] call CBA_fnc_addEventHandler;
+
+{
+	[_x] call FUNC(showPinkArrows_arrowEnsure);
+} forEach ([] call EFUNC(lifecycle,getGlobalCivs));

@@ -8,7 +8,7 @@ private _category = "GRAD Civilians";
 
 [
     _category,
-    "Add Exclusion Zone from Area Marker",
+    "From Area Marker, Add Exclusion Zone",
     {
         params [
             ["_clickPos", [0, 0, 0]]
@@ -36,7 +36,7 @@ private _category = "GRAD Civilians";
 
 [
     _category,
-    "Add Population Zone from Area Marker",
+    "From Area Marker, Add Population Zone",
     {
         params [
             ["_clickPos", [0, 0, 0]]
@@ -64,7 +64,21 @@ private _category = "GRAD Civilians";
 
 [
     _category,
-    "Add Car (Voyager)",
+    "Add Civilian Car (Voyager)",
     FUNC(module_addCar),
     QPATHTOF(ui\icon_module_addCar.paa)
+] call zen_custom_modules_fnc_register;
+
+[
+    _category,
+    "Add Civilian Patrol",
+    FUNC(module_addPatrol),
+    QPATHTOF(ui\icon_module_addPatrol.paa)
+] call zen_custom_modules_fnc_register;
+
+[
+    _category,
+    "Add Civilian Resident",
+    FUNC(module_addResident),
+    QPATHTOF(ui\icon_module_addResident.paa)
 ] call zen_custom_modules_fnc_register;

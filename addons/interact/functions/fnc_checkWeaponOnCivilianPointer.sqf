@@ -23,7 +23,7 @@ private _point = {
             _counter = 2 min (_counter + 1);
             [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
             if (_counter == 2) then {
-                [QGVAR(pointed_at_inc), [_x, player], [_x]] call CBA_fnc_targetEvent;
+                [QGVAR(pointed_at_inc), [_x, ACE_player], [_x]] call CBA_fnc_targetEvent;
                 [QGVAR(pointing), _x] call CBA_fnc_localEvent;
             };
         };
@@ -31,10 +31,10 @@ private _point = {
 };
 
 // NOTE: we need to use animationState, as !weaponLowered does *not* mean "weaponRaised"
-private _weaponRaisedOnFoot = (alive player) &&
-    {!weaponLowered player} &&
-    {vehicle player == player} &&
-    {"sras" in (animationState player)};
+private _weaponRaisedOnFoot = (alive ACE_player) &&
+    {!weaponLowered ACE_player} &&
+    {vehicle ACE_player == ACE_player} &&
+    {"sras" in (animationState ACE_player)};
 
 // ----------------------------------------------------------------
 
@@ -59,7 +59,7 @@ if (_target isKindOf "Car") then {
 };
 
 private _scaredPointees = _pointees select {
-    (_x in _unitsFromCar) || {[player, _x] call FUNC(checkWeaponOnCivilianPerception)};
+    (_x in _unitsFromCar) || {[ACE_player, _x] call FUNC(checkWeaponOnCivilianPerception)};
 };
 
 
@@ -68,7 +68,7 @@ _scaredPointees call _point;
 
 // maybe someone new here I can threaten?
 private _possibleCivs = [];
-if (((_target isKindOf "Car") || (_target isKindOf "Man")) && {[player, _target] call FUNC(checkWeaponOnCivilianPerception)}) then {    
+if (((_target isKindOf "Car") || (_target isKindOf "Man")) && {[ACE_player, _target] call FUNC(checkWeaponOnCivilianPerception)}) then {
     _possibleCivs = (crew _target);
 };
 

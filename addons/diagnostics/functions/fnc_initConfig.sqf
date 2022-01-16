@@ -55,6 +55,11 @@ private _settingsGroup = ["GRAD Civilians", "c) diagnostics - debugging info"];
     _settingsGroup,
     false,
     false,
-    FUNC(showHonkAtArea),
+    {
+        { deleteVehicle _x } forEach GVAR(dangerPolyGroundHelpers);
+        [] call FUNC(showHonkAtArea);
+        [] call FUNC(showFlyScarePoly);
+
+    },
     false
 ] call CBA_fnc_addSetting;

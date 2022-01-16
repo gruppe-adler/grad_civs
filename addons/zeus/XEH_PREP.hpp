@@ -9,5 +9,7 @@ PREP(context_statement_dismissCiv);
 PREP(context_statement_doCarryOn);
 PREP(context_statement_doStop);
 PREP(module_addCar);
+PREP(module_addPatrol);
+PREP(module_addResident);
 PREP(setupZeusModules);
 PREP(selectGradCivs);

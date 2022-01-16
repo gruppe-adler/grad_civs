@@ -11,14 +11,12 @@ if (hasInterface) then {
         [] call FUNC(checkWeaponOnCivilianPointer);
     }, 0.5, []] call CBA_fnc_addPerFrameHandler;
 
-    [{
-        if (!isGameFocused || isGamePaused) exitWith {};
-        if ([] call FUNC(isPlayerHonking)) then {
-            [] call FUNC(checkHonkingOnCivilian);
-        };
-    }, 0.1, []] call CBA_fnc_addPerFrameHandler;
-
-
+    ACE_player addEventHandler ["GetInMan", FUNC(vehicleSeatHandler)];
+    ACE_player addEventHandler ["SeatSwitchedMan", FUNC(vehicleSeatHandler)];
+    ACE_player addEventHandler ["GetOutMan", FUNC(vehicleSeatHandler)];
+    ACE_player addEventHandler ["Killed", { FUNC(vehicleSeatHandler) }];
+    ACE_player addEventHandler ["Respawn", { FUNC(vehicleSeatHandler) }];
+    [] call FUNC(vehicleSeatHandler);
 };
 
 [] call FUNC(addInteractEventHandlers);
