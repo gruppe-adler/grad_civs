@@ -1,13 +1,14 @@
 #include "..\script_component.hpp"
 
-private _playerPos = getPosASL ACE_player;
-private _playerVelocity = velocity ACE_player;
+private _playerUnit = call CBA_fnc_currentUnit;
+private _playerPos = getPosASL _playerUnit;
+private _playerVelocity = velocity _playerUnit;
 private _speed = vectorMagnitude _playerVelocity;
 if (_speed < 4) then { // amplify low values to have usable honking effect distances at low speeds
     if (_speed >= 0) then {
-        _playerVelocity = (vectorDir ACE_player) vectorMultiply 4;
+        _playerVelocity = (vectorDir _playerUnit) vectorMultiply 4;
     } else {
-        _playerVelocity = (vectorDir ACE_player) vectorMultiply -3;
+        _playerVelocity = (vectorDir _playerUnit) vectorMultiply -3;
     };
 };
 
@@ -18,7 +19,7 @@ if (_speed < 4) then { // amplify low values to have usable honking effect dista
 //      * if speed is high, polygon will open ~11° to the side (tan is about 0.20)
 //    * if player is NOT on a road  polygon will open ~15° to the side (tan is about 0.25)
 
-private _playerIsOnRoad = isOnRoad ACE_player;
+private _playerIsOnRoad = isOnRoad _playerUnit;
 private _narrowingFactor = 0.25;
 if (_playerIsOnRoad) then {
      _narrowingFactor = linearConversion [4, 25, vectorMagnitude _playerVelocity, 1, 0.20, true];

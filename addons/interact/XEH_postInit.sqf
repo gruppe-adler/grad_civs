@@ -10,12 +10,12 @@ if (hasInterface) then {
         if (!isGameFocused || isGamePaused) exitWith {};
         [] call FUNC(checkWeaponOnCivilianPointer);
     }, 0.5, []] call CBA_fnc_addPerFrameHandler;
-
-    ACE_player addEventHandler ["GetInMan", FUNC(vehicleSeatHandler)];
-    ACE_player addEventHandler ["SeatSwitchedMan", FUNC(vehicleSeatHandler)];
-    ACE_player addEventHandler ["GetOutMan", FUNC(vehicleSeatHandler)];
-    ACE_player addEventHandler ["Killed", { FUNC(vehicleSeatHandler) }];
-    ACE_player addEventHandler ["Respawn", { FUNC(vehicleSeatHandler) }];
+    private _playerUnit = call CBA_fnc_currentUnit;
+    _playerUnit addEventHandler ["GetInMan", FUNC(vehicleSeatHandler)];
+    _playerUnit addEventHandler ["SeatSwitchedMan", FUNC(vehicleSeatHandler)];
+    _playerUnit addEventHandler ["GetOutMan", FUNC(vehicleSeatHandler)];
+    _playerUnit addEventHandler ["Killed", { FUNC(vehicleSeatHandler) }];
+    _playerUnit addEventHandler ["Respawn", { FUNC(vehicleSeatHandler) }];
     [] call FUNC(vehicleSeatHandler);
 };
 

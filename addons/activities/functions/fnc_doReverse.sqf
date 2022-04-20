@@ -13,7 +13,7 @@ if (!(local _civ)) exitWith {
     ] call CBA_fnc_targetEvent;
 };
 
-if (_civ == ACE_player) exitWith {};
+if (_civ == (call CBA_fnc_currentUnit)) exitWith {};
 
 [
     _civ,

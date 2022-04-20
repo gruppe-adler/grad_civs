@@ -18,6 +18,7 @@ PREP(interact_carryOnCondition);
 PREP(interact_stopAction);
 PREP(interact_stopCondition);
 PREP(vehicleSeatHandler);
+PREP(playerIsDriver);
 PREP(sm_activities_helper_freeCondition);
 PREP(sm_activities_helper_surrenderCondition);
 PREP(sm_activities_state_surrendered_enter);

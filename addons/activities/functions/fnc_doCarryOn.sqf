@@ -12,6 +12,6 @@ if (!(local _object)) exitWith {
     ] call CBA_fnc_targetEvent;
 };
 
-if (_object == ACE_player) exitWith {};
+if (_object == (call CBA_fnc_currentUnit)) exitWith {};
 
 _object call FUNC(endCustomActivity);

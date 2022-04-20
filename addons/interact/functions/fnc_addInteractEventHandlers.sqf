@@ -1,8 +1,9 @@
 #include "..\script_component.hpp"
+#define EXITIFLOCALPLAYER(t) if (t == (call CBA_fnc_currentUnit)) exitWith {}
 
 [QGVAR(pointed_at_inc), {
     params ["_civ", "_pointingPlayer"];
-    if (_civ == ACE_player) exitWith {};
+    EXITIFLOCALPLAYER(_civ);
     private _currentCount = _civ getVariable [QGVAR(pointedAtCount), 0];
     _civ setVariable [QGVAR(pointedAtCount), _currentCount + 1, true];
     _civ setVariable [QGVAR(pointingPlayer), _pointingPlayer]; // local is enough, used for immediate effect
@@ -10,7 +11,7 @@
 
 [QGVAR(pointed_at_dec), {
     params ["_civ"];
-    if (_civ == ACE_player) exitWith {};
+    EXITIFLOCALPLAYER(_civ);
     private _currentCount = _civ getVariable [QGVAR(pointedAtCount), 0];
     assert(_currentCount > 0);
     if (_currentCount < 1) then {_currentCount = 1;};
@@ -25,7 +26,7 @@
             ["_carPos", [0, 0, 0]],
             ["_carVelocity", [0, 0, 0]]
         ];
-        if (_target == ACE_player) exitWith {};
+        EXITIFLOCALPLAYER(_target);
         INFO_1("civ %1 is being honked at", _target);
 
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
@@ -69,7 +70,7 @@
             ["_carPos", [0, 0, 0]],
             ["_carVelocity", [0, 0, 0]]
         ];
-        if (_target == ACE_player) exitWith {};
+        EXITIFLOCALPLAYER(_target);
         LOG_1("civ %1 is being flown over", _target);
 
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
@@ -127,6 +128,6 @@
         ["_target", objNull, [objNull]],
         ["_reverseTargetPos", [0, 0, 0], [[]]]
     ];
-    if (_target == ACE_player) exitWith {};
+    EXITIFLOCALPLAYER(_target);
     [_target, _reverseTargetPos] call EFUNC(activities,doReverse);
 }] call CBA_fnc_addEventHandler;
