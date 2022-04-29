@@ -4,7 +4,12 @@ if (!(EGVAR(main,enabled))) exitWith {};
 
 if (hasInterface) then {
     call FUNC(aceInteractWrapper);
-    call FUNC(addCivInteractions);
+    if (isNil "ace_interact_menu_fnc_createAction") then {
+        WARNING("ACE interact not loaded - this limits interaction with civilians");
+    } else {
+        call FUNC(addCivInteractions);
+    };
+
 
     [{
         if (!isGameFocused || isGamePaused) exitWith {};
