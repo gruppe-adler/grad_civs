@@ -45,7 +45,9 @@ private _dangerPolyInPlayerHeight = _dangerPoly apply {
     [_x#0, _x#1, _playerPos#2]
 };
 
-private _nearCivs = (_playerPos nearEntities [["Man"], 200]) arrayIntersect ([] call EFUNC(lifecycle,getGlobalCivs));
+private _nearMen = _vic nearEntities [["Man"], 200];
+private _globalCivs = [] call EFUNC(lifecycle,getGlobalCivs);
+private _nearCivs = _nearMen arrayIntersect (_globalCivs + (ALL_HUMAN_PLAYERS select {(side _x) == civilian}));
 {
     private _civPos = getPosASL _x;
     private _civPosInPlayerHeight = [_civPos#0, _civPos#1, _playerPos#2];
