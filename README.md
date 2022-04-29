@@ -21,7 +21,7 @@ The mod is meant to make use of Headless Clients, no extra configuration necessa
 ## Dependencies
 
 * [CBA_A3](https://github.com/CBATeam/CBA_A3)
-* optional: [ACE3](https://github.com/acemod/ACE3)
+* optional: [ACE3](https://github.com/acemod/ACE3) for some interactions
 * optional: [ZEN](https://github.com/zen-mod/ZEN/) adds some context menus for Zeus
 * optional: [Gruppe Adler Mod](https://github.com/gruppe-adler/gruppe_adler_mod/) to enable having livestock onto trucks
 
