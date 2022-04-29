@@ -10,8 +10,4 @@ if (_structured == "") then {
 };
 
 [_structured] call ace_common_fnc_displayTextStructured;
-if (GVAR(INFOCHANNEL) == 0) then {
-    systemChat _plain;
-} else {
-    player customChat [GVAR(INFOCHANNEL), _plain];
-};
+systemChat _plain;

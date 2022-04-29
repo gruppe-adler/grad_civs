@@ -10,7 +10,7 @@ if (_waitTime == -1) then {
 };
 
 if (local _object) exitWith {
-    if (_object == ACE_player) exitWith {};
+    if (_object == (call CBA_fnc_currentUnit)) exitWith {};
     [
         _object,
         {

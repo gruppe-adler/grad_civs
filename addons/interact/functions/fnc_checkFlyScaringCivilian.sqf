@@ -53,7 +53,9 @@ if (count _dangerPolyGround < 3) exitWith {
 // project onto z := 0
 _dangerPolyGround = _dangerPolyGround apply {[_x#0, _x#1, 0]};
 
-private _nearCivs = (_vic nearEntities [["Man"], 200]) arrayIntersect ([] call EFUNC(lifecycle,getGlobalCivs));
+private _nearMen = _vic nearEntities [["Man"], 200];
+private _globalCivs = [] call EFUNC(lifecycle,getGlobalCivs);
+private _nearCivs = _nearMen arrayIntersect (_globalCivs + (ALL_HUMAN_PLAYERS select {(side _x) == civilian}));
 private _endangeredCivs = _nearCivs select {
     private _civPosGround = (getPos _x); _civPosGround set [2, 0];
     _civPosGround inPolygon _dangerPolyGround

@@ -21,7 +21,7 @@ ISNILS(GVAR(actionIds), []);
 	};
 
 	private _camPos = AGLToASL positionCameraToWorld [0, 0, 0];
-	private _camDir = getCameraViewDirection ACE_player;
+	private _camDir = getCameraViewDirection (call CBA_fnc_currentUnit);
 
 	{
 		private _opacity = linearConversion [500, 50, _camPos distance _x, 0.2, 1, true];
@@ -30,7 +30,7 @@ ISNILS(GVAR(actionIds), []);
 		private _diff = (getPosASL _x) vectorDiff _camPos;
 		private _civAngle = acos (_camDir vectorCos _diff);
 
-		private _fov = deg getObjectFOV ACE_player;
+		private _fov = deg getObjectFOV (call CBA_fnc_currentUnit);
 
 		if (_civAngle < _fov) then {
 

@@ -1,20 +1,20 @@
 #include "..\script_component.hpp"
+#define EXITIFNOTLOCALPLAYERCIV(unit) if (!GVAR(playerActsAsCiv) || {unit != (call CBA_fnc_currentUnit)}) exitWith {}
 
 ["ace_interaction_sendAway", {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     addCamShake [4, 0.5, 5];
 
     private _message = "you are being told to GO AWAY";
     [_message] call FUNC(showCivHint);
+
 }] call CBA_fnc_addEventHandler;
 
 ["ace_interaction_getDown", {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     addCamShake [4, 0.5, 5];
 
@@ -22,11 +22,9 @@
     [_message] call FUNC(showCivHint);
 }] call CBA_fnc_addEventHandler;
 
-
 [QEGVAR(interact,pointed_at_inc), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _newCount = (_civ getVariable [QGVAR(pointedAtCount), 0]) + 1;
     _civ setVariable [QGVAR(pointedAtCount), _newCount];
@@ -37,8 +35,7 @@
 
 [QEGVAR(interact,pointed_at_dec), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _newCount = (_civ getVariable [QGVAR(pointedAtCount), 0]) - 1;
     if (_newCount < 0) then {
@@ -56,8 +53,7 @@
 
 [QEGVAR(interact,honked_at), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _message = "a car honks at you";
     [_message] call FUNC(showCivHint);
@@ -65,8 +61,7 @@
 
 [QEGVAR(interact,flown_over), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _message = "a helicopter comes dangerously close";
     [_message] call FUNC(showCivHint);
@@ -74,8 +69,7 @@
 
 [QEGVAR(activities,doStop), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _message = "someone gestures at you to stop";
     [_message] call FUNC(showCivHint);
@@ -83,8 +77,7 @@
 
 [QEGVAR(activities,doReverse), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _message = "someone tells you to reverse";
     [_message] call FUNC(showCivHint);
@@ -92,8 +85,7 @@
 
 [QEGVAR(activities,doCarryOn), {
     params ["_civ"];
-    if (_civ != ACE_player) exitWith {};
-    if !GVAR(playerActsAsCiv) exitWith {};
+    EXITIFNOTLOCALPLAYERCIV(_civ);
 
     private _message = "someone tells you to carry on";
     [_message] call FUNC(showCivHint);

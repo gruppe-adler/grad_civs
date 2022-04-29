@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 // NOTE: on Eject, assignedVehicleRole may still return "driver"
-#define IS_DRIVER (assignedDriver vehicle ACE_player == ACE_player)
+#define IS_DRIVER (call FUNC(playerIsDriver))
 
 // to be called whenever vehicle status changes
 
@@ -18,12 +18,14 @@ if (GVAR(airPfh) != -1) then {
 	GVAR(airPfh) = -1;
 };
 
-LOG_1("vehicleSeatHandler %1", ACE_player);
+private _playerVehicle = vehicle (call CBA_fnc_currentUnit);
+
+LOG_1("vehicleSeatHandler %1", (call CBA_fnc_currentUnit));
 
 if IS_DRIVER then {
-	LOG_1("is driver! checking vehicle %1", vehicle ACE_player);
-	if ((vehicle ACE_player) isKindOf "Car") then {
-		LOG_1("adding roadDefaultActionEH for %1", vehicle ACE_player);
+	LOG_1("is driver! checking vehicle %1", _playerVehicle);
+	if (_playerVehicle isKindOf "Car") then {
+		LOG_1("adding roadDefaultActionEH for %1", _playerVehicle);
 		if (GVAR(roadDefaultActionEH) != -1) exitWith {
 			WARNING("roadDefaultActionEH already set");
 		};
@@ -32,7 +34,7 @@ if IS_DRIVER then {
 				WARNING("DefaultAction EH called while not being driver. this is not supposed to happen. removing EH...");
 				[] call FUNC(vehicleSeatHandler);
 			};
-			private _vic = vehicle ACE_player;
+			private _vic = vehicle (call CBA_fnc_currentUnit);
 			if (!(_vic isKindOf "Car")) exitWith {
 				WARNING_1("wtf %1 is not a car", _vic);
 				[] call FUNC(vehicleSeatHandler);
@@ -40,8 +42,8 @@ if IS_DRIVER then {
 			[] call FUNC(checkHonkingOnCivilian);
 		}];
 	};
-	if ((vehicle ACE_player) isKindOf "Air") then {
-		LOG_1("adding airPfh for %1", vehicle ACE_player);
+	if (_playerVehicle isKindOf "Air") then {
+		LOG_1("adding airPfh for %1", _playerVehicle);
 		if (GVAR(airPfh) != -1) exitWith {
 			WARNING("airPfh already set");
 		};
@@ -50,7 +52,7 @@ if IS_DRIVER then {
 				WARNING("DefaultAction EH called while not being driver. this is not supposed to happen. removing EH...");
 				[] call FUNC(vehicleSeatHandler);
 			};
-			private _vic = vehicle ACE_player;
+			private _vic = vehicle (call CBA_fnc_currentUnit);
 			if (!(_vic isKindOf "Air")) exitWith {
 				// FIXME this will trigger when player dies! fix!
 				// also after ejecting
