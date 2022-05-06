@@ -2,11 +2,11 @@
 
 params [
 	["_polygon", [], [[]]],
-	["_polyGround", [], [[]]]
+	["", [], [[]]]
 ];
 
 _polygon params [
-	"_center",
+	"",
 	"_close",
 	"_farAhead",
 	"_far"

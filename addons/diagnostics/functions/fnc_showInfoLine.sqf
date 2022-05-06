@@ -1,18 +1,18 @@
 #include "..\script_component.hpp"
 
 ISNILS(GVAR(civStateFormat), 0);
-ISNILS(GVAR(actionIds), []);
+ISNILS(GVAR(userActionIds), []);
 
 [{
 	params [
-		["_args", [], [[]]],
+		["", [], [[]]],
 		["_handle", 0, [0]]
 	];
 	if (!(GVAR(showInfoLine))) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
 
 	if (!isGameFocused || isGamePaused) exitWith {};
 
-	_filterTimeVars = {
+	private _filterTimeVars = {
 		((allVariables _this) select {
 			(_x find "grad_civs_state_time_") > -1
 		} apply {
@@ -61,7 +61,7 @@ ISNILS(GVAR(actionIds), []);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 if (GVAR(showInfoLine)) then {
-	if (!(GVAR(actionIds) isEqualTo [])) exitWith {};
+	if (!(GVAR(userActionIds) isEqualTo [])) exitWith {};
 
     private _addCivAction = {
         params [
@@ -81,7 +81,7 @@ if (GVAR(showInfoLine)) then {
         ];
     };
 
-	GVAR(actionIds) = [
+	GVAR(userActionIds) = [
 	    ["<t color='#3333FF'>civstate format: infoLine</t>", 0] call _addCivAction,
 	    ["<t color='#3333FF'>civstate format: speedmode</t>", 1] call _addCivAction,
 	    ["<t color='#3333FF'>civstate format: guns</t>", 2] call _addCivAction,
@@ -94,6 +94,6 @@ if (GVAR(showInfoLine)) then {
 } else {
 	{
 		player removeAction _x;
-	} forEach GVAR(actionIds);
-	GVAR(actionIds) = [];
+	} forEach GVAR(userActionIds);
+	GVAR(userActionIds) = [];
 };
