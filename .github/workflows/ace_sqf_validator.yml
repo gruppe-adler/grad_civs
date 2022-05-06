@@ -5,9 +5,9 @@ name: ACE SQF validator
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        wget https://raw.githubusercontent.com/acemod/ACE3/b181fa6013d30a06b310b367caa5039435b085d0/tools/sqf_validator.py
+        wget https://raw.githubusercontent.com/acemod/ACE3/master/tools/sqf_validator.py
         sed -i '117d' sqf_validator.py
         sed -i '116d' sqf_validator.py
         sed -i '115d' sqf_validator.py
