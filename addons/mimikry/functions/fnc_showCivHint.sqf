@@ -9,5 +9,7 @@ if (_structured == "") then {
     _structured = _plain;
 };
 
-[_structured] call ace_common_fnc_displayTextStructured;
+if (!isNil "ace_common_fnc_displayTextStructured") then {
+    [_structured] call ace_common_fnc_displayTextStructured;
+};
 systemChat _plain;

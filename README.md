@@ -10,7 +10,7 @@ Spawn ambient civilians on the map.
 ## Features
 
 Automatically populate the map with civilians who live in their own houses, go for long walks and short chats with their nightbors, or drive around the country.
-Civilians can interact with players in various ways - surrendering when threatened with violence, hiding in panic when violence actually happens. 
+Civilians can interact with players in various ways - surrendering when threatened with violence, hiding in panic when violence actually happens.
 They will halt their cars if signaled to stop, or move out of the way when getting honked at. If you're lucky they will even back up their vehicles if being told to do so (known unreliable).
 Civilian *players* will get help trying to mimikry AI civilians by getting hints as to the interactions players perform that AI civilians would "notice".
 Mission makers can use a bunch of options to clothe their civilians, get CBA events to detect players stealing civilian vehicles, and can restrict civilians to certain areas of the map.
@@ -21,7 +21,7 @@ The mod is meant to make use of Headless Clients, no extra configuration necessa
 ## Dependencies
 
 * [CBA_A3](https://github.com/CBATeam/CBA_A3)
-* [ACE3](https://github.com/acemod/ACE3)
+* optional: [ACE3](https://github.com/acemod/ACE3) for some interactions
 * optional: [ZEN](https://github.com/zen-mod/ZEN/) adds some context menus for Zeus
 * optional: [Gruppe Adler Mod](https://github.com/gruppe-adler/gruppe_adler_mod/) to enable having livestock onto trucks
 
@@ -39,7 +39,7 @@ Civilians on separate islands can run into pathing problems. Avoid by creating e
 
 ## Detailed documentation
 
-All modules have their own READMEs that describe features, settings & APIs: 
+All modules have their own READMEs that describe features, settings & APIs:
 
 * [activities](addons/activities/README.md)
 * [cars](addons/cars/README.md)
@@ -62,8 +62,8 @@ All modules have their own READMEs that describe features, settings & APIs:
 
 * we're using the CBA state machine implementation, see `addons/*/functions/fn_sm_*/`
 * there's also some extensions being done to the CBA state machnie implementation to allow for nested states and other shenanigans, see [`addons/cba_statemachine`](addons/cba_statemachine/README.md)
-* if you add states or transitions, do update the DOT files in `/docs` 
-* also, install [Graphviz](https://graphviz.gitlab.io/) and generate graphs using `dot -Tsvg states.gv > states.svg` etc or use an online editor   
+* if you add states or transitions, do update the DOT files in `/docs`
+* also, install [Graphviz](https://graphviz.gitlab.io/) and generate graphs using `dot -Tsvg states.gv > states.svg` etc or use an online editor
 
 ### State Machines
 

@@ -7,7 +7,10 @@ if !(isNull _pointingPlayer) then {
 };
 
 _this setVariable ["grad_civs_surrenderTime", CBA_missionTime];
-[_this, true] call ACE_captives_fnc_setSurrendered;
+
+if (!isNil "ACE_captives_fnc_setSurrendered") then {
+	[_this, true] call ACE_captives_fnc_setSurrendered;
+};
 
 // the issue is that after dismounting, unit will sprint around. "doStop" does not seem to reliably and immediately work
 _this disableAI "MOVE";
