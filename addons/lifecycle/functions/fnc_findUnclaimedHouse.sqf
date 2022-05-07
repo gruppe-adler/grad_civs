@@ -47,7 +47,7 @@ private _idx = -1;
 if (_getClosest) then {
     private _closestDist = 999999;
     {
-        _xDist = (getPos _x) distance _position;
+        private _xDist = (getPos _x) distance _position;
         if (_xDist < _closestDist) then {
             _closestDist = _xDist;
             _idx = _forEachIndex;

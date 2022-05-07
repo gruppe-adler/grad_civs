@@ -15,7 +15,7 @@ params [
 
 private _waypointPositions = [];
 
-for [{_i=0}, {_i<_count}, {_i=_i+1}] do {
+for [{private _i=0}, {_i<_count}, {_i=_i+1}] do {
 
     private _nextWaypoint = [
         _position,

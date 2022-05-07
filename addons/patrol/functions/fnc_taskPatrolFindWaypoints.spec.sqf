@@ -30,7 +30,6 @@
 
                         {
                             private _exclusionZone = _x;
-                            private _exclusionZoneIdx = _forEachIndex;
                             {
                                 [
                                     _x inArea _exclusionZone,

@@ -8,7 +8,8 @@ params [
     ["_findWaterPos",false],
     ["_findRoadPos",false]
 ];
-private ["_pos"];
+
+private _pos = [];
 
 _radii params ["_minRad", "_maxRad"];
 _angles params ["_minAngle", "_maxAngle"];
@@ -16,9 +17,9 @@ _angles params ["_minAngle", "_maxAngle"];
 if (_center isEqualType objNull) then {_center = getPos _center};
 
 for [{private _i=0}, {_i<25}, {_i=_i+1}] do {
-    _searchDist = (random (_maxRad - _minRad)) + _minRad;
-    _searchAngle = (random (_maxAngle - _minAngle)) + _minAngle;
-    _searchPos = _center getPos [_searchDist, _searchAngle];
+    private _searchDist = (random (_maxRad - _minRad)) + _minRad;
+    private _searchAngle = (random (_maxAngle - _minAngle)) + _minAngle;
+    private _searchPos = _center getPos [_searchDist, _searchAngle];
 
     if (_findRoadPos) then {
         _nearRoads = _searchPos nearRoads 50;
