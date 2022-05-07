@@ -52,7 +52,7 @@
             [
                 ["THEN aimedAtTarget is 0.5",
                     {
-                        params ["_a", "_b", "_vectorDir"];
+                        params ["_a", "_b"];
                         [_this call grad_civs_interact_fnc_aimedAtTarget, 0.5]  call grad_testing_fnc_assertEquals;
                     }
                 ]

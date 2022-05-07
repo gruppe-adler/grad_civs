@@ -1,8 +1,7 @@
 #include "..\script_component.hpp"
 
 params [
-	["_polygon", [], [[]]],
-	["", [], [[]]]
+	["_polygon", [], [[]]]
 ];
 
 _polygon params [
