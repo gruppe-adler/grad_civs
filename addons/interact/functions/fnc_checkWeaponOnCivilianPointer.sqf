@@ -1,13 +1,21 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(gunpointees), [ARR_2([], 0)] call cba_fnc_hashCreate);
+// this function runs periodically.
+// only civs that get pointed at during  two consecutive runs get scared.
+// GVAR(gunpointees) is the delay counter for each pointed-at person.
+ISNILS(GVAR(gunpointees), createHashMap);
 
 private _depoint = {
     {
-        private _counter = [GVAR(gunpointees), _x] call CBA_fnc_hashGet;
+        private _counter = GVAR(gunpointees) getOrDefault [_x, 0];
         if (_counter > 0) then {
             _counter = 0 max (_counter - 1);
-            [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
+            if (_counter == 0) then {
+                GVAR(gunpointees) deleteAt _x;
+            } else {
+                GVAR(gunpointees) set [_x, _counter];
+            };
+
             if (_counter == 1) then {
                 [QGVAR(pointed_at_dec), [_x], [_x]] call CBA_fnc_targetEvent;
                 [QGVAR(depointing), _x] call CBA_fnc_localEvent;
@@ -18,10 +26,10 @@ private _depoint = {
 
 private _point = {
     {
-        private _counter = [GVAR(gunpointees), _x] call CBA_fnc_hashGet;
+        private _counter = GVAR(gunpointees) getOrDefault [_x, 0];
         if (_counter < 2) then {
             _counter = 2 min (_counter + 1);
-            [GVAR(gunpointees), _x, _counter] call CBA_fnc_hashSet;
+            GVAR(gunpointees) set [_x, _counter];
             if (_counter == 2) then {
                 [QGVAR(pointed_at_inc), [_x, (call CBA_fnc_currentUnit)], [_x]] call CBA_fnc_targetEvent;
                 [QGVAR(pointing), _x] call CBA_fnc_localEvent;
@@ -39,8 +47,7 @@ private _weaponRaisedOnFoot = (alive _playerUnit) &&
 
 // ----------------------------------------------------------------
 
-//([GVAR(gunpointees), {_value > 0}] call CBA_fnc_hashFilter;  // not necessary due to https://github.com/CBATeam/CBA_A3/issues/1358
-private _pointees = ([GVAR(gunpointees)] call CBA_fnc_hashKeys);
+private _pointees = keys GVAR(gunpointees);
 
 if (!_weaponRaisedOnFoot) exitWith {
     // I lowered my weapon. Everyone feels free to go. No one is added.
