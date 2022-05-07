@@ -6,8 +6,7 @@ if (isServer || CBA_isHeadlessClient) then {
     [
         QEGVAR(lifecycle,localSpawn),
         {
-            _maxVehiclesInTransit = GVAR(maxVehiclesInTransit);
-            if ((count (["transit"] call EFUNC(cars,getGlobalVehicles))) < _maxVehiclesInTransit) then {
+            if ((count (["transit"] call EFUNC(cars,getGlobalVehicles))) < GVAR(maxVehiclesInTransit)) then {
                 [] call FUNC(spawnSomething);
             };
         }

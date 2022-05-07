@@ -2,7 +2,6 @@
 
 // returns group
 params [
-    ["_allPlayers", [], [[]]],
     ["_pos", [], [[]]],
     ["_direction", 0, [0]],
     ["_primaryTask", "", [""]],

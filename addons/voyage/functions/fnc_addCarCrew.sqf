@@ -35,4 +35,4 @@ private _house = [
     "house"
 ] call FUNC(findSpawnPosition);
 
-[_allPlayers, _pos, 0, "voyage", _house] call EFUNC(cars,spawnCarAndCrew);
+[_pos, 0, "voyage", _house] call EFUNC(cars,spawnCarAndCrew);

@@ -16,7 +16,7 @@ clearMagazineCargoGlobal _veh;
 _veh addEventHandler [
     "FiredNear",
     {
-        params ["_vec", "_firer", "_distance", "_weapon", "_muzzle", "_mode", "_ammo", "_gunner"];
+        params ["_vec"];
         {
             [QEGVAR(activities,firedNear), [_x], _x] call CBA_fnc_targetEvent;
         } forEach (crew _vec);
