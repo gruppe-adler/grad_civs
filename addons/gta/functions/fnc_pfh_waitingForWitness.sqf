@@ -1,8 +1,7 @@
 #include "..\script_component.hpp"
 
 params [
-	["_args", [], [[]]],
-	["_handle", 0, [0]]
+	["_args", [], [[]]]
 ];
 _args params [
 	["_vehicle", objNull, [objNull]],
@@ -12,12 +11,12 @@ _args params [
 private _knownThief = _vehicle getVariable ["grad_civs_knownThief", objNull];
 if (!isNull _knownThief) exitWith {
 	[GVAR(stolenVehiclePfh)] call CBA_fnc_removePerFrameHandler; GVAR(stolenVehiclePfh) = nil;
-	INFO_2("thief of %1 is known to be %2. stopping witness watch", _vehicle, _knownThief);	
+	INFO_2("thief of %1 is known to be %2. stopping witness watch", _vehicle, _knownThief);
 };
 
 if ([_unit, 200, 0.5] call FUNC(isUnitBeingSeenByCivs)) exitWith {
 	[GVAR(stolenVehiclePfh)] call CBA_fnc_removePerFrameHandler; GVAR(stolenVehiclePfh) = nil;
-	[_vehicle, _unit] call FUNC(registerStolen);	
+	[_vehicle, _unit] call FUNC(registerStolen);
 };
 
 if (_vehicle getVariable ["grad_civs_knownStolen", false]) exitWith {};

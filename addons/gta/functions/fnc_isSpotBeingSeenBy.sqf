@@ -6,4 +6,4 @@ params [
 	["_subjects", [], [[]]]
 ];
 
--1 != _subjects findIf {(([objNull, "VIEW"] checkVisibility [eyePos /*leader???*/_x, _position]) > 0.5)};
+-1 != _subjects findIf {(([objNull, "VIEW"] checkVisibility [eyePos /*leader???*/_x, _position]) > _visibility)};
