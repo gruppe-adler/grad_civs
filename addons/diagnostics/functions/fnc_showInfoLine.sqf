@@ -5,7 +5,7 @@ ISNILS(GVAR(userActionIds), []);
 
 [{
 	params [
-		["", [], [[]]],
+		["_args", [], [[]]],
 		["_handle", 0, [0]]
 	];
 	if (!(GVAR(showInfoLine))) exitWith {[_handle] call CBA_fnc_removePerFrameHandler};
