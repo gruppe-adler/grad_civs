@@ -1,7 +1,7 @@
 PREP(aceInteractWrapper);
 PREP(addCivInteractions);
 PREP(addInteractEventHandlers);
-PREP(aimedAtTarget);
+PREP(getAimPrecision);
 PREP(checkFlyScaringCivilian);
 PREP(checkHonkingOnCivilian);
 PREP(checkWeaponOnCivilianPerception);

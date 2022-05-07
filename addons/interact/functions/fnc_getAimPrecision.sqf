@@ -1,4 +1,4 @@
-// this function aims to be for infantry what I presume the `aimedAtTarget` command wants to be for vehicles.
+// this function aims to be for infantry what I presume the `getAimPrecision` command wants to be for vehicles.
 
 /**
  * return value: value from 0..1 , with
