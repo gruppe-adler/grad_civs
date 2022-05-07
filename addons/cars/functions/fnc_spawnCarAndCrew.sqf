@@ -2,7 +2,6 @@
 
 // returns group
 params [
-    ["_allPlayers", [], [[]]],
     ["_pos", [], [[]]],
     ["_direction", 0, [0]],
     ["_primaryTask", "", [""]],
@@ -25,7 +24,7 @@ if (_vehicleClasses isEqualTo []) exitWith {
 _vehicleClass = selectRandom _vehicleClasses;
 
 private _veh = [_pos, _vehicleClass] call FUNC(spawnVehicle);
-["ace_common_setDir", [_veh, _dir], _veh] call CBA_fnc_targetEvent;
+["ace_common_setDir", [_veh, _direction], _veh] call CBA_fnc_targetEvent;
 
 private _maxInitialGroupSize = EGVAR(patrol,initialGroupSize);
 private _automaticVehicleGroupSize = GVAR(automaticVehicleGroupSize);

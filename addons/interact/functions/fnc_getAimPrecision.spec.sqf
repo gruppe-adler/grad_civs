@@ -19,11 +19,11 @@
                 [_a, _b, [0, 1, 0]]
             },
             [
-                ["THEN aimedAtTarget is 1",
+                ["THEN getAimPrecision is 1",
                     {
                         params ["_a", "_b", "_vectorDir"];
                         sleep 1;
-                        [_this call grad_civs_interact_fnc_aimedAtTarget, 1]  call grad_testing_fnc_assertEquals;
+                        [_this call grad_civs_interact_fnc_getAimPrecision, 1]  call grad_testing_fnc_assertEquals;
                     }
                 ]
             ]
@@ -35,10 +35,10 @@
                 [_a, _b, [0, -1, 0]]
             },
             [
-                ["THEN aimedAtTarget is 0",
+                ["THEN getAimPrecision is 0",
                     {
                         params ["_a", "_b", "_vectorDir"];
-                        [_this call grad_civs_interact_fnc_aimedAtTarget, 0]  call grad_testing_fnc_assertEquals;
+                        [_this call grad_civs_interact_fnc_getAimPrecision, 0]  call grad_testing_fnc_assertEquals;
                     }
                 ]
             ]
@@ -50,10 +50,10 @@
                 [_a, _b, [0, 0, 1]]
             },
             [
-                ["THEN aimedAtTarget is 0.5",
+                ["THEN getAimPrecision is 0.5",
                     {
-                        params ["_a", "_b", "_vectorDir"];
-                        [_this call grad_civs_interact_fnc_aimedAtTarget, 0.5]  call grad_testing_fnc_assertEquals;
+                        params ["_a", "_b"];
+                        [_this call grad_civs_interact_fnc_getAimPrecision, 0.5]  call grad_testing_fnc_assertEquals;
                     }
                 ]
             ]

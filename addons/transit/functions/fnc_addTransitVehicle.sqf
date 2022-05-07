@@ -22,7 +22,6 @@ if (_vehicleClasses isEqualTo []) exitWith {
 private _vehicleClass = selectRandom _vehicleClasses;
 
 private _group = [
-    [],
     _pos,
     _dir,
     "transit",

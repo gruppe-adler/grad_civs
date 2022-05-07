@@ -15,8 +15,7 @@ private _pos = if (_forcePosition isEqualTo [0, 0, 0]) then {
     private _segment = [
         _allPlayers,
         _vehicleSpawnDistanceMin,
-        _vehicleSpawnDistanceMax,
-        ["voyage"] call EFUNC(lifecycle,getGlobalCivs)
+        _vehicleSpawnDistanceMax
     ] call FUNC(findSpawnRoadSegment);
 
     if (isNull _segment) then {
@@ -35,4 +34,4 @@ private _house = [
     "house"
 ] call FUNC(findSpawnPosition);
 
-[_allPlayers, _pos, 0, "voyage", _house] call EFUNC(cars,spawnCarAndCrew);
+[_pos, 0, "voyage", _house] call EFUNC(cars,spawnCarAndCrew);

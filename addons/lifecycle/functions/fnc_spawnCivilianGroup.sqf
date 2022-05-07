@@ -17,7 +17,7 @@ _group setCombatMode "GREEN";
 _group setVariable ["grad_civs_primaryTask", _primaryTask, true];
 
 for "_i" from 1 to _groupSize do {
-    private _civ = [_pos, _group, _primaryTask] call FUNC(spawnCivilian);
+    [_pos, _group, _primaryTask] call FUNC(spawnCivilian);
 };
 
 if (!(isNull _house)) then {

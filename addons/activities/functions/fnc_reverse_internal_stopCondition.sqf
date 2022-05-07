@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 #define TARGET_PRECISION 5 /*precision in meters*/
 
-params ["_handle", "_vehicle", "_targetPos", "_tryAtLeastUntil", "", "_abortCondition"];
+params ["", "_vehicle", "_targetPos", "_tryAtLeastUntil", "", "_abortCondition"];
 private _nowDst = (_targetPos distance _vehicle);
 private _prevDst = _vehicle getVariable ["grad_civs_reverse_dst", 100000];
 _vehicle setVariable ["grad_civs_reverse_dst", _nowDst];

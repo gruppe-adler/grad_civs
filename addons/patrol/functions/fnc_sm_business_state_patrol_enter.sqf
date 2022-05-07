@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 if (_this == leader _this) then {
-    _grp = group _this;
+    private _grp = group _this;
     (units _grp) doFollow (leader _this);
     [_this, _this, 400 - (random 300), [3,6], [0,2,10]] call FUNC(taskPatrol);
 

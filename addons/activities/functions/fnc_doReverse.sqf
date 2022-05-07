@@ -5,11 +5,15 @@ params [
     ["_reverseTargetPos", [0, 0, 0]]
 ];
 
-if (!(local _civ)) exitWith {
+if (isNull _civ) exitWith {
+    ERROR("doReverse target was null!");
+};
+
+if (!(local _civ)) exitWith { // if not local, fix by deferring
     [
         QGVAR(doReverse),
-        [_object, _reverseTargetPos],
-        _object
+        [_civ, _reverseTargetPos],
+        _civ
     ] call CBA_fnc_targetEvent;
 };
 

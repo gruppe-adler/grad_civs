@@ -1,12 +1,11 @@
 #include "..\script_component.hpp"
 
 params [
-	["_polygon", [], [[]]],
-	["_polyGround", [], [[]]]
+	["_polygon", [], [[]]]
 ];
 
 _polygon params [
-	"_center",
+	"",
 	"_close",
 	"_farAhead",
 	"_far"

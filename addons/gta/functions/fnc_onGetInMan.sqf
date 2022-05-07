@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-params ["_unit", "_role", "_vehicle", "_turret"];
+params ["_unit", "_role", "_vehicle", ""];
 
 private _civOwner = _vehicle getVariable ["grad_civs_owner", objNull];
 if (isNull _civOwner) exitWith {

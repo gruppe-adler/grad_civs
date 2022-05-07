@@ -25,7 +25,7 @@ private _vectorDir = vectorDirVisual _gesturer;
 
 {
     private _reverseTargetPos = (getPos _x) vectorAdd (_vectorDir vectorMultiply 50);
-    [_target, _reverseTargetPos] call EFUNC(activities,doReverse);
+    [_x, _reverseTargetPos] call EFUNC(activities,doReverse);
 } forEach _observers;
 
 INFO_1("%1 civs were triggered for being gestured with 'go'", count _observers);

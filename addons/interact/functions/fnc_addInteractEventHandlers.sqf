@@ -50,8 +50,8 @@
                 if (((_moveVectors#0 vectorAdd _civPos) distance _carPos) < ((_moveVectors#1 vectorAdd _civPos) distance _carPos)) then {
                     _moveVector = _moveVectors#1;
                 };
-                _civ call EFUNC(activities,forcePanicSpeed);
-                _civ doMove ((position _civ) vectorAdd _moveVector);
+                _target call EFUNC(activities,forcePanicSpeed);
+                _target doMove ((position _target) vectorAdd _moveVector);
             },
             {},
             _waitTime,

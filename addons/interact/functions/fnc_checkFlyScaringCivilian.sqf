@@ -8,20 +8,23 @@ if (!(isEngineOn _vic) && ((getPos _vic)#2 < 0.5)) exitWith {};
 
 private _dangerPolyAirAGL = [_vic] call FUNC(getDangerPolyAir);
 _dangerPolyAirAGL params [
-	"_center",
+	"",
 	"_close",
 	"_farAhead",
 	"_far"
 ];
 
 private _dangerPolyCloseToFar = (_close createHashMapFromArray _far) toArray false;
-private _dangerPolyClose = {
+{
+    // _dangerPolyClose:
     _dangerPolyCloseToFar pushBackUnique [_x, _close#((_forEachIndex + 1) mod 8)]
 } forEach _close;
-private _dangerPolyFar = {
+{
+    // _dangerPolyFar:
     _dangerPolyCloseToFar pushBackUnique [_x, _far#((_forEachIndex + 1) mod 8)]
 } forEach _far;
-private _dangerPolyFarAhead =  {
+{
+    // _dangerPolyFarAhead:
     _dangerPolyCloseToFar pushBackUnique [_x, _farAhead]
 } forEach _far;
 

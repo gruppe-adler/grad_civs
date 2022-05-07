@@ -5,7 +5,7 @@ params [
     ["_pointee", objNull]
 ];
 
-if ([_pointer, vehicle _pointee, primaryWeapon _pointer] call FUNC(aimedAtTarget) < 0.95) exitWith {false};
+if ([_pointer, vehicle _pointee, primaryWeapon _pointer] call FUNC(getAimPrecision) < 0.95) exitWith {false};
 
 /*
 

@@ -14,6 +14,6 @@ private _states = (_statemachineNames apply {
     format ["%1: %2", _x, _state];
 }) joinString ", ";
 
-_text = format ["%1 | %2", _this, _states];
+private _text = format ["%1 | %2", _this, _states];
 
 _this setVariable [QGVAR(infoLine), _text, true];

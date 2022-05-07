@@ -2,7 +2,7 @@
 
 params ["_area",["_vehicleType","B_Soldier_F"],["_findWaterPos",false],["_findRoadPos",false]];
 
-_pos = [];
+private _pos = [];
 for [{private _i=0}, {_i<25}, {_i=_i+1}] do {
     _searchPos = _area call BIS_fnc_randomPosTrigger;
 
