@@ -1,5 +1,7 @@
 #include "..\script_component.hpp"
 
+params ["_target"];
+
 private _veh = vehicle _target;
 private _driver = driver _veh;
 
