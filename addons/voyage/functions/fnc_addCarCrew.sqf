@@ -15,8 +15,7 @@ private _pos = if (_forcePosition isEqualTo [0, 0, 0]) then {
     private _segment = [
         _allPlayers,
         _vehicleSpawnDistanceMin,
-        _vehicleSpawnDistanceMax,
-        ["voyage"] call EFUNC(lifecycle,getGlobalCivs)
+        _vehicleSpawnDistanceMax
     ] call FUNC(findSpawnRoadSegment);
 
     if (isNull _segment) then {
