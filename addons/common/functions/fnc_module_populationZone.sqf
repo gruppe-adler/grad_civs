@@ -12,11 +12,22 @@ switch _mode do {
 	case "init": {
 		private _logic = _input param [0,objNull,[objNull]]; // Module logic
 
-		(synchronizedObjects _logic) select {
+
+		private _synchronizedObjects = synchronizedObjects _logic;
+
+		private _civs = _synchronizedObjects select { _x isKindOf "Man" };
+		private _civClasses = _civs apply { typeOf _x };
+
+		private _cars = _synchronizedObjects select { _x isKindOf "Car" };
+		private _carClasses = _cars apply { typeOf _x };
+
+		_synchronizedObjects select {
 			_x isKindOf "EmptyDetector"
 		} apply {
-			[_x] call FUNC(addPopulationZone);
+			[_x, _civClasses, _carClasses] call FUNC(addPopulationZone);
 		};
+
+		{ deleteVehicle _x } forEach (_civs + _cars);
 	};
 };
 true
