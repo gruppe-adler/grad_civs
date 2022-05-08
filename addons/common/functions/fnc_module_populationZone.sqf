@@ -7,6 +7,18 @@ private _input = param [1,[],[[]]];
 
 scopeName "main";
 
+private _getClasses = {
+		private _civs = _this select { _x isKindOf "Man" };
+		private _civClasses = _civs apply { typeOf _x };
+
+		private _cars = _this select { _x isKindOf "Car" };
+		private _carClasses = _cars apply { typeOf _x };
+
+		{ deleteVehicle _x } forEach (_civs + _cars);
+
+		[_civClasses, _carClasses]
+};
+
 switch _mode do {
 	// Default object init
 	case "init": {
@@ -15,19 +27,14 @@ switch _mode do {
 
 		private _synchronizedObjects = synchronizedObjects _logic;
 
-		private _civs = _synchronizedObjects select { _x isKindOf "Man" };
-		private _civClasses = _civs apply { typeOf _x };
-
-		private _cars = _synchronizedObjects select { _x isKindOf "Car" };
-		private _carClasses = _cars apply { typeOf _x };
+		(_synchronizedObjects call _getClasses) params ["_moduleCivClasses", "_moduleCarClasses"];
 
 		_synchronizedObjects select {
 			_x isKindOf "EmptyDetector"
 		} apply {
-			[_x, _civClasses, _carClasses] call FUNC(addPopulationZone);
+			((synchronizedObjects _x) call _getClasses) params ["_areaCivClasses", "_areaCarClasses"];
+			[_x, _moduleCivClasses + _areaCivClasses, _moduleCarClasses + _areaCarClasses] call FUNC(addPopulationZone);
 		};
-
-		{ deleteVehicle _x } forEach (_civs + _cars);
 	};
 };
 true
