@@ -57,7 +57,8 @@ private _result = {
                 [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers)
             }
             && {
-                [getPos _candidate] call EFUNC(common,isInPopulatedZone)
+                private _popZones = [getPos _candidate] call EFUNC(common,getPopulationZones);
+                count _popZones > 0
             }
         ) exitWith {
             LOG_1("found spawn position %1", _candidate);

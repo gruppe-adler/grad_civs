@@ -36,7 +36,7 @@
                                     format ["waypoint %1 at %2 is not in exclusion zone at %3 (%4)", _forEachIndex, _x, getPos _exclusionZone, triggerArea _exclusionZone]
                                 ] call grad_testing_fnc_assertFalse;
                             } forEach _positions;
-                        } forEach (call grad_civs_common_fnc_getExclusionZones);
+                        } forEach grad_civs_common_exclusionZones;
                     }
                 ],
                 ["will avoid crossing exclusion zones",

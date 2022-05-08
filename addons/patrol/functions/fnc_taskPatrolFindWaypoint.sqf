@@ -38,8 +38,8 @@ for "_i" from 1 to _maxTries do {
         _searchPosition
     };
 
-    private _inPopulatedZone = [_searchPosition] call EFUNC(common,isInPopulatedZone);
-    if (_inPopulatedZone) exitWith {
+    private _popZones = [_searchPosition] call EFUNC(common,getPopulationZones);
+    if (count _popZones > 0) exitWith {
         LOG_1("position %1 is not in exclusionzone, return it", _searchPosition);
         _waypointPosition = _searchPosition;
     };
