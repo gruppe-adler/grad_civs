@@ -5,8 +5,6 @@ params [
     ["_forcePosition", [], [[]]]
 ];
 
-scopeName "main";
-
 private _vehicleSpawnDistances = [GVAR(spawnDistancesInVehicles)] call EFUNC(common,parseCsv);
 private _vehicleSpawnDistanceMin = _vehicleSpawnDistances#0;
 private _vehicleSpawnDistanceMax = _vehicleSpawnDistances#1;
@@ -18,7 +16,7 @@ private _spawnPositionHouse = [
     "house"
 ] call FUNC(findSpawnPosition);
 
-private _house = if (isNull _spawnPositionHouse) {
+private _house = if (isNull _spawnPositionHouse) then {
     objNull
 } else {
     _spawnPositionHouse get "house"
