@@ -81,7 +81,7 @@ private _result = {
                 objNull,
                 objNull,
                 _popZones apply {_x get "civClasses"},
-                _popZones apply {_x get "vehicleClasses"},
+                _popZones apply {_x get "vehicleClasses"}
             ];
             _hashMap set [_mode, _candidate];
             _hashMap
