@@ -6,7 +6,7 @@ params [
 
 private _createGlobalPopulationZone = {
 	private _worldRadius = worldSize / 2;
-	createTrigger ["EmptyDetector", _worldRadius, _worldRadius]
+	createTrigger ["EmptyDetector", [_worldRadius, _worldRadius], false]
 };
 
 ISNILS(GVAR(EXCLUSION_ZONES), []);
@@ -17,7 +17,7 @@ ISNILS(GVAR(GLOBAL_POPULATION_ZONE), call _createGlobalPopulationZone);
 
 private _applicablePopulationZones = if (count GVAR(POPULATION_ZONES) == 0) then {
 	// "there is no population zone" defaults to "*everywhere* is population zone"
-	ISNILS(QEGVAR(cars,vehicles), []); // DANGER hacky hack
+	ISNILS(EGVAR(cars,vehicles), []); // DANGER hacky hack
 	[
 		"area",
 		"civClasses",
