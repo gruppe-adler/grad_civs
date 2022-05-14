@@ -7,8 +7,10 @@ params [
     ["_destination", [], [[]]]
 ];
 
-assert(count _pos > 1);
-assert(count _destination > 1);
+#ifdef DEBUG_MODE_FULL
+    assert(count _pos > 1);
+    assert(count _destination > 1);
+#endif
 
 if (_vehicleClasses isEqualTo []) then {
     _vehicleClasses = GVAR(vehiclesArray);
