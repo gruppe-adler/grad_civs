@@ -4,7 +4,7 @@ params [
 	["_pos", [], [[]]]
 ];
 
-private _createGlobalPopulationZone {
+private _createGlobalPopulationZone = {
 	private _worldRadius = worldSize / 2;
 	createTrigger ["EmptyDetector", _worldRadius, _worldRadius]
 };
@@ -20,7 +20,7 @@ private _applicablePopulationZones = if (count GVAR(POPULATION_ZONES) == 0) then
 	ISNILS(QEGVAR(cars,vehicles), []); // DANGER hacky hack
 	[POPULATION_ZONE_KEY_AREA, POPULATION_ZONE_KEY_CIVCLASSES, POPULATION_ZONE_KEY_VEHICLECLASSES] createHashMapFromArray [GVAR(GLOBAL_POPULATION_ZONE), call EFUNC(lifecycle,config_getCivClasses), QEGVAR(cars,vehicles)/*TODO cleanly get vehicle classes in here. how though?*/]]
 } else {
-    GVAR(POPULATION_ZONES)
+	GVAR(POPULATION_ZONES)
 };
 
 if (_pos isEqualTo []) then {
