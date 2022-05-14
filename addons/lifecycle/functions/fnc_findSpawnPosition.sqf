@@ -1,11 +1,20 @@
 #include "..\script_component.hpp"
 
-// returns houses or roads or positions
+/**
+
+    returns HashMap of {
+        "house" : Object // House or objNull
+        "road" : Object // Road or objNull
+        "civClasses": []string
+        "vehicleClasses": []string
+    }
+ */
+
 _this params [
     ["_allPlayers", []],
     ["_minDistance", 0],
     ["_maxDistance", 0],
-    ["_mode", ""] /* optional: house | road | none */
+    ["_mode", ""] /* optional: house | road */
 ];
 
 private _halfSectorWidth = (_maxDistance - _minDistance) / 2;
@@ -47,22 +56,35 @@ private _result = {
                 ([_refPos, _halfSectorWidth, false] call FUNC(findUnclaimedHouse))
             };
             default {
-                _refPos
+                WARNING_1("invalid mode '%1' provided to findSpawnPosition", _mode);
+                objNull
             };
         };
         LOG_1("_candidate (before vetting): %1", _candidate);
+        private _popZones = [];
         if ((!(isNull _candidate))
             && {
                 LOG_3("_allPlayers: %1, _candidate %2, _minDistance %3", _allPlayers, getPos _candidate, _minDistance);
                 [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers)
             }
-            && {
-                private _popZones = [getPos _candidate] call EFUNC(common,getPopulationZones);
-                count _popZones > 0
-            }
-        ) exitWith {
+        ) then {
+            _popZones = [getPos _candidate] call EFUNC(common,getPopulationZones);
+        };
+        if (count _popZones > 0) exitWith {
             LOG_1("found spawn position %1", _candidate);
-            _candidate
+            private _hashMap = [
+                "house",
+                "road",
+                "civClasses",
+                "vehicleClasses"
+            ] createHashMapFromArray [
+                objNull,
+                objNull,
+                _popZones apply {_x get "civClasses"},
+                _popZones apply {_x get "vehicleClasses"},
+            ];
+            _hashMap set [_mode, _candidate];
+            _hashMap
         };
         LOG_3("could not find spawn position at %1 within %2 m in %3 mode", _refPos, _halfSectorWidth, _mode);
         objNull
