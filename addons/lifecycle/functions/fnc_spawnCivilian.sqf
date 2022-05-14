@@ -3,10 +3,14 @@
 params [
     ["_pos", [0, 0, 0]],
     ["_group", grpNull],
-    ["_primaryTask", ""]
+    ["_primaryTask", ""],
+    ["_civClasses", [[]]]
 ];
 
-private _civClasses = call FUNC(config_getCivClasses);
+if (_civClasses isEqualTo []) then {
+    _civClasses = call FUNC(config_getCivClasses);
+};
+
 private _civ = _group createUnit [selectRandom _civClasses, _pos, [], 0, "NONE"]; // TODO: ensure unit is not spawning within editor-placed rocks/houses
 
 GVAR(localCivs) = GVAR(localCivs) + [_civ];

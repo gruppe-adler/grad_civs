@@ -3,8 +3,8 @@
 /**
 
     returns HashMap of {
-        "house" : Object // House or objNull
-        "road" : Object // Road or objNull
+        "house" : Object
+        "road" : Object
         "civClasses": []string
         "vehicleClasses": []string
     }
