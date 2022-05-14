@@ -19,14 +19,14 @@ if (_vehicleClasses isEqualTo []) then {
 if (_vehicleClasses isEqualTo []) exitWith {
     WARNING_2("will not spawn vehicles as zero vehicle classes are defined for route from %1 to %2", _pos, _destination);
 };
-private _vehicleClass = selectRandom _vehicleClasses;
 
 private _group = [
     _pos,
     _dir,
     "transit",
     objNull,
-    _vehicleClass
+    [],
+    _vehicleClasses
 ] call EFUNC(cars,spawnCarAndCrew);
 
 _group setVariable [QGVAR(destination), _destination, true];

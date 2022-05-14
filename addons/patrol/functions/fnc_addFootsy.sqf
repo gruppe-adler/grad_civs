@@ -5,8 +5,6 @@ params [
     ["_forcePosition", [], [[]]]
 ];
 
-scopeName "main";
-
 private _maxInitialGroupSize = GVAR(initialGroupSize);
 private _groupSize = (floor random _maxInitialGroupSize) + 1;
 
@@ -27,7 +25,7 @@ private _spawnPosition = [
 
 if (isNull _spawnPosition) exitWith {
     LOG("could not find house for patrol");
-    grpNull breakOut "main";
+    grpNull
 };
 
 #ifdef DEBUG_MODE_FULL
