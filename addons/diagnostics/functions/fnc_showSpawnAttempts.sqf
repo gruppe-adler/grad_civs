@@ -16,17 +16,18 @@ _evtId = [
     QEGVAR(lifecycle,spawnRefpos),
     {
         _this params [
+            ["_mode", "", [""]],
             ["_refPos", [], [[]]]
         ];
 
 
-        private _r = [_refPos, "spawn_refpos"] call FUNC(tempMarker);
+        private _r = [_refPos, format["spawn_refpos_%1", _mode]] call FUNC(tempMarker);
         _r setMarkerTypeLocal "hd_unknown";
 
         GVAR(showSpawnAttempts_markers) set [_refPos, [_r, ""]];
         [
             {
-                params ["_refPos"]
+                params ["_refPos"];
                 GVAR(showSpawnAttempts_markers) deleteAt _refPos
             },
             [_refPos],
@@ -40,6 +41,7 @@ _evtId = [
     QEGVAR(lifecycle,spawnCandidate),
     {
         _this params [
+            ["_mode", "", [""]],
             ["_refPos", [], [[]]],
             ["_candidate", objNull, [objNull]]
         ];
@@ -54,7 +56,7 @@ _evtId = [
         };
 
         (_markers#0) setMarkerColorLocal "ColorGrey";
-        _c = [getPos _candidate, "spawn_candidate"] call FUNC(tempMarker);
+        _c = [getPos _candidate, format["spawn_candidate_%1", _mode]] call FUNC(tempMarker);
         _c setMarkerTypeLocal "hd_start";
         _markers set [1, _c];
     }
@@ -65,6 +67,7 @@ _evtId = [
     QEGVAR(lifecycle,spawnCandidateMinDistance),
     {
         _this params [
+            ["_mode", "", [""]],
             ["_refPos", [], [[]]],
             ["_candidate", objNull, [objNull]],
             ["_minDistanceIsGiven", false, [false]]
@@ -87,6 +90,7 @@ _evtId = [
     QEGVAR(lifecycle,spawnCandidatePopzone),
     {
         _this params [
+            ["_mode", "", [""]],
             ["_refPos", [], [[]]],
             ["_candidate", objNull, [objNull]]
         ];
