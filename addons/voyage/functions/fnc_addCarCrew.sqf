@@ -38,9 +38,13 @@ if (_spawnPositionRoad isEqualTo false) exitWith {
 };
 
 private _segment = _spawnPositionRoad get "road";
+(getRoadInfo _segment) params ["", "_width", "", "", "", "", "_begPos", "_endPos"];
+
+private _dir = _begPos getDir _endPos;
+
 [
     getPos _segment,
-    0, // TODO get direction from getRoadInfo
+    _dir,
     "voyage",
     _house,
     _spawnPositionRoad get "civClasses",
