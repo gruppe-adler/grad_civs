@@ -41,9 +41,11 @@ private _segment = _spawnPositionRoad get "road";
 (getRoadInfo _segment) params ["", "_width", "", "", "", "", "_begPos", "_endPos"];
 
 private _dir = _begPos getDir _endPos;
+private _lateralOffset = 0 max (_width - 2); // TODO: refactor to use real vehicle's boundingBox to put veh not too far out on the curb
+private _roadSidePos = (getPos _segment) vectorAdd ((vectorNormalized ((getPos _segment) vectorCrossProduct [0, 0, -1])) vectorMultiply _lateralOffset);
 
 [
-    getPos _segment,
+    _roadSidePos,
     _dir,
     "voyage",
     _house,
