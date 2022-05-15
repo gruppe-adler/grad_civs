@@ -12,7 +12,7 @@ private _synchronizedObjects = synchronizedObjects _object;
 
 private _civClasses = _object getVariable [QGVAR(civClasses), []];
 private _civs = _synchronizedObjects select { _x isKindOf "Man" };
-_civClasses = _vehicleClasses + (_civs apply { typeOf _x });
+_civClasses = _civClasses + (_civs apply { typeOf _x });
 {
     deleteVehicle _x;
 } forEach _civs;
@@ -25,6 +25,6 @@ _vehicleClasses = _vehicleClasses + (_vehicles apply { typeOf _x });
 {
     deleteVehicle _x;
 } forEach _vehicles;
-_object setVariable [QGVAR(vehicleClasses), _vehiclesClasses];
+_object setVariable [QGVAR(vehicleClasses), _vehicleClasses];
 
 [_civClasses, _vehicleClasses]
