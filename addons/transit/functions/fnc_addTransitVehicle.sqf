@@ -3,6 +3,7 @@
 params [
     ["_pos", [], [[]]],
     ["_dir", 0, [0]],
+    ["_civClasses", [], [[]]],
     ["_vehicleClasses", [], [[]]],
     ["_destination", [], [[]]]
 ];
@@ -27,7 +28,7 @@ private _group = [
     _dir,
     "transit",
     objNull,
-    [],
+    _civClasses,
     _vehicleClasses
 ] call EFUNC(cars,spawnCarAndCrew);
 

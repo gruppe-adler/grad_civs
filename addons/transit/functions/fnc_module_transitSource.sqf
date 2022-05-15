@@ -17,13 +17,16 @@ switch _mode do {
         };
 
         private _vics = [_logic getVariable ["Vehicles", ""]] call EFUNC(common,parseCsv);
+        _logic setVariable [QEGVAR(common,vehicleClasses), _vics]; // hacky: set var that consumeSynchronizedClasses reads
+        ([_logic] call FUNC(consumeSynchronizedClasses)) params ["_civClasses", "_vehicleClasses"];
 
         [
             getPos _logic,
             getDir _logic,
             _sinks apply {getPos _x},
             _logic getVariable "Interval",
-            _vics
+            _civClasses,
+            _vehicleClasses
         ] call FUNC(addTransitRoute);
     };
 };

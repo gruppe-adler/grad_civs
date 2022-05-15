@@ -5,6 +5,7 @@ PREP(augmentStateMachine);
 PREP(civGetState);
 PREP(clearExclusionZones);
 PREP(clearPopulationZones);
+PREP(consumeSynchronizedClasses);
 PREP(formatNowPlusSeconds);
 PREP(getPopulationZones);
 PREP(module_exclusionZone);
