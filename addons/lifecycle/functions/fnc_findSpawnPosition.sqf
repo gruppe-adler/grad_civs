@@ -51,7 +51,7 @@ private _result = {
                 if (count (_road nearEntities ["Man", 100]) == 0) then {
                     _road
                 } else {
-                    false
+                    objNull
                 }
             };
             case "house": {
@@ -59,7 +59,7 @@ private _result = {
             };
             default {
                 WARNING_1("invalid mode '%1' provided to findSpawnPosition", _mode);
-                false
+                objNull
             };
         };
 
