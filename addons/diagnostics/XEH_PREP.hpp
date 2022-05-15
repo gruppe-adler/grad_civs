@@ -13,4 +13,6 @@ PREP(showPinkArrows_arrowAdd);
 PREP(showPinkArrows_arrowDelete);
 PREP(showPinkArrows_arrowEnsure);
 PREP(showPointingHints);
+PREP(showSpawnAttempts);
+PREP(tempMarker);
 PREP(updateInfoLine);

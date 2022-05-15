@@ -42,11 +42,7 @@ private _result = {
         private _refPos = (getPos _refPlayer) vectorAdd _x;
         LOG_3("looking for spawn pos around %1 which is pos#%2 derived from player %3 ", _refPos, _forEachIndex, _refPlayer);
 
-        // [QGVAR(spawnRefpos), [_refPos]] call CBA_fnc_localEvent;
-        #ifdef DEBUG_MODE_FULL
-            private _r = [_refPos, format["spawn_refpos_%1", _forEachIndex], 1.5] call FUNC(tempMarker);
-            _r setMarkerTypeLocal "hd_unknown";
-        #endif
+        [QGVAR(spawnRefpos), [_refPos]] call CBA_fnc_localEvent;
 
         private _candidate = switch (_mode) do {
             case "road": {
@@ -67,17 +63,7 @@ private _result = {
             };
         };
 
-        // [QGVAR(spawnCandidate), [_refPos, _candidate]] call CBA_fnc_localEvent;
-        #ifdef DEBUG_MODE_FULL
-            private _c = "";
-            if (isNull _candidate) then {
-                _r setMarkerColorLocal "ColorRed";
-            } else {
-                _r setMarkerColorLocal "ColorGrey";
-                _c = [getPos _candidate, format["spawn_candidate_%1", _forEachIndex]] call FUNC(tempMarker);
-                _c setMarkerTypeLocal "hd_start";
-            };
-        #endif
+        [QGVAR(spawnCandidate), [_refPos, _candidate]] call CBA_fnc_localEvent;
 
         LOG_1("_candidate (before vetting): %1", _candidate);
         private _popZones = [];
@@ -86,14 +72,7 @@ private _result = {
                 LOG_3("_allPlayers: %1, _candidate %2, _minDistance %3", _allPlayers, getPos _candidate, _minDistance);
                 private _minDistanceIsGiven = [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers);
 
-                // [QGVAR(spawnCandidateMinDistance), [_refPos, _candidate]] call CBA_fnc_localEvent;
-                #ifdef DEBUG_MODE_FULL
-                if (_minDistanceIsGiven) then {
-                    _c setMarkerColorLocal "ColorYellow";
-                } else {
-                    _c setMarkerColorLocal "ColorRed";
-                };
-                #endif
+                [QGVAR(spawnCandidateMinDistance), [_refPos, _candidate, _minDistanceIsGiven]] call CBA_fnc_localEvent;
 
                 _minDistanceIsGiven
             }
@@ -102,10 +81,7 @@ private _result = {
         };
         if (count _popZones > 0) exitWith {
 
-            // [QGVAR(spawnCandidatePopzone), [_refPos, _candidate]] call CBA_fnc_localEvent;
-            #ifdef DEBUG_MODE_FULL
-                _c setMarkerColorLocal "ColorGreen";
-            #endif
+            [QGVAR(spawnCandidatePopzone), [_refPos, _candidate]] call CBA_fnc_localEvent;
 
             LOG_1("found spawn position %1", _candidate);
             private _hashMap = [

@@ -24,4 +24,3 @@ PREP(sm_lifecycle_trans_life_despawn_condition);
 PREP(localSpawnPass);
 PREP(spawnCivilianGroup);
 PREP(spawnCivilian);
-PREP(tempMarker);
