@@ -16,7 +16,7 @@ private _spawnPositionHouse = [
     "house"
 ] call FUNC(findSpawnPosition);
 
-private _house = if (isNull _spawnPositionHouse) then {
+private _house = if (_spawnPositionHouse isEqualTo false) then {
     objNull
 } else {
     _spawnPositionHouse get "house"
@@ -32,7 +32,7 @@ private _spawnPositionRoad = [
     _vehicleSpawnDistanceMax
 ] call FUNC(findSpawnRoadSegment);
 
-if (isNull _spawnPositionRoad) exitWith {
+if (_spawnPositionRoad isEqualTo false) exitWith {
     INFO("could not find spawn position for car at this time");
     grpNull
 };

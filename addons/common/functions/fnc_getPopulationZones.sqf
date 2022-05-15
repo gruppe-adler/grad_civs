@@ -34,5 +34,5 @@ private _applicablePopulationZones = if (count GVAR(POPULATION_ZONES) == 0) then
 if (_pos isEqualTo []) then {
 	GVAR(POPULATION_ZONES)
 } else {
-	_populationZones select {_pos inArea _x}
+	GVAR(POPULATION_ZONES) select {_pos inArea (_x get "area")}
 }

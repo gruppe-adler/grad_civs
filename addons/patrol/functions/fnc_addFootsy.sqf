@@ -23,14 +23,14 @@ private _spawnPosition = [
     "house"
 ] call EFUNC(lifecycle,findSpawnPosition);
 
-if (isNull _spawnPosition) exitWith {
+if (_spawnPosition isEqualTo false) exitWith {
     LOG("could not find house for patrol");
     grpNull
 };
 
 #ifdef DEBUG_MODE_FULL
     assert(!isNull(_spawnPosition get "house"));
-    assert(!isNull(_spawnPosition get "civClasses"));
+    assert([] isNotEqualTo (_spawnPosition get "civClasses"));
 #endif
 
 [getPos (_spawnPosition get "house"), _groupSize, _spawnPosition get "house", "patrol", _spawnPosition get "civClasses"] call EFUNC(lifecycle,spawnCivilianGroup);

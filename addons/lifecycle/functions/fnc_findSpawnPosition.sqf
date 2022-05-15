@@ -2,7 +2,7 @@
 
 /**
 
-    returns HashMap of {
+    returns false or HashMap of {
         "house" : Object
         "road" : Object
         "civClasses": []string
@@ -42,6 +42,10 @@ private _result = {
         private _refPos = (getPos _refPlayer) vectorAdd _x;
         LOG_3("looking for spawn pos around %1 which is pos#%2 derived from player %3 ", _refPos, _forEachIndex, _refPlayer);
 
+        #ifdef DEBUG_MODE_FULL
+            private _r = [_refPos, format["spawn_refpos_%1", _forEachIndex], 1.5] call FUNC(tempMarker);
+        #endif
+
         private _candidate = switch (_mode) do {
             case "road": {
                 // for each position, get a road position close by
@@ -49,7 +53,7 @@ private _result = {
                 if (count (_road nearEntities ["Man", 100]) == 0) then {
                     _road
                 } else {
-                    objNull
+                    false
                 }
             };
             case "house": {
@@ -57,20 +61,40 @@ private _result = {
             };
             default {
                 WARNING_1("invalid mode '%1' provided to findSpawnPosition", _mode);
-                objNull
+                false
             };
         };
+        #ifdef DEBUG_MODE_FULL
+            private _c = "";
+            if (isNull _candidate) then {
+                _r setMarkerColorLocal "ColorRed";
+            } else {
+                _r setMarkerColorLocal "ColorGreen";
+                _c = [getPos _candidate, format["spawn_candidate_%1", _forEachIndex], 1.5] call FUNC(tempMarker);
+            };
+        #endif
         LOG_1("_candidate (before vetting): %1", _candidate);
         private _popZones = [];
         if ((!(isNull _candidate))
             && {
                 LOG_3("_allPlayers: %1, _candidate %2, _minDistance %3", _allPlayers, getPos _candidate, _minDistance);
-                [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers)
+                private _minDistanceIsGiven = [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers);
+                #ifdef DEBUG_MODE_FULL
+                if (_minDistanceIsGiven) then {
+                    _c setMarkerColorLocal "ColorYellow";
+                } else {
+                    _c setMarkerColorLocal "ColorRed";
+                };
+                #endif
+                _minDistanceIsGiven
             }
         ) then {
             _popZones = [getPos _candidate] call EFUNC(common,getPopulationZones);
         };
         if (count _popZones > 0) exitWith {
+            #ifdef DEBUG_MODE_FULL
+                _c setMarkerColorLocal "ColorGreen";
+            #endif
             LOG_1("found spawn position %1", _candidate);
             private _hashMap = [
                 "house",
@@ -80,16 +104,16 @@ private _result = {
             ] createHashMapFromArray [
                 objNull,
                 objNull,
-                _popZones apply {_x get "civClasses"},
-                _popZones apply {_x get "vehicleClasses"}
+                flatten (_popZones apply {_x get "civClasses"}),
+                flatten (_popZones apply {_x get "vehicleClasses"})
             ];
             _hashMap set [_mode, _candidate];
             _hashMap
         };
         LOG_3("could not find spawn position at %1 within %2 m in %3 mode", _refPos, _halfSectorWidth, _mode);
-        objNull
+        false
     } forEach _searchDistancePoints;
-    if (!(isNull _result)) exitWith {_result}; objNull
+    if (_result isNotEqualTo false) exitWith {_result}; false
 } forEach _shuffledPlayers;
 
 _result

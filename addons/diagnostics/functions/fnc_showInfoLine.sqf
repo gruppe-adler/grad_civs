@@ -91,9 +91,9 @@ if (GVAR(showInfoLine)) then {
 	    ["<t color='#3333FF'>civstate format: behaviour</t>", 4] call _addCivAction,
 	    ["<t color='#3333FF'>civstate format: state times</t>", 5] call _addCivAction,
 	    ["<t color='#3333FF'>civstate format: waypoints</t>", 6] call _addCivAction,
-	    ["<t color='#3333FF'>civstate format: distance</t>", 8] call _addCivAction
-		["<t color='#3333FF'>civstate format: type</t>", 9] call _addCivAction
-		["<t color='#3333FF'>civstate format: empty</t>", 7] call _addCivAction
+	    ["<t color='#3333FF'>civstate format: distance</t>", 7] call _addCivAction,
+		["<t color='#3333FF'>civstate format: type</t>", 8] call _addCivAction,
+		["<t color='#3333FF'>civstate format: empty</t>", 9] call _addCivAction
 	];
 } else {
 	{
