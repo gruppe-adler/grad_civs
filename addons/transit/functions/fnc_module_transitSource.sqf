@@ -18,7 +18,7 @@ switch _mode do {
 
         private _vics = [_logic getVariable ["Vehicles", ""]] call EFUNC(common,parseCsv);
         _logic setVariable [QEGVAR(common,vehicleClasses), _vics]; // hacky: set var that consumeSynchronizedClasses reads
-        ([_logic] call FUNC(consumeSynchronizedClasses)) params ["_civClasses", "_vehicleClasses"];
+        ([_logic] call EFUNC(common,consumeSynchronizedClasses)) params ["_civClasses", "_vehicleClasses"];
 
         [
             getPos _logic,
