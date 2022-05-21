@@ -1,5 +1,9 @@
 #include "..\script_component.hpp"
 
+// this function runs periodically.
+// only civs that get pointed at during  two consecutive runs get scared.
+// GVAR(gunpointees) is the delay counter for each pointed-at person.
+// NOTE: using cba_fnc_hashCreate over native HashMap, as it can use objects as key
 ISNILS(GVAR(gunpointees), [ARR_2([], 0)] call cba_fnc_hashCreate);
 
 private _depoint = {

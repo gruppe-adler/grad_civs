@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(lastFps), call CBA_fnc_hashCreate);
+ISNILS(GVAR(lastFps), createHashMap);
 ISNILS(GVAR(fpsHandler), -1);
 ISNILS(GVAR(fpsPfh), -1);
 
@@ -14,7 +14,7 @@ GVAR(fpsHandler) = [
             ["_civCount", 0, [0]]
         ];
 
-        [GVAR(lastFps), _clientId, [_fps, _civCount]] call CBA_fnc_hashSet;
+        GVAR(lastFps) set [_clientId, [_fps, _civCount]];
     }
 ] call CBA_fnc_addEventHandler;
 
@@ -24,9 +24,10 @@ GVAR(fpsPfh) = [
         if (!GVAR(showFps)) exitWith {};
 
         private _text = "FPS ";
-        [GVAR(lastFps), {
-            _text = format ["%1 | %2: %3 (%4)", _text, _key, _value#0, _value#1]
-        }] call CBA_fnc_hashEachPair;
+        {
+            _text = format ["%1 | %2: %3 (%4)", _text, _x, _y#0, _y#1]
+        } forEach GVAR(lastFps);
+
         systemChat _text;
     },
     2,
