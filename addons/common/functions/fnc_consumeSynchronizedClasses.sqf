@@ -23,6 +23,7 @@ private _vehicles = _synchronizedObjects select { _x isKindOf "Car" };
 _vehicleClasses = _vehicleClasses + (_vehicles apply { typeOf _x });
 
 {
+    deleteVehicleCrew _x;
     deleteVehicle _x;
 } forEach _vehicles;
 _object setVariable [QGVAR(vehicleClasses), _vehicleClasses];
