@@ -4,7 +4,8 @@ params [
     ["_pos", [0, 0, 0], [[]]],
     ["_groupSize", 1, [0]],
     ["_house", objNull, [objNull]],
-    ["_primaryTask", "", [""]]
+    ["_primaryTask", "", [""]],
+    ["_civClasses", [], [[]]]
 ];
 
 if (_pos isEqualTo [0, 0, 0]) exitWith {
@@ -17,7 +18,7 @@ _group setCombatMode "GREEN";
 _group setVariable ["grad_civs_primaryTask", _primaryTask, true];
 
 for "_i" from 1 to _groupSize do {
-    [_pos, _group, _primaryTask] call FUNC(spawnCivilian);
+    [_pos, _group, _primaryTask, _civClasses] call FUNC(spawnCivilian);
 };
 
 if (!(isNull _house)) then {

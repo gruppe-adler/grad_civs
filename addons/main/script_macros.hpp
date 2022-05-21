@@ -24,3 +24,7 @@
 
 #define ALL_HUMAN_PLAYERS (allPlayers - (entities "HeadlessClient_F"))
 // alternatively, does exclude zeus iirc: #define ALL_HUMAN_PLAYERS ([] call CBA_fnc_players)
+
+#define POPULATION_ZONE_KEY_AREA "area"
+#define POPULATION_ZONE_KEY_CIVCLASSES "civClasses"
+#define POPULATION_ZONE_KEY_VEHICLECLASSES "vehicleClasses"

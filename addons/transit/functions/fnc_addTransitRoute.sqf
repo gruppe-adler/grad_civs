@@ -5,6 +5,7 @@ params [
     ["_sourceDir", 0, [0]],
     ["_sinks", [], [[]]],
     ["_interval", 60, [0]],
+    ["_civClasses", [], [[]]],
     ["_vehicleClasses", [], [[]]]
 ];
 
@@ -24,7 +25,8 @@ _newRoute setVariable ["source", _source, true];
 _newRoute setVariable ["sourceDir", _sourceDir, true];
 _newRoute setVariable ["sinks", _sinks, true];
 _newRoute setVariable ["interval", _interval, true];
-_newRoute setVariable ["vehicles", _vehicleClasses, true];
+_newRoute setVariable ["civClasses", _civClasses, true];
+_newRoute setVariable ["vehicleClasses", _vehicleClasses, true];
 _newRoute setVariable ["lastSpawn", -999999, true];
 
 GVAR(transitRoutes) pushBack _newRoute;

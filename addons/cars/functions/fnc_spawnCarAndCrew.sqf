@@ -6,13 +6,10 @@ params [
     ["_direction", 0, [0]],
     ["_primaryTask", "", [""]],
     ["_house", objNull, [objNull]],
-    ["_vehicleClass", "", [""]]
+    ["_civClasses", [], [[]]],
+    ["_vehicleClasses", [], [[]]]
 ];
 
-private _vehicleClasses = [];
-if (_vehicleClass != "") then {
-    _vehicleClasses = [_vehicleClass];
-};
 if (_vehicleClasses isEqualTo []) then {
     _vehicleClasses = GVAR(vehiclesArray);
 };
@@ -37,7 +34,7 @@ if (_automaticVehicleGroupSize) then {
     _groupSize = (floor random [0, 1, _maxCount]) + 1
 };
 
-private _group = [_pos, _groupSize, _house, _primaryTask] call EFUNC(lifecycle,spawnCivilianGroup);
+private _group = [_pos, _groupSize, _house, _primaryTask, _civClasses] call EFUNC(lifecycle,spawnCivilianGroup);
 
 {
     // for convenience & speed: shortcut so units dont have to lengthily embark on their own

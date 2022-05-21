@@ -2,36 +2,53 @@
 
 params [
     ["_allPlayers", [], [[]]],
-    ["_forcePosition", [0, 0, 0], [[]]]
+    ["_forcePosition", [], [[]]]
 ];
-
-scopeName "main";
 
 private _vehicleSpawnDistances = [GVAR(spawnDistancesInVehicles)] call EFUNC(common,parseCsv);
 private _vehicleSpawnDistanceMin = _vehicleSpawnDistances#0;
 private _vehicleSpawnDistanceMax = _vehicleSpawnDistances#1;
 
-private _pos = if (_forcePosition isEqualTo [0, 0, 0]) then {
-    private _segment = [
-        _allPlayers,
-        _vehicleSpawnDistanceMin,
-        _vehicleSpawnDistanceMax
-    ] call FUNC(findSpawnRoadSegment);
-
-    if (isNull _segment) then {
-        INFO("could not find spawn position for car at this time");
-        grpNull breakOut "main";
-    };
-    getPos _segment
-} else {
-    _forcePosition
-};
-
-private _house = [
+private _spawnPositionHouse = [
     _allPlayers,
     0,
     _vehicleSpawnDistanceMax * 1.5,
     "house"
 ] call FUNC(findSpawnPosition);
 
-[_pos, 0, "voyage", _house] call EFUNC(cars,spawnCarAndCrew);
+private _house = if (_spawnPositionHouse isEqualTo false) then {
+    objNull
+} else {
+    _spawnPositionHouse get "house"
+};
+
+if (_forcePosition isNotEqualTo []) exitWith {
+    [_forcePosition, 0, "voyage", _house] call EFUNC(cars,spawnCarAndCrew);
+};
+
+private _spawnPositionRoad = [
+    _allPlayers,
+    _vehicleSpawnDistanceMin,
+    _vehicleSpawnDistanceMax
+] call FUNC(findSpawnRoadSegment);
+
+if (_spawnPositionRoad isEqualTo false) exitWith {
+    INFO("could not find spawn position for car at this time");
+    grpNull
+};
+
+private _segment = _spawnPositionRoad get "road";
+(getRoadInfo _segment) params ["", "_width", "", "", "", "", "_begPos", "_endPos"];
+
+private _dir = _begPos getDir _endPos;
+private _lateralOffset = 0 max (_width - 2); // TODO: refactor to use real vehicle's boundingBox to put veh not too far out on the curb
+private _roadSidePos = (getPos _segment) vectorAdd ((vectorNormalized ((getPos _segment) vectorCrossProduct [0, 0, -1])) vectorMultiply _lateralOffset);
+
+[
+    _roadSidePos,
+    _dir,
+    "voyage",
+    _house,
+    _spawnPositionRoad get "civClasses",
+    _spawnPositionRoad get "vehicleClasses"
+] call EFUNC(cars,spawnCarAndCrew)

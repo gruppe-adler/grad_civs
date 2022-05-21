@@ -49,6 +49,17 @@ private _settingsGroup = ["GRAD Civilians", "c) diagnostics - debugging info"];
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(showSpawnAttempts),
+    "CHECKBOX",
+    "Show spawn attempts",
+    _settingsGroup,
+    false,
+    false,
+    FUNC(showSpawnAttempts),
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(showMisc),
     "CHECKBOX",
     "Miscellaneous stuff",

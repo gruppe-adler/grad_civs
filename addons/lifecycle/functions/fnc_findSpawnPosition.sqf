@@ -1,11 +1,20 @@
 #include "..\script_component.hpp"
 
-// returns houses or roads or positions
+/**
+
+    returns false or HashMap of {
+        "house" : Object
+        "road" : Object
+        "civClasses": []string
+        "vehicleClasses": []string
+    }
+ */
+
 _this params [
     ["_allPlayers", []],
     ["_minDistance", 0],
     ["_maxDistance", 0],
-    ["_mode", ""] /* optional: house | road | none */
+    ["_mode", ""] /* optional: house | road */
 ];
 
 private _halfSectorWidth = (_maxDistance - _minDistance) / 2;
@@ -33,6 +42,8 @@ private _result = {
         private _refPos = (getPos _refPlayer) vectorAdd _x;
         LOG_3("looking for spawn pos around %1 which is pos#%2 derived from player %3 ", _refPos, _forEachIndex, _refPlayer);
 
+        [QGVAR(spawnRefpos), [_mode, _refPos]] call CBA_fnc_localEvent;
+
         private _candidate = switch (_mode) do {
             case "road": {
                 // for each position, get a road position close by
@@ -47,26 +58,50 @@ private _result = {
                 ([_refPos, _halfSectorWidth, false] call FUNC(findUnclaimedHouse))
             };
             default {
-                _refPos
+                WARNING_1("invalid mode '%1' provided to findSpawnPosition", _mode);
+                objNull
             };
         };
+
+        [QGVAR(spawnCandidate), [_mode, _refPos, _candidate]] call CBA_fnc_localEvent;
+
         LOG_1("_candidate (before vetting): %1", _candidate);
+        private _popZones = [];
         if ((!(isNull _candidate))
             && {
                 LOG_3("_allPlayers: %1, _candidate %2, _minDistance %3", _allPlayers, getPos _candidate, _minDistance);
-                [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers)
+                private _minDistanceIsGiven = [_allPlayers, _candidate, _minDistance] call FUNC(isInDistanceFromOtherPlayers);
+
+                [QGVAR(spawnCandidateMinDistance), [_mode, _refPos, _candidate, _minDistanceIsGiven]] call CBA_fnc_localEvent;
+
+                _minDistanceIsGiven
             }
-            && {
-                [getPos _candidate] call EFUNC(common,isInPopulatedZone)
-            }
-        ) exitWith {
+        ) then {
+            _popZones = [getPos _candidate] call EFUNC(common,getPopulationZones);
+        };
+        if (count _popZones > 0) exitWith {
+
+            [QGVAR(spawnCandidatePopzone), [_mode, _refPos, _candidate]] call CBA_fnc_localEvent;
+
             LOG_1("found spawn position %1", _candidate);
-            _candidate
+            private _hashMap = [
+                "house",
+                "road",
+                "civClasses",
+                "vehicleClasses"
+            ] createHashMapFromArray [
+                objNull,
+                objNull,
+                flatten (_popZones apply {_x get "civClasses"}),
+                flatten (_popZones apply {_x get "vehicleClasses"})
+            ];
+            _hashMap set [_mode, _candidate];
+            _hashMap
         };
         LOG_3("could not find spawn position at %1 within %2 m in %3 mode", _refPos, _halfSectorWidth, _mode);
-        objNull
+        false
     } forEach _searchDistancePoints;
-    if (!(isNull _result)) exitWith {_result}; objNull
+    if (_result isNotEqualTo false) exitWith {_result}; false
 } forEach _shuffledPlayers;
 
 _result

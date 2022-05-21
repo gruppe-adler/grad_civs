@@ -2,33 +2,35 @@
 
 params [
     ["_allPlayers", []],
-    ["_forcePosition", [0, 0, 0], [[]]]
+    ["_forcePosition", [], [[]]]
 ];
 
-scopeName "main";
+private _maxInitialGroupSize = GVAR(initialGroupSize);
+private _groupSize = (floor random _maxInitialGroupSize) + 1;
 
 private _footSpawnDistances = [GVAR(spawnDistancesOnFoot)] call EFUNC(common,parseCsv);
 private _footSpawnDistanceMin = _footSpawnDistances#0;
 private _footSpawnDistanceMax = _footSpawnDistances#1;
 
-private _house = objNull;
+if (_forcePosition isNotEqualTo []) exitWith {
+    [_forcePosition, _groupSize, objNull, "patrol", []] call EFUNC(lifecycle,spawnCivilianGroup);
+};
 
-private _position = if (_forcePosition isEqualTo [0, 0, 0]) then {
-    _house = [
-        _allPlayers,
-        _footSpawnDistanceMin,
-        _footSpawnDistanceMax,
-        "house"
-    ] call EFUNC(lifecycle,findSpawnPosition);
+private _spawnPosition = [
+    _allPlayers,
+    _footSpawnDistanceMin,
+    _footSpawnDistanceMax,
+    "house"
+] call EFUNC(lifecycle,findSpawnPosition);
 
-    if (isNull _house) exitWith {
-        LOG("could not find house for patrol");
-        grpNull breakOut "main";
-    };
-    getPos _house
-} else { _forcePosition };
+if (_spawnPosition isEqualTo false) exitWith {
+    LOG("could not find house for patrol");
+    grpNull
+};
 
-private _maxInitialGroupSize = GVAR(initialGroupSize);
-private _groupSize = (floor random _maxInitialGroupSize) + 1;
+#ifdef DEBUG_MODE_FULL
+    assert(!isNull(_spawnPosition get "house"));
+    assert([] isNotEqualTo (_spawnPosition get "civClasses"));
+#endif
 
-[_position, _groupSize, _house, "patrol"] call EFUNC(lifecycle,spawnCivilianGroup);
+[getPos (_spawnPosition get "house"), _groupSize, _spawnPosition get "house", "patrol", _spawnPosition get "civClasses"] call EFUNC(lifecycle,spawnCivilianGroup);

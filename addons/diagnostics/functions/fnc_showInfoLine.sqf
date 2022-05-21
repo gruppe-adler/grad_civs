@@ -43,6 +43,8 @@ ISNILS(GVAR(userActionIds), []);
 				case 4: { _text = format["%1 | %2 %3 %4 | stopped: %5, unitReady: %6", _x, behaviour _x, combatMode _x, speedMode _x, stopped _x, unitReady _x]};
 				case 5: { _text = format["%1 | state times: %2", _x, _x call _filterTimeVars]};
 				case 6: { _text = format["%1 | waypoints: %2 , current wp is %3", _x, count waypoints group _x, currentWaypoint group _x ]};
+				case 7: { _text = format["%1 | distance to player: %2", _x, _x distance (call CBA_fnc_currentUnit)]};
+				case 8: { _text = format["%1 | %2%3", _x, typeOf _x, if (vehicle _x != _x) then {format [" in %1", typeOf (vehicle _x)]} else {""}]};
 				default { _text = ""};
 			};
 		};
@@ -89,7 +91,9 @@ if (GVAR(showInfoLine)) then {
 	    ["<t color='#3333FF'>civstate format: behaviour</t>", 4] call _addCivAction,
 	    ["<t color='#3333FF'>civstate format: state times</t>", 5] call _addCivAction,
 	    ["<t color='#3333FF'>civstate format: waypoints</t>", 6] call _addCivAction,
-	    ["<t color='#3333FF'>civstate format: empty</t>", 7] call _addCivAction
+	    ["<t color='#3333FF'>civstate format: distance</t>", 7] call _addCivAction,
+		["<t color='#3333FF'>civstate format: type</t>", 8] call _addCivAction,
+		["<t color='#3333FF'>civstate format: empty</t>", 9] call _addCivAction
 	];
 } else {
 	{

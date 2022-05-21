@@ -1,7 +1,7 @@
 #define MAINPREFIX z
 #define PREFIX grad_civs
 
-//#define DEBUG_ENABLED_MAIN
+// #define DEBUG_ENABLED_MAIN
 
 #include "script_version.hpp"
 

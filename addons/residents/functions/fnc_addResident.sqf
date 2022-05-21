@@ -2,32 +2,33 @@
 
 params [
     ["_allPlayers", []],
-    ["_forcePosition", [0, 0, 0], [[]]]
+    ["_forcePosition", [], [[]]]
 ];
 
-private _house = if (_forcePosition isEqualTo [0, 0, 0]) then {
+private _house = if (_forcePosition isEqualTo []) then {
 
     private _residentSpawnDistances = [GVAR(spawnDistancesResidents)] call EFUNC(common,parseCsv);
     private _residentSpawnDistanceMin = _residentSpawnDistances#0;
     private _residentSpawnDistanceMax = _residentSpawnDistances#1;
 
-    [
+    private _spawnPosition = [
         _allPlayers,
         _residentSpawnDistanceMin,
         _residentSpawnDistanceMax,
         "house"
     ] call EFUNC(lifecycle,findSpawnPosition);
+    if (_spawnPosition isEqualTo false) then {
+        objNull
+    } else {
+        _spawnPosition get "house"
+    }
 } else {
     ([_forcePosition, 100, true] call EFUNC(lifecycle,findUnclaimedHouse))
 };
 
 
-if (isNil "_house") exitWith {
-    ERROR("could not find spawn position for resident this time (nil)");
-    grpNull
-};
 if (isNull _house) exitWith {
-    if (_forcePosition isNotEqualTo [0, 0, 0]) then {
+    if (_forcePosition isNotEqualTo []) then {
         WARNING_1("could not find spawn position for resident near %1", _forcePosition);
     } else {
         LOG("could not find spawn position for resident this time (null)");
