@@ -30,11 +30,12 @@ if (effectiveCommander _vehicle == _driver) then {
         _ec moveInCargo _vehicle;
         _ec setVariable ["grad_civs_virtual_ec", true];
     } else {
-        _ec = (crew _vehicle) select 1;
+        _ec = ((crew _vehicle) select {_x != _driver})#0;
     };
 
     LOG_1("setting EC to %1", typeOf _ec);
     _vehicle setEffectiveCommander _ec;
+    _vehicle sendSimpleCommand "STOPTURNING";
 };
 
 private _pfhHandle = [FUNC(reverse_internal_pfh), 0, [_vehicle, _targetPos]] call CBA_fnc_addPerFrameHandler;
