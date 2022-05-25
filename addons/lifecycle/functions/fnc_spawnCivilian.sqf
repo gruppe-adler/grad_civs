@@ -1,10 +1,10 @@
 #include "..\script_component.hpp"
 
 params [
-    ["_pos", [0, 0, 0]],
-    ["_group", grpNull],
-    ["_primaryTask", ""],
-    ["_civClasses", [[]]]
+    ["_pos", [0, 0, 0], [[]]],
+    ["_group", grpNull, [grpNull]],
+    ["_primaryTask", "", [""]],
+    ["_civClasses", [], [[]]]
 ];
 
 if (_civClasses isEqualTo []) then {
