@@ -1,14 +1,9 @@
 # grad\_civs\_zeus
 
+## ZEN context actions (requires ZEN)
 
-## 3DEN modules
-
-### exclusion zone
-
-Blacklist an area for civs by syncing it to a trigger. Exclusion zones override population zones in the same area.
-
-### population zone
-
-Whitelist an area for civs by syncing it to a trigger.
-
-*NOTE: if no population zone is defined, the whole map will be considered a population zone.*
+| Menu entry | Effect                                                                |
+|------------|-----------------------------------------------------------------------|
+| Stop       | civ/civ vehicles stops                                                |
+| Dismiss    | grad-civs forgets the affected civilian (all grad-civs magic is lost) |  
+| Add Unit   | add another civilian unit to the group                                |

@@ -2,7 +2,7 @@
 
 Player interactions & reactions
 
-## Gestures
+## Gestures (requires ACE)
 
 Civilians react to these ACE gestures, if they are done approx in the center of their FOV (+-15deg) :
 
@@ -12,7 +12,7 @@ Civilians react to these ACE gestures, if they are done approx in the center of 
 | Stop    | vehicles stop                                                                         |
 | Go      | vehicle will reverse 50m, stop and wait for players to leave the area (200m distance) |
 
-## ACE interact menu
+## ACE interact menu (requires ACE)
 
 | Menu entry                  | Effect                                                                                                |
 |-----------------------------|-------------------------------------------------------------------------------------------------------|
