@@ -1,12 +1,15 @@
 #include "..\script_component.hpp"
 
 params [
-	["_pos", [], [[]]]
+    ["_pos", [], [[]]]
 ];
 
 private _createGlobalPopulationZone = {
-	private _worldRadius = worldSize / 2;
-	createTrigger ["EmptyDetector", [_worldRadius, _worldRadius], false]
+    private _worldRadius = worldSize / 2;
+    private _trg = createTrigger ["EmptyDetector", [_worldRadius, _worldRadius], false];
+    _trg setTriggerArea [_worldRadius, _worldRadius, 0, true];
+
+    _trg
 };
 
 ISNILS(GVAR(EXCLUSION_ZONES), []);
@@ -16,23 +19,25 @@ ISNILS(GVAR(POPULATION_ZONES), []);
 ISNILS(GVAR(GLOBAL_POPULATION_ZONE), call _createGlobalPopulationZone);
 
 private _applicablePopulationZones = if (count GVAR(POPULATION_ZONES) == 0) then {
-	// "there is no population zone" defaults to "*everywhere* is population zone"
-	ISNILS(EGVAR(cars,vehicles), []); // DANGER hacky hack
-	[
-		"area",
-		"civClasses",
-		"vehicleClasses"
-	] createHashMapFromArray [
-		GVAR(GLOBAL_POPULATION_ZONE),
-		call EFUNC(lifecycle,config_getCivClasses),
-		QEGVAR(cars,vehicles) /*TODO cleanly get vehicle classes in here. how though?*/
-	];
+    // "there is no population zone" defaults to "*everywhere* is population zone"
+    ISNILS(EGVAR(cars,vehicles), []); // DANGER hacky hack
+    [
+        [
+            "area",
+            "civClasses",
+            "vehicleClasses"
+        ] createHashMapFromArray [
+            GVAR(GLOBAL_POPULATION_ZONE),
+            call EFUNC(lifecycle,config_getCivClasses),
+            QEGVAR(cars,vehicles) /*TODO cleanly get vehicle classes in here. how though?*/
+        ]
+    ];
 } else {
-	GVAR(POPULATION_ZONES)
+    GVAR(POPULATION_ZONES)
 };
 
 if (_pos isEqualTo []) then {
-	GVAR(POPULATION_ZONES)
+    _applicablePopulationZones
 } else {
-	GVAR(POPULATION_ZONES) select {_pos inArea (_x get "area")}
+    _applicablePopulationZones select {_pos inArea (_x get "area")}
 }
