@@ -20,7 +20,7 @@ ISNILS(GVAR(GLOBAL_POPULATION_ZONE), call _createGlobalPopulationZone);
 
 private _applicablePopulationZones = if (count GVAR(POPULATION_ZONES) == 0) then {
     // "there is no population zone" defaults to "*everywhere* is population zone"
-    ISNILS(EGVAR(cars,vehicles), []); // DANGER hacky hack
+    ISNILS(EGVAR(cars,vehiclesArray), []); // DANGER hacky hack
     [
         [
             "area",
@@ -29,7 +29,7 @@ private _applicablePopulationZones = if (count GVAR(POPULATION_ZONES) == 0) then
         ] createHashMapFromArray [
             GVAR(GLOBAL_POPULATION_ZONE),
             call EFUNC(lifecycle,config_getCivClasses),
-            QEGVAR(cars,vehicles) /*TODO cleanly get vehicle classes in here. how though?*/
+            EGVAR(cars,vehiclesArray) /*TODO cleanly get vehicle classes in here. how though?*/
         ]
     ];
 } else {
