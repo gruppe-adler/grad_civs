@@ -1,3 +1,5 @@
+// TODO split between housework and housemove actions! move should stop when civ arrives at dest - housework sohulod have rfixed time
+
 #include "..\script_component.hpp"
 
 private _house = _this getVariable ["grad_civs_home", objNull];
