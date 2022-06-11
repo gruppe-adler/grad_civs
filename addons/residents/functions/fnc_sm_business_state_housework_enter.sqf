@@ -1,13 +1,13 @@
 #include "..\script_component.hpp"
 
 private _house = _this getVariable ["grad_civs_home", objNull];
-_this setVariable ["grad_civs_housework_time", random [5, 15, 20]];
+_this setVariable ["grad_civs_housework_time", random [5, 15, 120]];
 _this call EFUNC(activities,forceEmotionSpeed);
 
 if (isNull _house) exitWith {};
 
 if (random 4 > 1) then { // in 2 of 3 cases , do change position
-    [QEGVAR(common,switchMove), [_this, ""]] call CBA_fnc_globalEvent;
+    [QEGVAR(common,switchMove), [_this, ""]] call CBA_fnc_globalEvent; // do we need this?
     doStop _this;
 
     // add one random really close position to house positions
@@ -18,12 +18,7 @@ if (random 4 > 1) then { // in 2 of 3 cases , do change position
 
     _this moveTo _pos;
 } else {
-    [_this, selectRandom GVAR(houseworkAnimationSets), "NONE", objNull, true] call BIS_fnc_ambientAnim;
+    private _animSet = selectRandom GVAR(houseworkAnimationSets);
+    _this setVariable [QGVAR(housework_anim), _animSet];
+    [_this, _animSet, "NONE", objNull, true] call BIS_fnc_ambientAnim;
 };
-
-/*
-Acts_B_M05_briefing > 27s
-Acts_JetsOfficerSpilling = 11s , braucht eigentlich Anschluanim
-acts_miller_knockout = 5.5s
-InBaseMoves_HandsBehindBack1 = 3.5
-*/
