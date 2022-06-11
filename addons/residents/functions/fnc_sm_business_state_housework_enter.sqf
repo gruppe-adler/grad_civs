@@ -7,7 +7,6 @@ _this call EFUNC(activities,forceEmotionSpeed);
 if (isNull _house) exitWith {};
 
 if (random 4 > 1) then { // in 2 of 3 cases , do change position
-    [QEGVAR(common,switchMove), [_this, ""]] call CBA_fnc_globalEvent; // do we need this?
     doStop _this;
 
     // add one random really close position to house positions
@@ -17,8 +16,11 @@ if (random 4 > 1) then { // in 2 of 3 cases , do change position
     private _pos = selectRandom _positions;
 
     _this moveTo _pos;
+
+    _this setVariable [QGVAR(housework_anim), "### MOVING ###"];
 } else {
     private _animSet = selectRandom GVAR(houseworkAnimationSets);
+    [_this, _animSet, "ASIS", objNull, true] call BIS_fnc_ambientAnim;
+
     _this setVariable [QGVAR(housework_anim), _animSet];
-    [_this, _animSet, "NONE", objNull, true] call BIS_fnc_ambientAnim;
 };
