@@ -35,7 +35,8 @@ GVAR(houseworkAnimationSetsOutdoors) = [
     "KNEEL_TREAT"
 ];
 
-GVAR(houseworkTimes) = [5, 30, 120];
+GVAR(houseworkTimesDay) = [5, 30, 120];
+GVAR(houseworkTimesNight) = [120, 240, 900];
 
 if (isServer || CBA_isHeadlessClient) then {
     [

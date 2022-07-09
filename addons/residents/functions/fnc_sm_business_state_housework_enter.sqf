@@ -2,8 +2,10 @@
 
 #include "..\script_component.hpp"
 
+private _isSleepingTime = _this call EFUNC(activities,isSleepingTime);
+
 private _house = _this getVariable ["grad_civs_home", objNull];
-_this setVariable [QGVAR(housework_time), random GVAR(houseworkTimes)];
+_this setVariable [QGVAR(housework_time), random if (_isSleepingTime) then {GVAR(houseworkTimesNight)} else {GVAR(houseworkTimesDay)}];
 _this call EFUNC(activities,forceEmotionSpeed);
 
 if (isNull _house) exitWith {
