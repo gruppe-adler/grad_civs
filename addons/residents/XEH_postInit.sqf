@@ -3,15 +3,22 @@
 if (!(EGVAR(main,enabled))) exitWith {};
 
 GVAR(houseworkAnimationSets) = [
-    "STAND1",
-    "STAND2",
-    "STAND_U1",
-    "STAND_U2",
-    "STAND_U3",
-    "WATCH",
-    "WATCH2",
-    "GUARD",
-    "LISTEN_BRIEFING"
+    "STAND_U1", // stands bored
+    "STAND_U2", // stands bored
+    "STAND_U3", // stands bored
+    "WATCH", // looking left to right
+    "WATCH2", // more straight ahead
+    "GUARD", // hands back
+    "LISTEN_BRIEFING", // hands back
+    "SIT_LOW_U", // sit on floor
+    "REPAIR_VEH_PRONE", // lies on back
+    "REPAIR_VEH_KNEEL",
+    "REPAIR_VEH_STAND",
+    "PRONE_INJURED_U1", // lies on back
+    "PRONE_INJURED_U2", // lies on back
+    "KNEEL_TREAT",
+    "BRIEFING",
+    "BRIEFING_POINT_TABLE"
 ];
 
 if (isServer || CBA_isHeadlessClient) then {
