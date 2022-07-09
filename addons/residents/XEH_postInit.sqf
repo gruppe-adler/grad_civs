@@ -35,6 +35,8 @@ GVAR(houseworkAnimationSetsOutdoors) = [
     "KNEEL_TREAT"
 ];
 
+GVAR(houseworkTimes) = [5, 30, 120];
+
 if (isServer || CBA_isHeadlessClient) then {
     [
         QEGVAR(lifecycle,localSpawn),

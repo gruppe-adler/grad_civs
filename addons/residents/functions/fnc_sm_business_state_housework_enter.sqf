@@ -3,7 +3,7 @@
 #include "..\script_component.hpp"
 
 private _house = _this getVariable ["grad_civs_home", objNull];
-_this setVariable [QGVAR(housework_time), random [5, 15, 120]];
+_this setVariable [QGVAR(housework_time), random GVAR(houseworkTimes)];
 _this call EFUNC(activities,forceEmotionSpeed);
 
 if (isNull _house) exitWith {
