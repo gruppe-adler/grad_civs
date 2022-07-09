@@ -41,7 +41,6 @@ digraph lifecycle {
                 bus_chat -> bus_housemove;
                 bus_housemove -> bus_housework;
                 bus_housework -> bus_housemove;
-                bus_housework -> bus_housework;
             }
 
             subgraph cluster_panic {
