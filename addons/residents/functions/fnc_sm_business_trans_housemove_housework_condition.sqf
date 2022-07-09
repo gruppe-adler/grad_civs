@@ -1,2 +1,5 @@
+#include "..\script_component.hpp"
 
-_this setVariable [QGVAR(targetPos), _pos];
+private _targetPos = _this getVariable [QGVAR(targetPos), getPos _this];
+
+(_this distance _targetPos) < 2
