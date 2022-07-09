@@ -1,7 +1,6 @@
 #include "..\script_component.hpp"
 
-// originally written by KK
-
+// originally written by KK, modifications by Fusselwurm
 
 private _pos = _this;
 if (_this isEqualType objNull) then {
@@ -10,8 +9,8 @@ if (_this isEqualType objNull) then {
 
 lineIntersectsSurfaces [
     _pos,
-	_pos vectorAdd [0, 0, 50],
-	objNull,
+    _pos vectorAdd [0, 0, 50],
+    _this,
     objNull,
     true,
     1,
