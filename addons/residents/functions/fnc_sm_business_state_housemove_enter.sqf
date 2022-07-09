@@ -10,7 +10,7 @@ if (isNull _house) exitWith {
 doStop _this;
 
 // add one random really close position to house positions
-private _currentPos = getPos _this;
+private _currentPos = getPos _house;
 private _nearPos = [random 10, random 10, (_currentPos select 2)] vectorAdd _currentPos;
 private _positions = ([_house] call BIS_fnc_buildingPositions) + [_nearPos];
 private _pos = selectRandom _positions;
