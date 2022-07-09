@@ -34,11 +34,13 @@ digraph lifecycle {
                 bus_transit -> bus_dismount [color=red]; # panic event
                 bus_voyage -> bus_dismount [color=red]; # panic event
                 bus_dismount -> bus_rally;
-                bus_rally -> bus_housework;
+                bus_rally -> bus_housemove;
                 bus_rideInBack -> bus_rally;
-                bus_housework -> bus_meetNeighbor;
+                bus_housemove -> bus_meetNeighbor;
                 bus_meetNeighbor -> bus_chat;
-                bus_chat -> bus_housework;
+                bus_chat -> bus_housemove;
+                bus_housemove -> bus_housework;
+                bus_housework -> bus_housemove;
                 bus_housework -> bus_housework;
             }
 
