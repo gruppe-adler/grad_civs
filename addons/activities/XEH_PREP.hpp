@@ -16,6 +16,7 @@ PREP(forcePanicSpeed);
 PREP(initCommonEventhandlers);
 PREP(initConfig);
 PREP(isInHouse);
+PREP(isSleepingTime);
 PREP(onCivAdded);
 PREP(reverse_abort);
 PREP(reverse_internal_end);

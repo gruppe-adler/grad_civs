@@ -1,4 +1,6 @@
-// originall written by KK
+#include "..\script_component.hpp"
+
+// originally written by KK
 
 
 private _pos = _this;
