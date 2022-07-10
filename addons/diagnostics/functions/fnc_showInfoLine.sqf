@@ -65,7 +65,7 @@ ISNILS(GVAR(userActionIds), []);
         drawIcon3D [
             "#(argb,8,8,3)color(0,0,0,0)",
             _color,
-            (getPosATL _x) vectorAdd [0, 0, 2],
+            (getPosATLVisual _x) vectorAdd [0, 0, 1.85],
             1, 1, 0,
             _text, 0, 0.03, "EtelkaNarrowMediumPro", "center", true
         ];
