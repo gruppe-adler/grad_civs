@@ -6,6 +6,8 @@
 
 ISNILS(GVAR(roadDefaultActionEH), -1);
 ISNILS(GVAR(airPfh), -1);
+ISNILS(GVAR(flyscareEnabled), true);
+ISNILS(GVAR(honkingEnabled), true);
 
 if (GVAR(roadDefaultActionEH) != -1) exitWith {
 	LOG_1("removing EH %1", GVAR(roadDefaultActionEH));
@@ -30,6 +32,7 @@ if IS_DRIVER then {
 			WARNING("roadDefaultActionEH already set");
 		};
 		GVAR(roadDefaultActionEH) = addUserActionEventHandler ["DefaultAction", "Activate", {
+			if (!GVAR(honkingEnabled)) exitWith {};
 			if (!IS_DRIVER) exitWith {
 				WARNING("DefaultAction EH called while not being driver. this is not supposed to happen. removing EH...");
 				[] call FUNC(vehicleSeatHandler);
@@ -48,6 +51,7 @@ if IS_DRIVER then {
 			WARNING("airPfh already set");
 		};
 		GVAR(airPfh) = [{
+			if (!GVAR(flyscareEnabled)) exitWith {};
 			if (!IS_DRIVER) exitWith {
 				WARNING("DefaultAction EH called while not being driver. this is not supposed to happen. removing EH...");
 				[] call FUNC(vehicleSeatHandler);
