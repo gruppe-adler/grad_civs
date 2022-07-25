@@ -29,13 +29,35 @@ From existing Population Zones, subtract areas  where civilian may *not* spawn.
 
 ## API
 
-### `grad_civs_common_fnc_addExclusionZone` and `grad_civs_common_fnc_addPopulationZone`
+## grad_civs_common_fnc_addPopulationZone
 
-Whitelist areas or prevent civilians from spawning in areas (area = trigger area).
+Whitelist areas to allow civilians to spawn in those areas (area = trigger area).
+
+**Syntax**
+```sqf
+[_trigger, _civClasses, _vehicleClasses] call grad_civs_common_fnc_addPopulationZone
+```
+
+## grad_civs_common_fnc_addExclusionZone
+
+Prevent civilians from being spawned in specific areas.
+
+**Syntax**
+```sqf
+[_trigger] call grad_civs_common_fnc_addExclusionZone;
+```
+
+**Alternative syntax**
+```sqf
+[
+    [
+        [x, y, z], // Coordinates
+        150, // X Radius
+        150, // Y Radius
+        0, // Angle
+        false // True if area is Rectangle. False for Ellipse
+    ]
+] call grad_civs_common_fnc_addExclusionZone;
+```
 
 *known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
-
-#### Syntax
-
-* `[_trigger, _civClasses, _vehicleClasses] call grad_civs_common_fnc_addPopulationZone` , then forbid parts of them using `[_area] call grad_civs_common_fnc_addExclusionZone`
-* `[_trigger] call grad_civs_common_fnc_addExclusionZone;`  
