@@ -8,10 +8,19 @@ assert(!(isNull _business));
 private _bus_rally = "bus_rally";
 
 /*
- * residence-cycle: housework, meetNeighbor, chat
+ * residence-cycle: housemove, housework, meetNeighbor, chat
  *
  *
  */
+
+private _bus_housemove = [
+    _business,
+    {},
+    { _this call FUNC(sm_business_state_housemove_enter) },
+    { _this call FUNC(sm_business_state_housemove_exit) },
+    "bus_housemove"
+] call EFUNC(cba_statemachine,addState);
+
 private _bus_housework = [
     _business,
     {},
@@ -36,14 +45,14 @@ private _bus_chat = [
     "bus_chat"
 ] call EFUNC(cba_statemachine,addState);
 
-    // TRANSITIONS housework:
+    // TRANSITIONS
 
 assert ([
     _business,
-    _bus_rally, _bus_housework,
-    { _this call FUNC(sm_business_trans_rally_housework_condition) },
+    _bus_rally, _bus_housemove,
+    { _this call FUNC(sm_business_trans_rally_housemove_condition) },
     {},
-    _bus_rally + _bus_housework
+    _bus_rally + _bus_housemove
 ] call EFUNC(cba_statemachine,addTransition));
 
 assert ([
@@ -70,12 +79,23 @@ assert ([
     _bus_chat + _bus_housework
 ] call EFUNC(cba_statemachine,addTransition));
 
+//
+
 assert ([
     _business,
-    _bus_housework, _bus_housework,
-    { _this call FUNC(sm_business_trans_housework_housework_condition) },
+    _bus_housemove, _bus_housework,
+    { _this call FUNC(sm_business_trans_housemove_housework_condition) },
     {},
-    _bus_housework + _bus_housework
+    _bus_housemove + _bus_housework
 ] call EFUNC(cba_statemachine,addTransition));
+
+assert ([
+    _business,
+    _bus_housework, _bus_housemove,
+    { _this call FUNC(sm_business_trans_housework_housemove_condition) },
+    {},
+    _bus_housework + _bus_housemove
+] call EFUNC(cba_statemachine,addTransition));
+
 
 _business

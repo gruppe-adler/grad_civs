@@ -56,6 +56,14 @@ ISNILS(GVAR(userActionIds), []);
                         ""
                     };
                 };
+                case 11: {format[
+                    "%1 | houseworkanim: %2, animState %3, gestureState %4, pose %5",
+                    _x,
+                    _x getVariable [QEGVAR(residents,housework_anim), ""],
+                    animationState _x,
+                    gestureState _x,
+                    pose _x
+                ]};
                 default {"<empty>"};
             };
         } else {"o"};
@@ -105,7 +113,8 @@ if (GVAR(showInfoLine)) then {
         ["<t color='#3333FF'>civstate format: waypoints</t>", 7] call _addCivAction,
         ["<t color='#3333FF'>civstate format: distance</t>", 8] call _addCivAction,
         ["<t color='#3333FF'>civstate format: type</t>", 9] call _addCivAction,
-        ["<t color='#3333FF'>civstate format: vehicle move info</t>", 10] call _addCivAction
+        ["<t color='#3333FF'>civstate format: vehicle move info</t>", 10] call _addCivAction,
+        ["<t color='#3333FF'>civstate format: animations</t>", 11] call _addCivAction
     ];
 } else {
     {

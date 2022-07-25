@@ -1,5 +1,7 @@
 #include "..\script_component.hpp"
 
+if (_this call EFUNC(activities,isSleepingTime)) exitWith {false};
+
 private _neighborCooldown = GVAR(meetNeighborCooldown);
 
 if ((_this getVariable ["grad_civs_lastSocialContact", 0]) + _neighborCooldown > CBA_missionTime) exitWith {false};

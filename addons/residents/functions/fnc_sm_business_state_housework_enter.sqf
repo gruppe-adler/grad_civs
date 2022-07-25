@@ -1,30 +1,26 @@
+// TODO housework sohulod have rfixed time
+
 #include "..\script_component.hpp"
 
+private _isSleepingTime = _this call EFUNC(activities,isSleepingTime);
+
 private _house = _this getVariable ["grad_civs_home", objNull];
-_this setVariable ["grad_civs_housework_time", random [5, 15, 120]];
+_this setVariable [QGVAR(housework_time), random if (_isSleepingTime) then {GVAR(houseworkTimesNight)} else {GVAR(houseworkTimesDay)}];
 _this call EFUNC(activities,forceEmotionSpeed);
 
-if (isNull _house) exitWith {};
-
-if (random 4 > 1) then { // in 2 of 3 cases , do change position
-    [QEGVAR(common,switchMove), [_this, ""]] call CBA_fnc_globalEvent;
-    doStop _this;
-
-    // add one random really close position to house positions
-    private _currentPos = getPos _this;
-    private _nearPos = [random 10, random 10, (_currentPos select 2)] vectorAdd _currentPos;
-    private _positions = ([_house] call BIS_fnc_buildingPositions) + [_nearPos];
-    private _pos = selectRandom _positions;
-
-    _this moveTo _pos;
-} else {
-    private _anim = selectRandom ["Acts_B_M05_briefing", "Acts_JetsOfficerSpilling", "acts_miller_knockout", "InBaseMoves_HandsBehindBack1"];
-    [QEGVAR(common,switchMove), [_this, _anim]] call CBA_fnc_globalEvent;
+if (isNull _house) exitWith {
+    LOG_1("%1 should be doing housework, but does not have a house");
 };
 
-/*
-Acts_B_M05_briefing > 27s
-Acts_JetsOfficerSpilling = 11s , braucht eigentlich Anschluanim
-acts_miller_knockout = 5.5s
-InBaseMoves_HandsBehindBack1 = 3.5
-*/
+private _animSets = if (_this call EFUNC(activities,isInHouse))
+then {
+    if (_this call EFUNC(activities,isSleepingTime))
+    then { GVAR(houseworkAnimationSetsInhouseNight) }
+    else { GVAR(houseworkAnimationSetsInhouseDay) }
+} else { GVAR(houseworkAnimationSetsOutdoors) };
+
+
+private _animSet = selectRandom _animSets;
+[_this, _animSet, "ASIS", objNull, true] call BIS_fnc_ambientAnim;
+
+_this setVariable [QGVAR(housework_anim), _animSet];
