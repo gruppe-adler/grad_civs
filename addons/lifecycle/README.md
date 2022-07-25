@@ -16,7 +16,22 @@ Controls all spawning & despawning of civilians, as well as incapacitation & dea
 
 ## API
 
-### Events 
+## grad_civs_lifecycle_fnc_setCivilians
+
+Sets the classnames that civilians will spawn as. Overwrites value from CBA settings. Execute globally
+
+#### Example
+
+```sqf
+private _civClasses = ["C_Man_01"];
+[_civClasses] call grad_civs_lifecycle_fnc_setCivilians
+```
+
+Parameter   | Explanation
+------------|-------------------------------------------------------------
+civClasses  | Array - All classnames that civilians will spawn as.
+
+## Events 
 
 **NOTE:** event names are prefixed with `grad_civs_lifecycle_`
 
