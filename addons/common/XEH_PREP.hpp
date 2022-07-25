@@ -13,3 +13,4 @@ PREP(module_populationZone);
 PREP(nowPlusSeconds);
 PREP(parseCsv);
 PREP(registerCivTaskType);
+PREP(removeExclusionZone);

@@ -61,3 +61,19 @@ Prevent civilians from being spawned in specific areas.
 ```
 
 *known issues: pathing through area is not checked. To minimize that problem, define exclusionZones with large diameter.*
+
+## grad_civs_common_fnc_removeExclusionZone
+
+Remove a zone from the exclusion list to allow civilians to spawn there again.
+
+**Syntax**
+```sqf
+[_trigger] call grad_civs_common_fnc_removeExclusionZone
+```
+
+**Alternative syntax**
+```sqf
+[
+    [x, y, z] // Coordinates for an existing exclusion zone. X, Y and Z must be an exact match.
+] call grad_civs_common_fnc_removeExclusionZone;
+```
