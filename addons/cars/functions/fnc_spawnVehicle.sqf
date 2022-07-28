@@ -23,6 +23,15 @@ _veh addEventHandler [
      }
  ];
 
+ _veh addEventHandler [
+    "Killed",
+    {
+        params ["_unit", "_killer"];
+
+        ["grad_civs_cars_vehKilled", [getPos _unit, _killer, _unit]] call CBA_fnc_globalEvent;
+    }
+ ];
+
 private _animalChance = GVAR(animalTransportChance);
 [_veh, _animalChance] call FUNC(loadAnimals);
 
