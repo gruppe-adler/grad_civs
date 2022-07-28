@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 params [
-	["_value",[], [[]]] // array of vehicle class names
+	["_value",[], [[]]] // array of civilian unit class names
 ];
 
 assert(_value isEqualTypeAll "");
