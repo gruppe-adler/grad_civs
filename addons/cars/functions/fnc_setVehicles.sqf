@@ -6,4 +6,4 @@ params [
 
 assert(_value isEqualTypeAll "");
 
-[QGVAR(vehicles), str _value, 1, "mission"] call CBA_settings_fnc_set;
+[QGVAR(vehicles), str _value, 1, "server", true] call CBA_settings_fnc_set;
