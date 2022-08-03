@@ -37,6 +37,30 @@ If that is not possible, civilian group size (looking at you, [Ikarus 260](https
 
 Civilians on separate islands can run into pathing problems. Avoid by creating exclusion zones.
 
+## Testing Locally
+
+This addon is built using HEMTT and defines a custom HEMTT configuration [here](hemtt.toml).
+
+To test this locally you must first compile the addon. There are two options for doing so:
+
+### HEMTT Portable
+1. Download [HEMTT](https://github.com/BrettMayson/HEMTT)
+2. Extract `hemtt.exe` to a known directory
+3. Copy the absolute path of `hemtt.exe` (Example: C:\Users\MyPC\Documents\HEMTT\hemtt.exe)
+4. Open a Command Prompt instance and `cd` to the grad_civs repository directory
+5. Run `<FULL PATH to HEMTT.exe> build`
+
+Additionally, for the portable mode, you can add the full path to HEMTT.exe to your PATH environment variable
+
+### HEMTT Installer
+1. Download [HEMTT](https://github.com/BrettMayson/HEMTT)
+2. Run `setup.exe`, this should install HEMTT to `C:\Program Files (x86)\HEMTT\bin` by default
+3. Add `C:\Program Files (x86)\HEMTT\bin` to your PATH environment variable
+4. Open a Command Prompt instance and `cd` to the grad_civs repository directory
+5. Run `hemtt build`
+
+Afterwards, you can open the Arma 3 Launcher and add the grad_civs repository root as a local addon.
+
 ## Detailed documentation
 
 All modules have their own READMEs that describe features, settings & APIs:
