@@ -54,3 +54,13 @@ private _settingsGroup = ["GRAD Civilians", "7) cars - basic settings for civili
     false
 ] call CBA_fnc_addSetting;
 
+[
+    QGVAR(globalSpeedLimit),
+    "SLIDER",
+    "Vehicle speed limit in m/s",
+    _settingsGroup,
+    [-1, 100, 20, 0, false],
+    false,
+    {},
+    false
+] call CBA_fnc_addSetting;
