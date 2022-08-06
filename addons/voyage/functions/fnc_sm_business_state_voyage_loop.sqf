@@ -6,4 +6,4 @@ if (isNull _group) exitWith {
     WARNING_5("unit %1 (type %2) in voyage loop has no group. will ignore. alive %3 index %4 pos %5", _livedAs, typeof _this, alive _this, EGVAR(lifecycle,localCivs) find _this, getPos _this);
 };
 
-(vehicle _this) forceSpeed EGVAR(cars,globalSpeedLimit);
+(vehicle _this) limitSpeed EGVAR(cars,globalSpeedLimit);

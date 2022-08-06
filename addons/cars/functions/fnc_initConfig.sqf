@@ -57,7 +57,7 @@ private _settingsGroup = ["GRAD Civilians", "7) cars - basic settings for civili
 [
     QGVAR(globalSpeedLimit),
     "SLIDER",
-    "Vehicle speed limit in m/s",
+    "Vehicle speed limit in km/h",
     _settingsGroup,
     [-1, 100, 20, 0, false],
     false,
