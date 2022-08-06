@@ -33,8 +33,15 @@ vehicles  | Array - All classnames of vehicles that civilians may drive.
 
 ### Events
 
+#### grad_civs_cars_car_added
+
+```sqf 
+["grad_civs_cars_car_added", { params ["_vehicle"]; }] call CBA_fnc_addEventHandler;
+```
+
+
 #### grad_civs_cars_vehKilled
 
 ```sqf 
-["grad_civs_cars_vehKilled", { params ["_deathPos", "_killer", "_vehicle_"]; }] call CBA_fnc_addEventHandler;
+["grad_civs_cars_vehKilled", { params ["_deathPos", "_killer", "_vehicle"]; }] call CBA_fnc_addEventHandler;
 ```

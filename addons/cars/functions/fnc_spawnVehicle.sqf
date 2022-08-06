@@ -32,6 +32,8 @@ _veh addEventHandler [
     }
  ];
 
+[QGVAR(car_added), [_veh]] call CBA_fnc_globalEvent;
+
 private _animalChance = GVAR(animalTransportChance);
 [_veh, _animalChance] call FUNC(loadAnimals);
 
