@@ -1,4 +1,5 @@
 PREP(drawFlyScarePoly);
+PREP(drawSpeedLimitsOnMap);
 PREP(initConfig);
 PREP(showFps);
 PREP(showFlyScarePoly);
@@ -14,5 +15,6 @@ PREP(showPinkArrows_arrowDelete);
 PREP(showPinkArrows_arrowEnsure);
 PREP(showPointingHints);
 PREP(showSpawnAttempts);
+PREP(showSpeedLimitsOnMap);
 PREP(tempMarker);
 PREP(updateInfoLine);
