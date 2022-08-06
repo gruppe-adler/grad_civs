@@ -4,7 +4,7 @@
     if (!(EGVAR(main,enabled))) exitWith {};
 
     if (hasInterface) then {
-        call FUNC(showOnMap);
+        call FUNC(showOnMaps);
         call FUNC(showPointingHints);
         call FUNC(showInfoLine);
         call FUNC(showFps);

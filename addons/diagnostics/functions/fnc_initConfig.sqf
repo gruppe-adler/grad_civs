@@ -22,7 +22,7 @@ private _settingsGroup = ["GRAD Civilians", "c) diagnostics - debugging info"];
     _settingsGroup,
     false,
     false,
-    FUNC(showOnMap),
+    FUNC(showOnMaps),
     false
 ] call CBA_fnc_addSetting;
 

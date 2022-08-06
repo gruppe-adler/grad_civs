@@ -7,6 +7,7 @@ PREP(showFlyScarePoly_cleanupGroundHelpers);
 PREP(showHonkAtArea);
 PREP(showInfoLine);
 PREP(showOnMap_drawCivs);
+PREP(showOnMaps);
 PREP(showOnMap);
 PREP(showPinkArrows);
 PREP(showPinkArrows_arrowAdd);
