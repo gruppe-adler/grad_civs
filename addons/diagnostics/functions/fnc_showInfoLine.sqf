@@ -35,7 +35,13 @@ ISNILS(GVAR(userActionIds), []);
             switch (GVAR(civStateFormat)) do {
                 case 0: {""};
                 case 1: {_x getVariable [QGVAR(infoLine),"<no info found. is debug mode enabled where the civs are local?>"]; };
-                case 2: {format["%1 | speedmode: %2 %3", _x, speedMode _x, if (leader _x == _x) then {"(is leader)"} else {""}]; };
+                case 2: {
+                    private _veh = vehicle _x;
+                    private _driver = driver _veh;
+                    if ((_veh != _x) && (_driver != _x)) exitWith { "x" };
+
+                    format["%1 | %2km/h in speedmode: %3 %4", _x, round speed _veh, speedMode _x, if (leader _x == _x) then {"(is leader)"} else {""}];
+                };
                 case 3: {format["%1 | %2 guns point at him", _x, _x getVariable [QEGVAR(interact,pointedAtCount), 0]]};
                 case 4: {format["%1 | is local at %2", _x, _x getVariable [QGVAR(localAt), 0]]};
                 case 5: {format["%1 | %2 %3 %4 | stopped: %5, unitReady: %6", _x, behaviour _x, combatMode _x, speedMode _x, stopped _x, unitReady _x]};
@@ -105,7 +111,7 @@ if (GVAR(showInfoLine)) then {
     GVAR(userActionIds) = [
         ["<t color='#3333FF'>civstate format: empty</t>", 0] call _addCivAction,
         ["<t color='#3333FF'>civstate format: infoLine</t>", 1] call _addCivAction,
-        ["<t color='#3333FF'>civstate format: speedmode</t>", 2] call _addCivAction,
+        ["<t color='#3333FF'>civstate format: speed</t>", 2] call _addCivAction,
         ["<t color='#3333FF'>civstate format: guns</t>", 3] call _addCivAction,
         ["<t color='#3333FF'>civstate format: locality</t>", 4] call _addCivAction,
         ["<t color='#3333FF'>civstate format: behaviour</t>", 5] call _addCivAction,
