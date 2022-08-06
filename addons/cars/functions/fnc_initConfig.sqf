@@ -59,7 +59,7 @@ private _settingsGroup = ["GRAD Civilians", "7) cars - basic settings for civili
     "SLIDER",
     "Vehicle speed limit in km/h",
     _settingsGroup,
-    [-1, 360, 20, 0, false],
+    [-1, 360, 50, 0, false],
     false,
     {},
     false
