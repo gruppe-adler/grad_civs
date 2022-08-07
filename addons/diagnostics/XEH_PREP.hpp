@@ -1,5 +1,6 @@
 PREP(drawFlyScarePoly);
 PREP(initConfig);
+PREP(pfh_drawInfoLines);
 PREP(showFps);
 PREP(showFlyScarePoly);
 PREP(showFlyScarePoly_addGroundHelper);
