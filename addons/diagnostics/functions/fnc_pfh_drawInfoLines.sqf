@@ -19,6 +19,7 @@ private _filterTimeVars = {
 private _playerUnit = call CBA_fnc_currentUnit;
 private _camPos = AGLToASL positionCameraToWorld [0, 0, 0];
 private _camDir = getCameraViewDirection _playerUnit;
+private _fov = deg getObjectFOV _playerUnit;
 
 
 {
@@ -27,7 +28,7 @@ private _camDir = getCameraViewDirection _playerUnit;
     private _diff = (getPosASL _x) vectorDiff _camPos;
     private _civAngle = acos (_camDir vectorCos _diff);
 
-    private _fov = deg getObjectFOV _playerUnit;
+
 
     private _text = if (_civAngle < _fov) then {
         switch (GVAR(civStateFormat)) do {
