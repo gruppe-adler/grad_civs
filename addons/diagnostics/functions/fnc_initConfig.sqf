@@ -60,6 +60,17 @@ private _settingsGroup = ["GRAD Civilians", "c) diagnostics - debugging info"];
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(showSpeedLimitsOnMap),
+    "CHECKBOX",
+    "Show speed limits on map",
+    _settingsGroup,
+    false,
+    false,
+    FUNC(showSpeedLimitsOnMap),
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(showMisc),
     "CHECKBOX",
     "Miscellaneous stuff",
@@ -70,7 +81,6 @@ private _settingsGroup = ["GRAD Civilians", "c) diagnostics - debugging info"];
         { deleteVehicle _x } forEach GVAR(dangerPolyGroundHelpers);
         [] call FUNC(showHonkAtArea);
         [] call FUNC(showFlyScarePoly);
-
     },
     false
 ] call CBA_fnc_addSetting;

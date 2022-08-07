@@ -40,7 +40,13 @@ ISNILS(GVAR(userActionIds), []);
                     private _driver = driver _veh;
                     if ((_veh != _x) && (_driver != _x)) exitWith { "x" };
 
-                    format["%1 | %2km/h in speedmode: %3 %4", _x, round speed _veh, speedMode _x, if (leader _x == _x) then {"(is leader)"} else {""}];
+                    format["%1 | %2 / %3 km/h in speedmode: %4 %5",
+                        _x,
+                        round speed _veh,
+                        round (_veh getVariable [QEGVAR(cars,speedLimit), -1]),
+                        speedMode _x,
+                        if (leader _x == _x) then {"(is leader)"} else {""}
+                    ];
                 };
                 case 3: {format["%1 | %2 guns point at him", _x, _x getVariable [QEGVAR(interact,pointedAtCount), 0]]};
                 case 4: {format["%1 | is local at %2", _x, _x getVariable [QGVAR(localAt), 0]]};

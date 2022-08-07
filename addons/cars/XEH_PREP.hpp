@@ -1,8 +1,11 @@
+PREP(determineTownLocations);
+PREP(determineSpeedLimits);
 PREP(dismountCondition);
 PREP(getGlobalVehicles);
 PREP(getGroupVehicle);
 PREP(initConfig);
 PREP(loadAnimals);
+PREP(pfh_speedLimit);
 PREP(setGroupVehicle);
 PREP(setVehicles);
 PREP(sm_business_state_dismount_enter);

@@ -28,7 +28,7 @@ _veh addEventHandler [
     {
         params ["_unit", "_killer"];
 
-        ["grad_civs_cars_vehKilled", [getPos _unit, _killer, _unit]] call CBA_fnc_globalEvent;
+        [QGVAR(vehKilled), [getPos _unit, _killer, _unit]] call CBA_fnc_globalEvent;
     }
  ];
 
