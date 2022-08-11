@@ -9,7 +9,7 @@ if (_distance < 2) exitWith {
 };
 
 if ((_thisStateTime + 120) < CBA_missionTime && (_distance < 10)) exitWith {
-    LOG_3("%1 : entering housework as have been trying for >120s and distance to %2 is %3", _this, _targetPos, _distance);
+    LOG_3("%1 : trying to reach destination for >120s and distance to %2 is %3 - entering housework for a change", _this, _targetPos, _distance);
     true
 };
 
