@@ -1,10 +1,16 @@
 #include "..\script_component.hpp"
 
 private _targetPos = _this getVariable [QGVAR(targetPos), getPos _this];
-
 private _distance = _this distance _targetPos;
 
-LOG_2("housemove->housework: distance %1 statetime %2", _distance, _thisStateTime);
+if (_distance < 2) exitWith {
+    LOG_3("%1 : entering housework as distance to %2 is %3", _this, _targetPos, _distance);
+    true
+};
 
-(_distance < 2) ||
-    (_thisStateTime > 120 && _distance < 10)
+if ((_thisStateTime + 120) < CBA_missionTime && (_distance < 10)) exitWith {
+    LOG_3("%1 : entering housework as have been trying for >120s and distance to %2 is %3", _this, _targetPos, _distance);
+    true
+};
+
+false
