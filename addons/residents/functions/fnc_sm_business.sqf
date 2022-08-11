@@ -73,6 +73,14 @@ assert ([
 
 assert ([
     _business,
+    _bus_meetNeighbor, _bus_housemove,
+    { _this call FUNC(sm_business_trans_meetNeighbor_housemove_condition) },
+    {},
+    _bus_meetNeighbor + _bus_housemove
+] call EFUNC(cba_statemachine,addTransition));
+
+assert ([
+    _business,
     _bus_chat, _bus_housework,
     { _this call FUNC(sm_business_trans_chat_housework_condition) },
     {},

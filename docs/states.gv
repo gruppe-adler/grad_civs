@@ -38,6 +38,7 @@ digraph lifecycle {
                 bus_rideInBack -> bus_rally;
                 bus_housemove -> bus_meetNeighbor;
                 bus_meetNeighbor -> bus_chat;
+                bus_meetNeighbor -> bus_housemove;
                 bus_chat -> bus_housemove;
                 bus_housemove -> bus_housework;
                 bus_housework -> bus_housemove;
