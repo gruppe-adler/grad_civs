@@ -4,7 +4,7 @@ private _house = _this getVariable ["grad_civs_home", objNull];
 _this call EFUNC(activities,forceEmotionSpeed);
 
 if (isNull _house) exitWith {
-    LOG_1("%1 should be doing housemove, but dont have a house", _this);
+    WARNING_1("%1 should be doing housemove, but dont have a house", _this);
 };
 
 doStop _this;

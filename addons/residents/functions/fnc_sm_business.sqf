@@ -15,7 +15,7 @@ private _bus_rally = "bus_rally";
 
 private _bus_housemove = [
     _business,
-    {},
+    { _this call FUNC(sm_business_state_housemove_loop) },
     { _this call FUNC(sm_business_state_housemove_enter) },
     { _this call FUNC(sm_business_state_housemove_exit) },
     "bus_housemove"
