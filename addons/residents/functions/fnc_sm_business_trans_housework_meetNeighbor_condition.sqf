@@ -2,9 +2,7 @@
 
 if (_this call EFUNC(activities,isSleepingTime)) exitWith {false};
 
-private _neighborCooldown = GVAR(meetNeighborCooldown);
-
-if ((_this getVariable ["grad_civs_lastSocialContact", 0]) + _neighborCooldown > CBA_missionTime) exitWith {false};
+if ((_this getVariable [QGVAR(lastChat), 0]) + GVAR(meetNeighborCooldown) > CBA_missionTime) exitWith {false};
 
 private _neighborToMeet = _this getVariable ["grad_civs_neighborToMeet", objNull];
 if (!(isNull _neighborToMeet)) exitWith {
@@ -24,10 +22,10 @@ private _neighborToMeet = {
         (_x getVariable ["grad_civs_primaryTask", ""] == "reside") &&
         (
             (_x getVariable ["grad_civs_neighborToMeet", objNull] == _this) ||
-            ((_x getVariable ["grad_civs_lastSocialContact", 0]) + _neighborCooldown < CBA_missionTime)
+            ((_x getVariable [QGVAR(lastChat), 0]) + GVAR(meetNeighborCooldown) < CBA_missionTime)
         )
     };
-    if (count _socialNeighbors > 0) exitWith {_socialNeighbors select 0};
+    if (count _socialNeighbors > 0) exitWith {_socialNeighbors#0};
 } forEach [50, 100, 150];
 
 if (isNil "_neighborToMeet") exitWith {false};

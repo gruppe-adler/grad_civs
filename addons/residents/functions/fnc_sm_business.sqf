@@ -15,7 +15,7 @@ private _bus_rally = "bus_rally";
 
 private _bus_housemove = [
     _business,
-    {},
+    { _this call FUNC(sm_business_state_housemove_loop) },
     { _this call FUNC(sm_business_state_housemove_enter) },
     { _this call FUNC(sm_business_state_housemove_exit) },
     "bus_housemove"
@@ -69,6 +69,14 @@ assert ([
     { _this call FUNC(sm_business_trans_meetNeighbor_chat_condition) },
     {},
     _bus_meetNeighbor + _bus_chat
+] call EFUNC(cba_statemachine,addTransition));
+
+assert ([
+    _business,
+    _bus_meetNeighbor, _bus_housemove,
+    { _this call FUNC(sm_business_trans_meetNeighbor_housemove_condition) },
+    {},
+    _bus_meetNeighbor + _bus_housemove
 ] call EFUNC(cba_statemachine,addTransition));
 
 assert ([
