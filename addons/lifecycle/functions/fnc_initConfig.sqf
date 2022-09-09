@@ -38,9 +38,9 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(spawnLimitEnabled),
+    QGVAR(spawnCandidateLimitEnabled),
     "CHECKBOX",
-    ["Enable spawn limit", "Enable spawn limit which spawns civilians around players who are not flying beyond the max height and speed"],
+    ["Enable spawn candidate limiter", "Enable the spawn candidate limiter that limits which players will have civilians in a radius around them. Improves performance."],
     _settingsGroup,
     true,
     true,
@@ -49,9 +49,9 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(spawnHeightLimit),
+    QGVAR(spawnCandidateHeightLimit),
     "SLIDER",
-    ["Spawn height limit", "Civilians will not spawn around players that are in an air vehicle that is highter than this height"],
+    ["Spawn candidate height limit", "Sets the maximum height that players can be at before civilians will no longer spawn around them. Only used when the spawn candidate limiter is enabled."],
     _settingsGroup,
     [0, 1000, 200, 0],
     true,
@@ -61,9 +61,9 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
 
 
 [
-    QGVAR(spawnSpeedLimit),
+    QGVAR(spawnCandidateSpeedLimit),
     "SLIDER",
-    ["Speed limit", "Civilians will not spawn around players that are flying faster than this speed"],
+    ["Speed candidate speed limit", "Sets the maximum speed that players can travel at before civilians will no longer spawn around them. Only used when the spawn candidate limiter is enabled."],
     _settingsGroup,
     [0, 360, 100, 0],
     true,
