@@ -10,26 +10,15 @@ if (!GVAR(spawnLimitEnabled)) exitWith {_allPlayers};
 
 LOG_1("%1 is enabled, continuing", QGVAR(spawnLimitEnabled));
 
-private _filteredPlayers = [];
+_allPlayers select {
+    private _playerVehicle = objectParent _x;
 
-{
-    private _playerVehicle = vehicle _x;
+    if (isNull _playerVehicle) then {
+        true
+    } else {
+        private _playerHeight = getPosATL _playerVehicle # 2;
+        private _playerSpeed = speed _playerVehicle;
 
-    // If player is not in a vehicle, or is not in an air vehicle
-    if (_playerVehicle isEqualTo _x || {!(_playerVehicle isKindOf "Air")}) then {
-        _filteredPlayers pushBackUnique _x;
-
-        continue;
+        _playerHeight <= GVAR(spawnHeightLimit) && {_playerSpeed <= GVAR(spawnSpeedLimit)};
     };
-
-    private _playerHeight = getPosATL _playerVehicle # 2;
-    private _playerSpeed = speed _playerVehicle;
-
-    private _isSuitableCandidate = _playerHeight <= GVAR(spawnHeightLimit) && {_playerSpeed <= GVAR(spawnSpeedLimit)};
-
-    LOG_2("Player %1 candidate status is %2", _x, _isSuitableCandidate);
-    
-    if (_isSuitableCandidate) then { _filteredPlayers pushBackUnique _x };
-} forEach _allPlayers;
-
-_filteredPlayers
+};
