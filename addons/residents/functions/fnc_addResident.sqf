@@ -8,8 +8,8 @@ params [
 private _house = if (_forcePosition isEqualTo []) then {
 
     private _residentSpawnDistances = [GVAR(spawnDistancesResidents)] call EFUNC(common,parseCsv);
-    private _residentSpawnDistanceMin = _residentSpawnDistances#0;
-    private _residentSpawnDistanceMax = _residentSpawnDistances#1;
+    private _residentSpawnDistanceMin = selectMin _residentSpawnDistances;
+    private _residentSpawnDistanceMax = selectMax _residentSpawnDistances;
 
     private _spawnPosition = [
         _allPlayers,

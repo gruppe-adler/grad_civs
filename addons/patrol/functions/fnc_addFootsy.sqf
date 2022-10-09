@@ -9,8 +9,8 @@ private _maxInitialGroupSize = GVAR(initialGroupSize);
 private _groupSize = (floor random _maxInitialGroupSize) + 1;
 
 private _footSpawnDistances = [GVAR(spawnDistancesOnFoot)] call EFUNC(common,parseCsv);
-private _footSpawnDistanceMin = _footSpawnDistances#0;
-private _footSpawnDistanceMax = _footSpawnDistances#1;
+private _footSpawnDistanceMin = selectMin _footSpawnDistances;
+private _footSpawnDistanceMax = selectMax _footSpawnDistances;
 
 if (_forcePosition isNotEqualTo []) exitWith {
     [_forcePosition, _groupSize, objNull, "patrol", []] call EFUNC(lifecycle,spawnCivilianGroup);
