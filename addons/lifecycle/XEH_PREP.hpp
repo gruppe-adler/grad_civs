@@ -3,6 +3,7 @@ PREP(config_getCivClasses);
 PREP(dismissCiv);
 PREP(dismissGroup);
 PREP(initConfig);
+PREP(filterPlayers);
 PREP(findBuildings);
 PREP(findRandomPosArea);
 PREP(findRandomPos);

@@ -34,7 +34,12 @@ private _searchDistancePoints = _searchDirs apply {
     ]
 };
 // TODO: handle playercount == 0
-private _shuffledPlayers = _allPlayers call BIS_fnc_arrayShuffle;
+LOG_1("Filtering all players to find suitable spawn point candidates", _allPlayers);
+private _filteredPlayers = [_allPlayers] call FUNC(filterPlayers);
+LOG_1("Filtered players to %1", _filteredPlayers);
+if (count _filteredPlayers isEqualTo 0) exitWith {false};
+
+private _shuffledPlayers = _filteredPlayers call BIS_fnc_arrayShuffle;
 private _result = {
     // try to find houses - and abort when we found one thats good
     private _refPlayer = _x;

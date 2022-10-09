@@ -38,6 +38,40 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(spawnCandidateLimitEnabled),
+    "CHECKBOX",
+    ["Enable spawn candidate limiter", "Enable the spawn candidate limiter that limits which players will have civilians in a radius around them. Improves performance."],
+    _settingsGroup,
+    true,
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(spawnCandidateHeightLimit),
+    "SLIDER",
+    ["Spawn candidate height limit", "Sets the maximum height that players can be at before civilians will no longer spawn around them. Only used when the spawn candidate limiter is enabled."],
+    _settingsGroup,
+    [0, 1000, 200, 0],
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+
+[
+    QGVAR(spawnCandidateSpeedLimit),
+    "SLIDER",
+    ["Speed candidate speed limit", "Sets the maximum speed that players can travel at before civilians will no longer spawn around them. Only used when the spawn candidate limiter is enabled."],
+    _settingsGroup,
+    [0, 360, 100, 0],
+    true,
+    {},
+    false
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(minCivOwnerFps),
     "SLIDER",
     "Keep civ owner fps over [1/s]",
