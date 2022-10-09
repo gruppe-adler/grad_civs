@@ -17,6 +17,8 @@ _this params [
     ["_mode", ""] /* optional: house | road */
 ];
 
+assert(_minDistance <= _maxDistance);
+
 private _halfSectorWidth = (_maxDistance - _minDistance) / 2;
 private _initialSearchDir = random 360;
 

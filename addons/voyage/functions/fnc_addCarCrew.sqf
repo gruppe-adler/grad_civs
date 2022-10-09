@@ -6,8 +6,8 @@ params [
 ];
 
 private _vehicleSpawnDistances = [GVAR(spawnDistancesInVehicles)] call EFUNC(common,parseCsv);
-private _vehicleSpawnDistanceMin = _vehicleSpawnDistances#0;
-private _vehicleSpawnDistanceMax = _vehicleSpawnDistances#1;
+private _vehicleSpawnDistanceMin = selectMin _vehicleSpawnDistances;
+private _vehicleSpawnDistanceMax = selectMax _vehicleSpawnDistances;
 
 private _spawnPositionHouse = [
     _allPlayers,
