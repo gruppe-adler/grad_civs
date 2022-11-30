@@ -9,7 +9,7 @@ Spawn ambient civilians on the map.
 
 ## Features
 
-Automatically populate the map with civilians who live in their own houses, go for long walks and short chats with their nightbors, or drive around the country.
+Automatically populate the map with civilians who live in their own houses, go for long walks and short chats with their neighbors, or drive around the country.
 Civilians can interact with players in various ways - surrendering when threatened with violence, hiding in panic when violence actually happens.
 They will halt their cars if signaled to stop, or move out of the way when getting honked at. If you're lucky they will even back up their vehicles if being told to do so (known unreliable).
 Civilian *players* will get help trying to mimikry AI civilians by getting hints as to the interactions players perform that AI civilians would "notice".
