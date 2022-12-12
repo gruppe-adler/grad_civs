@@ -2,6 +2,11 @@
 
 private _civClasses = call EFUNC(lifecycle,config_getCivClasses);
 
+_civClasses = _civClasses select {
+    private _outer = _x;
+    _civClasses findIf { _outer  isKindOf _x } == -1
+};
+
 private _carryOnAction = [
     QGVAR(carryOnAction),
     "carry on with your business",
