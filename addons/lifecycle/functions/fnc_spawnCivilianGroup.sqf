@@ -16,6 +16,7 @@ if (_pos isEqualTo [0, 0, 0]) exitWith {
 private _group = createGroup [civilian, true];
 _group setCombatMode "GREEN";
 _group setVariable ["grad_civs_primaryTask", _primaryTask, true];
+_group setVariable ["lambs_danger_disableGroupAI", true, true];
 
 for "_i" from 1 to _groupSize do {
     [_pos, _group, _primaryTask, _civClasses] call FUNC(spawnCivilian);
