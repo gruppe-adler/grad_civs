@@ -19,7 +19,7 @@ GVAR(globalSpawnHandler) = [QGVAR(globalSpawn), FUNC(localSpawnPass)] call CBA_f
 [FUNC(cleanupLocalCivs), 10, []] call CBA_fnc_addPerFrameHandler;
 
 if (isServer) then {
-    [FUNC(globalSpawnPass), 2, []] call CBA_fnc_addPerFrameHandler;
+    [FUNC(globalSpawnPass), 1 / GVAR(spawnRate), []] call CBA_fnc_addPerFrameHandler;
 };
 
 if (CBA_isHeadlessClient) then {
