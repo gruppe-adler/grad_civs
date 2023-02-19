@@ -125,3 +125,14 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
     },
     false
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(clockrate),
+    "SLIDER",
+    ["Clock Rate", "Time in seconds between spawn attempts"],
+    _settingsGroup,
+    [0.25,10,2, 2],
+    true,
+    {},
+    true
+] call CBA_fnc_addSetting;
