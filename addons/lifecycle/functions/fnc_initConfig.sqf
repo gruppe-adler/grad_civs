@@ -71,6 +71,19 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
     false
 ] call CBA_fnc_addSetting;
 
+
+[
+    QGVAR(spawnRate),
+    "SLIDER",
+    ["Spawn rate", "Spawn attempts per second"],
+    _settingsGroup,
+    [0.1, 25, 0.5, 2],
+    true,
+    {},
+    true
+] call CBA_fnc_addSetting;
+
+
 [
     QGVAR(minCivOwnerFps),
     "SLIDER",
@@ -120,19 +133,8 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
             removeMissionEventHandler ["EachFrame", _x];
         } forEach GVAR(efIDs);
         GVAR(efIDs) = [];
-    
+
         [] call FUNC(overclockStateMachines);
     },
     false
-] call CBA_fnc_addSetting;
-
-[
-    QGVAR(clockrate),
-    "SLIDER",
-    ["Clock Rate", "Time in seconds between spawn attempts"],
-    _settingsGroup,
-    [0.25,10,2, 2],
-    true,
-    {},
-    true
 ] call CBA_fnc_addSetting;
