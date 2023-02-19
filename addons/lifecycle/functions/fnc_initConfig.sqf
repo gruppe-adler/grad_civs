@@ -134,5 +134,5 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
     [0.25,10,2, 2],
     true,
     {},
-    false
+    true
 ] call CBA_fnc_addSetting;
