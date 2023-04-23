@@ -1,5 +1,7 @@
 #include "..\script_component.hpp"
 
+ISNILS(GVAR(minRoadSpawnManSpawnDistance), 20);
+
 /**
 
     returns false or HashMap of {
@@ -55,7 +57,7 @@ private _result = {
             case "road": {
                 // for each position, get a road position close by
                 private _road = selectRandom (_refPos nearRoads _halfSectorWidth);
-                if (count (_road nearEntities ["Man", 100]) == 0) then {
+                if (count (_road nearEntities ["Man", GVAR(minRoadSpawnManSpawnDistance)]) == 0) then {
                     _road
                 } else {
                     objNull
