@@ -1,8 +1,11 @@
 #include "..\script_component.hpp"
 
-if ((ALL_HUMAN_PLAYERS isEqualTo []) && (GVAR(spawnOnlyWithPlayers))) exitWith {
-    INFO("no human players connected, will abstain from spawning civilians")
+if ((ALL_HUMAN_PLAYERS isEqualTo []) && (GVAR(spawnOnlyWithPlayers)) && (GVAR(shouldWarnSpawnPass))) exitWith {
+    INFO("no human players connected, will abstain from spawning civilians");
+    GVAR(shouldWarnSpawnPass) = false;
 };
+
+GVAR(shouldWarnSpawnPass) = true;
 
 private _minCivUpdateTime = GVAR(minCivUpdateTime);
 private _minFps = GVAR(minCivOwnerFps);

@@ -20,8 +20,12 @@ if ((count ALL_HUMAN_PLAYERS > 0) || (GVAR(spawnOnlyWithPlayers))) then {
         INFO_1("despawning civ %1 based on distance", _this);
         _tooDistantFromPlayers = true;
     };
+    GVAR(shouldWarnDespawnAbstain) = true;
 } else {
-    INFO("no human players connected, but civs allowed - will abstain from despawning civilians based on player distance");
+    if (GVAR(shouldWarnDespawnAbstain)) then {
+        INFO("no human players connected, but civs allowed - will abstain from despawning civilians based on player distance");
+        GVAR(shouldWarnDespawnAbstain) = false;
+    };
 };
 
 _tooDistantFromPlayers || {_this call _despawnCondition}
