@@ -30,5 +30,8 @@ GVAR(excludedParentClasses) = [
 	"Land_i_Barracks_V1_F" // yes, is parent for others!
 ];
 
+GVAR(shouldWarnSpawnAbstain) = true;
+GVAR(shouldWarnDespawnAbstain) = true;
+
 [] call FUNC(initConfig);
 
