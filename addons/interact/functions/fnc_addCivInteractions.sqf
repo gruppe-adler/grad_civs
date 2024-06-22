@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
 private _civClasses = call EFUNC(lifecycle,config_getCivClasses);
-
+_civClasses = _civClasses arrayIntersect _civClasses;
 _civClasses = _civClasses select {
     private _outer = _x;
     _civClasses select { _outer != _x } findIf { (_outer isKindOf _x) } == -1
