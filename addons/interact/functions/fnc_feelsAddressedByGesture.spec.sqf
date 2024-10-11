@@ -180,9 +180,7 @@ private _bUnawareOfAGesturing = [
         private _grp = group _a;
         deleteVehicle _a;
         if (driver _b != _b) then {
-            {
-                _b deleteVehicleCrew _x
-            } forEach (crew _b);
+            deleteVehicleCrew _b;
         };
         deleteVehicle _b;
         deleteGroup _grp;

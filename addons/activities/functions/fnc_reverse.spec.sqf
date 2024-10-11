@@ -156,9 +156,7 @@ if (isClass (configFile >> "CfgVehicles" >> "LOP_AFR_Civ_Ural_open")) then {
                 ]
             ],
             {
-                {
-                    _this deleteVehicleCrew _x
-                } forEach (crew _this);
+                deleteVehicleCrew _this;
                 deleteVehicle _this;
                 sleep 0.1;
             }
