@@ -5,7 +5,7 @@ INFO_2("ending reverse drive! removing 'BACK' PFH %1 from %2 ...", _handle, _veh
 [_handle] call CBA_fnc_removePerFrameHandler;
 {
     if (_x getVariable ["grad_civs_virtual_ec", false]) then {
-        deleteVehicle _x;
+        _vehicle deleteVehicleCrew _x;
     }
 } forEach (crew _vehicle);
 _vehicle setVariable [QGVAR(abortReverse), nil, true];
