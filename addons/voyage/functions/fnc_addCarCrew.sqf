@@ -32,7 +32,7 @@ private _spawnPositionRoad = [
     _vehicleSpawnDistanceMax
 ] call FUNC(findSpawnRoadSegment);
 
-if (_spawnPositionRoad isEqualTo false) exitWith {
+if (_spawnPositionRoad isEqualTo false || _spawnPositionRoad isEqualTo objNull) exitWith {
     INFO("could not find spawn position for car at this time");
     grpNull
 };
