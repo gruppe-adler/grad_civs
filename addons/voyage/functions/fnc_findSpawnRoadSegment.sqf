@@ -4,6 +4,6 @@
 
 params ["_allPlayers", "_minSpawnDistance", "_maxSpawnDistance"];
 
-if (_allPlayers isEqualTo []) exitWith {LOG("_allPlayers is empty"); objNull};
+if (_allPlayers isEqualTo []) exitWith {LOG("_allPlayers is empty"); false};
 
 ([ALL_HUMAN_PLAYERS, _minSpawnDistance, _maxSpawnDistance, "road"] call EFUNC(lifecycle,findSpawnPosition));
