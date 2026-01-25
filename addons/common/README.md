@@ -6,7 +6,7 @@ Common code. Basic configuration.
 
 ### Population Zone
 
-Define areas where civilians may spawn. If no Ppopulation Zone is placed, the whole terrain is assumed to be one big Population Zone.
+Define areas where civilians may spawn. If no Population Zone is placed, the whole terrain is assumed to be one big Population Zone.
 
 #### Usage
 
