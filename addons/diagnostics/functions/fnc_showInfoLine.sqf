@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(civStateFormat), 0);
-ISNILS(GVAR(userActionIds), []);
+ISNILS(GVAR(civStateFormat),0);
+ISNILS(GVAR(userActionIds),[]);
 
 [{
     params [
@@ -14,7 +14,7 @@ ISNILS(GVAR(userActionIds), []);
 
     private _filterTimeVars = {
         ((allVariables _this) select {
-            (_x find "grad_civs_state_time_") > -1
+            "grad_civs_state_time_" in _x
         } apply {
             [_x, floor CBA_missionTime - (_this getVariable _x)] joinString ": "
         }) joinString ", ";
@@ -45,7 +45,7 @@ ISNILS(GVAR(userActionIds), []);
                         round speed _veh,
                         round (_veh getVariable [QEGVAR(cars,speedLimit), -1]),
                         speedMode _x,
-                        if (leader _x == _x) then {"(is leader)"} else {""}
+                        ["", "(is leader)"] select (leader _x == _x)
                     ];
                 };
                 case 3: {format["%1 | %2 guns point at him", _x, _x getVariable [QEGVAR(interact,pointedAtCount), 0]]};
@@ -54,7 +54,7 @@ ISNILS(GVAR(userActionIds), []);
                 case 6: {format["%1 | state times: %2", _x, _x call _filterTimeVars]};
                 case 7: {format["%1 | waypoints: %2 , current wp is %3", _x, count waypoints group _x, currentWaypoint group _x ]};
                 case 8: {format["%1 | distance to player: %2", _x, _x distance (call CBA_fnc_currentUnit)]};
-                case 9: {format["%1 | %2%3", _x, typeOf _x, if (vehicle _x != _x) then {format [" in %1", typeOf (vehicle _x)]} else {""}]};
+                case 9: {format["%1 | %2%3", _x, typeOf _x, if (!isNull objectParent _x) then {format [" in %1", typeOf (vehicle _x)]} else {""}]};
                 case 10: {
                     private _vic = vehicle _x;
                     if (_vic != _x && (driver _vic == _x)) then {
@@ -94,7 +94,7 @@ ISNILS(GVAR(userActionIds), []);
 }, 0, []] call CBA_fnc_addPerFrameHandler;
 
 if (GVAR(showInfoLine)) then {
-    if (!(GVAR(userActionIds) isEqualTo [])) exitWith {};
+    if (GVAR(userActionIds) isNotEqualTo []) exitWith {};
 
     private _addCivAction = {
         params [

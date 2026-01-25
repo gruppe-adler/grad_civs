@@ -12,7 +12,7 @@ scopeName "main";
 
 private _driver = driver _vehicle;
 if (isNull _driver) exitWith {
-    INFO_1("not reversing vehicle %1: no driver present", _vehicle);
+    INFO_1("not reversing vehicle %1: no driver present",_vehicle);
 };
 
 if (effectiveCommander _vehicle == _driver) then {
@@ -20,7 +20,7 @@ if (effectiveCommander _vehicle == _driver) then {
     if ((count (crew _vehicle)) == 1) then {
         private _hasEmpty = (fullCrew [_vehicle, "", true]) findIf { isNull (_x#0) } != -1;
         if (!_hasEmpty) then {
-            WARNING_1("cannot reverse vehicle %1 as there's no free crew seat", _vehicle);
+            WARNING_1("cannot reverse vehicle %1 as there's no free crew seat",_vehicle);
             breakOut "main";
         };
         _ec = (group _driver) createUnit ["C_Soldier_VR_F", [0, 0, 0], [], 0, "NONE"];
@@ -33,7 +33,7 @@ if (effectiveCommander _vehicle == _driver) then {
         _ec = ((crew _vehicle) select {_x != _driver})#0;
     };
 
-    LOG_1("setting EC to %1", typeOf _ec);
+    LOG_1("setting EC to %1",typeOf _ec);
     _vehicle setEffectiveCommander _ec;
     _vehicle sendSimpleCommand "STOPTURNING";
 };
@@ -42,7 +42,7 @@ private _pfhHandle = [FUNC(reverse_internal_pfh), 0, [_vehicle, _targetPos]] cal
 
 _vehicle setVariable [QGVAR(abortReverse), nil, true];
 // _vehicle setVelocityModelSpace [0, -2, 0];
-INFO_3("starting reverse drive! PFH %1 for %2 will time out after %3s", _pfhHandle, _vehicle, _timeout);
+INFO_3("starting reverse drive! PFH %1 for %2 will time out after %3s",_pfhHandle,_vehicle,_timeout);
 
 [
     FUNC(reverse_internal_stopCondition),

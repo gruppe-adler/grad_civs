@@ -1,0 +1,20 @@
+name = "Gruppe Adler Civilians"
+prefix = "grad_civs"
+author = "Gruppe Adler"
+mainprefix = "z"
+
+[files]
+include = [
+    "logo_active_ca.paa",
+    "logo_ca.paa",
+    "logo_small_ca.paa",
+    "overview_co.paa",
+    "README.md"
+]
+
+[hemtt.launch.default]
+workshop = [
+    "450814997", # CBA
+    "463939057", # ACE3
+    "1779063631", # Zeus Enhanced
+]

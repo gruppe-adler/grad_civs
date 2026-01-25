@@ -1,7 +1,6 @@
 #include "..\script_component.hpp"
 
-INFO_2("yay dismiss civ module called with %1 (type %2)", _this, typeName _this);
+INFO_2("yay dismiss civ module called with %1 (type %2)",_this,typeName _this);
 {
-
-    [_x] call EFUNC(common,dismissCiv);
+    [_x] call EFUNC(lifecycle,dismissCiv);
 } forEach _this;

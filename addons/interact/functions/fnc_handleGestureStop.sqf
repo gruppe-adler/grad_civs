@@ -10,7 +10,7 @@ private _potentialObservers = nearestObjects [_gesturer, ["Man"], 100];
 
 _potentialObservers = _potentialObservers + (nearestObjects [_gesturer, ["Car"], 200] apply { driver _x });
 
-INFO_1("%1 people & cars are near gesturer", count _potentialObservers);
+INFO_1("%1 people & cars are near gesturer",count _potentialObservers);
 
 // select civs
 private _observers = _potentialObservers select {
@@ -25,4 +25,4 @@ private _observers = _potentialObservers select {
     [_x, _waitTime] call EFUNC(activities,doStop);
 } forEach _observers;
 
-INFO_1("%1 civ observers were triggered for being gestured with 'stop'", count _observers);
+INFO_1("%1 civ observers were triggered for being gestured with 'stop'",count _observers);

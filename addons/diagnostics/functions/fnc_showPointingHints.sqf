@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(pointHandler), []);
+ISNILS(GVAR(pointHandler),[]);
 if (GVAR(showMisc)) then {
     if (GVAR(pointHandler) isEqualTo []) then {
         GVAR(pointHandler) = [

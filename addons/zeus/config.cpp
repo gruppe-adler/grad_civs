@@ -7,13 +7,9 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "grad_civs_common"
-            ,"grad_civs_activities"
-            ,"grad_civs_voyage"
-#ifdef HARD_DEPENDENCIES 
-            ,"zen_context_menu"
-            ,"zen_custom_modules"
-#endif
+            "grad_civs_common",
+            "grad_civs_activities",
+            "grad_civs_voyage",
         };
         author = "AUTHOR";
         VERSION_CONFIG;

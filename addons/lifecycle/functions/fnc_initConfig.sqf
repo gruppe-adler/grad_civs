@@ -127,8 +127,8 @@ private _settingsGroup = ["GRAD Civilians", "2) lifecycle - performance & spawni
     {
         if (!CBA_isHeadlessClient) exitWith {};
 
-        ISNILS(GVAR(efIDs), []);
-        INFO_1("removing %1 previous addditional state machine ticks per frame", count GVAR(efIDs));
+        ISNILS(GVAR(efIDs),[]);
+        INFO_1("removing %1 previous addditional state machine ticks per frame",count GVAR(efIDs));
         {
             removeMissionEventHandler ["EachFrame", _x];
         } forEach GVAR(efIDs);

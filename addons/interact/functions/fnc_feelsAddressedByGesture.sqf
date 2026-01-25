@@ -27,7 +27,7 @@ if (_gesturerAngleFromUnit > 70) exitWith {false};
 //       for example in "C_Van_01_fuel_F".
 //       As a workaround, check visibility from 1m in front of a driver.
 private _eyePos = eyePos _unit;
-if (vehicle _unit != _unit) then {
+if (!isNull objectParent _unit) then {
     _eyePos = (eyePos _unit) vectorAdd (vectorDirVisual _unit)
 };
 

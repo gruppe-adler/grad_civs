@@ -3,7 +3,7 @@
 [QEGVAR(interact,flyscare_poly), GVAR(flyscareHandler)] call CBA_fnc_removeEventHandler;
 GVAR(flyscareHandler) = -1;
 
-ISNILS(GVAR(dangerPolyGroundHelpers), []);
+ISNILS(GVAR(dangerPolyGroundHelpers),[]);
 [] call FUNC(showFlyScarePoly_cleanupGroundHelpers);
 
 if (!GVAR(showMisc)) exitWith {};

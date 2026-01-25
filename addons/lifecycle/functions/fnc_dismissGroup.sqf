@@ -12,4 +12,4 @@ assert(local _group);
 
 [_group] call CBA_fnc_clearWaypoints;
 
-INFO_1("dismissed group %1", _group);
+INFO_1("dismissed group %1",_group);

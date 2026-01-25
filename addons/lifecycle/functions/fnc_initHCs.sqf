@@ -24,5 +24,5 @@ if (isServer) then {
 
 if (CBA_isHeadlessClient) then {
     [] call FUNC(overclockStateMachines);
-    [FUNC(adoptAbandonedCivs), 30, []] call CBA_fnc_addPerFrameHandler;
+    [EFUNC(activities,adoptAbandonedCivs), 30, []] call CBA_fnc_addPerFrameHandler;
 };

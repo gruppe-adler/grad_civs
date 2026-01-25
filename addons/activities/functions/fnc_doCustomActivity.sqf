@@ -21,22 +21,22 @@ params [
 assert(local _civ);
 
 private _id = ([_name, call FUNC(uid)] select { _x != ""}) joinString "_";
-LOG_2("civ %1: generated uid %2 for custom activity", _civ, _id);
+LOG_2("civ %1: generated uid %2 for custom activity",_civ,_id);
 
 private _timeout = 86400*366; // if you run a scenario for over one year, take this bug with love <3.
 private _endCondition = _endConditionOrTimeout;
-if (typeName _endConditionOrTimeout == typeName 0) then {
-    LOG_2("civ %1: custom activity %2 has timeout", _civ, _id);
+if (typeName _endConditionOrTimeout == "SCALAR") then {
+    LOG_2("civ %1: custom activity %2 has timeout",_civ,_id);
     _timeout = _endConditionOrTimeout;
     _endCondition = {false};
 } else {
-    LOG_2("civ %1: custom activity %2 has endCondition", _civ, _id);
+    LOG_2("civ %1: custom activity %2 has endCondition",_civ,_id);
 };
 
 // force the previous custom activity to end
 private _currentCustomActivity = _civ getVariable [QGVAR(customActivity_id), ""];
 if (_currentCustomActivity != "") then {
-    INFO_2("civ %1: forcing previous custom activity %2 to end.", _civ, _currentCustomActivity);
+    INFO_2("civ %1: forcing previous custom activity %2 to end.",_civ,_currentCustomActivity);
     private _prevDoEnd = _civ getVariable [QGVAR(customActivity_doEnd), {}];
     private _prevParameters = _civ getVariable [QGVAR(customActivity_parameters), []];
     ([_civ] + _prevParameters) call _prevDoEnd;
@@ -46,7 +46,7 @@ if (_currentCustomActivity != "") then {
     [QGVAR(customActivity_start), [_civ], _civ] call CBA_fnc_targetEvent;
 };
 
-LOG_2("civ %1: starts custom activity %2", _civ, _id);
+LOG_2("civ %1: starts custom activity %2",_civ,_id);
 
 ([_civ] + _moreParameters) call _doStart;
 
@@ -63,7 +63,7 @@ private _endCode = {
     params  ["_civ", "_id"];
 
     if (_civ getVariable [QGVAR(customActivity_id), ""] == _id) then {
-        LOG_2("civ %1: ending custom activity %2", _civ, _id);
+        LOG_2("civ %1: ending custom activity %2",_civ,_id);
         private _doEnd = _civ getVariable [QGVAR(customActivity_doEnd), {}];
         private _moreParameters = _civ getVariable [QGVAR(customActivity_parameters), []];
         ([_civ] + _moreParameters) call _doEnd;
@@ -75,7 +75,7 @@ private _endCode = {
 
         [QGVAR(customActivity_end), [_civ], _civ] call CBA_fnc_targetEvent;
     } else {
-        WARNING_2("civ %1: CANNOT end custom activity %2 , must've been cut short by sth else", _civ, _id);
+        WARNING_2("civ %1: CANNOT end custom activity %2 , must've been cut short by sth else",_civ,_id);
     };
 };
 

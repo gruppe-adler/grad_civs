@@ -10,7 +10,7 @@ assert(!isNull _gesturer);
 // NOTE do NOT target units on foot - those are handled by ACE!
 private _potentialObservers = nearestObjects [_gesturer, ["Car"], 200] apply { driver _x };
 
-INFO_1("%1 cars with driver are near gesturer", count _potentialObservers);
+INFO_1("%1 cars with driver are near gesturer",count _potentialObservers);
 
 // select civs
 private _observers = _potentialObservers select {
@@ -28,4 +28,4 @@ private _vectorDir = vectorDirVisual _gesturer;
     [_x, _reverseTargetPos] call EFUNC(activities,doReverse);
 } forEach _observers;
 
-INFO_1("%1 civs were triggered for being gestured with 'go'", count _observers);
+INFO_1("%1 civs were triggered for being gestured with 'go'",count _observers);

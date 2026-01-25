@@ -1,14 +1,14 @@
 #include "..\script_component.hpp"
 
 params [
-	["_polygon", [], [[]]]
+    ["_polygon", [], [[]]]
 ];
 
 _polygon params [
-	"",
-	"_close",
-	"_farAhead",
-	"_far"
+    "",
+    "_close",
+    "_farAhead",
+    "_far"
 ];
 
 private _lineColor = [1, 0, 1, 1];
@@ -23,5 +23,5 @@ private _lineColor = [1, 0, 1, 1];
 } forEach _close;
 {
     drawLine3D [_x, _far#((_forEachIndex + 1) mod 8), _lineColor];
-	drawLine3D [_x, _farAhead, _lineColor];
+    drawLine3D [_x, _farAhead, _lineColor];
 } forEach _far;

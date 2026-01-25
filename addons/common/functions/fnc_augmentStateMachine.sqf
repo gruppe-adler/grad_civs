@@ -39,6 +39,6 @@ assert((typeName _callback) == "CODE");
             ["_stateMachineName", "", [""]],
             ["_stateDependencies", [], [[]]]
         ];
-        ERROR_2("state machine %1 did not get initialized or one of %2 states are missing - cannot augment", _stateMachineName, _stateDependencies);
+        ERROR_2("state machine %1 did not get initialized or one of %2 states are missing - cannot augment",_stateMachineName,_stateDependencies);
     }
 ] call CBA_fnc_waitUntilAndExecute;

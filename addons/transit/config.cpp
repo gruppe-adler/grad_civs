@@ -3,7 +3,10 @@
 class CfgPatches {
     class ADDON {
         name = QUOTE(COMPONENT);
-        units[] = {};
+        units[] = {
+            QGVAR(transitSink),
+            QGVAR(transitSource),
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"grad_civs_cars"};

@@ -1,3 +1,5 @@
+#include "..\script_component.hpp"
+
 ["given a bunch of players",
     {
         private _allPlayers = [];

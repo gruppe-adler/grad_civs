@@ -12,13 +12,13 @@ params [
 assert(isServer);
 
 assert(_interval > 0);
-assert(!(_source isEqualTo [0, 0, 0]));
+assert(_source isNotEqualTo [0, 0, 0]);
 
-if (count _sinks == 0) exitWith {
-    ERROR_1("transit route source %1 without sinks is bad mkay", _source);
+if (_sinks isEqualTo []) exitWith {
+    ERROR_1("transit route source %1 without sinks is bad mkay",_source);
 };
 
-ISNILS(GVAR(transitRoutes), []);
+ISNILS(GVAR(transitRoutes),[]);
 
 private _newRoute = true call CBA_fnc_createNamespace;
 _newRoute setVariable ["source", _source, true];

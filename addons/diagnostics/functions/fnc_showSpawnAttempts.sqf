@@ -1,7 +1,7 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(showSpawnAttempts_handlers), createHashMap);
-ISNILS(GVAR(showSpawnAttempts_markers), createHashMap);
+ISNILS(GVAR(showSpawnAttempts_handlers),createHashMap);
+ISNILS(GVAR(showSpawnAttempts_markers),createHashMap);
 
 if (!GVAR(showSpawnAttempts)) exitWith {
     {
@@ -10,9 +10,7 @@ if (!GVAR(showSpawnAttempts)) exitWith {
     GVAR(showSpawnAttempts_handlers) = createHashMap;
 };
 
-private _evtId;
-
-_evtId = [
+private _evtId = [
     QEGVAR(lifecycle,spawnRefpos),
     {
         _this params [
@@ -48,7 +46,7 @@ _evtId = [
 
         private _markers = GVAR(showSpawnAttempts_markers) getOrDefault [_refPos, []];
         if (_markers isEqualTo []) exitWith {
-            ERROR_1("got spawnCandidate event with unknownh refPos %1", _refPos);
+            ERROR_1("got spawnCandidate event with unknownh refPos %1",_refPos);
         };
         private _c = "";
         if (isNull _candidate) exitWith {
@@ -74,7 +72,7 @@ _evtId = [
         ];
         private _markers = GVAR(showSpawnAttempts_markers) getOrDefault [_refPos, []];
         if (count _markers < 2) exitWith {
-            ERROR_1("got spawnCandidateMinDistance event where unknown candidate (refpos %1, candidate %2)", _refPos, _candidate);
+            ERROR_2("got spawnCandidateMinDistance event where unknown candidate (refpos %1, candidate %2)",_refPos,_candidate);
         };
 
         if (_minDistanceIsGiven) then {

@@ -1,8 +1,8 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(lastFps), createHashMap);
-ISNILS(GVAR(fpsHandler), -1);
-ISNILS(GVAR(fpsPfh), -1);
+ISNILS(GVAR(lastFps),createHashMap);
+ISNILS(GVAR(fpsHandler),-1);
+ISNILS(GVAR(fpsPfh),-1);
 
 GVAR(fpsHandler) = [
     QGVAR(fps),

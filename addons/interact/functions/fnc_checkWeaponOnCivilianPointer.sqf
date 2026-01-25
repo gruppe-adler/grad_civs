@@ -4,7 +4,7 @@
 // only civs that get pointed at during  two consecutive runs get scared.
 // GVAR(gunpointees) is the delay counter for each pointed-at person.
 // NOTE: using cba_fnc_hashCreate over native HashMap, as it can use objects as key
-ISNILS(GVAR(gunpointees), [ARR_2([], 0)] call cba_fnc_hashCreate);
+ISNILS(GVAR(gunpointees),[ARR_2([],0)] call cba_fnc_hashCreate);
 
 private _depoint = {
     {
@@ -38,7 +38,7 @@ private _point = {
 private _playerUnit = call CBA_fnc_currentUnit;
 private _weaponRaisedOnFoot = (alive _playerUnit) &&
     {!weaponLowered _playerUnit} &&
-    {vehicle _playerUnit == _playerUnit} &&
+    {isNull objectParent _playerUnit} &&
     {"sras" in (animationState _playerUnit)};
 
 // ----------------------------------------------------------------

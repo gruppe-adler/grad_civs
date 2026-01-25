@@ -1,6 +1,6 @@
 #include "..\script_component.hpp"
 
-ISNILS(GVAR(speedLimitsPfh), -1);
+ISNILS(GVAR(speedLimitsPfh),-1);
 
 if (!GVAR(showSpeedLimitsOnMap)) exitWith {
     [GVAR(speedLimitsPfh)] call CBA_fnc_removePerFrameHandler;

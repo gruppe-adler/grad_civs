@@ -54,7 +54,7 @@
                                 params [["_civ", objNull]];
                                 private _grp = (group _civ);
                                 private _wps = waypoints _grp;
-                                private _lastWp = _wps select ((count _wps) - 1);
+                                private _lastWp = _wps select -1;
 
                                 [waypointType _lastWp, "CYCLE"] call grad_testing_fnc_assertEquals;
                             }
