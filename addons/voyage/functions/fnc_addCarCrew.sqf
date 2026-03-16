@@ -40,8 +40,10 @@ if (_spawnPositionRoad isEqualTo false) exitWith {
 private _segment = _spawnPositionRoad get "road";
 (getRoadInfo _segment) params ["", "_width", "", "", "", "", "_begPos", "_endPos"];
 
+// spawn on road side, but *not* on the curb, as we'd have to check for buildings/other obstacles.
+private _vehicleWidth= 2; // TODO: get real vehicle width
 private _dir = _begPos getDir _endPos;
-private _lateralOffset = 0 max (_width - 2); // TODO: refactor to use real vehicle's boundingBox to put veh not too far out on the curb
+private _lateralOffset = 0 max (_width/2 - _vehicleWidth);
 private _roadSidePos = (getPos _segment) vectorAdd ((vectorNormalized ((getPos _segment) vectorCrossProduct [0, 0, -1])) vectorMultiply _lateralOffset);
 
 [
