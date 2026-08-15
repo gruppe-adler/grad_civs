@@ -7,7 +7,7 @@ params [
     ["_greenTimeout", 5, [0]]
 ];
 
-ISNILS(GVAR(markerId), 0);
+ISNILS(GVAR(markerId),0);
 GVAR(markerId) = GVAR(markerId) + 1;
 private _markerName = format ["debugmarker%1", GVAR(markerId)];
 

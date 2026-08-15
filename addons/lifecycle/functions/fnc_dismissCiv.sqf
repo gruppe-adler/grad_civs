@@ -37,4 +37,4 @@ _civ enableAI "MOVE";
 // trigger event last
 [QGVAR(civ_removed), [_civ]] call CBA_fnc_globalEvent;
 
-INFO_1("dismissed civ %1", _civ);
+INFO_1("dismissed civ %1",_civ);

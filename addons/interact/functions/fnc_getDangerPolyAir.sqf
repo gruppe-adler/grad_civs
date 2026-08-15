@@ -1,15 +1,15 @@
 #include "..\script_component.hpp"
 
 params [
-	["_vic", objNull, [objNull]]
+    ["_vic", objNull, [objNull]]
 ];
 
 assert(!isNull _vic);
 
-ISNILS(GVAR(flyScareVelocityAdjustmentFactor), 10);
-ISNILS(GVAR(flyScareVelocitySpread), 0.25);
-ISNILS(GVAR(vicBoxWidth), 10);
-ISNILS(GVAR(vicBoxLength), 40 + (GVAR(vicBoxWidth) / 2));
+ISNILS(GVAR(flyScareVelocityAdjustmentFactor),10);
+ISNILS(GVAR(flyScareVelocitySpread),0.25);
+ISNILS(GVAR(vicBoxWidth),10);
+ISNILS(GVAR(vicBoxLength),40 + (GVAR(vicBoxWidth) / 2));
 
 private _velocity = velocity _vic;
 _velocity = vectorLinearConversion [0, 1, 0.5, _velocity, [0, 0, -1], true]; // add scary downwash. also stabilize influence area at low speeds.
@@ -65,8 +65,8 @@ private _fArray = _cArray apply {
 };
 
 [
-	_center,
-	_cArray apply {_center vectorAdd _x},
-	_farAhead,
-	_fArray
+    _center,
+    _cArray apply {_center vectorAdd _x},
+    _farAhead,
+    _fArray
 ]

@@ -3,7 +3,7 @@
 if (CBA_missionTime - (_this getVariable [QGVAR(lastDespawnCheck), 0]) < 10) exitWith {};
 _this setVariable [QGVAR(lastDespawnCheck), CBA_missionTime];
 
-LOG_1("check despawn cond for %1", _this);
+LOG_1("check despawn cond for %1",_this);
 
 if (_this getVariable ["grad_civs_excludeFromCleanup",false]) exitWith {false};
 
@@ -15,9 +15,9 @@ _civTaskTypeInfo params [
 ];
 
 private _tooDistantFromPlayers = false;
-if ((count ALL_HUMAN_PLAYERS > 0) || (GVAR(spawnOnlyWithPlayers))) then {
+if (ALL_HUMAN_PLAYERS isNotEqualTo [] || (GVAR(spawnOnlyWithPlayers))) then {
     if ([ALL_HUMAN_PLAYERS, getPos _this, _cleanupDistance] call FUNC(isInDistanceFromOtherPlayers)) then {
-        INFO_1("despawning civ %1 based on distance", _this);
+        INFO_1("despawning civ %1 based on distance",_this);
         _tooDistantFromPlayers = true;
     };
     GVAR(shouldWarnDespawnAbstain) = true;

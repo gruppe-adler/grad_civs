@@ -27,9 +27,9 @@ for [{private _i=0}, {_i<_count}, {_i=_i+1}] do {
     ] call FUNC(taskPatrolFindWaypoint);
 
     if (_nextWaypoint isEqualTo []) exitWith {
-        WARNING_3("could not find more than %1 waypoints within %2m around %3", _i, _radius, _position)
+        WARNING_3("could not find more than %1 waypoints within %2m around %3",_i,_radius,_position)
     };
-    LOG_1("waypoint #%1 found", _i);
+    LOG_1("waypoint #%1 found",_i);
     _waypointPositions pushBack _nextWaypoint;
 };
 

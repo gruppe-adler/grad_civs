@@ -21,7 +21,7 @@ if (_civ == (call CBA_fnc_currentUnit)) exitWith {};
 
 private _veh = vehicle _civ;
 if (_veh isEqualTo _civ) exitWith {
-    ERROR_1("civ %1 was told to reverse while not being mounted");
+    ERROR_1("civ %1 was told to reverse while not being mounted",_civ);
 };
 
 [
@@ -33,7 +33,7 @@ if (_veh isEqualTo _civ) exitWith {
             ["_doTrueReverse", true, [true]]
         ];
         private _group = group driver vehicle _civ;
-        INFO_1("civ %1 is being sent away with vehicle. removing pre-existing waypoints", _civ);
+        INFO_1("civ %1 is being sent away with vehicle. removing pre-existing waypoints",_civ);
         [_group] call CBA_fnc_clearWaypoints;
 
         if (_doTrueReverse) then {
@@ -44,9 +44,9 @@ if (_veh isEqualTo _civ) exitWith {
                 {}
             ] call FUNC(reverse);
 
-            INFO_2("vehicle %1 reverses to %2 and then waits", _civ, _reverseTargetPos);
+            INFO_2("vehicle %1 reverses to %2 and then waits",_civ,_reverseTargetPos);
         } else {
-            INFO_2("vehicle %1 is moving back to %2 and then waits", _civ, _reverseTargetPos);
+            INFO_2("vehicle %1 is moving back to %2 and then waits",_civ,_reverseTargetPos);
             _civ doMove _reverseTargetPos;
         };
     },

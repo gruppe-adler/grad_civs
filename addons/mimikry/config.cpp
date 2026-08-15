@@ -7,11 +7,8 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "CBA_Extended_EventHandlers"
-            #ifdef WITH_ACE3_DEPENDENCY
-                , "ace_common"
-            #endif
-            , "grad_civs_activities"
+            "CBA_Extended_EventHandlers",
+            "grad_civs_activities",
         };
         author = "AUTHOR";
         VERSION_CONFIG;

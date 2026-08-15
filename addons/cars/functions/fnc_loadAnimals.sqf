@@ -17,7 +17,7 @@ if (isNil "grad_animalTransport_common_fnc_getSupportedAnimalConfigs") exitWith 
 };
 
 if ((GVAR(animalTransportVehiclesArray) isNotEqualTo []) && !([GVAR(animalTransportVehiclesArray), {_vehicle isKindOf _this#0}] call EFUNC(common,arraySome))) exitWith {
-    TRACE_1("animalTransportVehicles does not contain vehicle of type %1", typeOf _vehicle);
+    TRACE_1("animalTransportVehicles does not contain vehicle of type %1",typeOf _vehicle);
 };
 
 private _supportedAnimalConfigs = [] call grad_animalTransport_common_fnc_getSupportedAnimalConfigs;

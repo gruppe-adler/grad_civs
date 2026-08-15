@@ -4,7 +4,7 @@ params [
     ["_mode", "update", [""]]
 ];
 
-ISNILS(GVAR(speedLimitMarkers), []);
+ISNILS(GVAR(speedLimitMarkers),[]);
 {
     deleteMarkerLocal _x;
 } forEach GVAR(speedLimitMarkers);

@@ -1,8 +1,8 @@
 #include "..\script_component.hpp"
 
-{    
-	private _primaryTask = _x getVariable ["grad_civs_primaryTask", ""];
-	private _civ = [[0, 0, 0], _x, _primaryTask] call EFUNC(lifecycle,spawnCivilian);	
+{
+    private _primaryTask = _x getVariable ["grad_civs_primaryTask", ""];
+    private _civ = [[0, 0, 0], _x, _primaryTask] call EFUNC(lifecycle,spawnCivilian);	
 
     private _house = _group getVariable ["grad_civs_home", objNull];
     if (!(isNull _house)) then {
@@ -19,5 +19,5 @@
         _civ setPos [_position#0, _position#1, 0];
     };
 
-    INFO_2("%1 was added to group %2", _civ, _x);
+    INFO_2("%1 was added to group %2",_civ,_x);
 } forEach (_groups select {(_x getVariable ["grad_civs_primaryTask", ""]) isNotEqualTo ""});

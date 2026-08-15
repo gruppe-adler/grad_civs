@@ -29,7 +29,7 @@ private _house = if (_forcePosition isEqualTo []) then {
 
 if (isNull _house) exitWith {
     if (_forcePosition isNotEqualTo []) then {
-        WARNING_1("could not find spawn position for resident near %1", _forcePosition);
+        WARNING_1("could not find spawn position for resident near %1",_forcePosition);
     } else {
         LOG("could not find spawn position for resident this time (null)");
     };

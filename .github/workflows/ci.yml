@@ -3,19 +3,22 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  hemtt:
-    name: HEMTT
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - name: Setup HEMTT
+        uses: arma-actions/hemtt@v1
 
-    - name: Build with HEMTT
-      uses: gruppe-adler/action-release-with-hemtt@2.1.1
-      id: build
+      - name: Build Mod
+        run: hemtt build
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: 'grad_civs'
-        path: ${{ steps.build.outputs.zip_path }}
+      - name: Rename build folder
+        run: mv .hemttout/build .hemttout/@grad_civs
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: grad_civs.zip
+          path: .hemttout/@*
+          include-hidden-files: true 

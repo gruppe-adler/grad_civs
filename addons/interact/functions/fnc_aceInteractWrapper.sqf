@@ -6,7 +6,7 @@
         params [
             ["_target", objNull]
         ];
-        INFO_1("civ %1 is being sent down", _target);
+        INFO_1("civ %1 is being sent down",_target);
 
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 3600, 180, false];
@@ -29,7 +29,7 @@
             ["_target", objNull],
             ["_pos", [0, 0, 0]]
         ];
-        INFO_2("civ %1 is being sent away to %2", _target, _pos);
+        INFO_2("civ %1 is being sent away to %2",_target,_pos);
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 60, 5, false];
         [
@@ -48,7 +48,7 @@
 ["ace_common_playActionNow", {
     params ["_unit", "_animation"];
     if (!local _unit) exitWith {
-        WARNING_2("got playActionNow event %1 non-local unit %2!", _animation _unit);
+        WARNING_2("got playActionNow event %1 non-local unit %2!",_animation,_unit);
     };
     [_unit, _animation] call FUNC(handleAnimation);
 }] call CBA_fnc_addEventHandler;

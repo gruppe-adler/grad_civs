@@ -11,9 +11,9 @@ private _thisTransition = "MANUAL";
 private _thisOrigin = [_listItem, _stateMachine] call FUNC(getCurrentState);
 private _thisState = _thisOrigin;
 if (_thisOrigin == "") exitWith {
-    LOG_2("hmmm, %1 is not currently in any state of machine %2", _listItem, _stateMachine getVariable "#var");
+    LOG_2("hmmm, %1 is not currently in any state of machine %2",_listItem,_stateMachine getVariable "#var");
 };
-LOG_2("removing %1 from machine %2", _listItem, _stateMachine getVariable "#var");
+LOG_2("removing %1 from machine %2",_listItem,_stateMachine getVariable "#var");
 
 // in a perfect world, I'd call a manual transition to "" , buuut that function does not recognize emtpy targets.
 _listItem call (_stateMachine getVariable ONSTATELEAVING(_thisOrigin));

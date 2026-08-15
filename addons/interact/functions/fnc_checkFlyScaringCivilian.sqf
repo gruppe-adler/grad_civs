@@ -8,10 +8,10 @@ if (!(isEngineOn _vic) && ((getPos _vic)#2 < 0.5)) exitWith {};
 
 private _dangerPolyAirAGL = [_vic] call FUNC(getDangerPolyAir);
 _dangerPolyAirAGL params [
-	"",
-	"_close",
-	"_farAhead",
-	"_far"
+    "",
+    "_close",
+    "_farAhead",
+    "_far"
 ];
 
 private _dangerPolyCloseToFar = (_close createHashMapFromArray _far) toArray false;
@@ -63,8 +63,8 @@ private _endangeredCivs = _nearCivs select {
     private _civPosGround = (getPos _x); _civPosGround set [2, 0];
     _civPosGround inPolygon _dangerPolyGround
 };
-if ((count _endangeredCivs) > 0) then {
-    LOG_2("checkFlyScaringCivilian: %1 found of which %2 endangered", count _nearCivs, count _endangeredCivs);
+if (_endangeredCivs isNotEqualTo []) then {
+    LOG_2("checkFlyScaringCivilian: %1 found of which %2 endangered",count _nearCivs,count _endangeredCivs);
 };
 
 {

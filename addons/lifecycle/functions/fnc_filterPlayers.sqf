@@ -4,11 +4,11 @@ params [
     ["_allPlayers", [], [[]]]
 ];
 
-LOG_1("Looking for suitable players to spawn civilians around %1", _allPlayers);
+LOG_1("Looking for suitable players to spawn civilians around %1",_allPlayers);
 
 if (!GVAR(spawnCandidateLimitEnabled)) exitWith {_allPlayers};
 
-LOG_1("%1 is enabled, continuing", QGVAR(spawnCandidateLimitEnabled));
+LOG_1("%1 is enabled, continuing",QGVAR(spawnCandidateLimitEnabled));
 
 _allPlayers select {
     private _playerVehicle = objectParent _x;

@@ -5,7 +5,7 @@ params ["_pos","_type"];
 private _veh = _type createVehicle _pos;
 
 if (isNull _veh) exitWith {
-    ERROR_2("could not create vehicle of class %1 at %2 (unknown class name?)", _type, _pos);
+    ERROR_2("could not create vehicle of class %1 at %2 (unknown class name?)",_type,_pos);
 };
 
 clearBackpackCargo _veh;
@@ -20,17 +20,17 @@ _veh addEventHandler [
         {
             [QEGVAR(activities,firedNear), [_x], _x] call CBA_fnc_targetEvent;
         } forEach (crew _vec);
-     }
- ];
+    }
+];
 
- _veh addEventHandler [
+_veh addEventHandler [
     "Killed",
     {
         params ["_unit", "_killer"];
 
         [QGVAR(vehKilled), [getPos _unit, _killer, _unit]] call CBA_fnc_globalEvent;
     }
- ];
+];
 
 [QGVAR(car_added), [_veh]] call CBA_fnc_globalEvent;
 

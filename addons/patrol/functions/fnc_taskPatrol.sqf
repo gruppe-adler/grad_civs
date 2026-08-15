@@ -40,26 +40,26 @@ private _position = _centerPosition;
 
 assert(_count > 0);
 
-LOG_4("taskPatrol start (road mode: %4). waypoints to be added: %1, group: %2. previous waypoints: %3", _count, _group, count waypoints _group, _findRoadPos);
+LOG_4("taskPatrol start (road mode: %4). waypoints to be added: %1, group: %2. previous waypoints: %3",_count,_group,count waypoints _group,_findRoadPos);
 
 if !(local _group) exitWith {};
 [_group] call _clearWaypoints;
 
 private _moveWps = [_position, _radius, _count, _findPosOfInterest, _findRoadPos, _findWaterPos] call FUNC(taskPatrolFindWaypoints);
 {
-    LOG_1("adding wp at %1", _x);
-     [_group, _x, _timeout] call FUNC(taskPatrolAddWaypoint);
+    LOG_1("adding wp at %1",_x);
+    [_group, _x, _timeout] call FUNC(taskPatrolAddWaypoint);
 } forEach _moveWps;
 
 
 // add home waypoint!
 private _home = _group getVariable ["grad_civs_home", objNull];
 if (!isNull _home) then {
-    LOG_1("adding home wp at %1", getPos _home);
+    LOG_1("adding home wp at %1",getPos _home);
     [_group, getPos _home, [0, 15, 30], 20] call FUNC(taskPatrolAddWaypoint);
 };
 LOG("adding cycle wp close by group position");
 // NOTE : a cycle waypoint points to the *closest waypoint other than the previous one*! which means in our case: close to the initial waypoint
 [_group, _position vectorAdd [10, 0, 0]] call FUNC(addCycleWaypoint);
 
-LOG_3("taskPatrol end (road mode: %3). waypoints for group %1 : %2", _group, count waypoints _group, _findRoadPos);
+LOG_3("taskPatrol end (road mode: %3). waypoints for group %1 : %2",_group,count waypoints _group,_findRoadPos);

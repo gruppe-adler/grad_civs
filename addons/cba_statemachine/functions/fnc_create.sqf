@@ -8,7 +8,7 @@ Parameters:
                       code that will generate this list, called once the list
                       has been cycled through <CODE>
     _skipNull       - skip list items that are null,
-	_name           - (optional) string name for the state machine
+    _name           - (optional) string name for the state machine
 ---------------------------------------------------------------------------- */
 
 params [

@@ -3,7 +3,10 @@
 class CfgPatches {
     class ADDON {
         name = QUOTE(COMPONENT);
-        units[] = {};
+        units[] = {
+            QGVAR(PopulationZone),
+            QGVAR(ExclusionZone),
+        };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"A3_Modules_F", "CBA_Extended_EventHandlers", "grad_civs_main"};

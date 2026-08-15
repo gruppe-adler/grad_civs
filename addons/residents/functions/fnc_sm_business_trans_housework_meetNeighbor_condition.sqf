@@ -25,7 +25,7 @@ private _neighborToMeet = {
             ((_x getVariable [QGVAR(lastChat), 0]) + GVAR(meetNeighborCooldown) < CBA_missionTime)
         )
     };
-    if (count _socialNeighbors > 0) exitWith {_socialNeighbors#0};
+    if (_socialNeighbors isNotEqualTo []) exitWith {_socialNeighbors#0};
 } forEach [50, 100, 150];
 
 if (isNil "_neighborToMeet") exitWith {false};

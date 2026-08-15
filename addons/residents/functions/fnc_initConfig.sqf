@@ -2,7 +2,7 @@
 
 INFO("initConfig running...");
 
-private _settingsGroup = ["GRAD Civilians", "5) residents - between housework and chats with the neighbors"];
+private _settingsGroup = ["GRAD Civilians", "5) residents - housework and chats with neighbors"];
 
 
 [
@@ -21,7 +21,7 @@ private _settingsGroup = ["GRAD Civilians", "5) residents - between housework an
     "EDITBOX",
     "Spawn distance ([min,max])",
     _settingsGroup,
-    QUOTE(ARR_2([500, 1000])),
+    QUOTE(ARR_2([500,1000])),
     false,
     {},
     false

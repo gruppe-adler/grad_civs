@@ -18,7 +18,7 @@ private _waypointPosition = [];
 //create waypoints
 
 for "_i" from 1 to _maxTries do {
-    LOG_1("trying to create wp - pass #%1 ", _i);
+    LOG_1("trying to create wp - pass #%1",_i);
 
     private _searchPosition = [
         _position,
@@ -33,17 +33,17 @@ for "_i" from 1 to _maxTries do {
     };
 
     _searchPosition = if (_findPosOfInterest && {80 > random 100}) then {
-        [_searchPosition, false] call EFUNC(lifecycle,findPositionOfInterest);
+        [_searchPosition, false] call EFUNC(activities,findPositionOfInterest);
     } else {
         _searchPosition
     };
 
     private _popZones = [_searchPosition] call EFUNC(common,getPopulationZones);
     if (count _popZones > 0) exitWith {
-        LOG_1("position %1 is not in exclusionzone, return it", _searchPosition);
+        LOG_1("position %1 is not in exclusionzone, return it",_searchPosition);
         _waypointPosition = _searchPosition;
     };
-    LOG_1("not creating WP at %1", _searchPosition);
+    LOG_1("not creating WP at %1",_searchPosition);
 };
 
 _waypointPosition

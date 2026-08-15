@@ -22,7 +22,7 @@ if (_speed < 4) then { // amplify low values to have usable honking effect dista
 private _playerIsOnRoad = isOnRoad _playerUnit;
 private _narrowingFactor = 0.25;
 if (_playerIsOnRoad) then {
-     _narrowingFactor = linearConversion [4, 25, vectorMagnitude _playerVelocity, 1, 0.20, true];
+    _narrowingFactor = linearConversion [4, 25, vectorMagnitude _playerVelocity, 1, 0.20, true];
 };
 
 private _leftVector = [ -(_playerVelocity#1), _playerVelocity#0, _playerVelocity#2] vectorMultiply _narrowingFactor;

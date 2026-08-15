@@ -8,7 +8,7 @@ params [
     ["_getClosest", false, [true]]
 ];
 
-LOG_2("looking for unclaimed house at %1 within %2 m", _position, _radius);
+LOG_2("looking for unclaimed house at %1 within %2 m",_position,_radius);
 
 private _houses = [
     _position,
@@ -18,7 +18,7 @@ private _houses = [
 
 private _minPosCount = 2;
 
-LOG_3("%1 houses within %2m of %3, will whittle down by positions and excluded types", count _houses, _radius, _position);
+LOG_3("%1 houses within %2m of %3, will whittle down by positions and excluded types",count _houses,_radius,_position);
 
 private _filter = {
     // assumptions:

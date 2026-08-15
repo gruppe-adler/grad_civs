@@ -14,7 +14,7 @@ private _spawnPositionHouse = [
     0,
     _vehicleSpawnDistanceMax * 1.5,
     "house"
-] call FUNC(findSpawnPosition);
+] call EFUNC(lifecycle,findSpawnPosition);
 
 private _house = if (_spawnPositionHouse isEqualTo false) then {
     objNull

@@ -43,7 +43,7 @@
         [
             QEGVAR(lifecycle,localSpawn),
             {
-                ISNILS(GVAR(maxCivsResidents), GVAR(maxCivsResidents));
+                ISNILS(GVAR(maxCivsResidents),GVAR(maxCivsResidents));
                 if ((count (["reside"] call EFUNC(lifecycle,getGlobalCivs))) < GVAR(maxCivsResidents)) then {
                     [ALL_HUMAN_PLAYERS] call FUNC(addResident);
                 };

@@ -9,7 +9,7 @@ params [
 ];
 
 if (_pos isEqualTo [0, 0, 0]) exitWith {
-    ERROR_1("tried to spawn civs at %1", _pos);
+    ERROR_1("tried to spawn civs at %1",_pos);
     grpNull
 };
 

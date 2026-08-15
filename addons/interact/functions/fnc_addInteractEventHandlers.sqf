@@ -27,7 +27,7 @@
             ["_carVelocity", [0, 0, 0]]
         ];
         EXITIFLOCALPLAYER(_target);
-        INFO_1("civ %1 is being honked at", _target);
+        INFO_1("civ %1 is being honked at",_target);
 
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 15, 1, false];
@@ -71,13 +71,13 @@
             ["_carVelocity", [0, 0, 0]]
         ];
         EXITIFLOCALPLAYER(_target);
-        LOG_1("civ %1 is being flown over", _target);
+        LOG_1("civ %1 is being flown over",_target);
 
         private _recklessness = _target getVariable ["grad_civs_recklessness", 5];
         private _waitTime = linearConversion [0, 10, _recklessness, 15, 3, false];
 
         if ([_target] call EFUNC(activities,doingCustomActivity)) exitWith {
-            LOG_1("civ %1 : not interrupting customn activity %2", _target, [_target] call EFUNC(activities,getCustomActivity));
+            LOG_2("civ %1 : not interrupting customn activity %2",_target,[_target] call EFUNC(activities,getCustomActivity));
         }; // being flown over is _not_ interrupting, esp it should  not interrupt itself
 
         [

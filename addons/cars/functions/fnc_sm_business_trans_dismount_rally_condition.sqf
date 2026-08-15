@@ -2,5 +2,5 @@
 
 if (leader _this != _this) exitWith {true};
 
-(vehicle _this == _this) &&
-    ([_this, "emotions"] call EFUNC(common,civGetState)) != "emo_panic"
+(isNull objectParent _this) &&
+    {([_this, "emotions"] call EFUNC(common,civGetState)) != "emo_panic"}

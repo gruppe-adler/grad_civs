@@ -8,7 +8,7 @@ params [
 ];
 
 private _waypoint = _group addWaypoint [_position, 0];
-private _speed = (if (4 > random 100) then {"NORMAL"} else {"LIMITED"});
+private _speed = ["LIMITED", "NORMAL"] select (4 > random 100);
 
 _waypoint setWaypointType "MOVE";
 // _waypoint setWaypointBehaviour "SAFE"; // weirdly enough, this caused the group to mostly wait a looong time
